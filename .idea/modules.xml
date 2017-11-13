@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PhoneProfilesPlusExtender.iml" filepath="$PROJECT_DIR$/PhoneProfilesPlusExtender.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/phoneProfilesPlusExtender/app.iml" filepath="$PROJECT_DIR$/phoneProfilesPlusExtender/app.iml" />
     </modules>
   </component>
 </project>
