@@ -2,4 +2,6 @@
     <string name="app_name">PhoneProfilesPlusExtender</string>
     <string name="accessibility_service_name">PhoneProfilesPlusExtender</string>
     <string name="accessibility_service_description">Allow PhoneProfilesPlusExtender to detect which application is in the foreground. This is necessary for events with \"Applications parameters\" enabled.</string>
+    <string name="about_application_version">Version:</string>
+    <string name="exend_accessibility_service">• Accessibility service for event sensor Applications and Orientation.</string>
 </resources>
