@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PhoneProfilesPlusExtender</string>
+    <string name="accessibility_service_name">PhoneProfilesPlusExtender</string>
+    <string name="accessibility_service_description">Allow PhoneProfilesPlusExtender to detect which application is in the foreground. This is necessary for events with \"Applications parameters\" enabled.</string>
+</resources>
