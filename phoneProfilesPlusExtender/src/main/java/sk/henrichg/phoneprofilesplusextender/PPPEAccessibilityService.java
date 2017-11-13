@@ -18,7 +18,7 @@ import java.util.List;
 
 public class PPPEAccessibilityService extends android.accessibilityservice.AccessibilityService {
 
-    //private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
+    private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
 
     private static final String ACTION_FOREGROUND_APPLICATION_CHANGED = "sk.henrichg.phoneprofilesplusextender.ACTION_FOREGROUND_APPLICATION_CHANGED";
     private static final String ACTION_ACCESSIBILITY_SERVICE_UNBIND = "sk.henrichg.phoneprofilesplusextender.ACTION_ACCESSIBILITY_SERVICE_UNBIND";
@@ -92,6 +92,27 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         sendBroadcast(_intent, ACCESSIBILITY_SERVICE_PERMISSION);
 
         return super.onUnbind(intent);
+    }
+
+    @SuppressLint("LongLogTag")
+    static boolean isEnabled(Context context) {
+        AccessibilityManager manager = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+        if (manager != null) {
+            List<AccessibilityServiceInfo> runningServices =
+                    manager.getEnabledAccessibilityServiceList(AccessibilityEvent.TYPES_ALL_MASK);
+
+            for (AccessibilityServiceInfo service : runningServices) {
+                Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "serviceId="+service.getId());
+                if (SERVICE_ID.equals(service.getId())) {
+                    Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "true");
+                    return true;
+                }
+            }
+            Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "false");
+            return false;
+        }
+        Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "false");
+        return false;
     }
 
 }

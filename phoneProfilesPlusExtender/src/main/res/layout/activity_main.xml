@@ -21,7 +21,7 @@
         android:id="@+id/activity_main_exend_accessibility_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/exend_accessibility_service"
+        android:text="@string/exend_accessibility_service_disabled"
         android:textSize="15sp"/>
 
 </LinearLayout>
