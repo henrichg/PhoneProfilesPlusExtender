@@ -2,8 +2,8 @@
 <manifest package="sk.henrichg.phoneprofilesplusextender"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION" />
     <permission android:name="sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION" />
+    <uses-permission android:name="sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION" />
 
     <application
         android:allowBackup="true"
