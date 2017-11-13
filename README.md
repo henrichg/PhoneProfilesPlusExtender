@@ -1,7 +1,4 @@
-# PhoneProfilesPlusExtender
-
-
-PhoneProfilesPlus
+PhoneProfilesPlusExtender
 =================
 
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
