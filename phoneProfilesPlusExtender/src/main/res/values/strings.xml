@@ -7,4 +7,5 @@
     <string name="exend_accessibility_service_enabled">ENABLED</string>
     <string name="exend_accessibility_service_disabled">DISABLED</string>
     <string name="setting_screen_not_found_alert">Setting screen not found.</string>
+    <string name="accessibility_service_permission">PhoneProfilesPlusExtender accessibility service</string>
 </resources>

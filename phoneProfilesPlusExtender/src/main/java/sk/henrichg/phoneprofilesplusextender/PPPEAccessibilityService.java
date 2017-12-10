@@ -1,15 +1,11 @@
 package sk.henrichg.phoneprofilesplusextender;
 
-import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.os.Handler;
-import android.os.PowerManager;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
@@ -45,7 +41,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     @SuppressLint("LongLogTag")
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        final Context context = getApplicationContext();
+        //final Context context = getApplicationContext();
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
 
             try {
@@ -86,7 +82,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     public boolean onUnbind(Intent intent) {
         //Log.d("PPPEAccessibilityService", "onUnbind");
 
-        final Context context = getApplicationContext();
+        //final Context context = getApplicationContext();
 
         Intent _intent = new Intent(ACTION_ACCESSIBILITY_SERVICE_UNBIND);
         sendBroadcast(_intent, ACCESSIBILITY_SERVICE_PERMISSION);

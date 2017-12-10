@@ -8,8 +8,8 @@ android {
         applicationId "sk.henrichg.phoneprofilesplusextender"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 30
-        versionName "1.0.2"
+        versionCode 40
+        versionName "1.0.3"
     }
     buildTypes {
         release {
