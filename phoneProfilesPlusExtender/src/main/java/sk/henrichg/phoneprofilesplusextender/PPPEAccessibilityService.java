@@ -98,10 +98,12 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     manager.getEnabledAccessibilityServiceList(AccessibilityEvent.TYPES_ALL_MASK);
 
             for (AccessibilityServiceInfo service : runningServices) {
-                Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "serviceId="+service.getId());
-                if (SERVICE_ID.equals(service.getId())) {
-                    Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "true");
-                    return true;
+                if (service != null) {
+                    Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "serviceId=" + service.getId());
+                    if (SERVICE_ID.equals(service.getId())) {
+                        Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "true");
+                        return true;
+                    }
                 }
             }
             Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "false");
