@@ -7,11 +7,10 @@ android {
 
     defaultConfig {
         applicationId "sk.henrichg.phoneprofilesplusextender"
-        minSdkVersion 16
-        //noinspection OldTargetApi
+        minSdkVersion 19
         targetSdkVersion 25
-        versionCode 60
-        versionName "1.0.4"
+        versionCode 61
+        versionName "1.0.5b"
     }
     buildTypes {
         release {
