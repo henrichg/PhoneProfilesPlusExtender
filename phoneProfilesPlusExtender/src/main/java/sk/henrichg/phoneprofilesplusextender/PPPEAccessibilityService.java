@@ -84,7 +84,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
                     appInfoOpened = false;
 
-                    // 1. test foreground application. Must be AppInfo Settings
+                    //TODO 1. test foreground application. Must be AppInfo Settings
 
                     // 2. perform action in AppInfo Settings
                     AccessibilityNodeInfo nodeInfo = event.getSource();
