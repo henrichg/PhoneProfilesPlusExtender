@@ -10,7 +10,13 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         if ((intent == null) || (intent.getAction() == null))
             return;
 
-        if (intent.getAction().equals(PPPEAccessibilityService.APP_INFO_OPENED_BROADCAST)) {
+        if (intent.getAction().equals(PPPEAccessibilityService.ACTION_APP_INFO_OPENING)) {
+            PPPEAccessibilityService.appInfoOpened = false;
+            Intent _intent = new Intent(PPPEAccessibilityService.ACTION_OPEN_APP_INFO);
+            context.sendBroadcast(_intent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+        }
+
+        if (intent.getAction().equals(PPPEAccessibilityService.ACTION_APP_INFO_OPENED)) {
             PPPEAccessibilityService.appInfoOpened = true;
         }
     }

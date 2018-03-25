@@ -18,7 +18,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
 
-    private static final String ACCESSIBILITY_SERVICE_PERMISSION = "sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION";
+    static final String ACCESSIBILITY_SERVICE_PERMISSION = "sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION";
 
     private static final String ACTION_FOREGROUND_APPLICATION_CHANGED = "sk.henrichg.phoneprofilesplusextender.ACTION_FOREGROUND_APPLICATION_CHANGED";
     private static final String ACTION_ACCESSIBILITY_SERVICE_UNBIND = "sk.henrichg.phoneprofilesplusextender.ACTION_ACCESSIBILITY_SERVICE_UNBIND";
@@ -26,7 +26,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     private static final String EXTRA_PACKAGE_NAME = "sk.henrichg.phoneprofilesplus.package_name";
     private static final String EXTRA_CLASS_NAME = "sk.henrichg.phoneprofilesplus.class_name";
 
-    static final String APP_INFO_OPENED_BROADCAST = "sk.henrichg.phoneprofilesplusextender.APP_INFO_OPENED_BROADCAST";
+    static final String ACTION_APP_INFO_OPENING = "sk.henrichg.phoneprofilesplusextender.ACTION_APP_INFO_OPENING";
+    static final String ACTION_OPEN_APP_INFO = "sk.henrichg.phoneprofilesplusextender.ACTION_OPEN_APP_INFO";
+    static final String ACTION_APP_INFO_OPENED = "sk.henrichg.phoneprofilesplusextender.ACTION_APP_INFO_OPENED";
 
     private FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
 
@@ -48,7 +50,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         fromPhoneProfilesPlusBroadcastReceiver = new FromPhoneProfilesPlusBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(APP_INFO_OPENED_BROADCAST);
+        intentFilter.addAction(ACTION_APP_INFO_OPENING);
+        intentFilter.addAction(ACTION_APP_INFO_OPENED);
         getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                             ACCESSIBILITY_SERVICE_PERMISSION, null);
     }
