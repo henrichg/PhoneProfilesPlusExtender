@@ -79,27 +79,36 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 //////////////////
 
                 // for force close application
+                /*if (isActivity && (event.getPackageName().toString().equals("com.android.settings"))) {
+                    Log.e("PPPEAccessibilityService", "is Settings activity");
+                }*/
                 if (appInfoOpened) {
                     // AppInfo Settings is opened from PPP
 
                     appInfoOpened = false;
 
                     //TODO 1. test foreground application. Must be AppInfo Settings
+                    if (isActivity && (event.getPackageName().toString().equals("com.android.settings"))) {
+                        // com.android.settings/.applications.InstalledAppDetailsTop - MIUI
+                        // com.android.settings/.SubSettings - S8
+                        // com.android.settings/.SubSettings - Nexus5x
+                        Log.e("PPPEAccessibilityService", "is Settings activity");
 
-                    // 2. perform action in AppInfo Settings
-                    AccessibilityNodeInfo nodeInfo = event.getSource();
-                    if (nodeInfo != null) {
-                        List<AccessibilityNodeInfo> list = nodeInfo
-                                .findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
-                        //We can find button using button name or button id
-                        for (AccessibilityNodeInfo node : list) {
-                            node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                        }
+                        // 2. perform action in AppInfo Settings
+                        AccessibilityNodeInfo nodeInfo = event.getSource();
+                        if (nodeInfo != null) {
+                            List<AccessibilityNodeInfo> list = nodeInfo
+                                    .findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
+                            //We can find button using button name or button id
+                            for (AccessibilityNodeInfo node : list) {
+                                node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                            }
 
-                        list = nodeInfo
-                                .findAccessibilityNodeInfosByViewId("android:id/button1");
-                        for (AccessibilityNodeInfo node : list) {
-                            node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                            list = nodeInfo
+                                    .findAccessibilityNodeInfosByViewId("android:id/button1");
+                            for (AccessibilityNodeInfo node : list) {
+                                node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                            }
                         }
                     }
                 }
