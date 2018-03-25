@@ -68,8 +68,13 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
                 // for force close application
                 if (appInfoOpened) {
+                    // AppInfo Settings is opened from PPP
+
                     appInfoOpened = false;
 
+                    // 1. test foreground application. Must be AppInfo Settings
+
+                    // 2. perform action in AppInfo Settings
                     AccessibilityNodeInfo nodeInfo = event.getSource();
                     if (nodeInfo != null) {
                         List<AccessibilityNodeInfo> list = nodeInfo
