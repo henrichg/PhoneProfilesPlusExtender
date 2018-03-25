@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
@@ -17,14 +18,19 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
 
+    private static final String ACCESSIBILITY_SERVICE_PERMISSION = "sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION";
+
     private static final String ACTION_FOREGROUND_APPLICATION_CHANGED = "sk.henrichg.phoneprofilesplusextender.ACTION_FOREGROUND_APPLICATION_CHANGED";
     private static final String ACTION_ACCESSIBILITY_SERVICE_UNBIND = "sk.henrichg.phoneprofilesplusextender.ACTION_ACCESSIBILITY_SERVICE_UNBIND";
-    private static final String ACCESSIBILITY_SERVICE_BROADCAST = "sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_BROADCAST";
 
     private static final String EXTRA_PACKAGE_NAME = "sk.henrichg.phoneprofilesplus.package_name";
     private static final String EXTRA_CLASS_NAME = "sk.henrichg.phoneprofilesplus.class_name";
 
-    boolean appInfoOpened = false;
+    static final String APP_INFO_OPENED_BROADCAST = "sk.henrichg.phoneprofilesplusextender.APP_INFO_OPENED_BROADCAST";
+
+    private FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
+
+    static boolean appInfoOpened = false;
 
     @Override
     protected void onServiceConnected() {
@@ -39,6 +45,12 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         config.flags = AccessibilityServiceInfo.FLAG_INCLUDE_NOT_IMPORTANT_VIEWS;
 
         setServiceInfo(config);
+
+        fromPhoneProfilesPlusBroadcastReceiver = new FromPhoneProfilesPlusBroadcastReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(APP_INFO_OPENED_BROADCAST);
+        getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
+                            ACCESSIBILITY_SERVICE_PERMISSION, null);
     }
 
     @SuppressLint("LongLogTag")
@@ -62,7 +74,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
                     intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
                     intent.putExtra(EXTRA_CLASS_NAME, event.getClassName().toString());
-                    sendBroadcast(intent, ACCESSIBILITY_SERVICE_BROADCAST);
+                    sendBroadcast(intent, ACCESSIBILITY_SERVICE_PERMISSION);
                 }
                 //////////////////
 
@@ -118,7 +130,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         //final Context context = getApplicationContext();
 
         Intent _intent = new Intent(ACTION_ACCESSIBILITY_SERVICE_UNBIND);
-        sendBroadcast(_intent, ACCESSIBILITY_SERVICE_BROADCAST);
+        sendBroadcast(_intent, ACCESSIBILITY_SERVICE_PERMISSION);
+
+        getBaseContext().unregisterReceiver(fromPhoneProfilesPlusBroadcastReceiver);
 
         return super.onUnbind(intent);
     }
