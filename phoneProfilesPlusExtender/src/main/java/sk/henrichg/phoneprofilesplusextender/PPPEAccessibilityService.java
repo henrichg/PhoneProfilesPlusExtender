@@ -44,7 +44,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         config.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
 
         //Just in case this helps
-        config.flags = AccessibilityServiceInfo.FLAG_INCLUDE_NOT_IMPORTANT_VIEWS;
+        config.flags = AccessibilityServiceInfo.FLAG_INCLUDE_NOT_IMPORTANT_VIEWS |
+                        AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
 
         setServiceInfo(config);
 
