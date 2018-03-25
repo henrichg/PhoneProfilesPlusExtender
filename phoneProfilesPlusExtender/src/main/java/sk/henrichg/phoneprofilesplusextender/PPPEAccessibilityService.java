@@ -118,7 +118,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 //////////////////
 
             } catch (Exception e) {
-                Log.e("PPPEAccessibilityService.onAccessibilityEvent", e.toString());
+                Log.e("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
             }
         }
     }
