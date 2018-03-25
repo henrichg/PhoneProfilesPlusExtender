@@ -9,6 +9,7 @@ import android.content.pm.ActivityInfo;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
+import android.view.accessibility.AccessibilityNodeInfo;
 
 import java.util.List;
 
@@ -18,10 +19,12 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     private static final String ACTION_FOREGROUND_APPLICATION_CHANGED = "sk.henrichg.phoneprofilesplusextender.ACTION_FOREGROUND_APPLICATION_CHANGED";
     private static final String ACTION_ACCESSIBILITY_SERVICE_UNBIND = "sk.henrichg.phoneprofilesplusextender.ACTION_ACCESSIBILITY_SERVICE_UNBIND";
-    private static final String ACCESSIBILITY_SERVICE_PERMISSION = "sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION";
+    private static final String ACCESSIBILITY_SERVICE_BROADCAST = "sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_BROADCAST";
 
     private static final String EXTRA_PACKAGE_NAME = "sk.henrichg.phoneprofilesplus.package_name";
     private static final String EXTRA_CLASS_NAME = "sk.henrichg.phoneprofilesplus.class_name";
+
+    boolean appInfoOpened = false;
 
     @Override
     protected void onServiceConnected() {
@@ -45,6 +48,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
 
             try {
+                // for foreground application change
                 ComponentName componentName = new ComponentName(
                         event.getPackageName().toString(),
                         event.getClassName().toString()
@@ -58,8 +62,32 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
                     intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
                     intent.putExtra(EXTRA_CLASS_NAME, event.getClassName().toString());
-                    sendBroadcast(intent, ACCESSIBILITY_SERVICE_PERMISSION);
+                    sendBroadcast(intent, ACCESSIBILITY_SERVICE_BROADCAST);
                 }
+                //////////////////
+
+                // for force close application
+                if (appInfoOpened) {
+                    appInfoOpened = false;
+
+                    AccessibilityNodeInfo nodeInfo = event.getSource();
+                    if (nodeInfo != null) {
+                        List<AccessibilityNodeInfo> list = nodeInfo
+                                .findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
+                        //We can find button using button name or button id
+                        for (AccessibilityNodeInfo node : list) {
+                            node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                        }
+
+                        list = nodeInfo
+                                .findAccessibilityNodeInfosByViewId("android:id/button1");
+                        for (AccessibilityNodeInfo node : list) {
+                            node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                        }
+                    }
+                }
+                //////////////////
+
             } catch (Exception e) {
                 Log.e("PPPEAccessibilityService.onAccessibilityEvent", e.toString());
             }
@@ -85,7 +113,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         //final Context context = getApplicationContext();
 
         Intent _intent = new Intent(ACTION_ACCESSIBILITY_SERVICE_UNBIND);
-        sendBroadcast(_intent, ACCESSIBILITY_SERVICE_PERMISSION);
+        sendBroadcast(_intent, ACCESSIBILITY_SERVICE_BROADCAST);
 
         return super.onUnbind(intent);
     }
