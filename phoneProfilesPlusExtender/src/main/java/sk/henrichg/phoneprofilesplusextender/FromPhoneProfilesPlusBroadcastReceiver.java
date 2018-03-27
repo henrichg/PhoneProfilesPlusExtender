@@ -1,23 +1,32 @@
 package sk.henrichg.phoneprofilesplusextender;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
+
+    @SuppressLint("LongLogTag")
     @Override
     public void onReceive(Context context, Intent intent) {
         if ((intent == null) || (intent.getAction() == null))
             return;
 
-        if (intent.getAction().equals(PPPEAccessibilityService.ACTION_APP_INFO_OPENING)) {
-            PPPEAccessibilityService.appInfoOpened = false;
-            Intent _intent = new Intent(PPPEAccessibilityService.ACTION_OPEN_APP_INFO);
-            context.sendBroadcast(_intent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+        Log.e("PPPEAccessibilityService", "received broadcast action="+intent.getAction());
+
+        if (intent.getAction().equals(PPPEAccessibilityService.ACTION_FORCE_STOP_INFO_START)) {
+            //PPPEAccessibilityService.forceStopStarted = true;
+            Intent scanServiceIntent = new Intent(context, ForceCloseIntentService.class);
+            scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_APPLICATIONS, intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
+            context.startService(scanServiceIntent);
         }
 
-        if (intent.getAction().equals(PPPEAccessibilityService.ACTION_APP_INFO_OPENED)) {
-            PPPEAccessibilityService.appInfoOpened = true;
+        /*
+        if (intent.getAction().equals(PPPEAccessibilityService.ACTION_FORCE_STOP_INFO_STOP)) {
+            PPPEAccessibilityService.forceStopStarted = false;
         }
+        */
     }
 }
