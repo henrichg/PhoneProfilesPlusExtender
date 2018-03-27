@@ -44,6 +44,10 @@
                 android:resource="@xml/accessibilityservice"/>
         </service>
 
+        <service
+            android:name=".ForceCloseIntentService"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

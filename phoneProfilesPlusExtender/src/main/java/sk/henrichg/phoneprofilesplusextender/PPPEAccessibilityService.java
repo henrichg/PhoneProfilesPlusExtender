@@ -12,6 +12,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PPPEAccessibilityService extends android.accessibilityservice.AccessibilityService {
@@ -26,18 +27,19 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     private static final String EXTRA_PACKAGE_NAME = "sk.henrichg.phoneprofilesplus.package_name";
     private static final String EXTRA_CLASS_NAME = "sk.henrichg.phoneprofilesplus.class_name";
 
-    static final String ACTION_APP_INFO_OPENING = "sk.henrichg.phoneprofilesplusextender.ACTION_APP_INFO_OPENING";
-    static final String ACTION_OPEN_APP_INFO = "sk.henrichg.phoneprofilesplusextender.ACTION_OPEN_APP_INFO";
-    static final String ACTION_APP_INFO_OPENED = "sk.henrichg.phoneprofilesplusextender.ACTION_APP_INFO_OPENED";
+    static final String ACTION_FORCE_STOP_INFO_START = "sk.henrichg.phoneprofilesplus.ACTION_FORCE_STOP_START";
+    static final String ACTION_FORCE_STOP_INFO_STOP = "sk.henrichg.phoneprofilesplus.ACTION_FORCE_STOP_STOP";
 
     private FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
 
-    static boolean appInfoOpened = false;
+    public static boolean forceStopStarted = false;
+    //static boolean forceCloseButtonClicked = false;
 
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
 
+        /*
         //Configure these here for compatibility with API 13 and below.
         AccessibilityServiceInfo config = new AccessibilityServiceInfo();
         config.eventTypes = AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED;
@@ -48,11 +50,12 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                         AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
 
         setServiceInfo(config);
+        */
 
         fromPhoneProfilesPlusBroadcastReceiver = new FromPhoneProfilesPlusBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(ACTION_APP_INFO_OPENING);
-        intentFilter.addAction(ACTION_APP_INFO_OPENED);
+        intentFilter.addAction(ACTION_FORCE_STOP_INFO_START);
+        intentFilter.addAction(ACTION_FORCE_STOP_INFO_STOP);
         getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                             ACCESSIBILITY_SERVICE_PERMISSION, null);
     }
@@ -73,7 +76,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 ActivityInfo activityInfo = tryGetActivity(componentName);
                 boolean isActivity = activityInfo != null;
                 if (isActivity) {
-                    Log.e("PPPEAccessibilityService", "currentActivity="+componentName.flattenToShortString());
+                    //Log.e("PPPEAccessibilityService", "currentActivity="+componentName.flattenToShortString());
 
                     Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
                     intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
@@ -82,36 +85,34 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 }
                 //////////////////
 
-                // for force close application
-                /*if (isActivity && (event.getPackageName().toString().equals("com.android.settings"))) {
-                    Log.e("PPPEAccessibilityService", "is Settings activity");
-                }*/
-                if (appInfoOpened) {
-                    // AppInfo Settings is opened from PPP
-
-                    appInfoOpened = false;
-
-                    //TODO 1. test foreground application. Must be AppInfo Settings
-                    if (isActivity && (event.getPackageName().toString().equals("com.android.settings"))) {
-                        // com.android.settings/.applications.InstalledAppDetailsTop - MIUI
-                        // com.android.settings/.SubSettings - S8
-                        // com.android.settings/.SubSettings - Nexus5x
-                        Log.e("PPPEAccessibilityService", "is Settings activity");
-
-                        // 2. perform action in AppInfo Settings
-                        AccessibilityNodeInfo nodeInfo = event.getSource();
-                        if (nodeInfo != null) {
-                            List<AccessibilityNodeInfo> list = nodeInfo
-                                    .findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
-                            //We can find button using button name or button id
+                Log.e("PPPEAccessibilityService", "forceStopStarted="+forceStopStarted);
+                Log.e("PPPEAccessibilityService", "event.getClassName()="+event.getClassName());
+                if (forceStopStarted) {
+                    Log.e("PPPEAccessibilityService", "forceStopStarted");
+                    // force stop is started in PPP
+                    AccessibilityNodeInfo nodeInfo = event.getSource();
+                    if (nodeInfo != null) {
+                        List<AccessibilityNodeInfo> list;
+                        if (event.getClassName().equals("com.android.settings.applications.InstalledAppDetailsTop")) {
+                            //forceCloseButtonClicked = false;
+                            list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
                             for (AccessibilityNodeInfo node : list) {
-                                node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                                if (node.isEnabled()) {
+                                    Log.e("PPPEAccessibilityService", "forceCloseButtonClicked");
+                                    node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                                    //forceCloseButtonClicked = true;
+                                }
+                                else
+                                    performGlobalAction(GLOBAL_ACTION_BACK);
                             }
-
-                            list = nodeInfo
-                                    .findAccessibilityNodeInfosByViewId("android:id/button1");
-                            for (AccessibilityNodeInfo node : list) {
+                        } else if (event.getClassName().equals("android.app.AlertDialog")) {
+                            //forceCloseButtonClicked = false;
+                            list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
+                            //Log.e("PPPEAccessibilityService", "android:id/button1 list.size()="+list.size());
+                            for (final AccessibilityNodeInfo node : list) {
                                 node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                                sleep(100);
+                                performGlobalAction(GLOBAL_ACTION_BACK);
                             }
                         }
                     }
@@ -159,18 +160,27 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
             for (AccessibilityServiceInfo service : runningServices) {
                 if (service != null) {
-                    Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "serviceId=" + service.getId());
+                    //Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "serviceId=" + service.getId());
                     if (SERVICE_ID.equals(service.getId())) {
-                        Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "true");
+                        //Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "true");
                         return true;
                     }
                 }
             }
-            Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "false");
+            //Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "false");
             return false;
         }
-        Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "false");
+        //Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "false");
         return false;
+    }
+
+    static public void sleep(long ms) {
+        /*long start = SystemClock.uptimeMillis();
+        do {
+            SystemClock.sleep(100);
+        } while (SystemClock.uptimeMillis() - start < ms);*/
+        //SystemClock.sleep(ms);
+        try{ Thread.sleep(ms); }catch(InterruptedException ignored){ }
     }
 
 }
