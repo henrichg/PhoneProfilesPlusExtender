@@ -14,7 +14,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         if ((intent == null) || (intent.getAction() == null))
             return;
 
-        Log.e("PPPEAccessibilityService", "received broadcast action="+intent.getAction());
+        //Log.e("PPPEAccessibilityService", "received broadcast action="+intent.getAction());
 
         if (intent.getAction().equals(PPPEAccessibilityService.ACTION_FORCE_STOP_INFO_START)) {
             //PPPEAccessibilityService.forceStopStarted = true;
