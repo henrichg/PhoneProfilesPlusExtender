@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_ACCESSIBILITY_SETTINGS)
-            reloadActivity(this, true);
+            reloadActivity(this/*, true*/);
     }
 
     private static boolean activityActionExists(String action, Context context) {
@@ -87,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static void reloadActivity(Activity activity, boolean newIntent)
+    private static void reloadActivity(Activity activity/*, boolean newIntent*/)
     {
-        if (newIntent)
+        /*if (newIntent)
         {
             final Activity _activity = activity;
             new Handler(activity.getMainLooper()).post(new Runnable() {
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        else
+        else*/
             activity.recreate();
     }
 

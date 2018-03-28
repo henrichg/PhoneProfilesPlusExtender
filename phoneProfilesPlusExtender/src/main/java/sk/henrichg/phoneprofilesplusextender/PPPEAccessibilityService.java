@@ -12,14 +12,13 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PPPEAccessibilityService extends android.accessibilityservice.AccessibilityService {
 
     private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
 
-    static final String ACCESSIBILITY_SERVICE_PERMISSION = "sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION";
+    private static final String ACCESSIBILITY_SERVICE_PERMISSION = "sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION";
 
     private static final String ACTION_FOREGROUND_APPLICATION_CHANGED = "sk.henrichg.phoneprofilesplusextender.ACTION_FOREGROUND_APPLICATION_CHANGED";
     private static final String ACTION_ACCESSIBILITY_SERVICE_UNBIND = "sk.henrichg.phoneprofilesplusextender.ACTION_ACCESSIBILITY_SERVICE_UNBIND";
@@ -28,7 +27,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     private static final String EXTRA_CLASS_NAME = "sk.henrichg.phoneprofilesplus.class_name";
 
     static final String ACTION_FORCE_STOP_INFO_START = "sk.henrichg.phoneprofilesplus.ACTION_FORCE_STOP_START";
-    static final String ACTION_FORCE_STOP_INFO_STOP = "sk.henrichg.phoneprofilesplus.ACTION_FORCE_STOP_STOP";
 
     private FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
 
@@ -55,7 +53,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         fromPhoneProfilesPlusBroadcastReceiver = new FromPhoneProfilesPlusBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_FORCE_STOP_INFO_START);
-        intentFilter.addAction(ACTION_FORCE_STOP_INFO_STOP);
         getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                             ACCESSIBILITY_SERVICE_PERMISSION, null);
     }
