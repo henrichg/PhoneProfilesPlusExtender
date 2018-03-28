@@ -23,15 +23,17 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     private static final String ACTION_FOREGROUND_APPLICATION_CHANGED = "sk.henrichg.phoneprofilesplusextender.ACTION_FOREGROUND_APPLICATION_CHANGED";
     private static final String ACTION_ACCESSIBILITY_SERVICE_UNBIND = "sk.henrichg.phoneprofilesplusextender.ACTION_ACCESSIBILITY_SERVICE_UNBIND";
 
-    private static final String EXTRA_PACKAGE_NAME = "sk.henrichg.phoneprofilesplus.package_name";
-    private static final String EXTRA_CLASS_NAME = "sk.henrichg.phoneprofilesplus.class_name";
+    private static final String EXTRA_PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender.package_name";
+    private static final String EXTRA_CLASS_NAME = "sk.henrichg.phoneprofilesplusextender.class_name";
 
-    static final String ACTION_FORCE_STOP_INFO_START = "sk.henrichg.phoneprofilesplus.ACTION_FORCE_STOP_START";
+    static final String ACTION_FORCE_STOP_INFO_START = "sk.henrichg.phoneprofilesplusextender.ACTION_FORCE_STOP_START";
 
     private FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
+    private ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
 
-    public static boolean forceStopStarted = false;
+    static boolean forceStopStarted = false;
     //static boolean forceCloseButtonClicked = false;
+
 
     @Override
     protected void onServiceConnected() {
@@ -49,6 +51,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         setServiceInfo(config);
         */
+
+
+        screenOnOffReceiver = new ScreenOnOffBroadcastReceiver();
+        IntentFilter intentFilter5 = new IntentFilter();
+        intentFilter5.addAction(Intent.ACTION_SCREEN_ON);
+        intentFilter5.addAction(Intent.ACTION_SCREEN_OFF);
+        intentFilter5.addAction(Intent.ACTION_USER_PRESENT);
+        getBaseContext().registerReceiver(screenOnOffReceiver, intentFilter5);
 
         fromPhoneProfilesPlusBroadcastReceiver = new FromPhoneProfilesPlusBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
@@ -144,6 +154,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         sendBroadcast(_intent, ACCESSIBILITY_SERVICE_PERMISSION);
 
         getBaseContext().unregisterReceiver(fromPhoneProfilesPlusBroadcastReceiver);
+        getBaseContext().unregisterReceiver(screenOnOffReceiver);
 
         return super.onUnbind(intent);
     }
