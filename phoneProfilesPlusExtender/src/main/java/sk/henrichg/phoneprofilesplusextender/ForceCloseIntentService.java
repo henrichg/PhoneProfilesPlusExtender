@@ -15,7 +15,9 @@ import java.util.List;
 public class ForceCloseIntentService extends IntentService {
 
     static final String EXTRA_APPLICATIONS = "extra_applications";
-    
+
+    static boolean screenOffReceived = false;
+
     public ForceCloseIntentService()
     {
         super("ForceCloseIntentService");
@@ -42,6 +44,8 @@ public class ForceCloseIntentService extends IntentService {
 
             String[] splits = applications.split("\\|");
             for (String split : splits) {
+                if (screenOffReceived)
+                    break;
 
                 boolean keyguardLocked = true;
                 KeyguardManager kgMgr = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
