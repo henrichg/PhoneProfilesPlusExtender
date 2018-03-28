@@ -40,7 +40,7 @@ public class ForceCloseIntentService extends IntentService {
         if (!(applications.isEmpty() || (applications.equals("-")))) {
 
             PPPEAccessibilityService.forceStopStarted = true;
-            Log.e("ForceCloseIntentService", "forceStopStarted=true");
+            //Log.e("ForceCloseIntentService", "forceStopStarted=true");
 
             String[] splits = applications.split("\\|");
             for (String split : splits) {
@@ -72,7 +72,7 @@ public class ForceCloseIntentService extends IntentService {
             }
 
             PPPEAccessibilityService.forceStopStarted = false;
-            Log.e("ForceCloseIntentService", "forceStopStarted=false");
+            //Log.e("ForceCloseIntentService", "forceStopStarted=false");
         }
         
     }

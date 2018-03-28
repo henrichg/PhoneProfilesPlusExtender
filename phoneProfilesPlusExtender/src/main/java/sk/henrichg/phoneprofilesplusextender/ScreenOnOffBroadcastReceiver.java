@@ -16,11 +16,11 @@ public class ScreenOnOffBroadcastReceiver extends BroadcastReceiver {
 
         final String action = intent.getAction();
 
-        if ((action != null) && action.equals(Intent.ACTION_SCREEN_ON)) {
-            Log.e("ScreenOnOffBroadcastReceiver.onReceive","ACTION_SCREEN_ON");
+        /*if ((action != null) && action.equals(Intent.ACTION_SCREEN_ON)) {
+            //Log.e("ScreenOnOffBroadcastReceiver.onReceive","ACTION_SCREEN_ON");
             //ForceCloseIntentService.screenOffReceived = false;
-        } else if ((action != null) && action.equals(Intent.ACTION_SCREEN_OFF)) {
-            Log.e("ScreenOnOffBroadcastReceiver.onReceive","ACTION_SCREEN_OFF");
+        } else*/ if ((action != null) && action.equals(Intent.ACTION_SCREEN_OFF)) {
+            //Log.e("ScreenOnOffBroadcastReceiver.onReceive","ACTION_SCREEN_OFF");
             ForceCloseIntentService.screenOffReceived = true;
 
             if (PPPEAccessibilityService.forceStopStarted) {
@@ -32,7 +32,7 @@ public class ScreenOnOffBroadcastReceiver extends BroadcastReceiver {
             }
 
         } else if ((action != null) && action.equals(Intent.ACTION_USER_PRESENT)) {
-            Log.e("ScreenOnOffBroadcastReceiver.onReceive","ACTION_USER_PRESENT");
+            //Log.e("ScreenOnOffBroadcastReceiver.onReceive","ACTION_USER_PRESENT");
             ForceCloseIntentService.screenOffReceived = false;
         }
     }
