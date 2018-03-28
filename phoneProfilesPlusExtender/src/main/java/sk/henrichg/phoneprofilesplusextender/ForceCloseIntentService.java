@@ -1,16 +1,16 @@
 package sk.henrichg.phoneprofilesplusextender;
 
 import android.app.IntentService;
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
 
 import java.util.List;
-
-import sk.henrichg.phoneprofilesplusextender.PPPEAccessibilityService;
 
 public class ForceCloseIntentService extends IntentService {
 
@@ -42,15 +42,28 @@ public class ForceCloseIntentService extends IntentService {
 
             String[] splits = applications.split("\\|");
             for (String split : splits) {
-                String packageName = getPackageName(split);
 
-                intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setData(Uri.parse("package:" + packageName));
-                if (activityIntentExists(intent, this)) {
-                    startActivity(intent);
-                    PPPEAccessibilityService.sleep(3000);
+                boolean keyguardLocked = true;
+                KeyguardManager kgMgr = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+                if (kgMgr != null)
+                    keyguardLocked = kgMgr.isKeyguardLocked();
+
+                boolean isScreenOn = false;
+                PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+                if (pm != null)
+                    isScreenOn = pm.isScreenOn();
+
+                if (!keyguardLocked && isScreenOn) {
+                    // start App info only if keyguard is not locked and screen is on
+                    String packageName = getPackageName(split);
+                    intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    //intent.addCategory(Intent.CATEGORY_DEFAULT);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setData(Uri.parse("package:" + packageName));
+                    if (activityIntentExists(intent, this)) {
+                        startActivity(intent);
+                        PPPEAccessibilityService.sleep(3000);
+                    }
                 }
             }
 
