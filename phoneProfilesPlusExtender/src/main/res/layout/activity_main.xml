@@ -12,16 +12,34 @@
         android:id="@+id/activity_main_application_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
+        android:text="@string/extender_app_name"
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_marginBottom="10dp"/>
 
+
     <TextView
-        android:id="@+id/activity_main_exend_accessibility_service"
+        android:id="@+id/activity_main_accessibility_service_force_stop_application"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/exend_accessibility_service_disabled"
+        android:text="@string/extender_accessibility_service_disabled"
         android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/activity_main_accessibility_service_event_sensor_applications_orientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/extender_accessibility_service_disabled"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/activity_main_accessibility_service_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/extender_accessibility_service_button"
+        android:textColor="?attr/colorAccent"
+        android:background="?attr/selectableItemBackground" />
 
 </LinearLayout>
