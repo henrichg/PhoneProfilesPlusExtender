@@ -4,27 +4,20 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.ResolveInfo;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.text.style.StyleSpan;
-import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setLanguage(getBaseContext());
 
         setContentView(R.layout.activity_main);
 
@@ -129,76 +120,5 @@ public class MainActivity extends AppCompatActivity {
         else*/
             activity.recreate();
     }
-
-    // https://stackoverflow.com/questions/40221711/android-context-getresources-updateconfiguration-deprecated
-    // but my solution working also in Android 8.1
-    private static void setLanguage(Context context)//, boolean restart)
-    {
-        //if (android.os.Build.VERSION.SDK_INT < 24) {
-
-        SharedPreferences preferences = context.getApplicationContext().getSharedPreferences(PPPEApplication.APPLICATION_PREFS_NAME, Context.MODE_PRIVATE);
-        String lang = preferences.getString(PPPEApplication.PREF_APPLICATION_LANGUAGE, "system");
-
-        Locale appLocale;
-
-        if (!lang.equals("system")) {
-            String[] langSplit = lang.split("-");
-            if (langSplit.length == 1)
-                appLocale = new Locale(lang);
-            else
-                appLocale = new Locale(langSplit[0], langSplit[1]);
-        } else {
-            //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-            //    appLocale = Resources.getSystem().getConfiguration().getLocales().get(0);
-            //else
-            appLocale = Resources.getSystem().getConfiguration().locale;
-        }
-
-        Locale.setDefault(appLocale);
-        Configuration appConfig = new Configuration();
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-        //    appConfig.setLocale(appLocale);
-        //else
-        appConfig.locale = appLocale;
-
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-        //    Context context  = context.createConfigurationContext(appConfig);
-        //else
-        context.getResources().updateConfiguration(appConfig, context.getResources().getDisplayMetrics());
-        //}
-
-        // collator for application locale sorting
-        //collator = getCollator(context);
-    }
-
-    /*
-    private static Collator getCollator(Context context)
-    {
-        //if (android.os.Build.VERSION.SDK_INT < 24) {
-        // get application Locale
-        String lang = ApplicationPreferences.applicationLanguage(context);
-        Locale appLocale;
-        if (!lang.equals("system")) {
-            String[] langSplit = lang.split("-");
-            if (langSplit.length == 1)
-                appLocale = new Locale(lang);
-            else
-                appLocale = new Locale(langSplit[0], langSplit[1]);
-        } else {
-            //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            //    appLocale = Resources.getSystem().getConfiguration().getLocales().get(0);
-            //} else {
-            appLocale = Resources.getSystem().getConfiguration().locale;
-            //}
-        }
-        // get collator for application locale
-        return Collator.getInstance(appLocale);
-        //}
-        //else {
-        //    //Log.d("GlobalGUIRoutines.getCollator", java.util.Locale.getDefault().toString());
-        //    return Collator.getInstance();
-        //}
-    }
-    */
 
 }
