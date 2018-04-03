@@ -3,6 +3,7 @@ package sk.henrichg.phoneprofilesplusextender;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.pm.PackageInfo;
+import android.os.Build;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
@@ -28,6 +29,10 @@ public class PPPEApplication extends Application {
 
         Fabric.with(getApplicationContext(), crashlyticsKit);
         // Crashlytics.logException(exception); -- this log will be associated with crash log.
+
+        try {
+            Crashlytics.setBool("DEBUG", BuildConfig.DEBUG);
+        } catch (Exception ignored) {}
 
         //if (BuildConfig.DEBUG) {
         int actualVersionCode = 0;
