@@ -13,6 +13,9 @@ import io.fabric.sdk.android.Fabric;
 
 public class PPPEApplication extends Application {
 
+    static final String APPLICATION_PREFS_NAME = "phone_profile_preferences";
+    static final String PREF_APPLICATION_LANGUAGE = "applicationLanguage";
+
     public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
 
     @Override
