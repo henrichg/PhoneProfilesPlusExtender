@@ -3,7 +3,6 @@ package sk.henrichg.phoneprofilesplusextender;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.pm.PackageInfo;
-import android.os.Build;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
@@ -12,9 +11,6 @@ import com.crashlytics.android.core.CrashlyticsCore;
 import io.fabric.sdk.android.Fabric;
 
 public class PPPEApplication extends Application {
-
-    static final String APPLICATION_PREFS_NAME = "phone_profile_preferences";
-    static final String PREF_APPLICATION_LANGUAGE = "applicationLanguage";
 
     public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
 
