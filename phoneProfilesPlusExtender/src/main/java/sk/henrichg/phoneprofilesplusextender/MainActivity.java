@@ -17,8 +17,10 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -40,39 +42,49 @@ public class MainActivity extends AppCompatActivity {
         TextView text = findViewById(R.id.activity_main_application_version);
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            text.setText(getString(R.string.about_application_version) + " " + pInfo.versionName + " (" + pInfo.versionCode + ")");
+            text.setText(getString(R.string.extender_about_application_version) + " " + pInfo.versionName + " (" + pInfo.versionCode + ")");
         } catch (Exception e) {
             text.setText("");
         }
 
-        String str1 = getString(R.string.exend_accessibility_service);
+        String str1 = getString(R.string.extender_accessibility_service_profile_force_stop_applications);
         String str2;
         if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
-            str2 = str1 + " " + getString(R.string.exend_accessibility_service_enabled);
+            str2 = str1 + " " + getString(R.string.extender_accessibility_service_enabled);
         else
-            str2 = str1 + " " + getString(R.string.exend_accessibility_service_disabled);
+            str2 = str1 + " " + getString(R.string.extender_accessibility_service_disabled);
         Spannable sbt = new SpannableString(str2);
-        text = findViewById(R.id.activity_main_exend_accessibility_service);
+        text = findViewById(R.id.activity_main_accessibility_service_force_stop_application);
+        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
+        text.setText(sbt);
+
+        str1 = getString(R.string.extender_accessibility_service_event_sensor_applications_orientation);
+        if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
+            str2 = str1 + " " + getString(R.string.extender_accessibility_service_enabled);
+        else
+            str2 = str1 + " " + getString(R.string.extender_accessibility_service_disabled);
+        sbt = new SpannableString(str2);
+        text = findViewById(R.id.activity_main_accessibility_service_event_sensor_applications_orientation);
+        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
+        text.setText(sbt);
+
         final Activity activity = this;
-        ClickableSpan clickableSpan = new ClickableSpan() {
+        Button accessibilityButton = findViewById(R.id.activity_main_accessibility_service_button);
+        accessibilityButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View textView) {
+            public void onClick(View view) {
                 if (MainActivity.activityActionExists(Settings.ACTION_ACCESSIBILITY_SETTINGS, activity)) {
                     Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
                     startActivityForResult(intent, RESULT_ACCESSIBILITY_SETTINGS);
                 } else {
                     AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
-                    dialogBuilder.setMessage(R.string.setting_screen_not_found_alert);
+                    dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
                     //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
                     dialogBuilder.setPositiveButton(android.R.string.ok, null);
                     dialogBuilder.show();
                 }
             }
-        };
-        sbt.setSpan(clickableSpan, str1.length()+1, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sbt.setSpan(new UnderlineSpan(), str1.length()+1, str2.length(), 0);
-        text.setText(sbt);
-        text.setMovementMethod(LinkMovementMethod.getInstance());
+        });
     }
 
     @Override
