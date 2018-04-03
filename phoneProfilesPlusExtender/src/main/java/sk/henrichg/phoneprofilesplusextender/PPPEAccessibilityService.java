@@ -26,7 +26,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     private static final String EXTRA_PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender.package_name";
     private static final String EXTRA_CLASS_NAME = "sk.henrichg.phoneprofilesplusextender.class_name";
 
-    static final String ACTION_FORCE_STOP_INFO_START = "sk.henrichg.phoneprofilesplusextender.ACTION_FORCE_STOP_START";
+    static final String ACTION_FORCE_STOP_START = "sk.henrichg.phoneprofilesplusextender.ACTION_FORCE_STOP_START";
+
+    static final String ACTION_CHANGE_LANGUAGE = "sk.henrichg.phoneprofilesplusextender.ACTION_CHANGE_LANGUAGE";
+    static final String EXTRA_LANGUAGE = "sk.henrichg.phoneprofilesplusextender.language";
 
     private FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
     private ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
@@ -62,7 +65,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         fromPhoneProfilesPlusBroadcastReceiver = new FromPhoneProfilesPlusBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(ACTION_FORCE_STOP_INFO_START);
+        intentFilter.addAction(ACTION_FORCE_STOP_START);
+        intentFilter.addAction(ACTION_CHANGE_LANGUAGE);
         getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                             ACCESSIBILITY_SERVICE_PERMISSION, null);
     }
