@@ -15,7 +15,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
 
         //Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
 
-        if (intent.getAction().equals(PPPEAccessibilityService.ACTION_FORCE_STOP_START)) {
+        if (intent.getAction().equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {
             //PPPEAccessibilityService.forceStopStarted = true;
             Intent scanServiceIntent = new Intent(context, ForceCloseIntentService.class);
             scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_APPLICATIONS, intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
