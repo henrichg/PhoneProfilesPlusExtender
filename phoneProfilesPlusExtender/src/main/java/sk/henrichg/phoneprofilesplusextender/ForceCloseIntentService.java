@@ -8,7 +8,6 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.PowerManager;
 import android.provider.Settings;
-import android.util.Log;
 
 import java.util.List;
 
@@ -75,7 +74,7 @@ public class ForceCloseIntentService extends IntentService {
             PPPEAccessibilityService.forceStopStarted = false;
             //Log.e("ForceCloseIntentService", "forceStopStarted=false");
 
-            Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_END);
+            Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_END);
             _intent.putExtra(EXTRA_PROFILE_ID, intent.getLongExtra(EXTRA_PROFILE_ID, 0));
             sendBroadcast(_intent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
         }
