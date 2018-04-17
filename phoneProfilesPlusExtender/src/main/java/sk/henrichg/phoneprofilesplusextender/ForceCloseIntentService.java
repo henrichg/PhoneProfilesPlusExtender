@@ -15,6 +15,7 @@ import java.util.List;
 public class ForceCloseIntentService extends IntentService {
 
     static final String EXTRA_APPLICATIONS = "extra_applications";
+    static final String EXTRA_PROFILE_ID = "profile_id";
 
     static boolean screenOffReceived = false;
 
@@ -73,6 +74,10 @@ public class ForceCloseIntentService extends IntentService {
 
             PPPEAccessibilityService.forceStopStarted = false;
             //Log.e("ForceCloseIntentService", "forceStopStarted=false");
+
+            Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_END);
+            _intent.putExtra(EXTRA_PROFILE_ID, intent.getLongExtra(EXTRA_PROFILE_ID, 0));
+            sendBroadcast(_intent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
         }
         
     }

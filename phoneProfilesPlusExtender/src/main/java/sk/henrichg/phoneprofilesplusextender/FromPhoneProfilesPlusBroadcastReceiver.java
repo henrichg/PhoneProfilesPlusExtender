@@ -19,6 +19,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
             //PPPEAccessibilityService.forceStopStarted = true;
             Intent scanServiceIntent = new Intent(context, ForceCloseIntentService.class);
             scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_APPLICATIONS, intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
+            scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0));
             context.startService(scanServiceIntent);
         }
     }
