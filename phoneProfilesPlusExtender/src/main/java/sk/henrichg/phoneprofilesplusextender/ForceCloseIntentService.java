@@ -79,6 +79,7 @@ public class ForceCloseIntentService extends IntentService {
                             ForceStopActivity.instance.appInfoClosed = false;
                             ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
                             waitForAppInfoEnd();
+                            ForceStopActivity.instance.finishActivity(100);
                         }
                     }
                 }
