@@ -1,17 +1,16 @@
 package sk.henrichg.phoneprofilesplusextender;
 
-import android.app.ActivityManager;
 import android.app.IntentService;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.provider.Settings;
-import android.util.Log;
 
 import java.util.List;
 
@@ -130,27 +129,18 @@ public class ForceCloseIntentService extends IntentService {
     }
 
     private boolean isAppRunning(final String packageName) {
-        if (Build.VERSION.SDK_INT < 21) {
-            final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-            Log.e("ForceCloseIntentService", "activityManager=" + activityManager);
-            if (activityManager != null) {
-                final List<ActivityManager.RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
-                Log.e("ForceCloseIntentService", "procInfos=" + procInfos);
-                if (procInfos != null) {
-                    Log.e("ForceCloseIntentService", "procInfos.size()=" + procInfos.size());
-                    for (final ActivityManager.RunningAppProcessInfo processInfo : procInfos) {
-                        Log.e("ForceCloseIntentService", "processInfo.processName=" + processInfo.processName);
-                        if (processInfo.processName.equals(packageName)) {
-                            return true;
-                        }
-                    }
-                }
+        PackageManager pm = getPackageManager();
+        List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+        for (ApplicationInfo packageInfo : packages) {
+            if (!isSTOPPED(packageInfo) && packageInfo.packageName.equals(packageName)) {
+                return true;
             }
-            return false;
         }
-        else {
-            return false;
-        }
+        return false;
+    }
+
+    private static boolean isSTOPPED(ApplicationInfo pkgInfo) {
+        return ((pkgInfo.flags & ApplicationInfo.FLAG_STOPPED) != 0);
     }
 
     private void waitForAppInfoEnd()
