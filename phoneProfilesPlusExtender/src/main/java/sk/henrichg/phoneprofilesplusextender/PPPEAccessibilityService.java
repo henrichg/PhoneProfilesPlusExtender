@@ -111,8 +111,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     //forceCloseButtonClicked = true;
                                 }
                                 else {
-                                    Log.e("PPPEAccessibilityService", "back button clicked");
-                                    performGlobalAction(GLOBAL_ACTION_BACK);
+                                    if (ForceStopActivity.instance != null)
+                                        ForceStopActivity.instance.finishActivity(100);
+                                    else
+                                        performGlobalAction(GLOBAL_ACTION_BACK);
                                 }
                             }
                         } else if (event.getClassName().equals("android.app.AlertDialog")) {
@@ -122,7 +124,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             for (final AccessibilityNodeInfo node : list) {
                                 node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                                 sleep(200);
-                                performGlobalAction(GLOBAL_ACTION_BACK);
+                                if (ForceStopActivity.instance != null)
+                                    ForceStopActivity.instance.finishActivity(100);
+                                else
+                                    performGlobalAction(GLOBAL_ACTION_BACK);
                             }
                         }
                     }
