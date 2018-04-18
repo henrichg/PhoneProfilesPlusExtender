@@ -9,8 +9,6 @@
         android:protectionLevel="signature"/>
 
     <uses-permission android:name="sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION"/>
-    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
-                     tools:ignore="ProtectedPermissions"/>
 
     <application
         android:name=".PPPEApplication"
