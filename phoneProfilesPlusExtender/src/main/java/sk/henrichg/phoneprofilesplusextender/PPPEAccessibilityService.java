@@ -93,8 +93,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 }
                 //////////////////
 
-                //Log.e("PPPEAccessibilityService", "forceStopStarted="+forceStopStarted);
-                //Log.e("PPPEAccessibilityService", "event.getClassName()="+event.getClassName());
+                Log.e("PPPEAccessibilityService", "forceStopStarted="+forceStopStarted);
+                Log.e("PPPEAccessibilityService", "event.getClassName()="+event.getClassName());
                 if (forceStopStarted) {
                     //Log.e("PPPEAccessibilityService", "forceStopStarted");
                     // force stop is started in PPP
@@ -106,12 +106,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
                             for (AccessibilityNodeInfo node : list) {
                                 if (node.isEnabled()) {
-                                    //Log.e("PPPEAccessibilityService", "forceCloseButtonClicked");
+                                    Log.e("PPPEAccessibilityService", "force close button clicked");
                                     node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                                     //forceCloseButtonClicked = true;
                                 }
-                                else
+                                else {
+                                    Log.e("PPPEAccessibilityService", "back button clicked");
                                     performGlobalAction(GLOBAL_ACTION_BACK);
+                                }
                             }
                         } else if (event.getClassName().equals("android.app.AlertDialog")) {
                             //forceCloseButtonClicked = false;
@@ -119,7 +121,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             //Log.e("PPPEAccessibilityService", "android:id/button1 list.size()="+list.size());
                             for (final AccessibilityNodeInfo node : list) {
                                 node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                                sleep(100);
+                                sleep(200);
                                 performGlobalAction(GLOBAL_ACTION_BACK);
                             }
                         }

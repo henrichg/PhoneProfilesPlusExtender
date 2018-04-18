@@ -1,13 +1,17 @@
 package sk.henrichg.phoneprofilesplusextender;
 
+import android.app.ActivityManager;
 import android.app.IntentService;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.PowerManager;
+import android.os.SystemClock;
 import android.provider.Settings;
+import android.util.Log;
 
 import java.util.List;
 
@@ -42,6 +46,13 @@ public class ForceCloseIntentService extends IntentService {
             PPPEAccessibilityService.forceStopStarted = true;
             //Log.e("ForceCloseIntentService", "forceStopStarted=true");
 
+            Intent forceStopActivityIntent = new Intent(this, ForceStopActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(forceStopActivityIntent);
+            PPPEAccessibilityService.sleep(1000);
+
             String[] splits = applications.split("\\|");
             for (String split : splits) {
                 if (screenOffReceived)
@@ -60,16 +71,22 @@ public class ForceCloseIntentService extends IntentService {
                 if (!keyguardLocked && isScreenOn) {
                     // start App info only if keyguard is not locked and screen is on
                     String packageName = getPackageName(split);
-                    intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                    //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.setData(Uri.parse("package:" + packageName));
-                    if (activityIntentExists(intent, this)) {
-                        startActivity(intent);
-                        PPPEAccessibilityService.sleep(3000);
+                    if (isAppRunning(packageName)) {
+                        Intent appInfoIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        //appInfoIntent.addCategory(Intent.CATEGORY_DEFAULT);
+                        appInfoIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        appInfoIntent.setData(Uri.parse("package:" + packageName));
+                        if (activityIntentExists(appInfoIntent, this)) {
+                            ForceStopActivity.instance.appInfoClosed = false;
+                            ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
+                            waitForAppInfoEnd();
+                        }
                     }
                 }
             }
+
+            ForceStopActivity.instance.finishActivity(100);
+            ForceStopActivity.instance.finish();
 
             PPPEAccessibilityService.forceStopStarted = false;
             //Log.e("ForceCloseIntentService", "forceStopStarted=false");
@@ -111,5 +128,40 @@ public class ForceCloseIntentService extends IntentService {
             return false;
         }
     }
-    
+
+    private boolean isAppRunning(final String packageName) {
+        if (Build.VERSION.SDK_INT < 21) {
+            final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+            Log.e("ForceCloseIntentService", "activityManager=" + activityManager);
+            if (activityManager != null) {
+                final List<ActivityManager.RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
+                Log.e("ForceCloseIntentService", "procInfos=" + procInfos);
+                if (procInfos != null) {
+                    Log.e("ForceCloseIntentService", "procInfos.size()=" + procInfos.size());
+                    for (final ActivityManager.RunningAppProcessInfo processInfo : procInfos) {
+                        Log.e("ForceCloseIntentService", "processInfo.processName=" + processInfo.processName);
+                        if (processInfo.processName.equals(packageName)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private void waitForAppInfoEnd()
+    {
+        long start = SystemClock.uptimeMillis();
+        do {
+            if (ForceStopActivity.instance.appInfoClosed)
+                break;
+            //try { Thread.sleep(100); } catch (InterruptedException e) { }
+            SystemClock.sleep(100);
+        } while (SystemClock.uptimeMillis() - start < 5000);
+    }
+
 }
