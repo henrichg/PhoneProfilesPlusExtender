@@ -9,6 +9,8 @@
         android:protectionLevel="signature"/>
 
     <uses-permission android:name="sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION"/>
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+                     tools:ignore="ProtectedPermissions"/>
 
     <application
         android:name=".PPPEApplication"
@@ -31,6 +33,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".ForceStopActivity"
+                  android:excludeFromRecents="true"
+                  android:label="@string/empty_string"
+                  android:theme="@style/EmptyAppCompatActivity">
         </activity>
 
         <service
