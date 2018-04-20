@@ -46,9 +46,9 @@ public class ForceCloseIntentService extends IntentService {
             //Log.e("ForceCloseIntentService", "forceStopStarted=true");
 
             Intent forceStopActivityIntent = new Intent(this, ForceStopActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(forceStopActivityIntent);
             PPPEAccessibilityService.sleep(1000);
 
