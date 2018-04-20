@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
@@ -103,7 +104,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                         List<AccessibilityNodeInfo> list;
                         if (event.getClassName().equals("com.android.settings.applications.InstalledAppDetailsTop")) {
                             //forceCloseButtonClicked = false;
-                            list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
+                            if (Build.VERSION.SDK_INT <= 22)
+                                list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
+                            else
+                                list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
                             for (AccessibilityNodeInfo node : list) {
                                 if (node.isEnabled()) {
                                     Log.e("PPPEAccessibilityService", "force close button clicked");
