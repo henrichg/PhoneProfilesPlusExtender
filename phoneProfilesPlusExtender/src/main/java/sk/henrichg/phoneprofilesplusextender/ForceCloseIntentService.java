@@ -45,12 +45,8 @@ public class ForceCloseIntentService extends IntentService {
             PPPEAccessibilityService.forceStopStarted = true;
             //Log.e("ForceCloseIntentService", "forceStopStarted=true");
 
-            Intent forceStopActivityIntent = new Intent(this, ForceStopActivity.class);
-            forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-            forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(forceStopActivityIntent);
-            PPPEAccessibilityService.sleep(1000);
+            ForceStopActivity.instance = null;
+            startForceStopActivity();
 
             String[] splits = applications.split("\\|");
             for (String split : splits) {
@@ -76,17 +72,22 @@ public class ForceCloseIntentService extends IntentService {
                         appInfoIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         appInfoIntent.setData(Uri.parse("package:" + packageName));
                         if (activityIntentExists(appInfoIntent, this)) {
-                            ForceStopActivity.instance.appInfoClosed = false;
-                            ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
-                            waitForAppInfoEnd();
-                            ForceStopActivity.instance.finishActivity(100);
+                            startForceStopActivity();
+                            if (ForceStopActivity.instance != null) {
+                                ForceStopActivity.instance.appInfoClosed = false;
+                                ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
+                                waitForAppInfoEnd();
+                                ForceStopActivity.instance.finishActivity(100);
+                            }
                         }
                     }
                 }
             }
 
-            ForceStopActivity.instance.finishActivity(100);
-            ForceStopActivity.instance.finish();
+            if (ForceStopActivity.instance != null) {
+                ForceStopActivity.instance.finishActivity(100);
+                ForceStopActivity.instance.finish();
+            }
 
             PPPEAccessibilityService.forceStopStarted = false;
             //Log.e("ForceCloseIntentService", "forceStopStarted=false");
@@ -148,11 +149,33 @@ public class ForceCloseIntentService extends IntentService {
     {
         long start = SystemClock.uptimeMillis();
         do {
-            if (ForceStopActivity.instance.appInfoClosed)
+            if ((ForceStopActivity.instance == null) || (ForceStopActivity.instance.appInfoClosed))
                 break;
             //try { Thread.sleep(100); } catch (InterruptedException e) { }
             SystemClock.sleep(100);
         } while (SystemClock.uptimeMillis() - start < 5000);
+    }
+
+    private void startForceStopActivity() {
+        if (ForceStopActivity.instance == null) {
+            Intent forceStopActivityIntent = new Intent(this, ForceStopActivity.class);
+            forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(forceStopActivityIntent);
+            waitForceStopActivityStart();
+        }
+    }
+
+    private void waitForceStopActivityStart()
+    {
+        long start = SystemClock.uptimeMillis();
+        do {
+            if (ForceStopActivity.instance != null)
+                break;
+            //try { Thread.sleep(100); } catch (InterruptedException e) { }
+            SystemClock.sleep(100);
+        } while (SystemClock.uptimeMillis() - start < 2000);
     }
 
 }
