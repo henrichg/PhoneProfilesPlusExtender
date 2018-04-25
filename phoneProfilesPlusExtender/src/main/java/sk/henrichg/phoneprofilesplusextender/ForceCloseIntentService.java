@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.provider.Settings;
+import android.util.Log;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class ForceCloseIntentService extends IntentService {
 
     static boolean screenOffReceived = false;
 
-    static List<Long> profileIdList = new java.util.ArrayList<>();
+    static final List<Long> profileIdList = new java.util.ArrayList<>();
     static int forceStopApplicationsStartCount = 0;
 
 
@@ -42,14 +43,14 @@ public class ForceCloseIntentService extends IntentService {
             return;
         }
 
+        //long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
         String applications = intent.getStringExtra(EXTRA_APPLICATIONS);
 
         if (!(applications.isEmpty() || (applications.equals("-")))) {
 
             PPPEAccessibilityService.forceStopStarted = true;
-            //Log.e("ForceCloseIntentService", "forceStopStarted=true");
+            Log.e("ForceCloseIntentService", "forceStopStarted=true");
 
-            ForceStopActivity.instance = null;
             startForceStopActivity();
 
             String[] splits = applications.split("\\|");
@@ -78,36 +79,39 @@ public class ForceCloseIntentService extends IntentService {
                         if (activityIntentExists(appInfoIntent, this)) {
                             startForceStopActivity();
                             if (ForceStopActivity.instance != null) {
-                                ForceStopActivity.instance.appInfoClosed = false;
+                                PPPEAccessibilityService.applicationForceClosed = false;
+                                //ForceStopActivity.instance.appInfoClosed = false;
                                 ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
-                                waitForAppInfoEnd();
-                                ForceStopActivity.instance.finishActivity(100);
+                                waitForApplicationForceClosed();
+                                //waitForAppInfoEnd();
+                                //ForceStopActivity.instance.finishActivity(100);
                             }
                         }
                     }
                 }
             }
 
+            --forceStopApplicationsStartCount;
+
+            PPPEAccessibilityService.forceStopStarted = false;
+            Log.e("ForceCloseIntentService", "forceStopStarted=false");
+        }
+
+        if (forceStopApplicationsStartCount <= 0) {
             if (ForceStopActivity.instance != null) {
                 ForceStopActivity.instance.finishActivity(100);
                 ForceStopActivity.instance.finish();
+                ForceStopActivity.instance = null;
             }
 
-            PPPEAccessibilityService.forceStopStarted = false;
-            //Log.e("ForceCloseIntentService", "forceStopStarted=false");
-
-            --forceStopApplicationsStartCount;
-
-            if (forceStopApplicationsStartCount == 0) {
-                for (long profileId : profileIdList) {
-                    Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_END);
-                    _intent.putExtra(EXTRA_PROFILE_ID, profileId);
-                    sendBroadcast(_intent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
-                }
-                profileIdList.clear();
+            for (long _profileId : profileIdList) {
+                Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_END);
+                _intent.putExtra(EXTRA_PROFILE_ID, _profileId);
+                sendBroadcast(_intent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
             }
+            profileIdList.clear();
+            forceStopApplicationsStartCount = 0;
         }
-        
     }
 
     private String getPackageName(String value) {
@@ -156,6 +160,18 @@ public class ForceCloseIntentService extends IntentService {
         return ((pkgInfo.flags & ApplicationInfo.FLAG_STOPPED) != 0);
     }
 
+    private void waitForApplicationForceClosed()
+    {
+        long start = SystemClock.uptimeMillis();
+        do {
+            if ((ForceStopActivity.instance == null) || (PPPEAccessibilityService.applicationForceClosed))
+                break;
+            //try { Thread.sleep(100); } catch (InterruptedException e) { }
+            SystemClock.sleep(100);
+        } while (SystemClock.uptimeMillis() - start < 5000);
+    }
+
+    /*
     private void waitForAppInfoEnd()
     {
         long start = SystemClock.uptimeMillis();
@@ -166,6 +182,7 @@ public class ForceCloseIntentService extends IntentService {
             SystemClock.sleep(100);
         } while (SystemClock.uptimeMillis() - start < 5000);
     }
+    */
 
     private void startForceStopActivity() {
         if (ForceStopActivity.instance == null) {
