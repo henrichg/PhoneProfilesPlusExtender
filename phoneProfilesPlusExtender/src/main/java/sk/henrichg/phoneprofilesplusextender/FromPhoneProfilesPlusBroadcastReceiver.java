@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
 
@@ -13,7 +14,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         if ((intent == null) || (intent.getAction() == null))
             return;
 
-        //Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
+        Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
 
         if (intent.getAction().equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {
             long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);

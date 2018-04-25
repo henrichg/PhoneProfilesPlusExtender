@@ -34,8 +34,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     private ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
 
     static boolean forceStopStarted = false;
-    //static boolean forceCloseButtonClicked = false;
-
+    static boolean applicationForceClosed = false;
 
     @Override
     protected void onServiceConnected() {
@@ -112,13 +111,13 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 if (node.isEnabled()) {
                                     Log.e("PPPEAccessibilityService", "force close button clicked");
                                     node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                                    //forceCloseButtonClicked = true;
                                 }
                                 else {
-                                    if (ForceStopActivity.instance != null)
+                                    applicationForceClosed = true;
+                                    /*if (ForceStopActivity.instance != null)
                                         ForceStopActivity.instance.finishActivity(100);
                                     else
-                                        performGlobalAction(GLOBAL_ACTION_BACK);
+                                        performGlobalAction(GLOBAL_ACTION_BACK);*/
                                 }
                             }
                         } else if (event.getClassName().equals("android.app.AlertDialog")) {
@@ -127,11 +126,12 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             //Log.e("PPPEAccessibilityService", "android:id/button1 list.size()="+list.size());
                             for (final AccessibilityNodeInfo node : list) {
                                 node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                                sleep(200);
+                                applicationForceClosed = true;
+                                /*sleep(200);
                                 if (ForceStopActivity.instance != null)
                                     ForceStopActivity.instance.finishActivity(100);
                                 else
-                                    performGlobalAction(GLOBAL_ACTION_BACK);
+                                    performGlobalAction(GLOBAL_ACTION_BACK);*/
                             }
                         }
                     }

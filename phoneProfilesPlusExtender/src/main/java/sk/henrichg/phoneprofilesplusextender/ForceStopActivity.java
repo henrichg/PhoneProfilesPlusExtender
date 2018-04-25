@@ -10,7 +10,7 @@ import android.util.Log;
 
 public class ForceStopActivity extends AppCompatActivity {
     static ForceStopActivity instance = null;
-    boolean appInfoClosed = false;
+    //boolean appInfoClosed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class ForceStopActivity extends AppCompatActivity {
     }
     */
 
+    /*
     @SuppressLint("LongLogTag")
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100) {
@@ -40,6 +41,7 @@ public class ForceStopActivity extends AppCompatActivity {
             appInfoClosed = true;
         }
     }
+    */
 
     @Override
     protected void onDestroy() {
