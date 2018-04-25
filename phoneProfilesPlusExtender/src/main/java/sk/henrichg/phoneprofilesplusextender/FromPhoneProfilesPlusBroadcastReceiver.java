@@ -16,10 +16,13 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         //Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
 
         if (intent.getAction().equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {
-            //PPPEAccessibilityService.forceStopStarted = true;
+            long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
+            ForceCloseIntentService.profileIdList.add(profileId);
+            ++ForceCloseIntentService.forceStopApplicationsStartCount;
+
             Intent scanServiceIntent = new Intent(context, ForceCloseIntentService.class);
             scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_APPLICATIONS, intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
-            scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0));
+            scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, profileId);
             context.startService(scanServiceIntent);
         }
     }

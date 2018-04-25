@@ -21,6 +21,10 @@ public class ForceCloseIntentService extends IntentService {
 
     static boolean screenOffReceived = false;
 
+    static List<Long> profileIdList = new java.util.ArrayList<>();
+    static int forceStopApplicationsStartCount = 0;
+
+
     public ForceCloseIntentService()
     {
         super("ForceCloseIntentService");
@@ -92,9 +96,16 @@ public class ForceCloseIntentService extends IntentService {
             PPPEAccessibilityService.forceStopStarted = false;
             //Log.e("ForceCloseIntentService", "forceStopStarted=false");
 
-            Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_END);
-            _intent.putExtra(EXTRA_PROFILE_ID, intent.getLongExtra(EXTRA_PROFILE_ID, 0));
-            sendBroadcast(_intent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+            --forceStopApplicationsStartCount;
+
+            if (forceStopApplicationsStartCount == 0) {
+                for (long profileId : profileIdList) {
+                    Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_END);
+                    _intent.putExtra(EXTRA_PROFILE_ID, profileId);
+                    sendBroadcast(_intent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+                }
+                profileIdList.clear();
+            }
         }
         
     }
