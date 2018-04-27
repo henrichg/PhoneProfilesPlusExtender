@@ -86,7 +86,7 @@ public class ForceCloseIntentService extends IntentService {
                                     waitForApplicationForceClosed();
                                     //waitForAppInfoEnd();
                                     //ForceStopActivity.instance.finishActivity(100);
-                                } catch (Exception ignored) {}
+                                 } catch (Exception ignored) {}
                             }
                         }
                     }
