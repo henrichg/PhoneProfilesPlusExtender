@@ -79,12 +79,14 @@ public class ForceCloseIntentService extends IntentService {
                         if (activityIntentExists(appInfoIntent, this)) {
                             startForceStopActivity();
                             if (ForceStopActivity.instance != null) {
-                                PPPEAccessibilityService.applicationForceClosed = false;
-                                //ForceStopActivity.instance.appInfoClosed = false;
-                                ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
-                                waitForApplicationForceClosed();
-                                //waitForAppInfoEnd();
-                                //ForceStopActivity.instance.finishActivity(100);
+                                try {
+                                    PPPEAccessibilityService.applicationForceClosed = false;
+                                    //ForceStopActivity.instance.appInfoClosed = false;
+                                    ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
+                                    waitForApplicationForceClosed();
+                                    //waitForAppInfoEnd();
+                                    //ForceStopActivity.instance.finishActivity(100);
+                                } catch (Exception ignored) {}
                             }
                         }
                     }
@@ -99,8 +101,9 @@ public class ForceCloseIntentService extends IntentService {
 
         if (forceStopApplicationsStartCount <= 0) {
             if (ForceStopActivity.instance != null) {
-                ForceStopActivity.instance.finishActivity(100);
-                ForceStopActivity.instance.finish();
+                try {
+                    ForceStopActivity.instance.finish();
+                } catch (Exception ignored) {}
                 ForceStopActivity.instance = null;
             }
 
