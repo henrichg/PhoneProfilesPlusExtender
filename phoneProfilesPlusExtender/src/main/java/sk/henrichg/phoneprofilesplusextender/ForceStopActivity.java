@@ -32,12 +32,12 @@ public class ForceStopActivity extends AppCompatActivity {
     }
     */
 
-    /*
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        finishActivity(100);
         instance = null;
-    }*/
+    }
 
     @Override
     public void finish()
