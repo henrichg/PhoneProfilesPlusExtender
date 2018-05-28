@@ -86,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
             reloadActivity(this/*, true*/);
     }
 
-    private static boolean activityActionExists(String action, Context context) {
+    private static boolean activityActionExists(@SuppressWarnings("SameParameterValue") String action,
+                                                Context context) {
         try {
             final Intent intent = new Intent(action);
             List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);

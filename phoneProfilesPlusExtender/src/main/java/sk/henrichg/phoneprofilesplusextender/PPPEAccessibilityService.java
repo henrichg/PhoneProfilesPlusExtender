@@ -194,13 +194,4 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         return false;
     }
 
-    static public void sleep(long ms) {
-        /*long start = SystemClock.uptimeMillis();
-        do {
-            SystemClock.sleep(100);
-        } while (SystemClock.uptimeMillis() - start < ms);*/
-        //SystemClock.sleep(ms);
-        try{ Thread.sleep(ms); }catch(InterruptedException ignored){ }
-    }
-
 }
