@@ -1,0 +1,4 @@
+#Thu May 31 10:08:43 CEST 2018
+base.0=/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/phoneProfilesPlusExtender/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
