@@ -1,0 +1,60 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/phoneProfilesPlusExtender/build/intermediates/incremental/mergeDebugResources/merged.dir/values-cs/values-cs.xml",
+            "map": [
+                {
+                    "source": "/home/henrisko/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/57303d6e3cd1d9fc7ba70b78a8854ea9/res/values-cs/values-cs.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,212,314,423,509,614,731,812,893,977,1081,1190,1289,1395,1505,1612,1775,1873",
+                        "endColumns": "106,101,108,85,104,116,80,80,83,103,108,98,105,109,106,162,97,81",
+                        "endOffsets": "207,309,418,504,609,726,807,888,972,1076,1185,1284,1390,1500,1607,1770,1868,1950"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,30",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,212,314,423,509,614,731,812,893,977,1081,1190,1289,1395,1505,1612,1775,3163",
+                        "endColumns": "106,101,108,85,104,116,80,80,83,103,108,98,105,109,106,162,97,81",
+                        "endOffsets": "207,309,418,504,609,726,807,888,972,1076,1185,1284,1390,1500,1607,1770,1868,3240"
+                    }
+                },
+                {
+                    "source": "/home/henrisko/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/70a157486e5d5aef7fad810f05d0a417/res/values-cs/values-cs.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "31",
+                        "startColumns": "4",
+                        "startOffsets": "3245",
+                        "endColumns": "100",
+                        "endOffsets": "3341"
+                    }
+                },
+                {
+                    "source": "/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/phoneProfilesPlusExtender/src/main/res/values-cs/strings.xml",
+                    "from": {
+                        "startLines": "7,12,6,11,10,9,5,14,8,4,13",
+                        "startColumns": "2,2,2,2,2,2,2,2,2,2,2",
+                        "startOffsets": "510,1075,280,1000,926,740,192,1277,578,122,1174",
+                        "endColumns": "67,98,229,74,73,185,87,112,161,69,102",
+                        "endOffsets": "575,1171,507,1072,997,923,277,1387,737,189,1274"
+                    },
+                    "to": {
+                        "startLines": "19,20,21,22,23,24,25,26,27,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1873,1943,2044,2276,2353,2429,2617,2707,2822,2986,3058",
+                        "endColumns": "69,100,231,76,75,187,89,114,163,71,104",
+                        "endOffsets": "1938,2039,2271,2348,2424,2612,2702,2817,2981,3053,3158"
+                    }
+                }
+            ]
+        }
+    ]
+}
