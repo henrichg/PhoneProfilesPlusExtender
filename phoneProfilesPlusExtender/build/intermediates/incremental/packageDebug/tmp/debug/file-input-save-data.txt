@@ -1,7 +1,0 @@
-#Internal package file, do not edit.
-#Thu May 31 10:08:43 CEST 2018
-0.baseType=DIRECTORY
-0.base=/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/phoneProfilesPlusExtender/build/intermediates/transforms/dexMerger/debug/0
-0.path=classes.dex
-0.set=DEX
-count=1
