@@ -14,3 +14,5 @@ Required external libs
 ----------------------
 
 - Android support library: core, appcomapt
+- crashlytics - https://fabric.io/kits/android/crashlytics
+- ANR-WatchDog - https://github.com/SalomonBrys/ANR-WatchDog
