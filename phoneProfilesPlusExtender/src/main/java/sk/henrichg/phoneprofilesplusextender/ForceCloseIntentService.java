@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.provider.Settings;
-import android.util.Log;
 
 import java.util.List;
 
@@ -49,7 +48,7 @@ public class ForceCloseIntentService extends IntentService {
         if (!(applications.isEmpty() || (applications.equals("-")))) {
 
             PPPEAccessibilityService.forceStopStarted = true;
-            Log.e("ForceCloseIntentService", "forceStopStarted=true");
+            //Log.e("ForceCloseIntentService", "forceStopStarted=true");
 
             startForceStopActivity();
 
@@ -96,7 +95,7 @@ public class ForceCloseIntentService extends IntentService {
             --forceStopApplicationsStartCount;
 
             PPPEAccessibilityService.forceStopStarted = false;
-            Log.e("ForceCloseIntentService", "forceStopStarted=false");
+            //Log.e("ForceCloseIntentService", "forceStopStarted=false");
         }
 
         if (forceStopApplicationsStartCount <= 0) {

@@ -93,8 +93,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 }
                 //////////////////
 
-                Log.e("PPPEAccessibilityService", "forceStopStarted="+forceStopStarted);
-                Log.e("PPPEAccessibilityService", "event.getClassName()="+event.getClassName());
+                //Log.e("PPPEAccessibilityService", "forceStopStarted="+forceStopStarted);
+                //Log.e("PPPEAccessibilityService", "event.getClassName()="+event.getClassName());
                 if (forceStopStarted) {
                     //Log.e("PPPEAccessibilityService", "forceStopStarted");
                     // force stop is started in PPP
@@ -109,7 +109,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
                             for (AccessibilityNodeInfo node : list) {
                                 if (node.isEnabled()) {
-                                    Log.e("PPPEAccessibilityService", "force close button clicked");
+                                    //Log.e("PPPEAccessibilityService", "force close button clicked");
                                     node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                                 }
                                 else {
