@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#237e9f</color>      <!-- 700(500) -->
-    <color name="colorPrimaryDark">#1d6681</color> <!-- 900(700) -->
+    <color name="colorPrimaryDark">#237e9f</color> <!-- 900(700) -->
+    <!--<color name="colorPrimaryDark">#1d6681</color>--> <!-- 900(700) -->
     <color name="colorAccent">#DC8160</color>       <!-- A400(A200) -->
 </resources>
