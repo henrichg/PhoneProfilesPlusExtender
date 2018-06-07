@@ -7,8 +7,8 @@ import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
-import com.github.anrwatchdog.ANRError;
-import com.github.anrwatchdog.ANRWatchDog;
+//import com.github.anrwatchdog.ANRError;
+//import com.github.anrwatchdog.ANRWatchDog;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -31,6 +31,7 @@ public class PPPEApplication extends Application {
         Fabric.with(getApplicationContext(), crashlyticsKit);
         // Crashlytics.getInstance().core.logException(exception); -- this log will be associated with crash log.
 
+        /*
         // set up ANR-WatchDog
         ANRWatchDog anrWatchDog = new ANRWatchDog();
         //anrWatchDog.setReportMainThreadOnly();
@@ -41,6 +42,7 @@ public class PPPEApplication extends Application {
             }
         });
         anrWatchDog.start();
+        */
 
         try {
             Crashlytics.setBool("DEBUG", BuildConfig.DEBUG);
