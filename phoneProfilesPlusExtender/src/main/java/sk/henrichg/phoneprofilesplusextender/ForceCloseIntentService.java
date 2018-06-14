@@ -21,8 +21,8 @@ public class ForceCloseIntentService extends IntentService {
 
     static boolean screenOffReceived = false;
 
-    static final List<Long> profileIdList = new java.util.ArrayList<>();
-    static int forceStopApplicationsStartCount = 0;
+    private static final List<Long> profileIdList = new java.util.ArrayList<>();
+    private static int forceStopApplicationsStartCount = 0;
 
 
     public ForceCloseIntentService()
