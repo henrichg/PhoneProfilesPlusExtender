@@ -42,7 +42,12 @@ public class ForceCloseIntentService extends IntentService {
             return;
         }
 
-        //long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
+        long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
+        if (profileId != 0) {
+            ForceCloseIntentService.profileIdList.add(profileId);
+            ++ForceCloseIntentService.forceStopApplicationsStartCount;
+        }
+
         String applications = intent.getStringExtra(EXTRA_APPLICATIONS);
 
         if (!(applications.isEmpty() || (applications.equals("-")))) {
