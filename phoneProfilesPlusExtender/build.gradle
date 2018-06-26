@@ -12,9 +12,10 @@ android {
         versionCode 95
         versionName "2.0.0.3"
 
-        resConfigs "en", "ar", "bg", "ca", "cs", "de", "el", "es", "fa", "fr", "hi", "hu", "in", "it",
-                "iw", "ja", "ko", "nl", "pl", "pt-rBR", "pt-rPT", "ro", "ru", "sk", "sl", "sv", "te",
-                "tr", "uk", "zh-rCN", "zh-rTW"
+        resConfigs "en", "af", "ar", "bn-rIN", "bg", "ca", "cs", "da", "de", "el", "es", "et", "fa",
+                "fi", "fr", "ga-rIN", "hi", "hr", "hu", "in", "is", "it", "iw", "ja", "ko", "ku",
+                "lb", "lv", "ms", "nl", "no", "pl", "pt-rBR", "pt-rPT", "ro", "ru", "sk", "sl", "sr",
+                "sr-rCS", "sv", "te", "th", "tr", "uk", "vi", "zh-rCN", "zh-rTW"
 
     }
     buildTypes {
