@@ -4,17 +4,17 @@
   <!--suppress CheckTagEmptyBody -->
     <string name="extender_app_name">PhoneProfilesPlusExtender</string>
   <string name="extender_accessibility_service_name">PhoneProfilesPlusExtender</string>
-  <string name="extender_accessibility_service_description">Allow PhoneProfilesPlusExtender for:\n• profile parameter \"Force stop applications\"\n• event sensors \"Application parameters\" and \"Orientation parameters\".</string>
+  <string name="extender_accessibility_service_description">Allow PhoneProfilesPlusExtender for:\n• profile parameter \"Force stop applications\"\n• event parameters \"Application sensor\" and \"Orientation sensor\".</string>
   <string name="extender_about_application_version">Version:</string>
   <string name="extender_accessibility_service_profile_force_stop_applications">• Accessibility service for profile parameter \"Force stop applications\":</string>
-  <string name="extender_accessibility_service_event_sensor_applications_orientation">• Accessibility service for event sensor \"Application parameters\" and \"Orientation parameters\":</string>
+  <string name="extender_accessibility_service_event_sensor_applications_orientation">• Accessibility service for event parameters \"Application sensor\" and \"Orientation sensor\":</string>
   <string name="extender_accessibility_service_enabled">Enabled</string>
   <string name="extender_accessibility_service_disabled">Disabled</string>
   <string name="extender_accessibility_service_button">Enable/Disable\nAccessibility service</string>
   <string name="extender_setting_screen_not_found_alert">Setting screen not found.</string>
   <string name="extender_accessibility_service_permission">PhoneProfilesPlusExtender accessibility service</string>
-  <!--    <string name="profile_preferences_screenNightMode">Night mode</string>
-    <string name="array_pref_screenNightMode_automatic">Automatic</string> -->
+    <!--    <string name="profile_preferences_screenNightMode">Night mode</string>
+      <string name="array_pref_screenNightMode_automatic">Automatic</string> -->
   <!--<string name="phone_profiles_pref_notificationTheme">Notification theme</string>
     <string name="array_pref_color_native">Native</string>
     <string name="array_pref_color_dark">Dark</string>
@@ -31,7 +31,7 @@
   <!--<string name="phone_profiles_pref_applicationEventRescan_restartEvents">Restart events</string>-->
   <!--<string name="accessibility_service_name">PhoneProfilesPlus</string>-->
   <!--<string name="accessibility_service_description">Allow PhoneProfilesPlus to detect which application is in the foreground. This is necessary for events with \"Applications parameters\" enabled.</string>-->
-  <!--<string name="event_preferences_applications_AccessibilitySettings_summary">To enable Application parameters, allow PhoneProfilesPlus \"Accessibility\" in system settings.</string>-->
+  <!--<string name="event_preferences_applications_AccessibilitySettings_summary">To enable Application sensor, allow PhoneProfilesPlus \"Accessibility\" in system settings.</string>-->
   <!--<string name="event_preferences_notifications_end_when_removed">End when dismissed</string>-->
   <!--<string name="profile_preferences_volumeVibrateWhenRingingRootInfo_summary">In Android 6 this system setting can be changed only on rooted devices. Affected are ringer modes and interruption types with vibration.</string>-->
   <!--<string name="info_notification_unlink_ringer_notification_volumes2">If your device does not have separate volumes for ringtone and notifications, keep volume separation enabled.</string>-->
