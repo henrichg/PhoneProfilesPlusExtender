@@ -13,5 +13,5 @@ Android application - Extender for PhoneProfiles and PhoneProfilesPlus
 Required external libs
 ----------------------
 
-- Android support library: core, appcomapt
+- Android support library: core, appcompat
 - crashlytics - https://fabric.io/kits/android/crashlytics
