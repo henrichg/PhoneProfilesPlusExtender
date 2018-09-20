@@ -9,8 +9,8 @@ android {
         applicationId "sk.henrichg.phoneprofilesplusextender"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 100
-        versionName "2.0.0.4"
+        versionCode 110
+        versionName "2.0.1"
 
         resConfigs "en", "af", "ar", "bn-rIN", "bg", "ca", "cs", "da", "de", "el", "es", "et", "fa",
                 "fi", "fr", "ga-rIN", "hi", "hr", "hu", "in", "is", "it", "iw", "ja", "ko", "ku",
@@ -39,7 +39,9 @@ android {
 
 dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
 
+    implementation 'com.google.firebase:firebase-core:16.0.3'
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
         transitive = true
     }
@@ -47,3 +49,5 @@ dependencies {
 
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.4'
 }
+
+apply plugin: 'com.google.gms.google-services'
