@@ -3,10 +3,12 @@ package sk.henrichg.phoneprofilesplusextender;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.pm.PackageInfo;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
+import com.google.firebase.analytics.FirebaseAnalytics;
 //import com.github.anrwatchdog.ANRError;
 //import com.github.anrwatchdog.ANRWatchDog;
 
@@ -16,12 +18,18 @@ public class PPPEApplication extends Application {
 
     public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
 
+    @SuppressWarnings("SpellCheckingInspection")
+    static private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         if (checkAppReplacingState())
             return;
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // Set up Crashlytics, disabled for debug builds
         Crashlytics crashlyticsKit = new Crashlytics.Builder()
@@ -73,5 +81,17 @@ public class PPPEApplication extends Application {
         }
         return false;
     }
+
+    // Google Alaytics ----------------------------------------------------------------------------
+
+    static void logAnalyticsEvent(String itemId, String itemName, String contentType) {
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, itemId);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, itemName);
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, contentType);
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+    }
+
+    //---------------------------------------------------------------------------------------------
 
 }
