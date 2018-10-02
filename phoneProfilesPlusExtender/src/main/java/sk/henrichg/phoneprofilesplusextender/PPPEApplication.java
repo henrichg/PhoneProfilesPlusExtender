@@ -82,7 +82,7 @@ public class PPPEApplication extends Application {
         return false;
     }
 
-    // Google Alaytics ----------------------------------------------------------------------------
+    // Google Analytics ----------------------------------------------------------------------------
 
     static void logAnalyticsEvent(String itemId, String itemName, String contentType) {
         Bundle bundle = new Bundle();
