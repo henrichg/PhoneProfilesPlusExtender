@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
 
-    implementation 'com.google.firebase:firebase-core:16.0.3'
+    //implementation 'com.google.firebase:firebase-core:16.0.3'
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
         transitive = true
     }
@@ -50,4 +50,4 @@ dependencies {
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.4'
 }
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
