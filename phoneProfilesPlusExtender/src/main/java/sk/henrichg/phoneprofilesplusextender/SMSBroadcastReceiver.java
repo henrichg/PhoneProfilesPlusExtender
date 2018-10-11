@@ -12,6 +12,10 @@ import java.util.Calendar;
 
 public class SMSBroadcastReceiver extends BroadcastReceiver {
 
+    static final String ACTION_SMS_MMS_RECEIVED = "sk.henrichg.phoneprofilesplusextender.ACTION_SMS_MMS_RECEIVED";
+    static final String EXTRA_ORIGIN = "sk.henrichg.phoneprofilesplusextender.origin";
+    static final String EXTRA_TIME = "sk.henrichg.phoneprofilesplusextender.time";
+
     //private static ContentObserver smsObserver;
     //private static ContentObserver mmsObserver;
     //private static int mmsCount;
@@ -100,7 +104,10 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
             int gmtOffset = 0; //TimeZone.getDefault().getRawOffset();
             long time = now.getTimeInMillis() + gmtOffset;
 
-            //TODO send to PPP origin and time
+            Intent sendIntent = new Intent(ACTION_SMS_MMS_RECEIVED);
+            sendIntent.putExtra(EXTRA_ORIGIN, origin);
+            sendIntent.putExtra(EXTRA_TIME, time);
+            context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
         }
     }
 
