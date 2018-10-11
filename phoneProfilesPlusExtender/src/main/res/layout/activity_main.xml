@@ -1,45 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="15dp"
-    tools:context="sk.henrichg.phoneprofilesplusextender.MainActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context="sk.henrichg.phoneprofilesplusextender.MainActivity" >
 
-    <TextView
-        android:id="@+id/activity_main_application_version"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/extender_app_name"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="10dp"/>
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/activity_main_application_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/extender_app_name"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
 
 
-    <TextView
-        android:id="@+id/activity_main_accessibility_service_force_stop_application"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/extender_accessibility_service_disabled"
-        android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/activity_main_accessibility_service_force_stop_application"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/extender_accessibility_service_disabled"
+            android:textSize="15sp"/>
 
-    <TextView
-        android:id="@+id/activity_main_accessibility_service_event_sensor_applications_orientation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/extender_accessibility_service_disabled"
-        android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/activity_main_accessibility_service_event_sensor_applications_orientation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/extender_accessibility_service_disabled"
+            android:textSize="15sp"/>
 
-    <Button
-        android:id="@+id/activity_main_accessibility_service_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/extender_accessibility_service_button"
-        android:textColor="?attr/colorAccent"
-        android:background="?attr/selectableItemBackground" />
+        <TextView
+            android:id="@+id/activity_main_accessibility_service_event_sensor_sms_mms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/extender_accessibility_service_disabled"
+            android:textSize="15sp"/>
 
-</LinearLayout>
+        <Button
+            android:id="@+id/activity_main_accessibility_service_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/extender_accessibility_service_button"
+            android:textColor="?attr/colorAccent"
+            android:background="?attr/selectableItemBackground" />
+
+        <TextView
+            android:id="@+id/activity_main_permissions_event_sensor_sms_mms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/extender_permissions_not_granted"
+            android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/activity_main_permissions_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/extender_permissions_button"
+            android:textColor="?attr/colorAccent"
+            android:background="?attr/selectableItemBackground" />
+
+    </LinearLayout>
+
+</ScrollView>

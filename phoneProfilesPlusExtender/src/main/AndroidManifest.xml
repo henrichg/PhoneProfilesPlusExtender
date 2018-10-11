@@ -9,6 +9,8 @@
         android:protectionLevel="signature"/>
 
     <uses-permission android:name="sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_MMS"/>
 
     <application
         android:name=".PPPEApplication"

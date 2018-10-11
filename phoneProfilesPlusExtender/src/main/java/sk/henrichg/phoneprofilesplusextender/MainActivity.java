@@ -1,11 +1,14 @@
 package sk.henrichg.phoneprofilesplusextender;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -28,6 +31,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final int RESULT_ACCESSIBILITY_SETTINGS = 1900;
+    private static final int RESULT_PERMISSIONS_SETTINGS = 1901;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -78,6 +82,16 @@ public class MainActivity extends AppCompatActivity {
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
         text.setText(sbt);
 
+        str1 = getString(R.string.extender_accessibility_service_event_sensor_sms_mms);
+        if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
+            str2 = str1 + " " + getString(R.string.extender_accessibility_service_enabled);
+        else
+            str2 = str1 + " " + getString(R.string.extender_accessibility_service_disabled);
+        sbt = new SpannableString(str2);
+        text = findViewById(R.id.activity_main_accessibility_service_event_sensor_sms_mms);
+        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
+        text.setText(sbt);
+
         final Activity activity = this;
         Button accessibilityButton = findViewById(R.id.activity_main_accessibility_service_button);
         accessibilityButton.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +109,43 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            str1 = getString(R.string.extender_permissions_event_sensor_sms_mms);
+            if (checkSMSSensorPermissions(getApplicationContext()))
+                str2 = str1 + " " + getString(R.string.extender_permissions_granted);
+            else
+                str2 = str1 + " " + getString(R.string.extender_permissions_not_granted);
+            sbt = new SpannableString(str2);
+            text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
+            sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
+            text.setText(sbt);
+
+            Button permissionsButton = findViewById(R.id.activity_main_permissions_button);
+            permissionsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    //intent.addCategory(Intent.CATEGORY_DEFAULT);
+                    intent.setData(Uri.parse("package:sk.henrichg.phoneprofilesplusextender"));
+                    if (MainActivity.activityIntentExists(intent, activity)) {
+                        startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
+                    } else {
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+                        dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
+                        //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
+                        dialogBuilder.setPositiveButton(android.R.string.ok, null);
+                        dialogBuilder.show();
+                    }
+                }
+            });
+        }
+        else {
+            text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
+            text.setVisibility(View.GONE);
+            Button permissionsButton = findViewById(R.id.activity_main_permissions_button);
+            permissionsButton.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -103,12 +154,23 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_ACCESSIBILITY_SETTINGS)
             reloadActivity(this/*, true*/);
+        if (requestCode == RESULT_PERMISSIONS_SETTINGS)
+            reloadActivity(this/*, true*/);
     }
 
     private static boolean activityActionExists(@SuppressWarnings("SameParameterValue") String action,
                                                 Context context) {
         try {
             final Intent intent = new Intent(action);
+            List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
+            return activities.size() > 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    static boolean activityIntentExists(Intent intent, Context context) {
+        try {
             List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
             return activities.size() > 0;
         } catch (Exception e) {
@@ -139,6 +201,14 @@ public class MainActivity extends AppCompatActivity {
         }
         else*/
             activity.recreate();
+    }
+
+    private boolean checkSMSSensorPermissions(Context context) {
+        boolean grantedReceiveSMS = ContextCompat.checkSelfPermission(context, android.Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED;
+        // not needed, mobile number is in bundle of receiver intent, data of sms/mms is not read
+        //boolean grantedReadSMS = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED;
+        boolean grantedReceiveMMS = ContextCompat.checkSelfPermission(context, Manifest.permission.RECEIVE_MMS) == PackageManager.PERMISSION_GRANTED;
+        return grantedReceiveSMS && /*grantedReadSMS &&*/ grantedReceiveMMS;
     }
 
 }

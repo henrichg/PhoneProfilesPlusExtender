@@ -9,8 +9,8 @@ android {
         applicationId "sk.henrichg.phoneprofilesplusextender"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 110
-        versionName "2.0.1"
+        versionCode 201
+        versionName "3.0b"
 
         resConfigs "en", "af", "ar", "bn-rIN", "bg", "ca", "cs", "da", "de", "el", "es", "et", "fa",
                 "fi", "fr", "ga-rIN", "hi", "hr", "hu", "in", "is", "it", "iw", "ja", "ko", "ku",
@@ -34,6 +34,16 @@ android {
             // Disable fabric build ID generation for debug builds
             ext.enableCrashlytics = false
         }
+    }
+
+    lintOptions {
+        //checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        //abortOnError false
+        disable 'MissingTranslation'
+        disable 'ManifestResource'
+        disable 'LongLogTag'
     }
 }
 

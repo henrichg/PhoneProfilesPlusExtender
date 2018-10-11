@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
+import android.provider.Telephony;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
@@ -32,6 +33,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     private FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
     private ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
+    private SMSBroadcastReceiver smsBroadcastReceiver = null;
+    private SMSBroadcastReceiver mmsBroadcastReceiver = null;
 
     static boolean forceStopStarted = false;
     static boolean applicationForceClosed = false;
@@ -66,6 +69,18 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
         getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                             ACCESSIBILITY_SERVICE_PERMISSION, null);
+
+        smsBroadcastReceiver = new SMSBroadcastReceiver();
+        IntentFilter intentFilter21 = new IntentFilter();
+        intentFilter21.addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
+        intentFilter21.setPriority(Integer.MAX_VALUE);
+        registerReceiver(smsBroadcastReceiver, intentFilter21);
+
+        mmsBroadcastReceiver = new SMSBroadcastReceiver();
+        IntentFilter intentFilter22;
+        intentFilter22 = IntentFilter.create(Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION, "application/vnd.wap.mms-message");
+        intentFilter22.setPriority(Integer.MAX_VALUE);
+        registerReceiver(mmsBroadcastReceiver, intentFilter22);
     }
 
     @SuppressLint("LongLogTag")
