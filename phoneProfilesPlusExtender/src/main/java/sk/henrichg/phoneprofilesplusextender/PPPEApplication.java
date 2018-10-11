@@ -148,8 +148,8 @@ public class PPPEApplication extends Application {
             buf.flush();
             buf.close();
         }
-        catch (IOException e) {
-            Log.e("PPPEApplication.logIntoFile", Log.getStackTraceString(e));
+        catch (IOException ignored) {
+            //Log.e("PPPEApplication.logIntoFile", Log.getStackTraceString(e));
         }
     }
 
