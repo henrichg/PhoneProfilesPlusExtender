@@ -24,8 +24,8 @@ import io.fabric.sdk.android.Fabric;
 
 public class PPPEApplication extends Application {
 
-    private static final boolean logIntoLogCat = true;
-    private static final boolean logIntoFile = true;
+    private static final boolean logIntoLogCat = false;
+    private static final boolean logIntoFile = false;
     private static final String logFilterTags = "SMSBroadcastReceiver.onReceive";
 
     public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
