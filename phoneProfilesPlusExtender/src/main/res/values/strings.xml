@@ -19,38 +19,4 @@
     <string name="extender_permissions_not_granted">Not granted</string>
     <string name="extender_permissions_granted">Granted</string>
     <string name="extender_permissions_button">Grant/Deny\nPermissions</string>
-
-<!--    <string name="profile_preferences_screenNightMode">Night mode</string>
-    <string name="array_pref_screenNightMode_automatic">Automatic</string> -->
-
-    <!--<string name="phone_profiles_pref_notificationTheme">Notification theme</string>
-    <string name="array_pref_color_native">Native</string>
-    <string name="array_pref_color_dark">Dark</string>
-    <string name="array_pref_color_light">Light</string>-->
-
-    <!--<string name="fast_access_duration_activate_with_button">Act. with</string>
-    <string name="fast_access_duration_activate_without_button">Act. without</string>-->
-
-    <!-- <string name="donation_google_android_market_description" tools:ignore="StringFormatCount">Google takes 30% off every donation.</string> -->
-    <!-- <string name="donation_paypal">PayPal</string> -->
-    <!--<string name="title_activity_image_view_preference_dialog">Change icon</string>-->
-    <!--<string name="title_activity_profile_preference_dialog">Set profile</string>-->
-    <!--<string name="event_preferences_undoneProfile">Undo the profile</string>-->
-    <!--<string name="phone_profiles_pref_applicationEventBluetoothEnableBluetooth">Enable Bluetooth scanning</string>-->
-    <!--<string name="phone_profiles_pref_applicationEventRescan_none">None</string>-->
-    <!--<string name="phone_profiles_pref_applicationEventRescan_restartEvents">Restart events</string>-->
-    <!--<string name="accessibility_service_name">PhoneProfilesPlus</string>-->
-    <!--<string name="accessibility_service_description">Allow PhoneProfilesPlus to detect which application is in the foreground. This is necessary for events with \"Applications parameters\" enabled.</string>-->
-    <!--<string name="event_preferences_applications_AccessibilitySettings_summary">To enable Application parameters, allow PhoneProfilesPlus \"Accessibility\" in system settings.</string>-->
-    <!--<string name="event_preferences_notifications_end_when_removed">End when dismissed</string>-->
-    <!--<string name="profile_preferences_volumeVibrateWhenRingingRootInfo_summary">In Android 6 this system setting can be changed only on rooted devices. Affected are ringer modes and interruption types with vibration.</string>-->
-    <!--<string name="info_notification_unlink_ringer_notification_volumes2">If your device does not have separate volumes for ringtone and notifications, keep volume separation enabled.</string>-->
-    <!--<string name="event_preferences_orientation_AccessibilitySettings_summary">To enable \"Ignore for applications\" parameter, allow PhoneProfilesPlus \"Accessibility\" in system settings.</string>-->
-    <!--<string name="donation_google_android_market_not_supported_title">In-App Donations are not supported.</string>-->
-    <!--<string name="donation_thanks_dialog_title">Thank you</string>-->
-    <!--<string name="phone_profiles_pref_applicationAlertSummary">This is used only for manual profile activation.</string>-->
-    <!--<string name="profile_preferences_zenModeM_alarms_summary">Disturb only with alarms</string>-->
-    <!--<string name="imageview_resource_file_pref_dialog_gallery_btn">Custom&#8230;</string>-->
-    <!--<string name="profileicon_pref_dialog_info_about_status_bar_icon">If you change the color of the icon, the icon in the status bar will be white. If you select a custom icon, the icon in the status bar will be the application icon.</string>-->
-
 </resources>
