@@ -6,15 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
-import android.util.Log;
 
 import java.util.Calendar;
 
 public class SMSBroadcastReceiver extends BroadcastReceiver {
 
-    static final String ACTION_SMS_MMS_RECEIVED = "sk.henrichg.phoneprofilesplusextender.ACTION_SMS_MMS_RECEIVED";
-    static final String EXTRA_ORIGIN = "sk.henrichg.phoneprofilesplusextender.origin";
-    static final String EXTRA_TIME = "sk.henrichg.phoneprofilesplusextender.time";
+    private static final String ACTION_SMS_MMS_RECEIVED = "sk.henrichg.phoneprofilesplusextender.ACTION_SMS_MMS_RECEIVED";
+    private static final String EXTRA_ORIGIN = "sk.henrichg.phoneprofilesplusextender.origin";
+    private static final String EXTRA_TIME = "sk.henrichg.phoneprofilesplusextender.time";
 
     //private static ContentObserver smsObserver;
     //private static ContentObserver mmsObserver;

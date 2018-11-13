@@ -3,7 +3,6 @@ package sk.henrichg.phoneprofilesplusextender;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.pm.PackageInfo;
-import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 
@@ -166,7 +165,8 @@ public class PPPEApplication extends Application {
         return contains;
     }
 
-    static public boolean logEnabled() {
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    static private boolean logEnabled() {
         //noinspection ConstantConditions
         return (logIntoLogCat || logIntoFile);
     }
