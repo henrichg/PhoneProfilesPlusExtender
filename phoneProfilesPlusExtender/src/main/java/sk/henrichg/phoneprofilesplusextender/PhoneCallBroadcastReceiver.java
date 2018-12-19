@@ -8,7 +8,7 @@ import java.util.Date;
 public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
     private static final String ACTION_CALL_RECEIVED = "sk.henrichg.phoneprofilesplusextender.ACTION_CALL_RECEIVED";
-    private static final String EXTRA_SERVICE_PHONE_EVENT = "sk.henrichg.phoneprofilesplusextender.service_phone_event";
+    //private static final String EXTRA_SERVICE_PHONE_EVENT = "sk.henrichg.phoneprofilesplusextender.service_phone_event";
     private static final String EXTRA_CALL_EVENT_TYPE = "sk.henrichg.phoneprofilesplusextender.call_event_type";
     private static final String EXTRA_PHONE_NUMBER = "sk.henrichg.phoneprofilesplusextender.phone_number";
     private static final String EXTRA_EVENT_TIME = "sk.henrichg.phoneprofilesplusextender.event_time";
@@ -78,13 +78,13 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
         }
     }
 
-    private static void doCallEvent(int servicePhoneEvent, int eventType, String phoneNumber, Date eventTime, Context context)
+    private static void doCallEvent(/*int servicePhoneEvent, */int eventType, String phoneNumber, Date eventTime, Context context)
     {
         Intent sendIntent = new Intent(ACTION_CALL_RECEIVED);
-        sendIntent.putExtra(EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
+        //sendIntent.putExtra(EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
         sendIntent.putExtra(EXTRA_CALL_EVENT_TYPE, eventType);
         sendIntent.putExtra(EXTRA_PHONE_NUMBER, phoneNumber);
-        sendIntent.putExtra(EXTRA_EVENT_TIME, eventTime);
+        sendIntent.putExtra(EXTRA_EVENT_TIME, eventTime.getTime());
         context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
     }
 
@@ -94,16 +94,16 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
         PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "phoneNumber="+phoneNumber);
 
         if (incoming) {
-            doCallEvent(SERVICE_PHONE_EVENT_START, CALL_EVENT_INCOMING_CALL_RINGING, phoneNumber, eventTime, context);
+            doCallEvent(/*SERVICE_PHONE_EVENT_START, */CALL_EVENT_INCOMING_CALL_RINGING, phoneNumber, eventTime, context);
         }
     }
 
     private static void callAnswered(boolean incoming, String phoneNumber, Date eventTime, Context context)
     {
         if (incoming)
-            doCallEvent(SERVICE_PHONE_EVENT_ANSWER, CALL_EVENT_INCOMING_CALL_ANSWERED, phoneNumber, eventTime, context);
+            doCallEvent(/*SERVICE_PHONE_EVENT_ANSWER, */CALL_EVENT_INCOMING_CALL_ANSWERED, phoneNumber, eventTime, context);
         else
-            doCallEvent(SERVICE_PHONE_EVENT_ANSWER, CALL_EVENT_OUTGOING_CALL_ANSWERED, phoneNumber, eventTime, context);
+            doCallEvent(/*SERVICE_PHONE_EVENT_ANSWER, */CALL_EVENT_OUTGOING_CALL_ANSWERED, phoneNumber, eventTime, context);
     }
 
     private static void callEnded(boolean incoming, boolean missed, String phoneNumber, Date eventTime, Context context)
@@ -114,12 +114,12 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
         if (incoming) {
             if (missed)
-                doCallEvent(SERVICE_PHONE_EVENT_END, CALL_EVENT_MISSED_CALL, phoneNumber, eventTime, context);
+                doCallEvent(/*SERVICE_PHONE_EVENT_END, */CALL_EVENT_MISSED_CALL, phoneNumber, eventTime, context);
             else
-                doCallEvent(SERVICE_PHONE_EVENT_END, CALL_EVENT_INCOMING_CALL_ENDED, phoneNumber, eventTime, context);
+                doCallEvent(/*SERVICE_PHONE_EVENT_END, */CALL_EVENT_INCOMING_CALL_ENDED, phoneNumber, eventTime, context);
         }
         else
-            doCallEvent(SERVICE_PHONE_EVENT_END, CALL_EVENT_OUTGOING_CALL_ENDED, phoneNumber, eventTime, context);
+            doCallEvent(/*SERVICE_PHONE_EVENT_END, */CALL_EVENT_OUTGOING_CALL_ENDED, phoneNumber, eventTime, context);
 
     }
 
