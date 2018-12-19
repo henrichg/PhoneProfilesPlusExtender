@@ -166,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
         else {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
             text.setVisibility(View.GONE);
+            text = findViewById(R.id.activity_main_permissions_event_sensor_call);
+            text.setVisibility(View.GONE);
             Button permissionsButton = findViewById(R.id.activity_main_permissions_button);
             permissionsButton.setVisibility(View.GONE);
         }
