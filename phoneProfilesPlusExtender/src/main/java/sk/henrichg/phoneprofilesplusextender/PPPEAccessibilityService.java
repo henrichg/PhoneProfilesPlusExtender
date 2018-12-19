@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Telephony;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
@@ -35,6 +37,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     private ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
     private SMSBroadcastReceiver smsBroadcastReceiver = null;
     private SMSBroadcastReceiver mmsBroadcastReceiver = null;
+    private PhoneCallBroadcastReceiver phoneCallBroadcastReceiver = null;
 
     static boolean forceStopStarted = false;
     static boolean applicationForceClosed = false;
@@ -70,17 +73,27 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                             ACCESSIBILITY_SERVICE_PERMISSION, null);
 
-        smsBroadcastReceiver = new SMSBroadcastReceiver();
-        IntentFilter intentFilter21 = new IntentFilter();
-        intentFilter21.addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
-        intentFilter21.setPriority(Integer.MAX_VALUE);
-        getBaseContext().registerReceiver(smsBroadcastReceiver, intentFilter21);
+        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+            smsBroadcastReceiver = new SMSBroadcastReceiver();
+            IntentFilter intentFilter21 = new IntentFilter();
+            intentFilter21.addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
+            intentFilter21.setPriority(Integer.MAX_VALUE);
+            getBaseContext().registerReceiver(smsBroadcastReceiver, intentFilter21);
 
-        mmsBroadcastReceiver = new SMSBroadcastReceiver();
-        IntentFilter intentFilter22;
-        intentFilter22 = IntentFilter.create(Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION, "application/vnd.wap.mms-message");
-        intentFilter22.setPriority(Integer.MAX_VALUE);
-        getBaseContext().registerReceiver(mmsBroadcastReceiver, intentFilter22);
+            mmsBroadcastReceiver = new SMSBroadcastReceiver();
+            IntentFilter intentFilter22;
+            intentFilter22 = IntentFilter.create(Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION, "application/vnd.wap.mms-message");
+            intentFilter22.setPriority(Integer.MAX_VALUE);
+            getBaseContext().registerReceiver(mmsBroadcastReceiver, intentFilter22);
+
+            phoneCallBroadcastReceiver = new PhoneCallBroadcastReceiver();
+            IntentFilter intentFilter6 = new IntentFilter();
+            // not needed for unlink volumes and event Call sensor
+            intentFilter6.addAction(Intent.ACTION_NEW_OUTGOING_CALL);
+            intentFilter6.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
+            getBaseContext().registerReceiver(phoneCallBroadcastReceiver, intentFilter6);
+        }
+
     }
 
     @SuppressLint("LongLogTag")
@@ -182,8 +195,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         getBaseContext().unregisterReceiver(fromPhoneProfilesPlusBroadcastReceiver);
         getBaseContext().unregisterReceiver(screenOnOffReceiver);
-        getBaseContext().unregisterReceiver(smsBroadcastReceiver);
-        getBaseContext().unregisterReceiver(mmsBroadcastReceiver);
+        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+            getBaseContext().unregisterReceiver(smsBroadcastReceiver);
+            getBaseContext().unregisterReceiver(mmsBroadcastReceiver);
+            getBaseContext().unregisterReceiver(phoneCallBroadcastReceiver);
+        }
 
         return super.onUnbind(intent);
     }

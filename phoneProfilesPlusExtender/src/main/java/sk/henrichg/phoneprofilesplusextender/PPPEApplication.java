@@ -2,7 +2,9 @@ package sk.henrichg.phoneprofilesplusextender;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.content.Context;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.util.Log;
 
@@ -236,5 +238,14 @@ public class PPPEApplication extends Application {
     */
 
     //---------------------------------------------------------------------------------------------
+
+    static boolean hasSystemFeature(Context context, @SuppressWarnings("SameParameterValue") String feature) {
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            return packageManager.hasSystemFeature(feature);
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }
