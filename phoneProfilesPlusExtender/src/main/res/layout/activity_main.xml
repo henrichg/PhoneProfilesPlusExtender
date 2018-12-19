@@ -42,6 +42,13 @@
             android:text="@string/extender_accessibility_service_disabled"
             android:textSize="15sp"/>
 
+        <TextView
+            android:id="@+id/activity_main_accessibility_service_event_sensor_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/extender_accessibility_service_disabled"
+            android:textSize="15sp"/>
+
         <Button
             android:id="@+id/activity_main_accessibility_service_button"
             android:layout_width="wrap_content"
