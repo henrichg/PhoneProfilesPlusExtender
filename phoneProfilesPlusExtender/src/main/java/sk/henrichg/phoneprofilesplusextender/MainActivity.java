@@ -121,6 +121,19 @@ public class MainActivity extends AppCompatActivity {
             sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
             text.setText(sbt);
 
+            if (Build.VERSION.SDK_INT < 28)
+                str1 = getString(R.string.extender_permissions_event_sensor_call);
+            else
+                str1 = getString(R.string.extender_permissions_event_sensor_call_28);
+            if (checkCallSensorPermissions(getApplicationContext()))
+                str2 = str1 + " " + getString(R.string.extender_permissions_granted);
+            else
+                str2 = str1 + " " + getString(R.string.extender_permissions_not_granted);
+            sbt = new SpannableString(str2);
+            text = findViewById(R.id.activity_main_permissions_event_sensor_call);
+            sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
+            text.setText(sbt);
+
             Button permissionsButton = findViewById(R.id.activity_main_permissions_button);
             permissionsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -209,6 +222,17 @@ public class MainActivity extends AppCompatActivity {
         //boolean grantedReadSMS = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED;
         boolean grantedReceiveMMS = ContextCompat.checkSelfPermission(context, Manifest.permission.RECEIVE_MMS) == PackageManager.PERMISSION_GRANTED;
         return grantedReceiveSMS && /*grantedReadSMS &&*/ grantedReceiveMMS;
+    }
+
+    private boolean checkCallSensorPermissions(Context context) {
+        boolean grantedReadPhoneState = ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED;
+        boolean grantedProcessOutgoingCalls = ContextCompat.checkSelfPermission(context, Manifest.permission.PROCESS_OUTGOING_CALLS) == PackageManager.PERMISSION_GRANTED;
+        if (android.os.Build.VERSION.SDK_INT < 28)
+            return grantedReadPhoneState && grantedProcessOutgoingCalls;
+        else {
+            boolean grantedReadCallLog = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED;
+            return grantedReadPhoneState && grantedProcessOutgoingCalls && grantedReadCallLog;
+        }
     }
 
 }

@@ -17,9 +17,8 @@
     <uses-permission android:name="android.permission.RECEIVE_MMS"/>
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <!-- required for Call sensor for answer call to get phone number -->
+    <!-- required for answer call to get phone number -->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
-    <!-- required for Android 9??? -->
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
 
     <uses-feature

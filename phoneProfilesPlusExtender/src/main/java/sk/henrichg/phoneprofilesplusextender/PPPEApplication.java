@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
@@ -74,7 +75,11 @@ public class PPPEApplication extends Application {
         long actualVersionCode = 0;
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            actualVersionCode = pInfo.getLongVersionCode();
+            if (Build.VERSION.SDK_INT < 28)
+                //noinspection deprecation
+                actualVersionCode = pInfo.versionCode;
+            else
+                actualVersionCode = pInfo.getLongVersionCode();
         } catch (Exception e) {
             //e.printStackTrace();
         }
