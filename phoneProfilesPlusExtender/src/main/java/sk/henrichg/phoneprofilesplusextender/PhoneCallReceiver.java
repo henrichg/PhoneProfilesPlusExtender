@@ -93,7 +93,7 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
                         // CALL_STATE_RINGING is called twice.
                         // When savedNumber and incomingNumber are not filled,
                         // wait for second CALL_STATE_RINGING call.
-                        state = TelephonyManager.CALL_STATE_IDLE;
+                        return;
                     }
                     else {
                         inCall = false;
@@ -138,6 +138,7 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
                         }
                         inCall = false;
                     }
+                    savedNumber = null;
                     break;
             }
             lastState = state;
