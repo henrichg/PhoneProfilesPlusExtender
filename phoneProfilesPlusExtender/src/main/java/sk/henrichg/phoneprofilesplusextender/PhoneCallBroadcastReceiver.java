@@ -17,14 +17,14 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
     private static final int SERVICE_PHONE_EVENT_ANSWER = 2;
     private static final int SERVICE_PHONE_EVENT_END = 3;
 
-    //static final int CALL_EVENT_UNDEFINED = 0;
-    static final int CALL_EVENT_INCOMING_CALL_RINGING = 1;
-    //static final int CALL_EVENT_OUTGOING_CALL_STARTED = 2;
-    static final int CALL_EVENT_INCOMING_CALL_ANSWERED = 3;
-    static final int CALL_EVENT_OUTGOING_CALL_ANSWERED = 4;
-    static final int CALL_EVENT_INCOMING_CALL_ENDED = 5;
-    static final int CALL_EVENT_OUTGOING_CALL_ENDED = 6;
-    static final int CALL_EVENT_MISSED_CALL = 7;
+    //private static final int CALL_EVENT_UNDEFINED = 0;
+    private static final int CALL_EVENT_INCOMING_CALL_RINGING = 1;
+    //private static final int CALL_EVENT_OUTGOING_CALL_STARTED = 2;
+    private static final int CALL_EVENT_INCOMING_CALL_ANSWERED = 3;
+    private static final int CALL_EVENT_OUTGOING_CALL_ANSWERED = 4;
+    private static final int CALL_EVENT_INCOMING_CALL_ENDED = 5;
+    private static final int CALL_EVENT_OUTGOING_CALL_ENDED = 6;
+    private static final int CALL_EVENT_MISSED_CALL = 7;
 
     protected void onIncomingCallStarted(String number, Date eventTime)
     {
