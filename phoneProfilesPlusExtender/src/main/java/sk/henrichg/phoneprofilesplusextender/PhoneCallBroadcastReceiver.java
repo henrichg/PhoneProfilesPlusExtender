@@ -1,10 +1,17 @@
 package sk.henrichg.phoneprofilesplusextender;
 
 import android.content.Context;
+import android.content.Intent;
 
 import java.util.Date;
 
 public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
+
+    private static final String ACTION_CALL_RECEIVED = "sk.henrichg.phoneprofilesplusextender.ACTION_CALL_RECEIVED";
+    private static final String EXTRA_SERVICE_PHONE_EVENT = "sk.henrichg.phoneprofilesplusextender.service_phone_event";
+    private static final String EXTRA_CALL_EVENT_TYPE = "sk.henrichg.phoneprofilesplusextender.call_event_type";
+    private static final String EXTRA_PHONE_NUMBER = "sk.henrichg.phoneprofilesplusextender.phone_number";
+    private static final String EXTRA_EVENT_TIME = "sk.henrichg.phoneprofilesplusextender.event_time";
 
     private static final int SERVICE_PHONE_EVENT_START = 1;
     private static final int SERVICE_PHONE_EVENT_ANSWER = 2;
@@ -18,10 +25,6 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
     static final int CALL_EVENT_INCOMING_CALL_ENDED = 5;
     static final int CALL_EVENT_OUTGOING_CALL_ENDED = 6;
     static final int CALL_EVENT_MISSED_CALL = 7;
-
-    static final String PREF_CALL_EVENT_TYPE = "callEventType";
-    static final String PREF_PHONE_NUMBER = "phoneNumber";
-    static final String PREF_EVENT_TIME = "eventTime";
 
     protected void onIncomingCallStarted(String number, Date eventTime)
     {
@@ -77,14 +80,12 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
     private static void doCallEvent(int servicePhoneEvent, int eventType, String phoneNumber, Date eventTime, Context context)
     {
-        /*
-        ApplicationPreferences.getSharedPreferences(context);
-        SharedPreferences.Editor editor = ApplicationPreferences.preferences.edit();
-        editor.putInt(PREF_EVENT_CALL_EVENT_TYPE, eventType);
-        editor.putString(PREF_EVENT_CALL_PHONE_NUMBER, phoneNumber);
-        editor.putLong(PREF_EVENT_CALL_EVENT_TIME, eventTime.getTime());
-        editor.apply();
-        */
+        Intent sendIntent = new Intent(ACTION_CALL_RECEIVED);
+        sendIntent.putExtra(EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
+        sendIntent.putExtra(EXTRA_CALL_EVENT_TYPE, eventType);
+        sendIntent.putExtra(EXTRA_PHONE_NUMBER, phoneNumber);
+        sendIntent.putExtra(EXTRA_EVENT_TIME, eventTime);
+        context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
     }
 
     private static void callStarted(boolean incoming, String phoneNumber, Date eventTime, Context context)

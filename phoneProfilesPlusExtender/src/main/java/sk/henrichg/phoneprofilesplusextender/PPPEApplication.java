@@ -71,10 +71,10 @@ public class PPPEApplication extends Application {
         } catch (Exception ignored) {}
 
         //if (BuildConfig.DEBUG) {
-        int actualVersionCode = 0;
+        long actualVersionCode = 0;
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            actualVersionCode = pInfo.versionCode;
+            actualVersionCode = pInfo.getLongVersionCode();
         } catch (Exception e) {
             //e.printStackTrace();
         }
