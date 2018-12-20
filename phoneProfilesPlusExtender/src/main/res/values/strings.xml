@@ -3,6 +3,8 @@
 <resources>
     <!--suppress CheckTagEmptyBody -->
     <string name="empty_string" translatable="false"></string>
+    <string name="toast_permissions_not_granted">Permissions are not granted</string>
+
     <string name="extender_app_name">PhoneProfilesPlusExtender</string>
     <string name="extender_accessibility_service_name">PhoneProfilesPlusExtender</string>
 

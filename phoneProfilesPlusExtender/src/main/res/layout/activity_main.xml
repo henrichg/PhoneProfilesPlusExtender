@@ -66,15 +66,27 @@
             android:layout_marginTop="10dp"
             android:text="@string/extender_permissions_not_granted"
             android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/activity_main_sms_permissions_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/extender_permissions_button"
+            android:textColor="?attr/colorAccent"
+            android:background="?attr/selectableItemBackground" />
+
         <TextView
             android:id="@+id/activity_main_permissions_event_sensor_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@string/extender_permissions_not_granted"
             android:textSize="15sp"/>
 
         <Button
-            android:id="@+id/activity_main_permissions_button"
+            android:id="@+id/activity_main_call_permissions_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

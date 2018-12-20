@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= 23) {
             str1 = getString(R.string.extender_permissions_event_sensor_sms_mms);
-            if (checkSMSSensorPermissions(getApplicationContext()))
+            if (Permissions.checkSMSMMSPermissions(activity))
                 str2 = str1 + " " + getString(R.string.extender_permissions_granted);
             else
                 str2 = str1 + " " + getString(R.string.extender_permissions_not_granted);
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 str1 = getString(R.string.extender_permissions_event_sensor_call);
             else
                 str1 = getString(R.string.extender_permissions_event_sensor_call_28);
-            if (checkCallSensorPermissions(getApplicationContext()))
+            if (Permissions.checkCallPermissions(activity))
                 str2 = str1 + " " + getString(R.string.extender_permissions_granted);
             else
                 str2 = str1 + " " + getString(R.string.extender_permissions_not_granted);
@@ -144,22 +146,48 @@ public class MainActivity extends AppCompatActivity {
             sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
             text.setText(sbt);
 
-            Button permissionsButton = findViewById(R.id.activity_main_permissions_button);
+            Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
             permissionsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                    //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                    intent.setData(Uri.parse("package:sk.henrichg.phoneprofilesplusextender"));
-                    if (MainActivity.activityIntentExists(intent, activity)) {
-                        startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
-                    } else {
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
-                        dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
-                        //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
-                        dialogBuilder.setPositiveButton(android.R.string.ok, null);
-                        dialogBuilder.show();
+                    if (Permissions.checkSMSMMSPermissions(activity)) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        //intent.addCategory(Intent.CATEGORY_DEFAULT);
+                        intent.setData(Uri.parse("package:sk.henrichg.phoneprofilesplusextender"));
+                        if (MainActivity.activityIntentExists(intent, activity)) {
+                            startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
+                        } else {
+                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+                            dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
+                            //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
+                            dialogBuilder.setPositiveButton(android.R.string.ok, null);
+                            dialogBuilder.show();
+                        }
                     }
+                    else
+                        Permissions.grantSMSMMSPermissions(activity);
+                }
+            });
+            permissionsButton = findViewById(R.id.activity_main_call_permissions_button);
+            permissionsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Permissions.checkCallPermissions(activity)) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        //intent.addCategory(Intent.CATEGORY_DEFAULT);
+                        intent.setData(Uri.parse("package:sk.henrichg.phoneprofilesplusextender"));
+                        if (MainActivity.activityIntentExists(intent, activity)) {
+                            startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
+                        } else {
+                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+                            dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
+                            //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
+                            dialogBuilder.setPositiveButton(android.R.string.ok, null);
+                            dialogBuilder.show();
+                        }
+                    }
+                    else
+                        Permissions.grantCallPermissions(activity);
                 }
             });
         }
@@ -168,7 +196,9 @@ public class MainActivity extends AppCompatActivity {
             text.setVisibility(View.GONE);
             text = findViewById(R.id.activity_main_permissions_event_sensor_call);
             text.setVisibility(View.GONE);
-            Button permissionsButton = findViewById(R.id.activity_main_permissions_button);
+            Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
+            permissionsButton.setVisibility(View.GONE);
+            permissionsButton = findViewById(R.id.activity_main_call_permissions_button);
             permissionsButton.setVisibility(View.GONE);
         }
     }
@@ -181,6 +211,43 @@ public class MainActivity extends AppCompatActivity {
             reloadActivity(this/*, true*/);
         if (requestCode == RESULT_PERMISSIONS_SETTINGS)
             reloadActivity(this/*, true*/);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case Permissions.PERMISSIONS_REQUEST_CODE: {
+                // If request is cancelled, the result arrays are empty.
+
+                boolean allGranted = true;
+                for (int grantResult : grantResults) {
+                    if (grantResult == PackageManager.PERMISSION_DENIED) {
+                        allGranted = false;
+                        break;
+                    }
+                }
+
+                if (allGranted) {
+                    reloadActivity(this/*, true*/);
+                } else {
+                    //if (!onlyNotification) {
+                    Context context = getApplicationContext();
+                    Toast msg = Toast.makeText(context,
+                            context.getResources().getString(R.string.extender_app_name) + ": " +
+                                    context.getResources().getString(R.string.toast_permissions_not_granted),
+                            Toast.LENGTH_SHORT);
+                    msg.show();
+                    //}
+                    finish();
+                }
+                break;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 
     private static boolean activityActionExists(@SuppressWarnings("SameParameterValue") String action,
@@ -226,25 +293,6 @@ public class MainActivity extends AppCompatActivity {
         }
         else*/
             activity.recreate();
-    }
-
-    private boolean checkSMSSensorPermissions(Context context) {
-        boolean grantedReceiveSMS = ContextCompat.checkSelfPermission(context, android.Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED;
-        // not needed, mobile number is in bundle of receiver intent, data of sms/mms is not read
-        //boolean grantedReadSMS = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED;
-        boolean grantedReceiveMMS = ContextCompat.checkSelfPermission(context, Manifest.permission.RECEIVE_MMS) == PackageManager.PERMISSION_GRANTED;
-        return grantedReceiveSMS && /*grantedReadSMS &&*/ grantedReceiveMMS;
-    }
-
-    private boolean checkCallSensorPermissions(Context context) {
-        boolean grantedReadPhoneState = ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED;
-        boolean grantedProcessOutgoingCalls = ContextCompat.checkSelfPermission(context, Manifest.permission.PROCESS_OUTGOING_CALLS) == PackageManager.PERMISSION_GRANTED;
-        if (android.os.Build.VERSION.SDK_INT < 28)
-            return grantedReadPhoneState && grantedProcessOutgoingCalls;
-        else {
-            boolean grantedReadCallLog = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED;
-            return grantedReadPhoneState && grantedProcessOutgoingCalls && grantedReadCallLog;
-        }
     }
 
 }
