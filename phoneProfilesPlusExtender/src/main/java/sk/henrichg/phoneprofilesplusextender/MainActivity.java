@@ -1,6 +1,5 @@
 package sk.henrichg.phoneprofilesplusextender;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;

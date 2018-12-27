@@ -5,15 +5,11 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
-//import com.google.firebase.analytics.FirebaseAnalytics;
-//import com.github.anrwatchdog.ANRError;
-//import com.github.anrwatchdog.ANRWatchDog;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -23,6 +19,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import io.fabric.sdk.android.Fabric;
+
+//import com.google.firebase.analytics.FirebaseAnalytics;
+//import com.github.anrwatchdog.ANRError;
+//import com.github.anrwatchdog.ANRWatchDog;
 
 public class PPPEApplication extends Application {
 
@@ -75,11 +75,11 @@ public class PPPEApplication extends Application {
         long actualVersionCode = 0;
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            if (Build.VERSION.SDK_INT < 28)
+            //if (Build.VERSION.SDK_INT < 28)
                 //noinspection deprecation
                 actualVersionCode = pInfo.versionCode;
-            else
-                actualVersionCode = pInfo.getLongVersionCode();
+            //else
+            //    actualVersionCode = pInfo.getLongVersionCode();
         } catch (Exception e) {
             //e.printStackTrace();
         }
