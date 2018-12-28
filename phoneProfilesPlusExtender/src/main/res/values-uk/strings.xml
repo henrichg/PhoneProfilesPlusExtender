@@ -3,27 +3,28 @@
 <resources>
   <!--suppress CheckTagEmptyBody -->
     <string name="extender_app_name">PhoneProfilesPlusExtender</string>
-  <string name="extender_accessibility_service_name">PhoneProfilesPlusExtender</string>
+    <string name="extender_accessibility_service_name">PhoneProfilesPlusExtender</string>
 
-    <string name="extender_accessibility_service_description">Allow PhoneProfilesPlusExtender for:\n• profile parameter \"Force stop applications\"\n• event parameters \"Application sensor\", \"Orientation sensor\", \"SMS/MMS sensor\".</string>
+    <!-- PLEASE CHECK END OF STRING CHANGES AND TRANSLATE IT -->
+    <string name="extender_accessibility_service_description">Дозволи PhoneProfilesPlusExtender до:\n• параметрів профілю \"Примусова зупинка додатків\"\n• параметрам подій \"Датчик додатків\", \"Датчик орієнтації екрану\", \"SMS/MMS датчик\", \"Датчик викликів\".</string>
 
     <string name="extender_about_application_version">Версія:</string>
-  <string name="extender_accessibility_service_profile_force_stop_applications">• Служба спец. можливостей для параметра профіля \"Примусова зупинка додатків\":</string>
-  <string name="extender_accessibility_service_event_sensor_applications_orientation">• Служба спец. можливостей для датчиків \"Сенсор додатків\" і \"Сенсор орієнтації екрану\":</string>
-  <string name="extender_accessibility_service_enabled">Увімкнено</string>
-  <string name="extender_accessibility_service_disabled">Вимкнено</string>
-  <string name="extender_accessibility_service_button">Увімкнути/Вимкнути\nСлужбу спец. можливостей</string>
-  <string name="extender_setting_screen_not_found_alert">Налаштування екрану не знайдено.</string>
-  <string name="extender_accessibility_service_permission">Служба спец. можливостей PhoneProfilesPlusExtender</string>
+    <string name="extender_accessibility_service_profile_force_stop_applications">• Служба спец. можливостей для параметра профілю \"Примусова зупинка додатків\":</string>
+    <string name="extender_accessibility_service_event_sensor_applications_orientation">• Служба спец. можливостей для датчиків \"Датчик додатків\" і \"Датчик орієнтації екрану\":</string>
+    <string name="extender_accessibility_service_enabled">Увімкнено</string>
+    <string name="extender_accessibility_service_disabled">Вимкнено</string>
+    <string name="extender_accessibility_service_button">Увімкнути/Вимкнути\nСлужбу спец. можливостей</string>
+    <string name="extender_setting_screen_not_found_alert">Налаштування екрану не знайдено.</string>
+    <string name="extender_accessibility_service_permission">Служба спец. можливостей PhoneProfilesPlusExtender</string>
 
-    <string name="extender_accessibility_service_event_sensor_sms_mms">• Accessibility service for event parameter \"SMS/MMS sensor\". Accessibility function is not used, service is needed for receiving SMS and MMS.:</string>
-    <string name="extender_permissions_event_sensor_sms_mms">• Permissions for event parameter \"SMS/MMS sensor\" - permission SMS:</string>
-    <string name="extender_permissions_not_granted">Not granted</string>
-    <string name="extender_permissions_granted">Granted</string>
-    <string name="extender_permissions_button">Grant/deny\npermissions</string>
+    <string name="extender_accessibility_service_event_sensor_sms_mms">• Служба спец. можливостей для параметру подій \"SMS/MMS датчик\". Служба спец. можливостей не використовується, служба потрібна для отримання SMS та MMS.:</string>
+    <string name="extender_permissions_event_sensor_sms_mms">• Дозволи до параметру подій \"SMS/MMS датчик\" - дозвіл SMS:</string>
+    <string name="extender_permissions_not_granted">Не надано</string>
+    <string name="extender_permissions_granted">Надано</string>
+    <string name="extender_permissions_button">Надати/Заборонити\nдозволи</string>
 
-    <string name="extender_accessibility_service_event_sensor_call">• Accessibility service for event parameter \"Call sensor\". Accessibility function is not used, service is needed for receiving calls.:</string>
-    <string name="extender_permissions_event_sensor_call">• Permissions for event parameter \"Call sensor\" - permission Phone:</string>
-    <string name="extender_permissions_event_sensor_call_28">• Permissions for event parameter \"Call sensor\" - permission Phone, Call logs:</string>
-    <string name="extender_toast_permissions_not_granted">Permissions are not granted</string>
+    <string name="extender_accessibility_service_event_sensor_call">• Служба спец. можливостей для параметру подій \"Датчик викликів\". Служба спец. можливостей не використовується, служба потрібна для отримання викликів.:</string>
+    <string name="extender_permissions_event_sensor_call">• Дозволи до параметру подій \"Датчик викликів\" - дозвіл Телефон:</string>
+    <string name="extender_permissions_event_sensor_call_28">• Дозволи до параметру подій \"Датчик викликів\" - дозвіл Телефон, Журнал викликів:</string>
+    <string name="extender_toast_permissions_not_granted">Дозволи не надані</string>
 </resources>

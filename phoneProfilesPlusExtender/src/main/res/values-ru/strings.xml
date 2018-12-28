@@ -4,7 +4,10 @@
   <!--suppress CheckTagEmptyBody -->
     <string name="extender_app_name">PhoneProfilesPlusExtender</string>
     <string name="extender_accessibility_service_name">PhoneProfilesPlusExtender</string>
-    <string name="extender_accessibility_service_description">Разрешите PhoneProfilesPlusExtender для использования:\n• параметра профиля \"Принудительная остановка приложений\"\n• параметров события \"Датчик приложений\", \"Датчик ориентации\", \"Датчик SMS/MMS\".</string>
+
+    <!-- PLEASE CHECK END OF STRING CHANGES AND TRANSLATE IT -->
+    <string name="extender_accessibility_service_description">Разрешите доступ службе PhoneProfilesPlusExtender для использования:\n• параметра профиля \"Принудительная остановка приложений\"\n• параметров события \"Датчик приложений\", \"Датчик ориентации\", \"Датчик SMS/MMS\", \"Датчик вызовов\".</string>
+
     <string name="extender_about_application_version">Версия:</string>
     <string name="extender_accessibility_service_profile_force_stop_applications">• Служба спец. возможностей для параметра профиля \"Принудительная остановка приложений\":</string>
     <string name="extender_accessibility_service_event_sensor_applications_orientation">• Служба спец. возможностей для параметров события \"Датчик приложений\" и \"Датчик ориентации\":</string>
@@ -13,14 +16,15 @@
     <string name="extender_accessibility_service_button">Включить/Отключить\nслужбу спец. возможностей</string>
     <string name="extender_setting_screen_not_found_alert">Настройки экрана не найдены.</string>
     <string name="extender_accessibility_service_permission">Служба спец. возможностей PhoneProfilesPlusExtender</string>
+
     <string name="extender_accessibility_service_event_sensor_sms_mms">• Служба спец. возможностей для параметра события \"Датчик SMS/MMS\". Функция спец. возможностей не используется; для получения SMS и MMS нужна запущенная служба.:</string>
     <string name="extender_permissions_event_sensor_sms_mms">• Разрешения для параметра события \"Датчик SMS/MMS\" - разрешение SMS:</string>
     <string name="extender_permissions_not_granted">Не предоставлены</string>
     <string name="extender_permissions_granted">Предоставлены</string>
     <string name="extender_permissions_button">Предоставить/отозвать\nразрешения</string>
 
-    <string name="extender_accessibility_service_event_sensor_call">• Accessibility service for event parameter \"Call sensor\". Accessibility function is not used, service is needed for receiving calls.:</string>
-    <string name="extender_permissions_event_sensor_call">• Permissions for event parameter \"Call sensor\" - permission Phone:</string>
-    <string name="extender_permissions_event_sensor_call_28">• Permissions for event parameter \"Call sensor\" - permission Phone, Call logs:</string>
-    <string name="extender_toast_permissions_not_granted">Permissions are not granted</string>
+    <string name="extender_accessibility_service_event_sensor_call">• Служба спец. возможностей для параметра события \"Датчик вызовов\". Функция спец. возможностей не используется, служба нужна для получения звонков.:</string>
+    <string name="extender_permissions_event_sensor_call">• Разрешения для параметра события \"Датчик вызовов\" - разрешение \"Телефон\":</string>
+    <string name="extender_permissions_event_sensor_call_28">• Разрешения для параметра события \"Датчик вызовов\" - разрешения \"Телефон\“, \"Журнал звонков\":</string>
+    <string name="extender_toast_permissions_not_granted">Разрешения не предоставлены</string>
 </resources>
