@@ -26,31 +26,31 @@ class Permissions {
     }
 
     static void grantSMSMMSPermissions(Activity activity) {
-        boolean showRequestReceiveSMS = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.RECEIVE_SMS);
-        boolean showRequestReceiveMMS = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.RECEIVE_MMS);
+        //boolean showRequestReceiveSMS = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.RECEIVE_SMS);
+        //boolean showRequestReceiveMMS = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.RECEIVE_MMS);
 
-        if (showRequestReceiveSMS || showRequestReceiveMMS) {
+        //if (showRequestReceiveSMS || showRequestReceiveMMS) {
             String[] permArray = new String[2];
             permArray[0] = Manifest.permission.RECEIVE_SMS;
             permArray[1] = Manifest.permission.RECEIVE_MMS;
 
             ActivityCompat.requestPermissions(activity, permArray, PERMISSIONS_REQUEST_CODE);
-        }
+        //}
     }
 
     static void grantCallPermissions(Activity activity) {
-        boolean showRequestReadPhoneState = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_PHONE_STATE);
-        boolean showRequestProcessOutgoingCalls = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.PROCESS_OUTGOING_CALLS);
-        boolean showRequestReadCallLog = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_CALL_LOG);
+        //boolean showRequestReadPhoneState = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_PHONE_STATE);
+        //boolean showRequestProcessOutgoingCalls = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.PROCESS_OUTGOING_CALLS);
+        //boolean showRequestReadCallLog = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_CALL_LOG);
 
-        if (showRequestReadPhoneState || showRequestProcessOutgoingCalls || showRequestReadCallLog) {
+        //if (showRequestReadPhoneState || showRequestProcessOutgoingCalls || showRequestReadCallLog) {
             String[] permArray = new String[3];
             permArray[0] = Manifest.permission.READ_PHONE_STATE;
             permArray[1] = Manifest.permission.PROCESS_OUTGOING_CALLS;
             permArray[2] = Manifest.permission.READ_CALL_LOG;
 
             ActivityCompat.requestPermissions(activity, permArray, PERMISSIONS_REQUEST_CODE);
-        }
+        //}
     }
 
 }
