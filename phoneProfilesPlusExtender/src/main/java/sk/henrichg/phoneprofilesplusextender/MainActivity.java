@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         TextView text = findViewById(R.id.activity_main_application_version);
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            //noinspection deprecation
             text.setText(getString(R.string.extender_about_application_version) + " " + pInfo.versionName + " (" + pInfo.versionCode + ")");
         } catch (Exception e) {
             text.setText("");
