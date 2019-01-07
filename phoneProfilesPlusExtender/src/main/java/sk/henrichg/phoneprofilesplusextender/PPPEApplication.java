@@ -28,8 +28,10 @@ public class PPPEApplication extends Application {
 
     private static final boolean logIntoLogCat = false;
     private static final boolean logIntoFile = false;
-    private static final String logFilterTags = "PhoneCallReceiver" +
-                                                "|PhoneCallBroadcastReceiver"
+    private static final String logFilterTags = "PPPEAccessibilityService"
+                                                + "|PhoneCallReceiver"
+                                                + "|PhoneCallBroadcastReceiver"
+                                                + "|MainActivity"
             ;
 
     public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";

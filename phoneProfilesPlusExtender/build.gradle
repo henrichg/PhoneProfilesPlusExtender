@@ -9,8 +9,8 @@ android {
         applicationId "sk.henrichg.phoneprofilesplusextender"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 215
-        versionName "3.0.0.1"
+        versionCode 220
+        versionName "3.0.0.2"
 
         resConfigs "en", "af", "ar", "bn-rIN", "bg", "ca", "cs", "da", "de", "el", "es", "et", "fa",
                 "fi", "fr", "ga-rIN", "hi", "hr", "hu", "in", "is", "it", "iw", "ja", "ko", "ku",

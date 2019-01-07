@@ -10,6 +10,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Telephony;
+import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
@@ -44,6 +45,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
+
+        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "xxx");
 
         /*
         //Configure these here for compatibility with API 13 and below.
@@ -93,6 +96,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             getBaseContext().registerReceiver(phoneCallBroadcastReceiver, intentFilter6);
         }
 
+        Intent refreshIntent = new Intent("RefreshGUIBroadcastReceiver");
+        LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(refreshIntent);
     }
 
     @SuppressLint("LongLogTag")
