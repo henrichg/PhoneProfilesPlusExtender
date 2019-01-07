@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT);
                     msg.show();
                     //}
-                    finish();
+                    reloadActivity(this/*, true*/);
                 }
                 break;
             }
