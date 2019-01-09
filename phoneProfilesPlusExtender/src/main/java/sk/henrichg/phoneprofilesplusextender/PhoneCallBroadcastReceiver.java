@@ -7,11 +7,11 @@ import java.util.Date;
 
 public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
-    private static final String ACTION_CALL_RECEIVED = "sk.henrichg.phoneprofilesplusextender.ACTION_CALL_RECEIVED";
+    static final String ACTION_CALL_RECEIVED = "sk.henrichg.phoneprofilesplusextender.ACTION_CALL_RECEIVED";
     //private static final String EXTRA_SERVICE_PHONE_EVENT = "sk.henrichg.phoneprofilesplusextender.service_phone_event";
-    private static final String EXTRA_CALL_EVENT_TYPE = "sk.henrichg.phoneprofilesplusextender.call_event_type";
-    private static final String EXTRA_PHONE_NUMBER = "sk.henrichg.phoneprofilesplusextender.phone_number";
-    private static final String EXTRA_EVENT_TIME = "sk.henrichg.phoneprofilesplusextender.event_time";
+    static final String EXTRA_CALL_EVENT_TYPE = "sk.henrichg.phoneprofilesplusextender.call_event_type";
+    static final String EXTRA_PHONE_NUMBER = "sk.henrichg.phoneprofilesplusextender.phone_number";
+    static final String EXTRA_EVENT_TIME = "sk.henrichg.phoneprofilesplusextender.event_time";
 
     private static final int SERVICE_PHONE_EVENT_START = 1;
     private static final int SERVICE_PHONE_EVENT_ANSWER = 2;
@@ -25,6 +25,7 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
     private static final int CALL_EVENT_INCOMING_CALL_ENDED = 5;
     private static final int CALL_EVENT_OUTGOING_CALL_ENDED = 6;
     private static final int CALL_EVENT_MISSED_CALL = 7;
+    static final int CALL_EVENT_SERVICE_UNBIND = 8;
 
     protected void onIncomingCallStarted(String number, Date eventTime)
     {

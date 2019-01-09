@@ -15,6 +15,10 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
 
         //Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
 
+        if (intent.getAction().equals(PPPEAccessibilityService.ACTION_REGISTER_PPPE_FUNCTION)) {
+
+        }
+        else
         if (intent.getAction().equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {
             long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
 

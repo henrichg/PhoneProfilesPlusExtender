@@ -30,6 +30,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     private static final String EXTRA_PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender.package_name";
     private static final String EXTRA_CLASS_NAME = "sk.henrichg.phoneprofilesplusextender.class_name";
 
+    static final String ACTION_REGISTER_PPPE_FUNCTION = "sk.henrichg.phoneprofilesplusextender.ACTION_REGISTER_PPPE_FUNCTION";
     static final String ACTION_FORCE_STOP_APPLICATIONS_START = "sk.henrichg.phoneprofilesplusextender.ACTION_FORCE_STOP_APPLICATIONS_START";
     static final String ACTION_FORCE_STOP_APPLICATIONS_END = "sk.henrichg.phoneprofilesplusextender.ACTION_FORCE_STOP_APPLICATIONS_END";
 
@@ -194,8 +195,17 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         //final Context context = getApplicationContext();
 
+        // for event sensors: Applications and Orientation
         Intent _intent = new Intent(ACTION_ACCESSIBILITY_SERVICE_UNBIND);
         sendBroadcast(_intent, ACCESSIBILITY_SERVICE_PERMISSION);
+
+        // for event Call sensor
+        Intent sendIntent = new Intent(PhoneCallBroadcastReceiver.ACTION_CALL_RECEIVED);
+        //sendIntent.putExtra(PhoneCallBroadcastReceiver.EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
+        sendIntent.putExtra(PhoneCallBroadcastReceiver.EXTRA_CALL_EVENT_TYPE, PhoneCallBroadcastReceiver.CALL_EVENT_SERVICE_UNBIND);
+        sendIntent.putExtra(PhoneCallBroadcastReceiver.EXTRA_PHONE_NUMBER, "");
+        sendIntent.putExtra(PhoneCallBroadcastReceiver.EXTRA_EVENT_TIME, 0);
+        sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
 
         getBaseContext().unregisterReceiver(fromPhoneProfilesPlusBroadcastReceiver);
         getBaseContext().unregisterReceiver(screenOnOffReceiver);
