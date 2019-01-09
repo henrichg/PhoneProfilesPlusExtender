@@ -72,6 +72,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         fromPhoneProfilesPlusBroadcastReceiver = new FromPhoneProfilesPlusBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
         intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
         getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                             ACCESSIBILITY_SERVICE_PERMISSION, null);

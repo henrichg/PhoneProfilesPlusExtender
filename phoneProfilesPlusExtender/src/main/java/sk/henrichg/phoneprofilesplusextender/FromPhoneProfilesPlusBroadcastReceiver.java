@@ -13,11 +13,14 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         if ((intent == null) || (intent.getAction() == null))
             return;
 
-        //Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
+        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
 
         if (intent.getAction().equals(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION)) {
             String registrationApplication = intent.getStringExtra(PPPEApplication.EXTRA_REGISTRATION_APP);
             int registrationType = intent.getIntExtra(PPPEApplication.EXTRA_REGISTRATION_TYPE, 0);
+
+            PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationApplication="+registrationApplication);
+            PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationType="+registrationType);
 
             if (registrationApplication.equals("PhoneProfiles")) {
                 switch (registrationType) {
