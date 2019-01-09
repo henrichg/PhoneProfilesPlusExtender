@@ -81,12 +81,14 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
     private static void doCallEvent(/*int servicePhoneEvent, */int eventType, String phoneNumber, Date eventTime, Context context)
     {
-        Intent sendIntent = new Intent(ACTION_CALL_RECEIVED);
-        //sendIntent.putExtra(EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
-        sendIntent.putExtra(EXTRA_CALL_EVENT_TYPE, eventType);
-        sendIntent.putExtra(EXTRA_PHONE_NUMBER, phoneNumber);
-        sendIntent.putExtra(EXTRA_EVENT_TIME, eventTime.getTime());
-        context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+        if (PPPEApplication.registeredCallFunctionPPP) {
+            Intent sendIntent = new Intent(ACTION_CALL_RECEIVED);
+            //sendIntent.putExtra(EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
+            sendIntent.putExtra(EXTRA_CALL_EVENT_TYPE, eventType);
+            sendIntent.putExtra(EXTRA_PHONE_NUMBER, phoneNumber);
+            sendIntent.putExtra(EXTRA_EVENT_TIME, eventTime.getTime());
+            context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+        }
     }
 
     private static void callStarted(boolean incoming, String phoneNumber, Date eventTime, Context context)

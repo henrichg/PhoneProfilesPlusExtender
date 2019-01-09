@@ -111,10 +111,13 @@ public class ForceCloseIntentService extends IntentService {
                 ForceStopActivity.instance = null;
             }
 
-            for (long _profileId : profileIdList) {
-                Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_END);
-                _intent.putExtra(EXTRA_PROFILE_ID, _profileId);
-                sendBroadcast(_intent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+            if (PPPEApplication.registeredForceStopApplicationsFunctionPP ||
+                    PPPEApplication.registeredForceStopApplicationsFunctionPPP) {
+                for (long _profileId : profileIdList) {
+                    Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_END);
+                    _intent.putExtra(EXTRA_PROFILE_ID, _profileId);
+                    sendBroadcast(_intent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+                }
             }
             profileIdList.clear();
             forceStopApplicationsStartCount = 0;

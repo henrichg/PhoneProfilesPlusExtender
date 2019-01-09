@@ -53,11 +53,11 @@ public class PPPEApplication extends Application {
     //@SuppressWarnings("SpellCheckingInspection")
     //static private FirebaseAnalytics mFirebaseAnalytics;
 
-    static boolean registeredForceStopApplicationsFunctionPP = false;
-    static boolean registeredForceStopApplicationsFunctionPPP = false;
-    static boolean registeredForegroundApplicationFunctionPPP = false;
-    static boolean registeredSMSFunctionPPP = false;
-    static boolean registeredCallFunctionPPP = false;
+    static boolean registeredForceStopApplicationsFunctionPP = true;
+    static boolean registeredForceStopApplicationsFunctionPPP = true;
+    static boolean registeredForegroundApplicationFunctionPPP = true;
+    static boolean registeredSMSFunctionPPP = true;
+    static boolean registeredCallFunctionPPP = true;
 
     @Override
     public void onCreate() {

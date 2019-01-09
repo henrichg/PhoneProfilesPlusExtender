@@ -99,14 +99,16 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
         {
             PPPEApplication.logE("SMSBroadcastReceiver.onReceive","from="+origin);
 
-            Calendar now = Calendar.getInstance();
-            int gmtOffset = 0; //TimeZone.getDefault().getRawOffset();
-            long time = now.getTimeInMillis() + gmtOffset;
+            if (PPPEApplication.registeredSMSFunctionPPP) {
+                Calendar now = Calendar.getInstance();
+                int gmtOffset = 0; //TimeZone.getDefault().getRawOffset();
+                long time = now.getTimeInMillis() + gmtOffset;
 
-            Intent sendIntent = new Intent(ACTION_SMS_MMS_RECEIVED);
-            sendIntent.putExtra(EXTRA_ORIGIN, origin);
-            sendIntent.putExtra(EXTRA_TIME, time);
-            context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+                Intent sendIntent = new Intent(ACTION_SMS_MMS_RECEIVED);
+                sendIntent.putExtra(EXTRA_ORIGIN, origin);
+                sendIntent.putExtra(EXTRA_TIME, time);
+                context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+            }
         }
     }
 
