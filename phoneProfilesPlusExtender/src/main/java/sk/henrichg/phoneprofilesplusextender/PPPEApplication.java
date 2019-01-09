@@ -37,8 +37,27 @@ public class PPPEApplication extends Application {
     public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
     private static final String LOG_FILENAME = "log.txt";
 
+    static final String ACTION_REGISTER_PPPE_FUNCTION = "sk.henrichg.phoneprofilesplusextender.ACTION_REGISTER_PPPE_FUNCTION";
+
+    static final String EXTRA_REGISTRATION_APP = "registration_app";
+    static final String EXTRA_REGISTRATION_TYPE = "registration_type";
+    static final int REGISTRATION_TYPE_FORCE_STOP_APPLICATIONS_REGISTER = 1;
+    static final int REGISTRATION_TYPE_FORCE_STOP_APPLICATIONS_UNREGISTER = -1;
+    static final int REGISTRATION_TYPE_FOREGROUND_APPLICATION_REGISTER = 2;
+    static final int REGISTRATION_TYPE_FOREGROUND_APPLICATION_UNREGISTER = -2;
+    static final int REGISTRATION_TYPE_SMS_REGISTER = 3;
+    static final int REGISTRATION_TYPE_SMS_UNREGISTER = -3;
+    static final int REGISTRATION_TYPE_CALL_REGISTER = 4;
+    static final int REGISTRATION_TYPE_CALL_UNREGISTER = -4;
+
     //@SuppressWarnings("SpellCheckingInspection")
     //static private FirebaseAnalytics mFirebaseAnalytics;
+
+    static boolean registeredForceStopApplicationsFunctionPP = false;
+    static boolean registeredForceStopApplicationsFunctionPPP = false;
+    static boolean registeredForegroundApplicationFunctionPPP = false;
+    static boolean registeredSMSFunctionPPP = false;
+    static boolean registeredCallFunctionPPP = false;
 
     @Override
     public void onCreate() {
