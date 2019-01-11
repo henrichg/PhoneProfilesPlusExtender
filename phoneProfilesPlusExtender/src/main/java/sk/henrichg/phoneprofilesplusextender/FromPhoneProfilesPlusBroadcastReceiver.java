@@ -26,31 +26,41 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                 switch (registrationType) {
                     case PPPEApplication.REGISTRATION_TYPE_FORCE_STOP_APPLICATIONS_REGISTER:
                         PPPEApplication.registeredForceStopApplicationsFunctionPP = true;
+                        break;
                     case PPPEApplication.REGISTRATION_TYPE_FORCE_STOP_APPLICATIONS_UNREGISTER:
                         PPPEApplication.registeredForceStopApplicationsFunctionPP = false;
+                        break;
                 }
             }
             if (registrationApplication.equals("PhoneProfilesPlus")) {
                 switch (registrationType) {
                     case PPPEApplication.REGISTRATION_TYPE_FORCE_STOP_APPLICATIONS_REGISTER:
                         PPPEApplication.registeredForceStopApplicationsFunctionPPP = true;
+                        break;
                     case PPPEApplication.REGISTRATION_TYPE_FORCE_STOP_APPLICATIONS_UNREGISTER:
                         PPPEApplication.registeredForceStopApplicationsFunctionPPP = false;
+                        break;
                     case PPPEApplication.REGISTRATION_TYPE_FOREGROUND_APPLICATION_REGISTER:
                         PPPEApplication.registeredForegroundApplicationFunctionPPP = true;
+                        break;
                     case PPPEApplication.REGISTRATION_TYPE_FOREGROUND_APPLICATION_UNREGISTER:
                         PPPEApplication.registeredForegroundApplicationFunctionPPP = false;
+                        break;
                     case PPPEApplication.REGISTRATION_TYPE_SMS_REGISTER:
                         PPPEApplication.registeredSMSFunctionPPP = true;
+                        break;
                     case PPPEApplication.REGISTRATION_TYPE_SMS_UNREGISTER:
                         PPPEApplication.registeredSMSFunctionPPP = false;
+                        break;
                     case PPPEApplication.REGISTRATION_TYPE_CALL_REGISTER:
                         PPPEApplication.registeredCallFunctionPPP = true;
+                        break;
                     case PPPEApplication.REGISTRATION_TYPE_CALL_UNREGISTER:
                         PPPEApplication.registeredCallFunctionPPP = false;
+                        break;
                 }
             }
-
+            PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
         }
         else
         if (intent.getAction().equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {

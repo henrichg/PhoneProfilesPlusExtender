@@ -30,7 +30,7 @@ public class PPPEApplication extends Application {
     private static final boolean logIntoFile = false;
     private static final String logFilterTags = "PPPEAccessibilityService"
                                                 //+ "|PhoneCallReceiver"
-                                                //+ "|PhoneCallBroadcastReceiver"
+                                                + "|PhoneCallBroadcastReceiver"
                                                 //+ "|MainActivity"
                                                 + "|FromPhoneProfilesPlusBroadcastReceiver"
             ;

@@ -81,6 +81,7 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
     private static void doCallEvent(/*int servicePhoneEvent, */int eventType, String phoneNumber, Date eventTime, Context context)
     {
+        PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
         if (PPPEApplication.registeredCallFunctionPPP) {
             Intent sendIntent = new Intent(ACTION_CALL_RECEIVED);
             //sendIntent.putExtra(EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
