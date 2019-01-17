@@ -140,6 +140,8 @@ public class ForceCloseIntentService extends IntentService {
             if (shortcut.equals("(s)")) {
                 return packageName.substring(3);
             }
+            if (shortcut.equals("(i)"))
+                return "";
             return packageName;
         }
         else
@@ -156,6 +158,8 @@ public class ForceCloseIntentService extends IntentService {
     }
 
     private boolean isAppRunning(final String packageName) {
+        if (packageName.isEmpty())
+            return false;
         PackageManager pm = getPackageManager();
         List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
         for (ApplicationInfo packageInfo : packages) {
