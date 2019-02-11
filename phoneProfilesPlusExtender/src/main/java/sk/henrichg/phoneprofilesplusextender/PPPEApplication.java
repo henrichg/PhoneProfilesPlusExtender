@@ -26,7 +26,8 @@ import io.fabric.sdk.android.Fabric;
 
 public class PPPEApplication extends Application {
 
-    private static final boolean logIntoLogCat = false;
+    @SuppressWarnings("PointlessBooleanExpression")
+    private static final boolean logIntoLogCat = false && BuildConfig.DEBUG;
     private static final boolean logIntoFile = false;
     private static final String logFilterTags = "PPPEAccessibilityService"
                                                 //+ "|PhoneCallReceiver"
