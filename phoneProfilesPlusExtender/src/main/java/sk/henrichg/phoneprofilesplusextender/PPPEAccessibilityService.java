@@ -20,6 +20,8 @@ import java.util.List;
 
 public class PPPEAccessibilityService extends android.accessibilityservice.AccessibilityService {
 
+    static PPPEAccessibilityService instance = null;
+
     private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
 
     static final String ACCESSIBILITY_SERVICE_PERMISSION = "sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION";
@@ -33,6 +35,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     static final String ACTION_FORCE_STOP_APPLICATIONS_START = "sk.henrichg.phoneprofilesplusextender.ACTION_FORCE_STOP_APPLICATIONS_START";
     static final String ACTION_FORCE_STOP_APPLICATIONS_END = "sk.henrichg.phoneprofilesplusextender.ACTION_FORCE_STOP_APPLICATIONS_END";
+    static final String ACTION_LOCK_SCREEN = "sk.henrichg.phoneprofilesplusextender.ACTION_LOCK_SCREEN";
 
     private FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
     private ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
@@ -48,6 +51,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         super.onServiceConnected();
 
         PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "xxx");
+
+        instance = this;
 
         /*
         //Configure these here for compatibility with API 13 and below.
@@ -193,6 +198,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     @Override
     public void onInterrupt() {
+        instance = null;
     }
 
     @Override
@@ -220,6 +226,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             getBaseContext().unregisterReceiver(mmsBroadcastReceiver);
             getBaseContext().unregisterReceiver(phoneCallBroadcastReceiver);
         }
+
+        instance = null;
 
         return super.onUnbind(intent);
     }

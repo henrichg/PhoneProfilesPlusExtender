@@ -1,9 +1,11 @@
 package sk.henrichg.phoneprofilesplusextender;
 
+import android.accessibilityservice.AccessibilityService;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
 
@@ -15,7 +17,8 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
 
         PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
 
-        if (intent.getAction().equals(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION)) {
+        String action = intent.getAction();
+        if (action.equals(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION)) {
             String registrationApplication = intent.getStringExtra(PPPEApplication.EXTRA_REGISTRATION_APP);
             int registrationType = intent.getIntExtra(PPPEApplication.EXTRA_REGISTRATION_TYPE, 0);
 
@@ -63,13 +66,18 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
             PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
         }
         else
-        if (intent.getAction().equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {
+        if (action.equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {
             long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
 
             Intent scanServiceIntent = new Intent(context, ForceCloseIntentService.class);
             scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_APPLICATIONS, intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
             scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, profileId);
             context.startService(scanServiceIntent);
+        }
+        else
+        if (action.equals(PPPEAccessibilityService.ACTION_LOCK_SCREEN)) {
+            if ((Build.VERSION.SDK_INT >= 28) && (PPPEAccessibilityService.instance != null))
+                PPPEAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
         }
     }
 }
