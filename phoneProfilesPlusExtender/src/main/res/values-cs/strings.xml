@@ -20,11 +20,11 @@
     <string name="extender_accessibility_service_event_sensor_sms_mms">• Služba Dostupnost pro parametry události \"Senzor SMS/MMS\". Funkce dostupnosti není použita, běžící servis je potřebný pro příjem SMS a MMS.:</string>
     <string name="extender_permissions_event_sensor_sms_mms">• Povolení pro parametry události \"Senzor SMS/MMS\" - povolení SMS:</string>
     <string name="extender_permissions_not_granted">Odepřeno</string>
-    <string name="extender_permissions_granted">Udeleno</string>
-    <string name="extender_permissions_button">Udel/odepři\npráva</string>
+    <string name="extender_permissions_granted">Uděleno</string>
+    <string name="extender_permissions_button">Uděl/odepři\npráva</string>
 
     <string name="extender_accessibility_service_event_sensor_call">• Služba Dostupnost pro parametry události \"Sensor hovoru\". Funkce dostupnosti není použita, běžící servis je potřebný pro příjem hovorů.:</string>
     <string name="extender_permissions_event_sensor_call">• Povolení pro parametry události \"Senzor hovoru\" - povolení Telefon:</string>
     <string name="extender_permissions_event_sensor_call_28">• Povolení pro parametry události \"Senzor hovoru\" - povolení Telefon, Deníky hovorů:</string>
-    <string name="extender_toast_permissions_not_granted">Povolení nejsou uděleny</string>
+    <string name="extender_toast_permissions_not_granted">Povolení nejsou udělena</string>
 </resources>

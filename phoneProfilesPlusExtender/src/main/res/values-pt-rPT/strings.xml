@@ -13,7 +13,7 @@
     <string name="extender_accessibility_service_event_sensor_applications_orientation">• Accessibility service for event parameters \"Application sensor\" and \"Orientation sensor\":</string>
     <string name="extender_accessibility_service_enabled">Ativo</string>
     <string name="extender_accessibility_service_disabled">Desativado</string>
-    <string name="extender_accessibility_service_button">Enable/Disable\nServiço de acessibilidade</string>
+    <string name="extender_accessibility_service_button">Ativar/Desativar\nServiço de acessibilidade</string>
     <string name="extender_setting_screen_not_found_alert">Setting screen not found.</string>
     <string name="extender_accessibility_service_permission">PhoneProfilesPlusExtender accessibility service</string>
 
