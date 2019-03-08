@@ -22,7 +22,14 @@
 
 
         <TextView
-            android:id="@+id/activity_main_accessibility_service_force_stop_application"
+            android:id="@+id/activity_main_accessibility_service_profile_force_stop_application"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/extender_accessibility_service_disabled"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/activity_main_accessibility_service_profile_lock_device"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/extender_accessibility_service_disabled"

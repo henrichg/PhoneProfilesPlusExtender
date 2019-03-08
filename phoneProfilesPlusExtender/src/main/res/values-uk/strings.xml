@@ -27,4 +27,6 @@
     <string name="extender_permissions_event_sensor_call">• Дозволи до параметру подій \"Датчик викликів\" - дозвіл Телефон:</string>
     <string name="extender_permissions_event_sensor_call_28">• Дозволи до параметру подій \"Датчик викликів\" - дозвіл Телефон, Журнал викликів:</string>
     <string name="extender_toast_permissions_not_granted">Дозволи не надані</string>
+
+    <string name="extender_accessibility_service_profile_lock_device">• Accessibility service for profile parameter \"Lock device\":</string>
 </resources>

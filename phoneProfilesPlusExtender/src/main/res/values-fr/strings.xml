@@ -27,4 +27,6 @@
     <string name="extender_permissions_event_sensor_call">• Autorisations pour le paramètre \"Capteur d\'appel\" - Permission du téléphone:</string>
     <string name="extender_permissions_event_sensor_call_28">• Autorisations pour le paramètre \"Capteur d\'appel\" - Permission du téléphone, journaux d\'appels :</string>
     <string name="extender_toast_permissions_not_granted">Les autorisations ne sont pas accordées</string>
+
+    <string name="extender_accessibility_service_profile_lock_device">• Accessibility service for profile parameter \"Lock device\":</string>
 </resources>

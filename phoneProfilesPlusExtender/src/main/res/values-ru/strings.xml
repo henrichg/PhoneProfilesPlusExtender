@@ -27,4 +27,6 @@
     <string name="extender_permissions_event_sensor_call">• Разрешения для параметра события \"Датчик вызовов\" - разрешение \"Телефон\":</string>
     <string name="extender_permissions_event_sensor_call_28">• Разрешения для параметра события \"Датчик вызовов\" - разрешения \"Телефон\“, \"Журнал звонков\":</string>
     <string name="extender_toast_permissions_not_granted">Разрешения не предоставлены</string>
+
+    <string name="extender_accessibility_service_profile_lock_device">• Accessibility service for profile parameter \"Lock device\":</string>
 </resources>

@@ -223,7 +223,17 @@ public class MainActivity extends AppCompatActivity {
         else
             str2 = str1 + " " + getString(R.string.extender_accessibility_service_disabled);
         Spannable sbt = new SpannableString(str2);
-        TextView text = findViewById(R.id.activity_main_accessibility_service_force_stop_application);
+        TextView text = findViewById(R.id.activity_main_accessibility_service_profile_force_stop_application);
+        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
+        text.setText(sbt);
+
+        str1 = getString(R.string.extender_accessibility_service_profile_lock_device);
+        if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
+            str2 = str1 + " " + getString(R.string.extender_accessibility_service_enabled);
+        else
+            str2 = str1 + " " + getString(R.string.extender_accessibility_service_disabled);
+        sbt = new SpannableString(str2);
+        text = findViewById(R.id.activity_main_accessibility_service_profile_lock_device);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
         text.setText(sbt);
 
