@@ -24,6 +24,7 @@ import io.fabric.sdk.android.Fabric;
 //import com.github.anrwatchdog.ANRError;
 //import com.github.anrwatchdog.ANRWatchDog;
 
+@SuppressWarnings("WeakerAccess")
 public class PPPEApplication extends Application {
 
     @SuppressWarnings("PointlessBooleanExpression")
