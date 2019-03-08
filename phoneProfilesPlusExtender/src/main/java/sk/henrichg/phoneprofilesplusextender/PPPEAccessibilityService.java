@@ -79,13 +79,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
         intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
-        getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
-                            ACCESSIBILITY_SERVICE_PERMISSION, null);
-
-        fromPhoneProfilesPlusBroadcastReceiver = new FromPhoneProfilesPlusBroadcastReceiver();
-        IntentFilter intentFilter2 = new IntentFilter();
-        intentFilter2.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
-        intentFilter2.addAction(ACTION_LOCK_DEVICE);
+        intentFilter.addAction(ACTION_LOCK_DEVICE);
         getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                             ACCESSIBILITY_SERVICE_PERMISSION, null);
 
