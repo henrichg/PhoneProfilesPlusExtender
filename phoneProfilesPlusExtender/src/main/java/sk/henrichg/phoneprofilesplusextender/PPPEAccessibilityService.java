@@ -35,7 +35,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     static final String ACTION_FORCE_STOP_APPLICATIONS_START = "sk.henrichg.phoneprofilesplusextender.ACTION_FORCE_STOP_APPLICATIONS_START";
     static final String ACTION_FORCE_STOP_APPLICATIONS_END = "sk.henrichg.phoneprofilesplusextender.ACTION_FORCE_STOP_APPLICATIONS_END";
-    static final String ACTION_LOCK_SCREEN = "sk.henrichg.phoneprofilesplusextender.ACTION_LOCK_SCREEN";
+    static final String ACTION_LOCK_DEVICE = "sk.henrichg.phoneprofilesplusextender.ACTION_LOCK_DEVICE";
 
     private FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
     private ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
@@ -79,6 +79,13 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
         intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
+        getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
+                            ACCESSIBILITY_SERVICE_PERMISSION, null);
+
+        fromPhoneProfilesPlusBroadcastReceiver = new FromPhoneProfilesPlusBroadcastReceiver();
+        IntentFilter intentFilter2 = new IntentFilter();
+        intentFilter2.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
+        intentFilter2.addAction(ACTION_LOCK_DEVICE);
         getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                             ACCESSIBILITY_SERVICE_PERMISSION, null);
 

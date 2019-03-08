@@ -52,6 +52,8 @@ public class PPPEApplication extends Application {
     static final int REGISTRATION_TYPE_SMS_UNREGISTER = -3;
     static final int REGISTRATION_TYPE_CALL_REGISTER = 4;
     static final int REGISTRATION_TYPE_CALL_UNREGISTER = -4;
+    static final int REGISTRATION_TYPE_LOCK_DEVICE_REGISTER = 5;
+    static final int REGISTRATION_TYPE_LOCK_DEVICE_UNREGISTER = -5;
 
     //@SuppressWarnings("SpellCheckingInspection")
     //static private FirebaseAnalytics mFirebaseAnalytics;
@@ -61,6 +63,8 @@ public class PPPEApplication extends Application {
     static boolean registeredForegroundApplicationFunctionPPP = true;
     static boolean registeredSMSFunctionPPP = true;
     static boolean registeredCallFunctionPPP = true;
+    static boolean registeredLockDeviceFunctionPP = true;
+    static boolean registeredLockDeviceFunctionPPP = true;
 
     @Override
     public void onCreate() {
