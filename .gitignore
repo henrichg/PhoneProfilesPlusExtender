@@ -5,6 +5,7 @@
 /.idea/caches
 /.idea/codeStyles
 /.idea/misc.xml
+/build
 phoneProfilesPlusExtender/build
 /phoneProfilesPlusExtender/fabric.properties
 /phoneProfilesPlusExtender/google-services.json
