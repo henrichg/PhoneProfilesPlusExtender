@@ -28,5 +28,5 @@
     <string name="extender_permissions_event_sensor_call_28">• Povolenia pre parametre udalosti \"Senzor hovoru\" - povolenie Telefón, Denníky hovorov:</string>
     <string name="extender_toast_permissions_not_granted">Povolenia nie sú udelené</string>
 
-    <string name="extender_accessibility_service_profile_lock_device">• Accessibility service for profile parameter \"Lock device\":</string>
+    <string name="extender_accessibility_service_profile_lock_device">• Služba Dostupnosť pre parameter profilu \"Zamknutie zariadenia\":</string>
 </resources>
