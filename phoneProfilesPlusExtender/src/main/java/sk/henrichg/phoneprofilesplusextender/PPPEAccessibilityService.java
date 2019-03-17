@@ -220,13 +220,16 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         sendIntent.putExtra(PhoneCallBroadcastReceiver.EXTRA_EVENT_TIME, 0);
         sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
 
-        getBaseContext().unregisterReceiver(fromPhoneProfilesPlusBroadcastReceiver);
-        getBaseContext().unregisterReceiver(screenOnOffReceiver);
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (fromPhoneProfilesPlusBroadcastReceiver != null)
+            getBaseContext().unregisterReceiver(fromPhoneProfilesPlusBroadcastReceiver);
+        if (screenOnOffReceiver != null)
+            getBaseContext().unregisterReceiver(screenOnOffReceiver);
+        if (smsBroadcastReceiver != null)
             getBaseContext().unregisterReceiver(smsBroadcastReceiver);
+        if (mmsBroadcastReceiver != null)
             getBaseContext().unregisterReceiver(mmsBroadcastReceiver);
+        if (phoneCallBroadcastReceiver != null)
             getBaseContext().unregisterReceiver(phoneCallBroadcastReceiver);
-        }
 
         instance = null;
 
