@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.os.PowerManager;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
@@ -308,6 +309,13 @@ public class PPPEApplication extends Application {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    static boolean isScreenOn(PowerManager powerManager) {
+        //if (Build.VERSION.SDK_INT >= 20)
+        return powerManager.isInteractive();
+        //else
+        //    return powerManager.isScreenOn();
     }
 
 }

@@ -70,7 +70,7 @@ public class ForceCloseIntentService extends IntentService {
                 boolean isScreenOn = false;
                 PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
                 if (pm != null)
-                    isScreenOn = pm.isScreenOn();
+                    isScreenOn = PPPEApplication.isScreenOn(pm);
 
                 if (!keyguardLocked && isScreenOn) {
                     // start App info only if keyguard is not locked and screen is on

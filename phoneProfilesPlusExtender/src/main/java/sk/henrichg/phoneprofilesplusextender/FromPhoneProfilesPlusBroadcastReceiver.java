@@ -9,7 +9,7 @@ import android.os.Build;
 
 class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
 
-    @SuppressLint("LongLogTag")
+    @SuppressLint({"LongLogTag", "InlinedApi"})
     @Override
     public void onReceive(Context context, Intent intent) {
         if ((intent == null) || (intent.getAction() == null))
