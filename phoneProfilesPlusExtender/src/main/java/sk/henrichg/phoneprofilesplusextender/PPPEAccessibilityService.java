@@ -128,7 +128,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 ActivityInfo activityInfo = tryGetActivity(componentName);
                 boolean isActivity = activityInfo != null;
                 if (isActivity) {
-                    //Log.e("PPPEAccessibilityService", "currentActivity="+componentName.flattenToShortString());
+                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity="+componentName.flattenToShortString());
                     if (PPPEApplication.registeredForegroundApplicationFunctionPPP) {
                         Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
                         intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
