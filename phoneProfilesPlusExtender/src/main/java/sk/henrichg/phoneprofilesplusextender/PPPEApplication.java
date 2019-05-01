@@ -10,7 +10,6 @@ import android.os.PowerManager;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -77,14 +76,17 @@ public class PPPEApplication extends Application {
         try {
             // Obtain the FirebaseAnalytics instance.
             //mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
+            /*
             // Set up Crashlytics, disabled for debug builds
             Crashlytics crashlyticsKit = new Crashlytics.Builder()
                     .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
                     .build();
 
             Fabric.with(this, crashlyticsKit);
-            // Crashlytics.getInstance().core.logException(exception); -- this log will be associated with crash log.
+            */
+            if (!BuildConfig.DEBUG) {
+                Fabric.with(this, new Crashlytics());
+            }            // Crashlytics.getInstance().core.logException(exception); -- this log will be associated with crash log.
         } catch (Exception e) {
             /*
             java.lang.IllegalStateException:
