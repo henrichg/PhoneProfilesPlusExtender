@@ -24,12 +24,12 @@ import io.fabric.sdk.android.Fabric;
 //import com.github.anrwatchdog.ANRError;
 //import com.github.anrwatchdog.ANRWatchDog;
 
-@SuppressWarnings("WeakerAccess")
 public class PPPEApplication extends Application {
 
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
     private static final boolean logIntoFile = false;
+    static final boolean crashIntoFile = true;
     private static final String logFilterTags = "PPPEAccessibilityService"
                                                 //+ "|PhoneCallReceiver"
                                                 + "|PhoneCallBroadcastReceiver"
