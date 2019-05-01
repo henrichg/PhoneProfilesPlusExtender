@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         TextView text = findViewById(R.id.activity_main_application_version);
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            //noinspection deprecation
             text.setText(getString(R.string.extender_about_application_version) + " " + pInfo.versionName + " (" + pInfo.versionCode + ")");
         } catch (Exception e) {
             text.setText("");
@@ -178,34 +177,29 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
+                                           @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case Permissions.PERMISSIONS_REQUEST_CODE: {
-                // If request is cancelled, the result arrays are empty.
-
-                boolean allGranted = true;
-                for (int grantResult : grantResults) {
-                    if (grantResult == PackageManager.PERMISSION_DENIED) {
-                        allGranted = false;
-                        break;
-                    }
+        // If request is cancelled, the result arrays are empty.
+        if (requestCode == Permissions.PERMISSIONS_REQUEST_CODE) {
+            boolean allGranted = true;
+            for (int grantResult : grantResults) {
+                if (grantResult == PackageManager.PERMISSION_DENIED) {
+                    allGranted = false;
+                    break;
                 }
-
-                if (allGranted) {
-                    reloadActivity(this/*, true*/);
-                } else {
-                    //if (!onlyNotification) {
-                    Context context = getApplicationContext();
-                    Toast msg = Toast.makeText(context,
-                            context.getResources().getString(R.string.extender_app_name) + ": " +
-                                    context.getResources().getString(R.string.extender_toast_permissions_not_granted),
-                            Toast.LENGTH_SHORT);
-                    msg.show();
-                    //}
-                    reloadActivity(this/*, true*/);
-                }
-                break;
+            }
+            if (allGranted) {
+                reloadActivity(this/*, true*/);
+            } else {
+                //if (!onlyNotification) {
+                Context context = getApplicationContext();
+                Toast msg = Toast.makeText(context,
+                        context.getResources().getString(R.string.extender_app_name) + ": " +
+                                context.getResources().getString(R.string.extender_toast_permissions_not_granted),
+                        Toast.LENGTH_SHORT);
+                msg.show();
+                //}
+                reloadActivity(this/*, true*/);
             }
 
             // other 'case' lines to check for other

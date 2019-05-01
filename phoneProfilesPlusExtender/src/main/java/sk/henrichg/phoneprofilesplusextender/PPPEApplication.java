@@ -136,7 +136,6 @@ public class PPPEApplication extends Application {
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             //if (Build.VERSION.SDK_INT < 28)
-                //noinspection deprecation
                 actualVersionCode = pInfo.versionCode;
             //else
             //    actualVersionCode = pInfo.getLongVersionCode();
@@ -176,7 +175,6 @@ public class PPPEApplication extends Application {
         logFile.delete();
     }
 
-    @SuppressWarnings("UnusedAssignment")
     @SuppressLint("SimpleDateFormat")
     static private void logIntoFile(String type, String tag, String text)
     {
@@ -234,7 +232,6 @@ public class PPPEApplication extends Application {
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     static private boolean logEnabled() {
-        //noinspection ConstantConditions
         return (logIntoLogCat || logIntoFile);
     }
 
