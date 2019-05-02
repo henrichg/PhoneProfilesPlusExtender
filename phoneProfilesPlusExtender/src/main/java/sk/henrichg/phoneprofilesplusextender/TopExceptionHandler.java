@@ -27,7 +27,7 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
     @SuppressWarnings("StringConcatenationInLoop")
     public void uncaughtException(Thread t, Throwable e)
     {
-        if (BuildConfig.DEBUG) {
+        if (PPPEApplication.crashIntoFile) {
             StackTraceElement[] arr = e.getStackTrace();
             String report = e.toString() + "\n\n";
 
