@@ -26,6 +26,8 @@ import io.fabric.sdk.android.Fabric;
 
 public class PPPEApplication extends Application {
 
+    static final String PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender";
+
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
     private static final boolean logIntoFile = false;

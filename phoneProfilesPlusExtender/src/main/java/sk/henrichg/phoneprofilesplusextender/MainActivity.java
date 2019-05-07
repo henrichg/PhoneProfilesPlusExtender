@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         LocalBroadcastManager.getInstance(this).registerReceiver(refreshGUIBroadcastReceiver,
-                new IntentFilter("RefreshGUIBroadcastReceiver"));
+                new IntentFilter(PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver"));
 
     }
 

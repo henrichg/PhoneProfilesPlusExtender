@@ -11,9 +11,9 @@ import java.util.Calendar;
 
 public class SMSBroadcastReceiver extends BroadcastReceiver {
 
-    private static final String ACTION_SMS_MMS_RECEIVED = "sk.henrichg.phoneprofilesplusextender.ACTION_SMS_MMS_RECEIVED";
-    private static final String EXTRA_ORIGIN = "sk.henrichg.phoneprofilesplusextender.origin";
-    private static final String EXTRA_TIME = "sk.henrichg.phoneprofilesplusextender.time";
+    private static final String ACTION_SMS_MMS_RECEIVED = PPPEApplication.PACKAGE_NAME + ".ACTION_SMS_MMS_RECEIVED";
+    private static final String EXTRA_ORIGIN = PPPEApplication.PACKAGE_NAME + ".origin";
+    private static final String EXTRA_TIME = PPPEApplication.PACKAGE_NAME + ".time";
 
     //private static ContentObserver smsObserver;
     //private static ContentObserver mmsObserver;

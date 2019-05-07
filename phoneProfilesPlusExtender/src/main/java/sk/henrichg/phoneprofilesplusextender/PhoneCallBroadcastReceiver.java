@@ -7,11 +7,11 @@ import java.util.Date;
 
 public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
-    static final String ACTION_CALL_RECEIVED = "sk.henrichg.phoneprofilesplusextender.ACTION_CALL_RECEIVED";
-    //private static final String EXTRA_SERVICE_PHONE_EVENT = "sk.henrichg.phoneprofilesplusextender.service_phone_event";
-    static final String EXTRA_CALL_EVENT_TYPE = "sk.henrichg.phoneprofilesplusextender.call_event_type";
-    static final String EXTRA_PHONE_NUMBER = "sk.henrichg.phoneprofilesplusextender.phone_number";
-    static final String EXTRA_EVENT_TIME = "sk.henrichg.phoneprofilesplusextender.event_time";
+    static final String ACTION_CALL_RECEIVED = PPPEApplication.PACKAGE_NAME + ".ACTION_CALL_RECEIVED";
+    //private static final String EXTRA_SERVICE_PHONE_EVENT = PPPEApplication.PACKAGE_NAME + ".service_phone_event";
+    static final String EXTRA_CALL_EVENT_TYPE = PPPEApplication.PACKAGE_NAME + ".call_event_type";
+    static final String EXTRA_PHONE_NUMBER = PPPEApplication.PACKAGE_NAME + ".phone_number";
+    static final String EXTRA_EVENT_TIME = PPPEApplication.PACKAGE_NAME + ".event_time";
 
     private static final int SERVICE_PHONE_EVENT_START = 1;
     private static final int SERVICE_PHONE_EVENT_ANSWER = 2;
