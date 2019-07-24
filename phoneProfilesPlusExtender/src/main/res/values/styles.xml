@@ -1,12 +1,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
+        <!-- disable initial empty screen - useful for dark theme -->
+        <item name="android:windowDisablePreview">true</item>
+
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:navigationBarColor">@color/navigationBar</item>
+
+        <item name="android:textViewStyle">@style/TextViewTheme</item>
+        <item name="android:windowBackground">@color/activityBackgroundColor</item>
+
     </style>
 
     <style name="EmptyAppCompatActivity" parent="Theme.AppCompat.Dialog">
@@ -18,6 +25,10 @@
         <item name="android:colorForeground">#000</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="TextViewTheme" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/text_view_color</item>
     </style>
 
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#202020</color>
+    <color name="primaryDark">#202020</color>
+    <color name="accent">#E99B7F</color>
+    <color name="accent_disabled">#70E99B7F</color>
+    <color name="navigationBar">#000000</color>
+
+    <color name="activityBackgroundColor">#FF202020</color>
+    <color name="activityTextColor">#FFFFFFFF</color>
+    <color name="activitySecondaryTextColor">#BFFFFFFF</color>
+    <color name="activityDisabledTextColor">#2FFFFFFF</color>
+
+</resources>

@@ -31,4 +31,8 @@
     <string name="extender_toast_permissions_not_granted">Permissions are not granted</string>
 
     <string name="extender_accessibility_service_profile_lock_device">• Accessibility service for profile parameter \"Lock device\":</string>
+
+    <string name="extender_menu_dark_theme_on">Switch on dark theme</string>
+    <string name="extender_menu_dark_theme_off">Switch off dark theme</string>
+
 </resources>

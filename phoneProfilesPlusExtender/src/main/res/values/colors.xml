@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#237e9f</color>      <!-- 700(500) -->
-    <color name="colorPrimaryDark">#237e9f</color> <!-- 900(700) -->
-    <!--<color name="colorPrimaryDark">#1d6681</color>--> <!-- 900(700) -->
-    <color name="colorAccent">#DC8160</color>       <!-- A400(A200) -->
+    <color name="primary">#FFFFFF</color>
+    <color name="primaryDark">#A7A7A7</color>
+    <color name="accent">#DC8160</color>       <!-- A400(A200) -->
+    <color name="accent_disabled">#70DC8160</color>
+    <color name="navigationBar">#000000</color>
+
+    <color name="activityBackgroundColor">#FFFFFFFF</color>
+    <color name="activityTextColor">#FF000000</color>
+    <color name="activitySecondaryTextColor">#BF000000</color>
+    <color name="activityDisabledTextColor">#2F000000</color>
 </resources>
