@@ -1,7 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto" >
-    <item android:id="@+id/menu_dark_theme"
-          android:title="@string/extender_menu_dark_theme_on"
-          android:orderInCategory="212"
-          app:showAsAction="never" />
-</menu>

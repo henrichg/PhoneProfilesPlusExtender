@@ -41,7 +41,6 @@ public class PPPEApplication extends Application {
                                                 //+ "|MainActivity"
                                                 + "|FromPhoneProfilesPlusBroadcastReceiver"
             ;
-    static final String APPLICATION_PREFS_NAME = "phone_profile_plus_extender_preferences";
 
     public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
     private static final String LOG_FILENAME = "log.txt";

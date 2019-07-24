@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -15,19 +14,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import java.util.List;
 
@@ -49,12 +46,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+
         setContentView(R.layout.activity_main);
 
         PPPEApplication.logE("MainActivity.onCreated", "xxx");
 
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setElevation(GlobalGUIRoutines.dpToPx(1));
+            getSupportActionBar().setElevation(0);
         }
 
         TextView text = findViewById(R.id.activity_main_application_version);
@@ -155,74 +154,6 @@ public class MainActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(refreshGUIBroadcastReceiver,
                 new IntentFilter(PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver"));
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_activity, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        boolean ret = super.onPrepareOptionsMenu(menu);
-
-        MenuItem menuItem;
-
-        menuItem = menu.findItem(R.id.menu_dark_theme);
-        if (menuItem != null)
-        {
-            String appTheme = ApplicationPreferences.applicationTheme(getApplicationContext()/*, false*/);
-            //if (!appTheme.equals("night_mode")) {
-                menuItem.setVisible(true);
-                if (appTheme.equals("dark"))
-                    menuItem.setTitle(R.string.extender_menu_dark_theme_off);
-                else
-                    menuItem.setTitle(R.string.extender_menu_dark_theme_on);
-            //}
-            //else
-            //    menuItem.setVisible(false);
-        }
-
-        return ret;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                /*if (drawerLayout.isDrawerOpen(drawerRoot)) {
-                    drawerLayout.closeDrawer(drawerRoot);
-                } else {
-                    drawerLayout.openDrawer(drawerRoot);
-                }*/
-                return super.onOptionsItemSelected(item);
-            case R.id.menu_dark_theme:
-                String theme = ApplicationPreferences.applicationTheme(getApplicationContext()/*, false*/);
-                //if (!theme.equals("night_mode")) {
-                    if (theme.equals("dark")) {
-                        SharedPreferences preferences = ApplicationPreferences.getSharedPreferences(getApplicationContext());
-                        //theme = preferences.getString(ApplicationPreferences.PREF_APPLICATION_NOT_DARK_THEME, "white");
-                        //theme = ApplicationPreferences.applicationNightModeOffTheme(getApplicationContext());
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString(ApplicationPreferences.PREF_APPLICATION_THEME, "white"/*theme*/);
-                        editor.apply();
-                    } else {
-                        SharedPreferences preferences = ApplicationPreferences.getSharedPreferences(getApplicationContext());
-                        SharedPreferences.Editor editor = preferences.edit();
-                        //editor.putString(ApplicationPreferences.PREF_APPLICATION_NOT_DARK_THEME, theme);
-                        editor.putString(ApplicationPreferences.PREF_APPLICATION_THEME, "dark");
-                        editor.apply();
-                    }
-                    GlobalGUIRoutines.switchNightMode(getApplicationContext(), false);
-                    GlobalGUIRoutines.reloadActivity(this, true);
-                //}
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     @Override
