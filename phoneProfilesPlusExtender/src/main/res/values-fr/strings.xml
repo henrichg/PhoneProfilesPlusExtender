@@ -4,11 +4,9 @@
   <!--suppress CheckTagEmptyBody -->
     <string name="extender_app_name">PhoneProfilesPlusExtender</string>
     <string name="extender_accessibility_service_name">PhoneProfilesPlusExtender</string>
-
     <!-- PLEASE CHECK END OF STRING CHANGES AND TRANSLATE IT -->
     <string name="extender_accessibility_service_description">Autoriser PhoneProfilesPlusExtender pour:\n- paramètre de profil \"Applications d\’arrêt forcé\"\n- paramètres d\’événement \"Application sensor\", \"Capteur d\’orientation\", \"SMS/MMS sensor\", \"Call sensor\". </string>
-
-    <string name="extender_about_application_version">Version:</string>
+    <string name="extender_about_application_version">Version :</string>
     <string name="extender_accessibility_service_profile_force_stop_applications">- Service d\’accessibilité pour le paramètre de profil \"Applications d\’arrêt forcé\" : </string>
     <string name="extender_accessibility_service_event_sensor_applications_orientation">- Service d\’accessibilité pour les paramètres d\’événement \"Application sensor\" et \"Capteur d\’orientation\" : </string>
     <string name="extender_accessibility_service_enabled">Activé </string>
@@ -16,17 +14,14 @@
     <string name="extender_accessibility_service_button">Activer/Désactiver le service d\’accessibilité </string>
     <string name="extender_setting_screen_not_found_alert">L\’écran de réglage n\’a pas été trouvé. </string>
     <string name="extender_accessibility_service_permission">Service  d\’accessibilité PhoneProfilesPlusExtender </string>
-
     <string name="extender_accessibility_service_event_sensor_sms_mms">- Service d\’accessibilité pour le paramètre événement \"Capteur SMS/MMS\". La fonction d\’accessibilité n\’est pas utilisée, le service est nécessaire pour recevoir des SMS et MMS : .</string>
     <string name="extender_permissions_event_sensor_sms_mms">- Autorisations pour le paramètre d\’événement \"Capteur SMS/MMS\" - permission SMS : </string>
     <string name="extender_permissions_not_granted">Non accordée </string>
     <string name="extender_permissions_granted">Accordé </string>
     <string name="extender_permissions_button">Accorder/refuser les autorisations </string>
-
     <string name="extender_accessibility_service_event_sensor_call">• Accessibilité pour le paramètre \" Capteur d\'appel\". La fonction d\'accessibilité n\'est pas utilisée, le service est nécessaire pour recevoir des appels.:</string>
     <string name="extender_permissions_event_sensor_call">• Autorisations pour le paramètre \"Capteur d\'appel\" - Permission du téléphone:</string>
     <string name="extender_permissions_event_sensor_call_28">• Autorisations pour le paramètre \"Capteur d\'appel\" - Permission du téléphone, journaux d\'appels :</string>
     <string name="extender_toast_permissions_not_granted">Les autorisations ne sont pas accordées</string>
-
-    <string name="extender_accessibility_service_profile_lock_device">• Accessibility service for profile parameter \"Lock device\":</string>
+    <string name="extender_accessibility_service_profile_lock_device">• Service d\'accessibilité pour le paramètre de profil \"Verrouillage de l\'appareil\" :</string>
 </resources>

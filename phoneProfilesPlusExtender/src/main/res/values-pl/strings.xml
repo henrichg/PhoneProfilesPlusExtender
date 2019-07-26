@@ -4,29 +4,24 @@
   <!--suppress CheckTagEmptyBody -->
     <string name="extender_app_name">PhoneProfilesPlusExtender</string>
     <string name="extender_accessibility_service_name">PhoneProfilesPlusExtender</string>
-
     <!-- PLEASE CHECK END OF STRING CHANGES AND TRANSLATE IT -->
-    <string name="extender_accessibility_service_description">Allow PhoneProfilesPlusExtender for:\n• profile parameter \"Force stop applications\"\n• event parameters \"Application sensor\", \"Orientation sensor\", \"SMS/MMS sensor\", \"Call sensor\".</string>
-
-    <string name="extender_about_application_version">Version:</string>
-    <string name="extender_accessibility_service_profile_force_stop_applications">• Accessibility service for profile parameter \"Force stop applications\":</string>
-    <string name="extender_accessibility_service_event_sensor_applications_orientation">• Accessibility service for event parameters \"Application sensor\" and \"Orientation sensor\":</string>
-    <string name="extender_accessibility_service_enabled">Enabled</string>
-    <string name="extender_accessibility_service_disabled">Disabled</string>
-    <string name="extender_accessibility_service_button">Enable/Disable\nAccessibility service</string>
-    <string name="extender_setting_screen_not_found_alert">Setting screen not found.</string>
-    <string name="extender_accessibility_service_permission">PhoneProfilesPlusExtender accessibility service</string>
-
-    <string name="extender_accessibility_service_event_sensor_sms_mms">• Accessibility service for event parameter \"SMS/MMS sensor\". Accessibility function is not used, service is needed for receiving SMS and MMS.:</string>
-    <string name="extender_permissions_event_sensor_sms_mms">• Permissions for event parameter \"SMS/MMS sensor\" - permission SMS:</string>
-    <string name="extender_permissions_not_granted">Not granted</string>
-    <string name="extender_permissions_granted">Granted</string>
-    <string name="extender_permissions_button">Grant/deny\npermissions</string>
-
-    <string name="extender_accessibility_service_event_sensor_call">• Accessibility service for event parameter \"Call sensor\". Accessibility function is not used, service is needed for receiving calls.:</string>
-    <string name="extender_permissions_event_sensor_call">• Permissions for event parameter \"Call sensor\" - permission Phone:</string>
-    <string name="extender_permissions_event_sensor_call_28">• Permissions for event parameter \"Call sensor\" - permission Phone, Call logs:</string>
-    <string name="extender_toast_permissions_not_granted">Permissions are not granted</string>
-
-    <string name="extender_accessibility_service_profile_lock_device">• Accessibility service for profile parameter \"Lock device\":</string>
+    <string name="extender_accessibility_service_description">Umożliwia PhoneProfilesPlusExtender obsługę:\n• parametru \"Wymuś zatrzymanie aplikacji\"w konfiguracji Profili\n• czujników \"Czujnik Aplikacji\", \"Czujnik Orientacji\", \"Czujnik SMS/MMS sensor\", \"Czujnik Rozmowy\" w konfiguracji Zdarzeń</string>
+    <string name="extender_about_application_version">Wersja:</string>
+    <string name="extender_accessibility_service_profile_force_stop_applications">• Usługa ułatwień dostępu dla parametru Profili \"Wymuś zatrzymanie aplikacji\" Profili</string>
+    <string name="extender_accessibility_service_event_sensor_applications_orientation">• Usługa Ułatwień Dostępu dla czujników: \"Czujnik Aplikacji\", \"Czujnik Orientacji\":</string>
+    <string name="extender_accessibility_service_enabled">Włączona</string>
+    <string name="extender_accessibility_service_disabled">Wyłączona</string>
+    <string name="extender_accessibility_service_button">Włącz/Wyłącz\n Usługę Ułatwień Dostępu</string>
+    <string name="extender_setting_screen_not_found_alert">Nie znaleziono ekranu ustawień</string>
+    <string name="extender_accessibility_service_permission">Usługa ułatwień dostępu PhoneProfilesPlusExtender</string>
+    <string name="extender_accessibility_service_event_sensor_sms_mms">• Usługa ułatwień dostępu dla parametru Zdarzeń \"Czujnik SMS/MMS\". Funkcja ułatwień dostępu nie jest używana, usługa jest potrzebna aby odbierać SMS oraz MMS.:</string>
+    <string name="extender_permissions_event_sensor_sms_mms">• Uprawnienia dla parametru Zdarzeń \"Czujnik SMS/MMS\" - Dostęp do SMS:</string>
+    <string name="extender_permissions_not_granted">Nie przyznane</string>
+    <string name="extender_permissions_granted">Przyznane</string>
+    <string name="extender_permissions_button">Przyznaj/odbierz\nuprawnienia</string>
+    <string name="extender_accessibility_service_event_sensor_call">• Usługa ułatwień dostępu dla parametru Zdarzeń \"Czujnik Rozmowy\". Funkcja ułatwień dostępu nie jest używana, usługa jest potrzebna aby odbierać rozmowy.:</string>
+    <string name="extender_permissions_event_sensor_call">• Uprawnienia dla parametru Zdarzeń \"Czujnik Rozmowy\" - dostęp do Telefonu:</string>
+    <string name="extender_permissions_event_sensor_call_28">• Uprawnienia dla parametru Zdarzeń \"Czujnik Rozmowy\" - dostęp do Telefonu, Rejestru połączeń:</string>
+    <string name="extender_toast_permissions_not_granted">Nie przyznano uprawnień</string>
+    <string name="extender_accessibility_service_profile_lock_device">• Usługa Ułatwień Dostępu dla parametru Profili  \"Zablokuj urządzenie\":</string>
 </resources>

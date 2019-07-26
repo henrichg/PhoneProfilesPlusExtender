@@ -4,29 +4,24 @@
   <!--suppress CheckTagEmptyBody -->
     <string name="extender_app_name">PhoneProfilesPlusExtender</string>
     <string name="extender_accessibility_service_name">PhoneProfilesPlusExtender</string>
-
     <!-- PLEASE CHECK END OF STRING CHANGES AND TRANSLATE IT -->
-    <string name="extender_accessibility_service_description">Allow PhoneProfilesPlusExtender for:\n• profile parameter \"Force stop applications\"\n• event parameters \"Application sensor\", \"Orientation sensor\", \"SMS/MMS sensor\", \"Call sensor\".</string>
-
-    <string name="extender_about_application_version">Version:</string>
-    <string name="extender_accessibility_service_profile_force_stop_applications">• Accessibility service for profile parameter \"Force stop applications\":</string>
-    <string name="extender_accessibility_service_event_sensor_applications_orientation">• Accessibility service for event parameters \"Application sensor\" and \"Orientation sensor\":</string>
-    <string name="extender_accessibility_service_enabled">Enabled</string>
-    <string name="extender_accessibility_service_disabled">Disabled</string>
-    <string name="extender_accessibility_service_button">Enable/Disable\nAccessibility service</string>
-    <string name="extender_setting_screen_not_found_alert">Setting screen not found.</string>
-    <string name="extender_accessibility_service_permission">PhoneProfilesPlusExtender accessibility service</string>
-
-    <string name="extender_accessibility_service_event_sensor_sms_mms">• Accessibility service for event parameter \"SMS/MMS sensor\". Accessibility function is not used, service is needed for receiving SMS and MMS.:</string>
-    <string name="extender_permissions_event_sensor_sms_mms">• Permissions for event parameter \"SMS/MMS sensor\" - permission SMS:</string>
-    <string name="extender_permissions_not_granted">Not granted</string>
-    <string name="extender_permissions_granted">Granted</string>
-    <string name="extender_permissions_button">Grant/deny\npermissions</string>
-
-    <string name="extender_accessibility_service_event_sensor_call">• Accessibility service for event parameter \"Call sensor\". Accessibility function is not used, service is needed for receiving calls.:</string>
-    <string name="extender_permissions_event_sensor_call">• Permissions for event parameter \"Call sensor\" - permission Phone:</string>
-    <string name="extender_permissions_event_sensor_call_28">• Permissions for event parameter \"Call sensor\" - permission Phone, Call logs:</string>
-    <string name="extender_toast_permissions_not_granted">Permissions are not granted</string>
-
-    <string name="extender_accessibility_service_profile_lock_device">• Accessibility service for profile parameter \"Lock device\":</string>
+    <string name="extender_accessibility_service_description">允许PhoneProfilesPlusExtender：n•配置文件参数“强制停止应用程序”n•事件参数“应用程序传感器”，“方向传感器”，“SMS / MMS传感器”，“呼叫传感器”。</string>
+    <string name="extender_about_application_version">版本：</string>
+    <string name="extender_accessibility_service_profile_force_stop_applications">•配置文件参数“强制停止应用程序”的辅助功能服务：</string>
+    <string name="extender_accessibility_service_event_sensor_applications_orientation">•事件参数“应用程序传感器”和“方向传感器”的辅助功能服务：</string>
+    <string name="extender_accessibility_service_enabled">启用</string>
+    <string name="extender_accessibility_service_disabled">已禁用</string>
+    <string name="extender_accessibility_service_button">启用/禁用可访问性服务</string>
+    <string name="extender_setting_screen_not_found_alert">设置屏幕未找到。</string>
+    <string name="extender_accessibility_service_permission">PhoneProfilesPlusExtender辅助功能服务</string>
+    <string name="extender_accessibility_service_event_sensor_sms_mms">•事件参数“SMS / MMS传感器”的辅助功能服务。不使用辅助功能，接收短信和彩信需要服务：</string>
+    <string name="extender_permissions_event_sensor_sms_mms">•事件参数“SMS / MMS传感器”的权限 - 许可SMS：</string>
+    <string name="extender_permissions_not_granted">未授权</string>
+    <string name="extender_permissions_granted">已授权</string>
+    <string name="extender_permissions_button">授予/剥夺权限</string>
+    <string name="extender_accessibility_service_event_sensor_call">•事件参数“呼叫传感器”的辅助功能服务。未使用辅助功能，接收呼叫需要服务：</string>
+    <string name="extender_permissions_event_sensor_call">•事件参数“呼叫传感器”的权限 - 权限电话：</string>
+    <string name="extender_permissions_event_sensor_call_28">•事件参数“呼叫传感器”的权限 - 权限电话，呼叫日志：</string>
+    <string name="extender_toast_permissions_not_granted">权限未授予</string>
+    <string name="extender_accessibility_service_profile_lock_device">•配置文件参数“锁定设备”的辅助功能服务：</string>
 </resources>
