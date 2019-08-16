@@ -8,10 +8,23 @@ PhoneProfilesPlusExtender
 
 Android application - Extender for PhoneProfiles and PhoneProfilesPlus
 - Accessibility service for profile parameter "Force stop applications"
-- Accessibility service for event sensor "Application parameters" and "Orientation parameters"
+- Accessibility service for profile parameter "Lock device"
+- Accessibility service for event parameters "Application sensor"
+- Accessibility service for event parameters "Orientation sensor"
+- Accessibility service for event parameters "SMS/MMS sensor"
+- Accessibility service for event parameters "Call sensor"
+
+
+Supported Android SDK
+----------------------
+
+- minSdkVersion = 21
+- targetSdkVersion = 27
 
 Required external libs
 ----------------------
 
-- Android support library: core, appcompat
-- crashlytics - https://fabric.io/kits/android/crashlytics
+- AndroidX library: appcompat, preferences, gridlayout, cardview, recyclerview, workmanager
+- Google Material library
+- Firebase Crashlytics library  
+
