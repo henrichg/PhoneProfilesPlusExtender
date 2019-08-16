@@ -24,7 +24,7 @@ Supported Android SDK
 Required external libs
 ----------------------
 
-- AndroidX library: appcompat, preferences, gridlayout, cardview, recyclerview, workmanager
+- AndroidX library: appcompat
 - Google Material library
 - Firebase Crashlytics library  
 
