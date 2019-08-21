@@ -120,8 +120,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED");
 
+            // for foreground application change
             try {
-                // for foreground application change
                 ComponentName componentName = new ComponentName(
                         event.getPackageName().toString(),
                         event.getClassName().toString()
@@ -130,7 +130,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 ActivityInfo activityInfo = tryGetActivity(componentName);
                 boolean isActivity = activityInfo != null;
                 if (isActivity) {
-                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity="+componentName.flattenToShortString());
+                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
                     if (PPPEApplication.registeredForegroundApplicationFunctionPPP) {
                         Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
                         intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
@@ -138,8 +138,12 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                         sendBroadcast(intent, ACCESSIBILITY_SERVICE_PERMISSION);
                     }
                 }
-                //////////////////
+            } catch (Exception e) {
+                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
+            }
+            //////////////////
 
+            try {
                 PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "forceStopStarted="+forceStopStarted);
                 PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
                 if (forceStopStarted) {
