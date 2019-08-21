@@ -25,7 +25,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
 
-    static final String ACCESSIBILITY_SERVICE_PERMISSION = PPPEApplication.PACKAGE_NAME + ".ACCESSIBILITY_SERVICE_PERMISSION";
+//    static final String ACCESSIBILITY_SERVICE_PERMISSION = PPPEApplication.PACKAGE_NAME + ".ACCESSIBILITY_SERVICE_PERMISSION";
 
     private static final String ACTION_ACCESSIBILITY_SERVICE_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_CONNECTED";
     private static final String ACTION_FOREGROUND_APPLICATION_CHANGED = PPPEApplication.PACKAGE_NAME + ".ACTION_FOREGROUND_APPLICATION_CHANGED";
@@ -81,8 +81,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         intentFilter.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
         intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
         intentFilter.addAction(ACTION_LOCK_DEVICE);
-        getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
-                            ACCESSIBILITY_SERVICE_PERMISSION, null);
+        getBaseContext().registerReceiver(fromPhoneProfilesPlusBroadcastReceiver, intentFilter);/*,
+                            ACCESSIBILITY_SERVICE_PERMISSION, null);*/
 
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             smsBroadcastReceiver = new SMSBroadcastReceiver();
@@ -109,7 +109,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(refreshIntent);
 
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
-        sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+        sendBroadcast(sendIntent);//, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
 
     }
 
@@ -135,7 +135,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                         Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
                         intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
                         intent.putExtra(EXTRA_CLASS_NAME, event.getClassName().toString());
-                        sendBroadcast(intent, ACCESSIBILITY_SERVICE_PERMISSION);
+                        sendBroadcast(intent);//, ACCESSIBILITY_SERVICE_PERMISSION);
                     }
                 }
                 //////////////////
@@ -227,7 +227,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         // for event sensors: Applications and Orientation
         Intent _intent = new Intent(ACTION_ACCESSIBILITY_SERVICE_UNBIND);
-        sendBroadcast(_intent, ACCESSIBILITY_SERVICE_PERMISSION);
+        sendBroadcast(_intent);//, ACCESSIBILITY_SERVICE_PERMISSION);
 
         // for event Call sensor
         Intent sendIntent = new Intent(PhoneCallBroadcastReceiver.ACTION_CALL_RECEIVED);
@@ -235,7 +235,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         sendIntent.putExtra(PhoneCallBroadcastReceiver.EXTRA_CALL_EVENT_TYPE, PhoneCallBroadcastReceiver.CALL_EVENT_SERVICE_UNBIND);
         sendIntent.putExtra(PhoneCallBroadcastReceiver.EXTRA_PHONE_NUMBER, "");
         sendIntent.putExtra(PhoneCallBroadcastReceiver.EXTRA_EVENT_TIME, 0);
-        sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+        sendBroadcast(sendIntent);//, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
 
         if (fromPhoneProfilesPlusBroadcastReceiver != null)
             getBaseContext().unregisterReceiver(fromPhoneProfilesPlusBroadcastReceiver);
