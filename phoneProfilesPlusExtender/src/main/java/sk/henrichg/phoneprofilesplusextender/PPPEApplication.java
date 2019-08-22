@@ -33,14 +33,15 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
     // TODO: DISABLE IT FOR RELEASE VERSION!!!
-    private static final boolean logIntoFile = true;
+    private static final boolean logIntoFile = false;
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
-    private static final String logFilterTags = "PPPEAccessibilityService"
+    private static final String logFilterTags = ""
+                                                //"PPPEAccessibilityService"
                                                 //+ "|PhoneCallReceiver"
-                                                + "|PhoneCallBroadcastReceiver"
+                                                //+ "|PhoneCallBroadcastReceiver"
                                                 //+ "|MainActivity"
-                                                + "|FromPhoneProfilesPlusBroadcastReceiver"
+                                                //+ "|FromPhoneProfilesPlusBroadcastReceiver"
             ;
 
     public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
