@@ -6,7 +6,7 @@
 <accessibility-service
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/extender_accessibility_service_description"
-    android:accessibilityEventTypes="typeWindowStateChanged|typeWindowsChanged|typeWindowContentChanged|typeViewScrolled|typeViewClicked"
+    android:accessibilityEventTypes="typeWindowStateChanged|typeWindowsChanged|typeWindowContentChanged|typeViewScrolled"
     android:accessibilityFlags="flagIncludeNotImportantViews|flagReportViewIds"
     android:accessibilityFeedbackType="feedbackAllMask"
     android:canRetrieveWindowContent="true"/>
