@@ -241,16 +241,31 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         sendIntent.putExtra(PhoneCallBroadcastReceiver.EXTRA_EVENT_TIME, 0);
         sendBroadcast(sendIntent);//, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
 
-        if (fromPhoneProfilesPlusBroadcastReceiver != null)
-            getBaseContext().unregisterReceiver(fromPhoneProfilesPlusBroadcastReceiver);
-        if (screenOnOffReceiver != null)
-            getBaseContext().unregisterReceiver(screenOnOffReceiver);
-        if (smsBroadcastReceiver != null)
-            getBaseContext().unregisterReceiver(smsBroadcastReceiver);
-        if (mmsBroadcastReceiver != null)
-            getBaseContext().unregisterReceiver(mmsBroadcastReceiver);
-        if (phoneCallBroadcastReceiver != null)
-            getBaseContext().unregisterReceiver(phoneCallBroadcastReceiver);
+        if (fromPhoneProfilesPlusBroadcastReceiver != null) {
+            try {
+                getBaseContext().unregisterReceiver(fromPhoneProfilesPlusBroadcastReceiver);
+            } catch (Exception ignored) {}
+        }
+        if (screenOnOffReceiver != null) {
+            try {
+                getBaseContext().unregisterReceiver(screenOnOffReceiver);
+            } catch (Exception ignored) {}
+        }
+        if (smsBroadcastReceiver != null) {
+            try {
+                getBaseContext().unregisterReceiver(smsBroadcastReceiver);
+            } catch (Exception ignored) {}
+        }
+        if (mmsBroadcastReceiver != null) {
+            try {
+                getBaseContext().unregisterReceiver(mmsBroadcastReceiver);
+            } catch (Exception ignored) {}
+        }
+        if (phoneCallBroadcastReceiver != null) {
+            try {
+                getBaseContext().unregisterReceiver(phoneCallBroadcastReceiver);
+            } catch (Exception ignored) {}
+        }
 
         instance = null;
 
