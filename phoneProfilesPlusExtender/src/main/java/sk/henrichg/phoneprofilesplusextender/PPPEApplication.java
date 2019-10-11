@@ -27,6 +27,7 @@ import io.fabric.sdk.android.Fabric;
 //import com.github.anrwatchdog.ANRError;
 //import com.github.anrwatchdog.ANRWatchDog;
 
+@SuppressWarnings("WeakerAccess")
 public class PPPEApplication extends Application {
 
     static final String PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender";

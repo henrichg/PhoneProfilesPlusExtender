@@ -21,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
  * Created by chrismcmeeking on 2/25/17.
  */
 
+@SuppressWarnings({"WeakerAccess", "unused", "ConstantConditions", "NullableProblems", "SuspiciousMethodCalls"})
 public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNodeInfo> {
 
     public static A11yNodeInfo wrap(AccessibilityNodeInfo node) {
@@ -78,6 +79,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
     }
 
     protected A11yNodeInfo(AccessibilityNodeInfo nodeInfo) {
+        //noinspection deprecation
         this(new AccessibilityNodeInfoCompat(nodeInfo));
     }
 

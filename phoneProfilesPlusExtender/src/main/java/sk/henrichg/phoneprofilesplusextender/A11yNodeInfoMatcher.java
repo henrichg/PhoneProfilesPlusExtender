@@ -7,6 +7,7 @@ import android.view.View;
  * Created by chrismcmeeking on 2/27/17.
  */
 
+@SuppressWarnings({"unused"})
 public class A11yNodeInfoMatcher {
 
     private String mContentDescription;
