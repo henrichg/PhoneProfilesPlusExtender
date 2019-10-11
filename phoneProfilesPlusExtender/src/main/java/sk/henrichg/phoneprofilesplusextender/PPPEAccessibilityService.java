@@ -113,7 +113,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     }
 
-    @SuppressLint("LongLogTag")
+    @SuppressLint({"LongLogTag", "SwitchIntDef"})
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         //final Context context = getApplicationContext();
@@ -153,14 +153,25 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     if (nodeInfo != null) {
                         List<AccessibilityNodeInfo> list;
                         if (event.getClassName().equals("com.android.settings.applications.InstalledAppDetailsTop")) {
+                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "App info opened");
                             //forceCloseButtonClicked = false;
-                            if (Build.VERSION.SDK_INT <= 22)
+                            if (Build.VERSION.SDK_INT <= 22) {
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
+                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/left_button list="+list.size());
+                            }
+                            else
+                            if (Build.VERSION.SDK_INT >= 29) {
+                                list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button3");
+                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button3="+list.size());
+                            }
                             else {
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
-                                if (list.size() == 0)
+                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/right_button="+list.size());
+                                if (list.size() == 0) {
                                     // Samsung Galaxy S10
                                     list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button2_negative");
+                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button2_negative="+list.size());
+                                }
                             }
                             for (AccessibilityNodeInfo node : list) {
                                 if (node.isEnabled()) {
@@ -200,14 +211,25 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
         }
 
-        if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_CLICKED) {
-            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "AccessibilityEvent.TYPE_VIEW_CLICKED");
-            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
-            AccessibilityNodeInfo nodeInfo = event.getSource();
-            if (nodeInfo != null) {
-                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "viewId="+nodeInfo.getViewIdResourceName());
+        //TODO: COMMENT IT FOR RELEASE VERSION!!!
+        /*try {
+            switch (event.getEventType()) {
+                //On Gesture events print out the entire view hierarchy!
+
+                case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
+                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", A11yNodeInfo.wrap(getRootInActiveWindow()).toViewHierarchy());
+
+                case AccessibilityEvent.TYPE_VIEW_CLICKED:
+                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", event.getSource().toString());
+
+                default: {
+                    //The event has different types, for you, you want to look for "action clicked"
+                    if (event.getSource() != null) {
+                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", A11yNodeInfo.wrap(event.getSource()).toViewHierarchy());
+                    }
+                }
             }
-        }
+        } catch (Exception ignored) {}*/
     }
 
     private ActivityInfo tryGetActivity(ComponentName componentName) {

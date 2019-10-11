@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- These options MUST be specified here in order for the events to be received on first
- start in Android 4.1.1 -->
-<!-- TODO: Added typeViewClicked into accessibilityEventTypes for log click events. REMOVE IT FOR RELEASE VERSION!!! -->
-<!--    android:accessibilityFeedbackType="feedbackGeneric"  feedbackAllMask-->
 <accessibility-service
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/extender_accessibility_service_description"
@@ -10,3 +6,16 @@
     android:accessibilityFlags="flagIncludeNotImportantViews|flagReportViewIds"
     android:accessibilityFeedbackType="feedbackAllMask"
     android:canRetrieveWindowContent="true"/>
+
+<!-- TODO: COMMENT IT FOR RELEASE VERSION!!! -->
+<!--
+<accessibility-service
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/extender_accessibility_service_description"
+    android:accessibilityEventTypes="typeAllMask"
+    android:accessibilityFlags="flagIncludeNotImportantViews|flagReportViewIds"
+    android:canRetrieveWindowContent="true"
+    android:canRequestTouchExplorationMode="true"
+    android:accessibilityFeedbackType="feedbackSpoken"
+    android:notificationTimeout="100" />
+-->

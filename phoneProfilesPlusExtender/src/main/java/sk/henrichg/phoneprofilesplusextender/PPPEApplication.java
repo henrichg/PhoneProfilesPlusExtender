@@ -37,8 +37,8 @@ public class PPPEApplication extends Application {
     private static final boolean logIntoFile = false;
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
-    private static final String logFilterTags = ""
-                                                //"PPPEAccessibilityService"
+    private static final String logFilterTags = //""
+                                                "PPPEAccessibilityService"
                                                 //+ "|PhoneCallReceiver"
                                                 //+ "|PhoneCallBroadcastReceiver"
                                                 //+ "|MainActivity"
