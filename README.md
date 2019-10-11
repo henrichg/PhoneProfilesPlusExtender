@@ -26,5 +26,6 @@ Required external libs
 
 - AndroidX library: appcompat
 - Google Material library
-- Firebase Crashlytics library  
+- Firebase Crashlytics library
+- HuaWeiVerifier (for fix "java.lang.IllegalArgumentException: register too many Broadcast Receivers") - https://github.com/llew2011/HuaWeiVerifier    
 
