@@ -211,25 +211,26 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
         }
 
-        //TODO: COMMENT IT FOR RELEASE VERSION!!!
-        /*try {
-            switch (event.getEventType()) {
-                //On Gesture events print out the entire view hierarchy!
+        if (PPPEApplication.logIntoFile) {
+            try {
+                switch (event.getEventType()) {
+                    //On Gesture events print out the entire view hierarchy!
 
-                case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
-                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", A11yNodeInfo.wrap(getRootInActiveWindow()).toViewHierarchy());
+                    case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
+                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", A11yNodeInfo.wrap(getRootInActiveWindow()).toViewHierarchy());
 
-                case AccessibilityEvent.TYPE_VIEW_CLICKED:
-                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", event.getSource().toString());
+                    case AccessibilityEvent.TYPE_VIEW_CLICKED:
+                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", event.getSource().toString());
 
-                default: {
-                    //The event has different types, for you, you want to look for "action clicked"
-                    if (event.getSource() != null) {
-                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", A11yNodeInfo.wrap(event.getSource()).toViewHierarchy());
+                    default: {
+                        //The event has different types, for you, you want to look for "action clicked"
+                        if (event.getSource() != null) {
+                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", A11yNodeInfo.wrap(event.getSource()).toViewHierarchy());
+                        }
                     }
                 }
-            }
-        } catch (Exception ignored) {}*/
+            } catch (Exception ignored) {}
+        }
     }
 
     private ActivityInfo tryGetActivity(ComponentName componentName) {
