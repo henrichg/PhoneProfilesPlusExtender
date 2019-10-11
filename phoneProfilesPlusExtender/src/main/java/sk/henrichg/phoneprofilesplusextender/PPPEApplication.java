@@ -27,8 +27,9 @@ import io.fabric.sdk.android.Fabric;
 //import com.github.anrwatchdog.ANRError;
 //import com.github.anrwatchdog.ANRWatchDog;
 
-@SuppressWarnings("WeakerAccess")
 public class PPPEApplication extends Application {
+
+    private static PPPEApplication instance;
 
     static final String PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender";
 
@@ -78,6 +79,8 @@ public class PPPEApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        instance = this;
 
         if (checkAppReplacingState())
             return;
@@ -176,7 +179,7 @@ public class PPPEApplication extends Application {
         } catch (Exception e) {
             //e.printStackTrace();
         }
-        Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(/*getApplicationContext(), */actualVersionCode));
+        Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
         //}
 
     }
@@ -215,16 +218,23 @@ public class PPPEApplication extends Application {
         if (!logIntoFile)
             return;
 
+        if (instance == null)
+            return;
+
         try
         {
-            // warnings when logIntoFile == false
+            File path = instance.getApplicationContext().getExternalFilesDir(null);
+
+            /*// warnings when logIntoFile == false
             File sd = Environment.getExternalStorageDirectory();
             File exportDir = new File(sd, EXPORT_PATH);
             if (!(exportDir.exists() && exportDir.isDirectory()))
                 //noinspection ResultOfMethodCallIgnored
                 exportDir.mkdirs();
 
-            File logFile = new File(sd, EXPORT_PATH + "/" + LOG_FILENAME);
+            File logFile = new File(sd, EXPORT_PATH + "/" + LOG_FILENAME);*/
+
+            File logFile = new File(path, LOG_FILENAME);
 
             if (logFile.length() > 1024 * 10000)
                 resetLog();

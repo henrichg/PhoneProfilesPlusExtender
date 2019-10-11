@@ -1,6 +1,7 @@
 package sk.henrichg.phoneprofilesplusextender;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Environment;
 
 import java.io.BufferedWriter;
@@ -13,14 +14,14 @@ import java.util.Calendar;
 class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
 
     private final Thread.UncaughtExceptionHandler defaultUEH;
-    //private final Context applicationContext;
+    private final Context applicationContext;
     private final long actualVersionCode;
 
     private static final String CRASH_FILENAME = "crash.txt";
 
-    TopExceptionHandler(/*Context applicationContext, */long actualVersionCode) {
+    TopExceptionHandler(Context applicationContext, long actualVersionCode) {
         this.defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
-        //this.applicationContext = applicationContext;
+        this.applicationContext = applicationContext;
         this.actualVersionCode = actualVersionCode;
     }
 
@@ -74,13 +75,17 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
     {
         if (PPPEApplication.crashIntoFile) {
             try {
-                File sd = Environment.getExternalStorageDirectory();
+                File path = applicationContext.getExternalFilesDir(null);
+
+                /*File sd = Environment.getExternalStorageDirectory();
                 File exportDir = new File(sd, PPPEApplication.EXPORT_PATH);
                 if (!(exportDir.exists() && exportDir.isDirectory()))
                     //noinspection ResultOfMethodCallIgnored
                     exportDir.mkdirs();
 
-                File logFile = new File(sd, PPPEApplication.EXPORT_PATH + "/" + CRASH_FILENAME);
+                File logFile = new File(sd, PPPEApplication.EXPORT_PATH + "/" + CRASH_FILENAME);*/
+
+                File logFile = new File(path, CRASH_FILENAME);
 
                 if (logFile.length() > 1024 * 10000)
                     resetLog();
