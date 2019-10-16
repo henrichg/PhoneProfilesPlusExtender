@@ -9,8 +9,8 @@ android {
         applicationId "sk.henrichg.phoneprofilesplusextender"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 460
-        versionName "5.1.2"
+        versionCode 461
+        versionName "5.1.2.1b"
 
         resConfigs "en", "af", "ar", "bn-rIN", "bg", "ca", "cs", "da", "de", "el", "es", "et", "fa",
                 "fi", "fr", "ga-rIN", "hi", "hr", "hu", "in", "is", "it", "iw", "ja", "ko", "ku",
@@ -62,7 +62,7 @@ dependencies {
 
     //implementation 'com.readystatesoftware.systembartint:systembartint:1.0.4'
 
-    implementation 'com.llew.huawei:verifier:1.1.2'
+    //implementation 'com.llew.huawei:verifier:1.1.2'
 }
 
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
