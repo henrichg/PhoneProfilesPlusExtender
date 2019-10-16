@@ -62,7 +62,7 @@ dependencies {
 
     //implementation 'com.readystatesoftware.systembartint:systembartint:1.0.4'
 
-    //implementation 'com.llew.huawei:verifier:1.1.2'
+    implementation 'com.llew.huawei:verifier:1.1.2'
 }
 
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin

@@ -11,7 +11,7 @@ import android.os.PowerManager;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
-//import com.llew.huawei.verifier.LoadedApkHuaWei;
+import com.llew.huawei.verifier.LoadedApkHuaWei;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -107,8 +107,7 @@ public class PPPEApplication extends Application {
         //////////////////////////////////////////
 
         // Fix for FC: java.lang.IllegalArgumentException: register too many Broadcast Receivers
-        // disabled due to FC: android.os.TransactionTooLargeException: data parcel size 1680800 bytes
-        //LoadedApkHuaWei.hookHuaWeiVerifier(this);
+        LoadedApkHuaWei.hookHuaWeiVerifier(this);
 
         try {
             // Obtain the FirebaseAnalytics instance.
