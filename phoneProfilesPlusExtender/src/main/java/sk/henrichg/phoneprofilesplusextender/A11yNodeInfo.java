@@ -80,8 +80,8 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
     }
 
     protected A11yNodeInfo(AccessibilityNodeInfo nodeInfo) {
-        //noinspection deprecation
-        this(new AccessibilityNodeInfoCompat(nodeInfo));
+        //this(new AccessibilityNodeInfoCompat(nodeInfo));
+        this(AccessibilityNodeInfoCompat.wrap(nodeInfo));
     }
 
     protected A11yNodeInfo(AccessibilityNodeInfoCompat nodeInfoCompat) {

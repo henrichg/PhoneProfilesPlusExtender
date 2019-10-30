@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.pm.PackageInfoCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
         TextView text = findViewById(R.id.activity_main_application_version);
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            text.setText(getString(R.string.extender_about_application_version) + " " + pInfo.versionName + " (" + pInfo.versionCode + ")");
+            text.setText(getString(R.string.extender_about_application_version) + " " + pInfo.versionName +
+                                        " (" + PackageInfoCompat.getLongVersionCode(pInfo) + ")");
         } catch (Exception e) {
             text.setText("");
         }

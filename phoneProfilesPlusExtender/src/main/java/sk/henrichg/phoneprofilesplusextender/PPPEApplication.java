@@ -21,6 +21,7 @@ import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import androidx.core.content.pm.PackageInfoCompat;
 import io.fabric.sdk.android.Fabric;
 
 //import com.google.firebase.analytics.FirebaseAnalytics;
@@ -172,10 +173,8 @@ public class PPPEApplication extends Application {
         long actualVersionCode = 0;
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            //if (Build.VERSION.SDK_INT < 28)
-                actualVersionCode = pInfo.versionCode;
-            //else
-            //    actualVersionCode = pInfo.getLongVersionCode();
+            //actualVersionCode = pInfo.versionCode;
+            actualVersionCode = PackageInfoCompat.getLongVersionCode(pInfo);
         } catch (Exception e) {
             //e.printStackTrace();
         }
