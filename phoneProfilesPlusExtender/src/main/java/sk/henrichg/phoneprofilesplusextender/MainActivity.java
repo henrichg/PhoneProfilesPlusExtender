@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     if (Permissions.checkSMSMMSPermissions(activity)) {
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                        intent.setData(Uri.parse("package:sk.henrichg.phoneprofilesplusextender"));
+                        intent.setData(Uri.parse("package:"+getPackageName()));
                         if (MainActivity.activityIntentExists(intent, activity)) {
                             startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                         } else {
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     if (Permissions.checkCallPermissions(activity)) {
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                        intent.setData(Uri.parse("package:sk.henrichg.phoneprofilesplusextender"));
+                        intent.setData(Uri.parse("package:"+getPackageName()));
                         if (MainActivity.activityIntentExists(intent, activity)) {
                             startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                         } else {
