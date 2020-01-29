@@ -129,13 +129,13 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
     }
 
     /**
-     * Callbacks for iterating over the A11yNodeInfo heirarchy.
+     * Callbacks for iterating over the A11yNodeInfo hierarchy.
      */
     public interface OnVisitListener {
 
         /**
-         * Called for every node during heirarchy traversals.
-         * @param nodeInfo The node that work will be doneon.
+         * Called for every node during hierarchy traversals.
+         * @param nodeInfo The node that work will be done.
          * @return Return true to stop traversing, false to continue.
          */
         boolean onVisit(A11yNodeInfo nodeInfo);
@@ -198,7 +198,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
 
     /**
      * I don't often use CharSequence's, and prefer strings.  Note: null strings will return as empty strings!
-     * @return The content descriptiong as a NotNull String.
+     * @return The content description as a NotNull String.
      */
     public String getContentDescriptionAsString() {
         if (mNodeInfo.getContentDescription() == null) return "";
@@ -207,7 +207,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
     }
 
     /**
-     * Gets the depth of the child in the node info heirarchy.
+     * Gets the depth of the child in the node info hierarchy.
      * @return The depth of the node.
      */
     public int getDepthInTree() {
@@ -267,8 +267,8 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
     }
 
     /**
-     * Implenting the iterable interface to more easily navigate the node infos children.
-     * @return An itarator over the children of this A11yNodeInfo.
+     * Implementing the iterable interface to more easily navigate the node info children.
+     * @return An iterator over the children of this A11yNodeInfo.
      */
     @Override public Iterator<A11yNodeInfo> iterator() {
         return new Iterator<A11yNodeInfo>() {
@@ -294,8 +294,8 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
     }
 
     /**
-     * Get the entire node heirarchy as a string.
-     * @return The node heirarchy.
+     * Get the entire node hierarchy as a string.
+     * @return The node hierarchy.
      */
     public String toViewHierarchy() {
         final StringBuilder result = new StringBuilder();
@@ -370,13 +370,13 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
     }
 
     /**
-     * Loop over children in the node heirarchy, until one of them returns true.  Return the
+     * Loop over children in the node hierarchy, until one of them returns true.  Return the
      * first element where "onVisit" returns true.  This can be used to create a very
      * simple "find first" type of method.  Though most of the time, you likely want
      * to travel all, in which case, just return "false" from your onVisit method, and
      * you will visit every node.
      * @param onVisitListener {@link A11yNodeInfo.OnVisitListener#onVisit(A11yNodeInfo) onVisit}
-     * will be alled for every node, until {@link A11yNodeInfo.OnVisitListener#onVisit(A11yNodeInfo) onVisit}
+     * will be added for every node, until {@link A11yNodeInfo.OnVisitListener#onVisit(A11yNodeInfo) onVisit}
      * returns true.
      * @return The first node for which {@link A11yNodeInfo.OnVisitListener#onVisit(A11yNodeInfo) onVisit}  returns true.
      */

@@ -10,6 +10,7 @@ import android.telephony.SmsMessage;
 
 import java.util.Calendar;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class SMSBroadcastReceiver extends BroadcastReceiver {
 
     private static final String ACTION_SMS_MMS_RECEIVED = PPPEApplication.PACKAGE_NAME + ".ACTION_SMS_MMS_RECEIVED";
@@ -252,8 +253,8 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                                 {
                                     do
                                     {
-                                        int addColIndx = addrCur.getColumnIndex("address");
-                                        String to = addrCur.getString(addColIndx);
+                                        int addColIndex = addrCur.getColumnIndex("address");
+                                         String to = addrCur.getString(addColIndex);
 
                                         PPApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","to="+to);
 
