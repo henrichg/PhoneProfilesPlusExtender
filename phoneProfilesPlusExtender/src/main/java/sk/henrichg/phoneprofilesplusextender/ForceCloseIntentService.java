@@ -11,6 +11,9 @@ import android.net.Uri;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.provider.Settings;
+import android.util.Log;
+
+import com.crashlytics.android.Crashlytics;
 
 import java.util.List;
 
@@ -90,7 +93,10 @@ public class ForceCloseIntentService extends IntentService {
                                     waitForApplicationForceClosed();
                                     //waitForAppInfoEnd();
                                     //ForceStopActivity.instance.finishActivity(100);
-                                 } catch (Exception ignored) {}
+                                } catch (Exception e) {
+                                    Log.e("ForceCloseIntentService.onHandleIntent", Log.getStackTraceString(e));
+                                    Crashlytics.logException(e);
+                                }
                             }
                         }
                     }
@@ -153,6 +159,8 @@ public class ForceCloseIntentService extends IntentService {
             List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
             return activities.size() > 0;
         } catch (Exception e) {
+            //Log.e("ForceCloseIntentService.activityIntentExists", Log.getStackTraceString(e));
+            //Crashlytics.logException(e);
             return false;
         }
     }

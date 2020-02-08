@@ -23,10 +23,13 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.crashlytics.android.Crashlytics;
 
 import java.util.List;
 
@@ -279,6 +282,8 @@ public class MainActivity extends AppCompatActivity {
             List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
             return activities.size() > 0;
         } catch (Exception e) {
+            //Log.e("MainActivity.activityActionExists", Log.getStackTraceString(e));
+            //Crashlytics.logException(e);
             return false;
         }
     }
@@ -288,6 +293,8 @@ public class MainActivity extends AppCompatActivity {
             List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
             return activities.size() > 0;
         } catch (Exception e) {
+            //Log.e("MainActivity.activityIntentExists", Log.getStackTraceString(e));
+            //Crashlytics.logException(e);
             return false;
         }
     }

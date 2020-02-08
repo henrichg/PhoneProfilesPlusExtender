@@ -105,6 +105,7 @@ public class PPPEApplication extends Application {
                 setHiddenApiExemptions.invoke(vmRuntime, new Object[]{new String[]{"L"}});
             } catch (Exception e) {
                 Log.e("PPApplication.onCreate", Log.getStackTraceString(e));
+                Crashlytics.logException(e);
             }
         }
         //////////////////////////////////////////
@@ -152,6 +153,7 @@ public class PPPEApplication extends Application {
                 }
             */
             Log.e("PPPEApplication.onCreate", Log.getStackTraceString(e));
+            Crashlytics.logException(e);
         }
 
         /*
@@ -178,7 +180,8 @@ public class PPPEApplication extends Application {
             //actualVersionCode = pInfo.versionCode;
             actualVersionCode = PackageInfoCompat.getLongVersionCode(pInfo);
         } catch (Exception e) {
-            //e.printStackTrace();
+            Log.e("PPPEApplication.onCreate", Log.getStackTraceString(e));
+            Crashlytics.logException(e);
         }
         Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
         //}
