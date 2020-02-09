@@ -142,8 +142,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     }
                 }
             } catch (Exception e) {
-                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
-                Crashlytics.logException(e);
+                // do not log this exception, package name or class name may be null
+                // wor this is not possible to get component name
+                //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
+                //Crashlytics.logException(e);
             }
             //////////////////
 
