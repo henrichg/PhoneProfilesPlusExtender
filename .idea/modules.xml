@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PhoneProfilesPlusExtender.iml" filepath="$PROJECT_DIR$/PhoneProfilesPlusExtender.iml" />
-      <module fileurl="file://$PROJECT_DIR$/phoneProfilesPlusExtender/phoneProfilesPlusExtender.iml" filepath="$PROJECT_DIR$/phoneProfilesPlusExtender/phoneProfilesPlusExtender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PhoneProfilesPlusExtender.iml" filepath="$PROJECT_DIR$/PhoneProfilesPlusExtender.iml" group="PhoneProfilesPlusExtender" />
+      <module fileurl="file://$PROJECT_DIR$/phoneProfilesPlusExtender/phoneProfilesPlusExtender.iml" filepath="$PROJECT_DIR$/phoneProfilesPlusExtender/phoneProfilesPlusExtender.iml" group="PhoneProfilesPlusExtender/phoneProfilesPlusExtender" />
     </modules>
   </component>
 </project>
