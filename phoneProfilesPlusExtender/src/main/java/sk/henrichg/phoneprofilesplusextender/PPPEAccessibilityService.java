@@ -123,29 +123,34 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED");
 
+            if (event.getClassName() == null)
+                return;
+
             // for foreground application change
             try {
-                ComponentName componentName = new ComponentName(
-                        event.getPackageName().toString(),
-                        event.getClassName().toString()
-                );
+                if (event.getPackageName() != null) {
+                    ComponentName componentName = new ComponentName(
+                            event.getPackageName().toString(),
+                            event.getClassName().toString()
+                    );
 
-                ActivityInfo activityInfo = tryGetActivity(componentName);
-                boolean isActivity = activityInfo != null;
-                if (isActivity) {
-                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
-                    if (PPPEApplication.registeredForegroundApplicationFunctionPPP) {
-                        Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
-                        intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
-                        intent.putExtra(EXTRA_CLASS_NAME, event.getClassName().toString());
-                        sendBroadcast(intent, ACCESSIBILITY_SERVICE_PERMISSION);
+                    ActivityInfo activityInfo = tryGetActivity(componentName);
+                    boolean isActivity = activityInfo != null;
+                    if (isActivity) {
+                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
+                        if (PPPEApplication.registeredForegroundApplicationFunctionPPP) {
+                            Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
+                            intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
+                            intent.putExtra(EXTRA_CLASS_NAME, event.getClassName().toString());
+                            sendBroadcast(intent, ACCESSIBILITY_SERVICE_PERMISSION);
+                        }
                     }
                 }
             } catch (Exception e) {
                 // do not log this exception, package name or class name may be null
                 // wor this is not possible to get component name
-                //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
-                //Crashlytics.logException(e);
+                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
+                Crashlytics.logException(e);
             }
             //////////////////
 
