@@ -81,7 +81,7 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
     private static void doCallEvent(/*int servicePhoneEvent, */int eventType, String phoneNumber, Date eventTime, Context context)
     {
-        PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
+        //PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
         if (PPPEApplication.registeredCallFunctionPPP) {
             Intent sendIntent = new Intent(ACTION_CALL_RECEIVED);
             //sendIntent.putExtra(EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
@@ -94,8 +94,8 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
     private static void callStarted(boolean incoming, String phoneNumber, Date eventTime, Context context)
     {
-        PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "incoming="+incoming);
-        PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "phoneNumber="+phoneNumber);
+        //PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "incoming="+incoming);
+        //PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "phoneNumber="+phoneNumber);
 
         if (incoming) {
             doCallEvent(/*SERVICE_PHONE_EVENT_START, */CALL_EVENT_INCOMING_CALL_RINGING, phoneNumber, eventTime, context);
@@ -112,9 +112,9 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
     private static void callEnded(boolean incoming, boolean missed, String phoneNumber, Date eventTime, Context context)
     {
-        PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "incoming="+incoming);
-        PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "missed="+missed);
-        PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "phoneNumber="+phoneNumber);
+        //PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "incoming="+incoming);
+        //PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "missed="+missed);
+        //PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "phoneNumber="+phoneNumber);
 
         if (incoming) {
             if (missed)

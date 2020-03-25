@@ -36,12 +36,12 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
                 listener.setOutgoingNumber("");
             return;
         }
-        else {
+        /*else {
             if (intent != null) {
                 String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
                 PPPEApplication.logE("PhoneCallReceiver.onReceive", "incomingNumber=" + incomingNumber);
             }
-        }
+        }*/
 
         listener.onCallStateChanged(intent);
     }
@@ -68,7 +68,7 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
 
         //The outgoing number is only sent via a separate intent, so we need to store it out of band
         void setOutgoingNumber(String number){
-            PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "outgoingNumber="+number);
+            //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "outgoingNumber="+number);
             inCall = false;
             isIncoming = false;
             savedNumber = number;
@@ -86,9 +86,9 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
             }
             switch (state) {
                 case TelephonyManager.CALL_STATE_RINGING:
-                    PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_RINGING");
+                    //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_RINGING");
                     String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-                    PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "incomingNumber="+incomingNumber);
+                    //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "incomingNumber="+incomingNumber);
                     if ((savedNumber == null) && (incomingNumber == null)) {
                         // CALL_STATE_RINGING is called twice.
                         // When savedNumber and incomingNumber are not filled,
@@ -104,7 +104,7 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
                     }
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
-                    PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_OFFHOOK");
+                    //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_OFFHOOK");
                     //Transition of ringing->off hook are pickups of incoming calls.  Nothing down on them
                     if(lastState != TelephonyManager.CALL_STATE_RINGING){
                         inCall = true;
@@ -121,7 +121,7 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
                     }
                     break;
                 case TelephonyManager.CALL_STATE_IDLE:
-                    PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_IDLE");
+                    //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_IDLE");
                     //Went to idle-  this is the end of a call.  What type depends on previous state(s)
                     if(!inCall){
                         //Ring but no pickup-  a miss

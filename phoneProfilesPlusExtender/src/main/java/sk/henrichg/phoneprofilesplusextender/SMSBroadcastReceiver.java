@@ -23,7 +23,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        PPPEApplication.logE("##### SMSBroadcastReceiver.onReceive", "xxx");
+        //PPPEApplication.logE("##### SMSBroadcastReceiver.onReceive", "xxx");
 
         boolean smsMmsReceived = false;
 
@@ -39,7 +39,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
 
         if ((intent != null) && (intent.getAction() != null) && intent.getAction().equals(smsAction))
         {
-            PPPEApplication.logE("SMSBroadcastReceiver.onReceive","SMS received");
+            //PPPEApplication.logE("SMSBroadcastReceiver.onReceive","SMS received");
 
 
             smsMmsReceived = true;
@@ -75,8 +75,8 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
         if ((intent != null) && (intent.getAction() != null) && intent.getAction().equals(mmsAction)) {
             String type = intent.getType();
 
-            PPPEApplication.logE("SMSBroadcastReceiver.onReceive", "MMS received");
-            PPPEApplication.logE("SMSBroadcastReceiver.onReceive", "type="+type);
+            //PPPEApplication.logE("SMSBroadcastReceiver.onReceive", "MMS received");
+            //PPPEApplication.logE("SMSBroadcastReceiver.onReceive", "type="+type);
 
             if ((type != null) && type.equals("application/vnd.wap.mms-message")) {
 
@@ -106,11 +106,11 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
             }
         }
 
-        PPPEApplication.logE("@@@ SMSBroadcastReceiver.onReceive","smsMmsReceived="+smsMmsReceived);
+        //PPPEApplication.logE("@@@ SMSBroadcastReceiver.onReceive","smsMmsReceived="+smsMmsReceived);
 
         if (smsMmsReceived)
         {
-            PPPEApplication.logE("SMSBroadcastReceiver.onReceive","from="+origin);
+            //PPPEApplication.logE("SMSBroadcastReceiver.onReceive","from="+origin);
 
             if (PPPEApplication.registeredSMSFunctionPPP) {
                 Calendar now = Calendar.getInstance();

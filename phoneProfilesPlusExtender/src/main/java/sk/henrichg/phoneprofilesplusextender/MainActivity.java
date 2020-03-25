@@ -23,13 +23,10 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.crashlytics.android.Crashlytics;
 
 import java.util.List;
 
@@ -42,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive( Context context, Intent intent ) {
             MainActivity.this.displayAccessibilityServiceStatus();
-            PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx");
+            //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx");
         }
     };
 
@@ -55,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        PPPEApplication.logE("MainActivity.onCreated", "xxx");
+        //PPPEApplication.logE("MainActivity.onCreated", "xxx");
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setElevation(0);
