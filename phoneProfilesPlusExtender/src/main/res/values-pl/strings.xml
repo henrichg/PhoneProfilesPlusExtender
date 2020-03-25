@@ -12,7 +12,7 @@
     <string name="extender_accessibility_service_permission">Usługa ułatwień dostępu PhoneProfilesPlusExtender</string>
     <string name="extender_accessibility_service_event_sensor_sms_mms">• Usługa ułatwień dostępu dla parametru Zdarzeń \"Czujnik SMS/MMS\". Funkcja ułatwień dostępu nie jest używana, usługa jest potrzebna aby odbierać SMS oraz MMS.:</string>
     <string name="extender_permissions_event_sensor_sms_mms">• Uprawnienia dla parametru Zdarzeń \"Czujnik SMS/MMS\" - Dostęp do SMS:</string>
-    <string name="extender_permissions_not_granted">Nie przyznane</string>
+    <string name="extender_permissions_not_granted">Nieprzyznane</string>
     <string name="extender_permissions_granted">Przyznane</string>
     <string name="extender_permissions_button">Przyznaj/odbierz\nuprawnienia</string>
     <string name="extender_accessibility_service_event_sensor_call">• Usługa ułatwień dostępu dla parametru Zdarzeń \"Czujnik Rozmowy\". Funkcja ułatwień dostępu nie jest używana, usługa jest potrzebna aby odbierać rozmowy.:</string>
