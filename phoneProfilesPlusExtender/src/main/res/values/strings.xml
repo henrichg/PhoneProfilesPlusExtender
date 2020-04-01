@@ -32,4 +32,7 @@
 
     <string name="extender_accessibility_service_profile_lock_device">• Accessibility service for profile parameter \"Lock device\":</string>
 
+    <string name="extender_application_releases">Releases:</string>
+    <string name="extender_web_browser_chooser">View web link using</string>
+
 </resources>

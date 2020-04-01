@@ -34,7 +34,16 @@
             android:text="@string/extender_app_name"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_marginBottom="15dp"/>
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/activity_main_application_releases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/extender_application_releases"
+            android:textSize="15sp"/>
+
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_profile_force_stop_application"

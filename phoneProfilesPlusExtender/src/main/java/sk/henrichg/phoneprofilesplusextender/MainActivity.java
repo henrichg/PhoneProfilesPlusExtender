@@ -22,6 +22,9 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.Button;
@@ -67,14 +70,37 @@ public class MainActivity extends AppCompatActivity {
             text.setText("");
         }
 
+        text = findViewById(R.id.activity_main_application_releases);
+        String str1 = getString(R.string.extender_application_releases);
+        String str2 = str1 + " https://github.com/henrichg/PhoneProfilesPlusExtender/releases";
+        Spannable sbt = new SpannableString(str2);
+        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void updateDrawState(@NonNull TextPaint ds) {
+                ds.setColor(ds.linkColor);    // you can use custom color
+                ds.setUnderlineText(false);    // this remove the underline
+            }
+
+            @Override
+            public void onClick(@NonNull View textView) {
+                String url = "https://github.com/henrichg/PhoneProfilesPlusExtender/releases";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                try {
+                    startActivity(Intent.createChooser(i, getString(R.string.extender_web_browser_chooser)));
+                } catch (Exception ignored) {}
+            }
+        };
+        sbt.setSpan(clickableSpan, str1.length()+1, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        //sbt.setSpan(new UnderlineSpan(), str1.length()+1, str2.length(), 0);
+        text.setText(sbt);
+        text.setMovementMethod(LinkMovementMethod.getInstance());
+
         displayAccessibilityServiceStatus();
 
         if (Build.VERSION.SDK_INT >= 23) {
             final Activity activity = this;
-            String str1;
-            String str2;
-            Spannable sbt;
-
             str1 = getString(R.string.extender_permissions_event_sensor_sms_mms);
             if (Permissions.checkSMSMMSPermissions(activity))
                 str2 = str1 + " " + getString(R.string.extender_permissions_granted);
