@@ -13,7 +13,9 @@ import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
+//import com.crashlytics.android.Crashlytics;
+
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.util.List;
 
@@ -95,7 +97,8 @@ public class ForceCloseIntentService extends IntentService {
                                     //ForceStopActivity.instance.finishActivity(100);
                                 } catch (Exception e) {
                                     Log.e("ForceCloseIntentService.onHandleIntent", Log.getStackTraceString(e));
-                                    Crashlytics.logException(e);
+                                    FirebaseCrashlytics.getInstance().recordException(e);
+                                    //Crashlytics.logException(e);
                                 }
                             }
                         }

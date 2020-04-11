@@ -16,7 +16,9 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.crashlytics.android.Crashlytics;
+//import com.crashlytics.android.Crashlytics;
+
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.util.List;
 
@@ -150,7 +152,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 // do not log this exception, package name or class name may be null
                 // wor this is not possible to get component name
                 Log.e("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
-                Crashlytics.logException(e);
+                FirebaseCrashlytics.getInstance().recordException(e);
+                //Crashlytics.logException(e);
             }
             //////////////////
 
@@ -219,7 +222,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
             } catch (Exception e) {
                 Log.e("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
-                Crashlytics.logException(e);
+                FirebaseCrashlytics.getInstance().recordException(e);
+                //Crashlytics.logException(e);
             }
         }
 

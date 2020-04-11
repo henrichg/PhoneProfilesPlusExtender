@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.crashlytics'
+//apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 28
@@ -9,8 +10,8 @@ android {
         applicationId "sk.henrichg.phoneprofilesplusextender"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 505
-        versionName "5.1.2.6"
+        versionCode 506
+        versionName "5.1.2.7b"
 
         resConfigs "en", "af", "ar", "bn-rIN", "bg", "ca", "cs", "da", "de", "el", "es", "et", "fa",
                 "fi", "fr", "ga-rIN", "hi", "hr", "hu", "in", "is", "it", "iw", "ja", "ko", "ku",
@@ -53,7 +54,8 @@ dependencies {
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
 
     implementation 'com.google.firebase:firebase-analytics:17.3.0'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+    implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta04'
+    //implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 
     //implementation 'com.github.anrwatchdog:anrwatchdog:1.3.0'
 
