@@ -15,8 +15,6 @@ import android.util.Log;
 
 //import com.crashlytics.android.Crashlytics;
 
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
-
 import java.util.List;
 
 public class ForceCloseIntentService extends IntentService {

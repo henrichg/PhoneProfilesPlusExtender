@@ -18,8 +18,6 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 //import com.crashlytics.android.Crashlytics;
 
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
-
 import java.util.List;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
