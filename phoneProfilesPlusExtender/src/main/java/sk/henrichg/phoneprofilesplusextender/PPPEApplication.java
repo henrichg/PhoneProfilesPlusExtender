@@ -151,7 +151,7 @@ public class PPPEApplication extends Application {
                 setHiddenApiExemptions.invoke(vmRuntime, new Object[]{new String[]{"L"}});
             } catch (Exception e) {
                 Log.e("PPApplication.onCreate", Log.getStackTraceString(e));
-                FirebaseCrashlytics.getInstance().recordException(e);
+                PPPEApplication.recordException(e);
                 //Crashlytics.logException(e);
             }
         }
@@ -174,7 +174,7 @@ public class PPPEApplication extends Application {
         */
 
         try {
-            FirebaseCrashlytics.getInstance().setCustomKey("DEBUG", BuildConfig.DEBUG);
+            PPPEApplication.setCustomKey("DEBUG", BuildConfig.DEBUG);
             //Crashlytics.setBool("DEBUG", BuildConfig.DEBUG);
         } catch (Exception ignored) {}
 
@@ -186,7 +186,7 @@ public class PPPEApplication extends Application {
             actualVersionCode = PackageInfoCompat.getLongVersionCode(pInfo);
         } catch (Exception e) {
             Log.e("PPPEApplication.onCreate", Log.getStackTraceString(e));
-            FirebaseCrashlytics.getInstance().recordException(e);
+            PPPEApplication.recordException(e);
             //Crashlytics.logException(e);
         }
         Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
@@ -339,6 +339,42 @@ public class PPPEApplication extends Application {
             if (logIntoLogCat) Log.d(tag, text);
             logIntoFile("D", tag, text);
         }
+    }
+
+    // Firebase Crashlytics -------------------------------------------------------------------------
+
+    static void recordException(Throwable ex) {
+        try {
+            FirebaseCrashlytics.getInstance().recordException(ex);
+        } catch (Exception ignored) {}
+    }
+
+    @SuppressWarnings("unused")
+    static void logToCrashlytics(String s) {
+        try {
+            FirebaseCrashlytics.getInstance().log(s);
+        } catch (Exception ignored) {}
+    }
+
+    @SuppressWarnings({"SameParameterValue", "unused"})
+    static void setCustomKey(String key, int value) {
+        try {
+            FirebaseCrashlytics.getInstance().setCustomKey(key, value);
+        } catch (Exception ignored) {}
+    }
+
+    @SuppressWarnings({"SameParameterValue", "unused"})
+    static void setCustomKey(String key, String value) {
+        try {
+            FirebaseCrashlytics.getInstance().setCustomKey(key, value);
+        } catch (Exception ignored) {}
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    static void setCustomKey(String key, boolean value) {
+        try {
+            FirebaseCrashlytics.getInstance().setCustomKey(key, value);
+        } catch (Exception ignored) {}
     }
 
     // Google Analytics ----------------------------------------------------------------------------

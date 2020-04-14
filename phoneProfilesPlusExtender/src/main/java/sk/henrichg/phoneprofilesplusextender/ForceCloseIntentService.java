@@ -97,7 +97,7 @@ public class ForceCloseIntentService extends IntentService {
                                     //ForceStopActivity.instance.finishActivity(100);
                                 } catch (Exception e) {
                                     Log.e("ForceCloseIntentService.onHandleIntent", Log.getStackTraceString(e));
-                                    FirebaseCrashlytics.getInstance().recordException(e);
+                                    PPPEApplication.recordException(e);
                                     //Crashlytics.logException(e);
                                 }
                             }

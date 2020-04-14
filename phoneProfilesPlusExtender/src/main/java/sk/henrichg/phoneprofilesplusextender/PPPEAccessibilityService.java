@@ -152,7 +152,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 // do not log this exception, package name or class name may be null
                 // wor this is not possible to get component name
                 Log.e("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
-                FirebaseCrashlytics.getInstance().recordException(e);
+                PPPEApplication.recordException(e);
                 //Crashlytics.logException(e);
             }
             //////////////////
@@ -222,7 +222,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
             } catch (Exception e) {
                 Log.e("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
-                FirebaseCrashlytics.getInstance().recordException(e);
+                PPPEApplication.recordException(e);
                 //Crashlytics.logException(e);
             }
         }
