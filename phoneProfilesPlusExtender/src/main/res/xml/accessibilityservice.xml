@@ -4,7 +4,7 @@
     android:description="@string/extender_accessibility_service_description"
     android:accessibilityEventTypes="typeWindowStateChanged|typeWindowsChanged|typeWindowContentChanged|typeViewScrolled"
     android:accessibilityFlags="flagIncludeNotImportantViews|flagReportViewIds"
-    android:accessibilityFeedbackType="feedbackAllMask"
+    android:accessibilityFeedbackType="feedbackGeneric"
     android:canRetrieveWindowContent="true"/>
 
 <!-- TODO: COMMENT IT FOR RELEASE VERSION!!! -->
