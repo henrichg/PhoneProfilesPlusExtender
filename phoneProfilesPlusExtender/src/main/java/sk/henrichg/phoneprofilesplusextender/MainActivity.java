@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
             return activities.size() > 0;
         } catch (Exception e) {
             //Log.e("MainActivity.activityActionExists", Log.getStackTraceString(e));
-            //Crashlytics.logException(e);
+            //PPPEApplication.recordException(e);
             return false;
         }
     }
@@ -317,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
             return activities.size() > 0;
         } catch (Exception e) {
             //Log.e("MainActivity.activityIntentExists", Log.getStackTraceString(e));
-            //Crashlytics.logException(e);
+            //PPPEApplication.recordException(e);
             return false;
         }
     }

@@ -10,7 +10,6 @@ import android.os.Environment;
 import android.os.PowerManager;
 import android.util.Log;
 
-//import com.crashlytics.android.Crashlytics;
 //import com.llew.huawei.verifier.LoadedApkHuaWei;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
@@ -24,7 +23,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import androidx.core.content.pm.PackageInfoCompat;
-//import io.fabric.sdk.android.Fabric;
 
 //import com.google.firebase.analytics.FirebaseAnalytics;
 //import com.github.anrwatchdog.ANRError;
@@ -87,50 +85,6 @@ public class PPPEApplication extends Application {
 
         instance = this;
 
-/*        try {
-            // Obtain the FirebaseAnalytics instance.
-            //mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-            // Set up Crashlytics, disabled for debug builds
-            //Crashlytics crashlyticsKit = new Crashlytics.Builder()
-            //        .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
-            //        .build();
-
-            //Fabric.with(this, crashlyticsKit);
-
-            //if (!BuildConfig.DEBUG) {
-                Fabric.with(this, new Crashlytics());
-            //}
-            // Crashlytics.getInstance().core.logException(exception); -- this log will be associated with crash log.
-        } catch (Exception e) {
-
-//            java.lang.IllegalStateException:
-//              at android.app.ContextImpl.getSharedPreferences (ContextImpl.java:447)
-//              at android.app.ContextImpl.getSharedPreferences (ContextImpl.java:432)
-//              at android.content.ContextWrapper.getSharedPreferences (ContextWrapper.java:174)
-//              at io.fabric.sdk.android.services.persistence.PreferenceStoreImpl.<init> (PreferenceStoreImpl.java:39)
-//              at io.fabric.sdk.android.services.common.AdvertisingInfoProvider.<init> (AdvertisingInfoProvider.java:37)
-//              at io.fabric.sdk.android.services.common.IdManager.<init> (IdManager.java:114)
-//              at io.fabric.sdk.android.Fabric$Builder.build (Fabric.java:289)
-//              at io.fabric.sdk.android.Fabric.with (Fabric.java:340)
-//
-//              This exception occurs, when storage is protected and PPP is started via LOCKED_BOOT_COMPLETED
-//
-//              Code from android.app.ContextImpl:
-//                if (getApplicationInfo().targetSdkVersion >= android.os.Build.VERSION_CODES.O) {
-//                    if (isCredentialProtectedStorage()
-//                            && !getSystemService(UserManager.class)
-//                                    .isUserUnlockingOrUnlocked(UserHandle.myUserId())) {
-//                        throw new IllegalStateException("SharedPreferences in credential encrypted "
-//                                + "storage are not available until after user is unlocked");
-//                    }
-//                }
-
-            Log.e("PPPEApplication.onCreate", Log.getStackTraceString(e));
-            Crashlytics.logException(e);
-        }
-*/
-
         if (checkAppReplacingState())
             return;
 
@@ -152,7 +106,6 @@ public class PPPEApplication extends Application {
             } catch (Exception e) {
                 Log.e("PPApplication.onCreate", Log.getStackTraceString(e));
                 PPPEApplication.recordException(e);
-                //Crashlytics.logException(e);
             }
         }
         //////////////////////////////////////////
@@ -175,7 +128,6 @@ public class PPPEApplication extends Application {
 
         try {
             PPPEApplication.setCustomKey("DEBUG", BuildConfig.DEBUG);
-            //Crashlytics.setBool("DEBUG", BuildConfig.DEBUG);
         } catch (Exception ignored) {}
 
         //if (BuildConfig.DEBUG) {
@@ -187,7 +139,6 @@ public class PPPEApplication extends Application {
         } catch (Exception e) {
             Log.e("PPPEApplication.onCreate", Log.getStackTraceString(e));
             PPPEApplication.recordException(e);
-            //Crashlytics.logException(e);
         }
         Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
         //}

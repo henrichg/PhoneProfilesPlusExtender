@@ -16,8 +16,6 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-//import com.crashlytics.android.Crashlytics;
-
 import java.util.List;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -151,7 +149,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 // wor this is not possible to get component name
                 Log.e("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
                 PPPEApplication.recordException(e);
-                //Crashlytics.logException(e);
             }
             //////////////////
 
@@ -221,7 +218,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             } catch (Exception e) {
                 Log.e("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
                 PPPEApplication.recordException(e);
-                //Crashlytics.logException(e);
             }
         }
 

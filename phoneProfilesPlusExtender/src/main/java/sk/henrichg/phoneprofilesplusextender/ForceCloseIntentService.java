@@ -13,8 +13,6 @@ import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
 
-//import com.crashlytics.android.Crashlytics;
-
 import java.util.List;
 
 public class ForceCloseIntentService extends IntentService {
@@ -96,7 +94,6 @@ public class ForceCloseIntentService extends IntentService {
                                 } catch (Exception e) {
                                     Log.e("ForceCloseIntentService.onHandleIntent", Log.getStackTraceString(e));
                                     PPPEApplication.recordException(e);
-                                    //Crashlytics.logException(e);
                                 }
                             }
                         }
@@ -161,7 +158,7 @@ public class ForceCloseIntentService extends IntentService {
             return activities.size() > 0;
         } catch (Exception e) {
             //Log.e("ForceCloseIntentService.activityIntentExists", Log.getStackTraceString(e));
-            //Crashlytics.logException(e);
+            //PPPEApplication.recordException(e);
             return false;
         }
     }

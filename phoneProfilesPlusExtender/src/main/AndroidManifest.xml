@@ -35,11 +35,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <!-- Fabric key -->
-<!--        <meta-data-->
-<!--            android:name="io.fabric.ApiKey"-->
-<!--            android:value="795384c10c1c3eec6489c1d2fcf5e444d013da7d"/>-->
-
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="true" />
