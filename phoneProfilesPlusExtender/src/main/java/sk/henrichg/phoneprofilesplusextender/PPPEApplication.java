@@ -42,8 +42,8 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = //""
-                                                //"PPPEAccessibilityService"
-                                                "SMSBroadcastReceiver"
+                                                "PPPEAccessibilityService"
+                                                //+"SMSBroadcastReceiver"
                                                 //+ "|PhoneCallReceiver"
                                                 //+ "|PhoneCallBroadcastReceiver"
                                                 //+ "|MainActivity"
