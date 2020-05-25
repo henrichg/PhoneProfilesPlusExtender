@@ -164,6 +164,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                         if (event.getClassName().equals("com.android.settings.applications.InstalledAppDetailsTop")) {
                             //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "App info opened");
                             //forceCloseButtonClicked = false;
+
+//                            Oppo -> ColorOs
+//                            private static boolean isOppo() {
+//                                return Build.BRAND.equalsIgnoreCase("oppo") ||
+//                                        Build.MANUFACTURER.equalsIgnoreCase("oppo") ||
+//                                        Build.FINGERPRINT.toLowerCase().contains("oppo");
+//                            }
+
                             if (Build.VERSION.SDK_INT <= 22) {
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
                                 //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/left_button list="+list.size());
