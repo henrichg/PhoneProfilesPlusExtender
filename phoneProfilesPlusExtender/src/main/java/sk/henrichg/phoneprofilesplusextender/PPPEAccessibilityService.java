@@ -182,12 +182,18 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button3="+list.size());
                             }
                             else {
-                                list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
-                                //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/right_button="+list.size());
-                                if (list.size() == 0) {
-                                    // Samsung Galaxy S10
-                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button2_negative");
-                                    //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button2_negative="+list.size());
+                                if (Build.BRAND.equalsIgnoreCase("oppo") ||
+                                    Build.MANUFACTURER.equalsIgnoreCase("oppo") ||
+                                    Build.FINGERPRINT.toLowerCase().contains("oppo")) {
+                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
+                                } else {
+                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
+                                    //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/right_button="+list.size());
+                                    if (list.size() == 0) {
+                                        // Samsung Galaxy S10
+                                        list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button2_negative");
+                                        //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button2_negative="+list.size());
+                                    }
                                 }
                             }
                             for (AccessibilityNodeInfo node : list) {
@@ -229,7 +235,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
         }
 
-        /*
         if (PPPEApplication.logIntoFile) {
             try {
                 switch (event.getEventType()) {
@@ -250,7 +255,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 }
             } catch (Exception ignored) {}
         }
-        */
     }
 
     private ActivityInfo tryGetActivity(ComponentName componentName) {
