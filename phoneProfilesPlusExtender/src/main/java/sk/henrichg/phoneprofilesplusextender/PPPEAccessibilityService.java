@@ -236,6 +236,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
 
         if (PPPEApplication.logIntoFile) {
+            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
+            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
+            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.MANUFACTURER="+Build.MANUFACTURER);
+            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.FINGERPRINT="+Build.FINGERPRINT);
+
             try {
                 switch (event.getEventType()) {
                     //On Gesture events print out the entire view hierarchy!
