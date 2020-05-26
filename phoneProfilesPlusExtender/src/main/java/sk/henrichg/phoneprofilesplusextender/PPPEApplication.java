@@ -50,6 +50,9 @@ public class PPPEApplication extends Application {
                                                 //+ "|FromPhoneProfilesPlusBroadcastReceiver"
             ;
 
+    static final boolean deviceIsOppo = isOppo();
+    static final boolean deviceIsRealme = isRealme();
+
     public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
     private static final String LOG_FILENAME = "log.txt";
 
@@ -156,6 +159,20 @@ public class PPPEApplication extends Application {
             return true;
         }
         return false;
+    }
+
+    //--------------------------------------------------------------
+
+    private static boolean isOppo() {
+        return Build.BRAND.equalsIgnoreCase("oppo") ||
+                Build.MANUFACTURER.equalsIgnoreCase("oppo") ||
+                Build.FINGERPRINT.toLowerCase().contains("oppo");
+    }
+
+    private static boolean isRealme() {
+        return Build.BRAND.equalsIgnoreCase("realme") ||
+                Build.MANUFACTURER.equalsIgnoreCase("realme") ||
+                Build.FINGERPRINT.toLowerCase().contains("realme");
     }
 
     //--------------------------------------------------------------

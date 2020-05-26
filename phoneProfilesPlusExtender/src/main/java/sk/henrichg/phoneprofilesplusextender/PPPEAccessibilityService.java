@@ -182,9 +182,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button3="+list.size());
                             }
                             else {
-                                if (Build.BRAND.equalsIgnoreCase("oppo") ||
-                                    Build.MANUFACTURER.equalsIgnoreCase("oppo") ||
-                                    Build.FINGERPRINT.toLowerCase().contains("oppo")) {
+                                if (PPPEApplication.deviceIsOppo || PPPEApplication.deviceIsRealme) {
                                     list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
                                 } else {
                                     list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
