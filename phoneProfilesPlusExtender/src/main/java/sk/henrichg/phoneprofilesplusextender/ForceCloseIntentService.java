@@ -44,6 +44,8 @@ public class ForceCloseIntentService extends IntentService {
         }
 
         long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
+        //Log.e("ForceCloseIntentService", "profileId="+profileId);
+
         if (profileId != 0) {
             ForceCloseIntentService.profileIdList.add(profileId);
             ++ForceCloseIntentService.forceStopApplicationsStartCount;
@@ -107,6 +109,8 @@ public class ForceCloseIntentService extends IntentService {
             //Log.e("ForceCloseIntentService", "forceStopStarted=false");
         }
 
+        //Log.e("ForceCloseIntentService", "forceStopApplicationsStartCount="+forceStopApplicationsStartCount);
+
         if (forceStopApplicationsStartCount <= 0) {
             if (ForceStopActivity.instance != null) {
                 try {
@@ -115,8 +119,13 @@ public class ForceCloseIntentService extends IntentService {
                 ForceStopActivity.instance = null;
             }
 
+            //Log.e("ForceCloseIntentService", "PPPEApplication.registeredForceStopApplicationsFunctionPP="+PPPEApplication.registeredForceStopApplicationsFunctionPP);
+
             if (PPPEApplication.registeredForceStopApplicationsFunctionPP ||
                     PPPEApplication.registeredForceStopApplicationsFunctionPPP) {
+
+                //Log.e("ForceCloseIntentService", "profileIdList.size()="+profileIdList.size());
+
                 for (long _profileId : profileIdList) {
                     Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_END);
                     _intent.putExtra(EXTRA_PROFILE_ID, _profileId);
