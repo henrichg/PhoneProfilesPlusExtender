@@ -13,13 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.pm.PackageInfoCompat;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextPaint;
@@ -30,6 +23,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.pm.PackageInfoCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.List;
 
@@ -208,9 +208,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
             }
-            if (allGranted) {
-                reloadActivity(this/*, true*/);
-            } else {
+            if (!allGranted) {
                 //if (!onlyNotification) {
                 Context context = getApplicationContext();
                 Toast msg = Toast.makeText(context,
@@ -219,8 +217,8 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT);
                 msg.show();
                 //}
-                reloadActivity(this/*, true*/);
             }
+            reloadActivity(this/*, true*/);
 
             // other 'case' lines to check for other
             // permissions this app might request
