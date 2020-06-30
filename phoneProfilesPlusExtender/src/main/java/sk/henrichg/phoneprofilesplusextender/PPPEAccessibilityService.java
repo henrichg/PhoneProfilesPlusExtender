@@ -16,9 +16,9 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import java.util.List;
-
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import java.util.List;
 
 public class PPPEAccessibilityService extends android.accessibilityservice.AccessibilityService {
 
@@ -233,7 +233,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
         }
 
-        /*if (PPPEApplication.logIntoFile) {
+        if (PPPEApplication.logIntoFile) {
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.MANUFACTURER="+Build.MANUFACTURER);
@@ -257,7 +257,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     }
                 }
             } catch (Exception ignored) {}
-        }*/
+        }
     }
 
     private ActivityInfo tryGetActivity(ComponentName componentName) {

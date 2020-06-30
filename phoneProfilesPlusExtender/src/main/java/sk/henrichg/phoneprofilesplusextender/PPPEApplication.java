@@ -10,7 +10,7 @@ import android.os.Environment;
 import android.os.PowerManager;
 import android.util.Log;
 
-//import com.llew.huawei.verifier.LoadedApkHuaWei;
+import androidx.core.content.pm.PackageInfoCompat;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import androidx.core.content.pm.PackageInfoCompat;
+//import com.llew.huawei.verifier.LoadedApkHuaWei;
 
 //import com.google.firebase.analytics.FirebaseAnalytics;
 //import com.github.anrwatchdog.ANRError;
@@ -38,7 +38,7 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
     // TODO: DISABLE IT FOR RELEASE VERSION!!!
-    static final boolean logIntoFile = false;
+    static final boolean logIntoFile = true;
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = ""
