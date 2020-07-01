@@ -178,7 +178,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             }
                             else
                             if (Build.VERSION.SDK_INT >= 29) {
-                                list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button3");
+                                if (PPPEApplication.deviceIsRealme)
+                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/middle_button");
+                                else
+                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button3");
                                 //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button3="+list.size());
                             }
                             else {
@@ -233,11 +236,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
         }
 
+        /*
         if (PPPEApplication.logIntoFile) {
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.MANUFACTURER="+Build.MANUFACTURER);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.FINGERPRINT="+Build.FINGERPRINT);
+
+            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
 
             try {
                 switch (event.getEventType()) {
@@ -258,6 +264,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 }
             } catch (Exception ignored) {}
         }
+        */
     }
 
     private ActivityInfo tryGetActivity(ComponentName componentName) {
