@@ -162,16 +162,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     if (nodeInfo != null) {
                         List<AccessibilityNodeInfo> list;
                         if (event.getClassName().equals("com.android.settings.applications.InstalledAppDetailsTop")) {
-                            //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "App info opened");
+                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "App info opened");
                             //forceCloseButtonClicked = false;
-
-//                            Oppo -> ColorOs
-//                            private static boolean isOppo() {
-//                                return Build.BRAND.equalsIgnoreCase("oppo") ||
-//                                        Build.MANUFACTURER.equalsIgnoreCase("oppo") ||
-//                                        Build.FINGERPRINT.toLowerCase().contains("oppo");
-//                            }
-
                             if (Build.VERSION.SDK_INT <= 22) {
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
                                 //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/left_button list="+list.size());
@@ -213,6 +205,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                         } else
                         if (event.getClassName().equals("android.app.AlertDialog") ||
                             event.getClassName().equals("androidx.appcompat.app.AlertDialog")) {
+                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Alert opened");
                             //forceCloseButtonClicked = false;
                             list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
                             //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list.size()="+list.size());
@@ -236,7 +229,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
         }
 
-        /*
         if (PPPEApplication.logIntoFile) {
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
@@ -264,7 +256,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 }
             } catch (Exception ignored) {}
         }
-        */
     }
 
     private ActivityInfo tryGetActivity(ComponentName componentName) {
