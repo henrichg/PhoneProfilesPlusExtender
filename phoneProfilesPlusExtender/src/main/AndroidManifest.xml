@@ -9,7 +9,7 @@
         android:protectionLevel="signature"/>
 
     <!-- TODO: for log to file, COMMENT IT FOR RELEASE VERSION!!! -->
-    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <uses-permission android:name="sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION"/>
 
