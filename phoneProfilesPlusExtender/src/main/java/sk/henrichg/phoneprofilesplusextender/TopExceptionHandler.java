@@ -2,7 +2,6 @@ package sk.henrichg.phoneprofilesplusextender;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Environment;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -122,13 +121,17 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
 
     private void resetLog()
     {
-        File sd = Environment.getExternalStorageDirectory();
+        /*File sd = Environment.getExternalStorageDirectory();
         File exportDir = new File(sd, PPPEApplication.EXPORT_PATH);
         if (!(exportDir.exists() && exportDir.isDirectory()))
             //noinspection ResultOfMethodCallIgnored
             exportDir.mkdirs();
 
-        File logFile = new File(sd, PPPEApplication.EXPORT_PATH + "/" + CRASH_FILENAME);
+        File logFile = new File(sd, PPPEApplication.EXPORT_PATH + "/" + CRASH_FILENAME);*/
+
+        File path = applicationContext.getExternalFilesDir(null);
+        File logFile = new File(path, CRASH_FILENAME);
+
         //noinspection ResultOfMethodCallIgnored
         logFile.delete();
     }

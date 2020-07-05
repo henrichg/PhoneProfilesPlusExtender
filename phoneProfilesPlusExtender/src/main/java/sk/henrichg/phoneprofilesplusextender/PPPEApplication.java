@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Environment;
 import android.os.PowerManager;
 import android.util.Log;
 
@@ -38,7 +37,7 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
     // TODO: DISABLE IT FOR RELEASE VERSION!!!
-    static final boolean logIntoFile = false;
+    static final boolean logIntoFile = true;
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = "PPPEAccessibilityService"
@@ -178,13 +177,14 @@ public class PPPEApplication extends Application {
 
     static private void resetLog()
     {
-        File sd = Environment.getExternalStorageDirectory();
+        /*File sd = Environment.getExternalStorageDirectory();
         File exportDir = new File(sd, EXPORT_PATH);
         if (!(exportDir.exists() && exportDir.isDirectory()))
             //noinspection ResultOfMethodCallIgnored
-            exportDir.mkdirs();
+            exportDir.mkdirs();*/
 
-        File logFile = new File(sd, EXPORT_PATH + "/" + LOG_FILENAME);
+        File path = instance.getApplicationContext().getExternalFilesDir(null);
+        File logFile = new File(path, LOG_FILENAME);
         //noinspection ResultOfMethodCallIgnored
         logFile.delete();
     }
