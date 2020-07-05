@@ -40,7 +40,8 @@ public class PPPEApplication extends Application {
     static final boolean logIntoFile = true;
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
-    private static final String logFilterTags = "PPPEAccessibilityService"
+    private static final String logFilterTags = ""
+                                                //"PPPEAccessibilityService"
                                                 //+"SMSBroadcastReceiver"
                                                 //+ "|PhoneCallReceiver"
                                                 //+ "|PhoneCallBroadcastReceiver"
@@ -51,7 +52,8 @@ public class PPPEApplication extends Application {
     static final boolean deviceIsOppo = isOppo();
     static final boolean deviceIsRealme = isRealme();
 
-    public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
+    // for new log.txt and crash.txt is in /Android/data/sk.henrichg.phoneprofilesplusextender/files
+    //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
     private static final String LOG_FILENAME = "log.txt";
 
     static final String ACTION_REGISTER_PPPE_FUNCTION = "sk.henrichg.phoneprofilesplusextender.ACTION_REGISTER_PPPE_FUNCTION";
