@@ -47,6 +47,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     static boolean forceStopStarted = false;
     static boolean applicationForceClosed = false;
+    static boolean forceStopPerformed = false;
 
     @Override
     protected void onServiceConnected() {
@@ -193,9 +194,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 if (node.isEnabled()) {
                                     //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "force close button clicked");
                                     node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                                    forceStopPerformed = true;
                                 }
                                 else {
                                     applicationForceClosed = true;
+                                    forceStopPerformed = false;
                                     /*if (ForceStopActivity.instance != null)
                                         ForceStopActivity.instance.finishActivity(100);
                                     else
@@ -203,8 +206,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 }
                             }
                         } else
-                        if (event.getClassName().equals("android.app.AlertDialog") ||
-                            event.getClassName().equals("androidx.appcompat.app.AlertDialog")) {
+                        if (forceStopPerformed// ||
+                            //event.getClassName().equals("android.app.AlertDialog") ||
+                            //event.getClassName().equals("androidx.appcompat.app.AlertDialog")
+                            ) {
                             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Alert opened");
                             //forceCloseButtonClicked = false;
                             list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
@@ -212,6 +217,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             for (final AccessibilityNodeInfo node : list) {
                                 node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                                 applicationForceClosed = true;
+                                forceStopPerformed = false;
                                 /*sleep(200);
                                 if (ForceStopActivity.instance != null)
                                     ForceStopActivity.instance.finishActivity(100);

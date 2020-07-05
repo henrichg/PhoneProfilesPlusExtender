@@ -88,6 +88,7 @@ public class ForceCloseIntentService extends IntentService {
                             if (ForceStopActivity.instance != null) {
                                 try {
                                     PPPEAccessibilityService.applicationForceClosed = false;
+                                    PPPEAccessibilityService.forceStopPerformed = false;
                                     //ForceStopActivity.instance.appInfoClosed = false;
                                     ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
                                     waitForApplicationForceClosed();
