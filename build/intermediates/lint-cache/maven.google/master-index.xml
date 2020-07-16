@@ -132,6 +132,7 @@
   <com.google.android.play/>
   <com.google.android.support/>
   <com.google.android.things/>
+  <com.google.android.ump/>
   <com.google.android.wearable/>
   <com.google.androidbrowserhelper/>
   <com.google.ar/>
@@ -143,6 +144,7 @@
   <com.google.oboe/>
   <com.google.prefab/>
   <com.google.test.platform/>
+  <com.google.testing.platform/>
   <io.fabric.sdk.android/>
   <org.chromium.net/>
   <org.jetbrains.kotlin/>

@@ -198,7 +198,8 @@ public class ForceCloseIntentService extends IntentService {
                 break;
             //try { Thread.sleep(100); } catch (InterruptedException e) { }
             SystemClock.sleep(100);
-        } while (SystemClock.uptimeMillis() - start < 5000);
+        // TODO  *30 je len pre test, pre zistenie udajov na zvysenie podpory !!! Pre produkcnu verziu zapoznamkuj !!!
+        } while (SystemClock.uptimeMillis() - start < 5000 /* *30*/);
     }
 
     /*

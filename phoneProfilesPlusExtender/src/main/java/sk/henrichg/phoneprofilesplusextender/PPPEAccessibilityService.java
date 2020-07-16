@@ -174,6 +174,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 if (PPPEApplication.deviceIsRealme)
                                     list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/middle_button");
                                 else
+                                if (PPPEApplication.deviceIsHuawei)
+                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
+                                else
                                     list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button3");
                                 //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button3="+list.size());
                             }
@@ -235,7 +238,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
         }
 
+        /*
         if (PPPEApplication.logIntoFile) {
+            // TODO toto je len pre test verzie na zvysenie podpory zariadeni. Pre produkcnu verziu zapoznamkuj !!!
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.MANUFACTURER="+Build.MANUFACTURER);
@@ -262,6 +267,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 }
             } catch (Exception ignored) {}
         }
+        */
     }
 
     private ActivityInfo tryGetActivity(ComponentName componentName) {
