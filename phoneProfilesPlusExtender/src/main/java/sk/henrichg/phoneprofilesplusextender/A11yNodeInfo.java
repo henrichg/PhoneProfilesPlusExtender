@@ -9,19 +9,19 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.viewpager.widget.ViewPager;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import androidx.viewpager.widget.ViewPager;
-
 /**
  * Created by chrismcmeeking on 2/25/17.
  */
 
-@SuppressWarnings({"WeakerAccess", "ConstantConditions", "NullableProblems", "SuspiciousMethodCalls", "unused"})
+@SuppressWarnings("unused")
 public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNodeInfo> {
 
     public static A11yNodeInfo wrap(AccessibilityNodeInfo node) {
@@ -45,7 +45,6 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
         ACTIVE_CLASSES.add(EditText.class);
     }
 
-    @SuppressWarnings("unused")
     public enum Actions {
 
         ACCESSIBILITY_FOCUS(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS),
@@ -101,6 +100,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
         Rect rhsRect = rhs.getBoundsInScreen();
 
 
+        //noinspection ConstantConditions
         if (result != 0) return result;
 
         if (lhsRect.top < rhsRect.top) return -1;
@@ -115,6 +115,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
         if (lhsRect.bottom < rhsRect.bottom) return -1;
         else if (lhsRect.bottom > rhsRect.bottom) return 1;
 
+        //noinspection ConstantConditions
         if (result != 0) return result;
 
         return 0;
@@ -141,6 +142,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
         boolean onVisit(A11yNodeInfo nodeInfo);
     }
 
+    @SuppressWarnings("SuspiciousMethodCalls")
     public boolean isActiveElement() {
         for (Class<? extends View> clazz : ACTIVE_CLASSES) {
             if (this.getClassName().equalsIgnoreCase(clazz.getName())) return true;
@@ -270,6 +272,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
      * Implementing the iterable interface to more easily navigate the node info children.
      * @return An iterator over the children of this A11yNodeInfo.
      */
+    @SuppressWarnings("NullableProblems")
     @Override public Iterator<A11yNodeInfo> iterator() {
         return new Iterator<A11yNodeInfo>() {
             private int mNextIndex = 0;
@@ -364,6 +367,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
     }
 
 
+    @SuppressWarnings("NullableProblems")
     @Override public String toString() {
         if (mNodeInfo == null) throw new RuntimeException("This shouldn't be null");
         return mNodeInfo.toString();

@@ -332,14 +332,14 @@ public class PPPEApplication extends Application {
         } catch (Exception ignored) {}
     }
 
-    @SuppressWarnings({"SameParameterValue", "unused"})
+    @SuppressWarnings("unused")
     static void setCustomKey(String key, int value) {
         try {
             FirebaseCrashlytics.getInstance().setCustomKey(key, value);
         } catch (Exception ignored) {}
     }
 
-    @SuppressWarnings({"SameParameterValue", "unused"})
+    @SuppressWarnings("unused")
     static void setCustomKey(String key, String value) {
         try {
             FirebaseCrashlytics.getInstance().setCustomKey(key, value);
