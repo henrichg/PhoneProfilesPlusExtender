@@ -2,6 +2,7 @@ package sk.henrichg.phoneprofilesplusextender;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -11,7 +12,11 @@ import android.util.Log;
 
 import androidx.core.content.pm.PackageInfoCompat;
 
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import org.acra.ACRA;
+import org.acra.config.CoreConfigurationBuilder;
+import org.acra.config.MailSenderConfigurationBuilder;
+import org.acra.config.NotificationConfigurationBuilder;
+import org.acra.data.StringFormat;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,6 +25,8 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+//import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 //import com.llew.huawei.verifier.LoadedApkHuaWei;
 
@@ -86,6 +93,44 @@ public class PPPEApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
+                .setBuildConfigClass(BuildConfig.class)
+                .setReportFormat(StringFormat.KEY_VALUE_LIST);
+        /*builder.getPluginConfigurationBuilder(ToastConfigurationBuilder.class)
+                .setResText(R.string.acra_toast_text)
+                .setEnabled(true);*/
+        if (Build.VERSION.SDK_INT >= 24)
+            builder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class)
+                    .setResChannelName(R.string.extender_notification_channel_crash_report)
+                    .setResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT)
+                    .setResIcon(R.drawable.ic_exclamation_notify)
+                    .setResTitle(R.string.extender_acra_notification_title)
+                    .setResText(R.string.extender_acra_notification_text)
+                    .setResSendButtonText(R.string.extender_acra_notification_send_button)
+                    .setResDiscardButtonText(R.string.extender_acra_notification_discard_button)
+                    .setEnabled(true);
+        else
+            builder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class)
+                    .setResIcon(R.drawable.ic_exclamation_notify)
+                    .setResTitle(R.string.extender_acra_notification_title)
+                    .setResText(R.string.extender_acra_notification_text)
+                    .setResSendButtonText(R.string.extender_acra_notification_send_button)
+                    .setResDiscardButtonText(R.string.extender_acra_notification_discard_button)
+                    .setEnabled(true);
+        builder.getPluginConfigurationBuilder(MailSenderConfigurationBuilder.class)
+                .setMailTo("henrich.gron@gmail.com")
+                .setResSubject(R.string.extender_acra_email_subject_text)
+                .setResBody(R.string.extender_acra_email_body_text)
+                .setReportAsFile(true)
+                .setReportFileName("crash_report.txt")
+                .setEnabled(true);
+
+        ACRA.init(this, builder);
+
+        // don't schedule anything in crash reporter process
+        if (ACRA.isACRASenderServiceProcess())
+            return;
 
         instance = this;
 
@@ -321,35 +366,40 @@ public class PPPEApplication extends Application {
 
     static void recordException(Throwable ex) {
         try {
-            FirebaseCrashlytics.getInstance().recordException(ex);
+            //FirebaseCrashlytics.getInstance().recordException(ex);
+            ACRA.getErrorReporter().handleException(ex);
         } catch (Exception ignored) {}
     }
 
     @SuppressWarnings("unused")
     static void logToCrashlytics(String s) {
         try {
-            FirebaseCrashlytics.getInstance().log(s);
+            //FirebaseCrashlytics.getInstance().log(s);
+            ACRA.getErrorReporter().putCustomData("Log", s);
         } catch (Exception ignored) {}
     }
 
     @SuppressWarnings("unused")
     static void setCustomKey(String key, int value) {
         try {
-            FirebaseCrashlytics.getInstance().setCustomKey(key, value);
+            //FirebaseCrashlytics.getInstance().setCustomKey(key, value);
+            ACRA.getErrorReporter().putCustomData(key, String.valueOf(value));
         } catch (Exception ignored) {}
     }
 
     @SuppressWarnings("unused")
     static void setCustomKey(String key, String value) {
         try {
-            FirebaseCrashlytics.getInstance().setCustomKey(key, value);
+            //FirebaseCrashlytics.getInstance().setCustomKey(key, value);
+            ACRA.getErrorReporter().putCustomData(key, value);
         } catch (Exception ignored) {}
     }
 
     @SuppressWarnings("SameParameterValue")
     static void setCustomKey(String key, boolean value) {
         try {
-            FirebaseCrashlytics.getInstance().setCustomKey(key, value);
+            //FirebaseCrashlytics.getInstance().setCustomKey(key, value);
+            ACRA.getErrorReporter().putCustomData(key, String.valueOf(value));
         } catch (Exception ignored) {}
     }
 

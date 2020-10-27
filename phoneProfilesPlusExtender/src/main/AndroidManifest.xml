@@ -24,6 +24,18 @@
         android:name="android.hardware.telephony"
         android:required="false"/>
 
+    <!-- ACRA fix of MailSenderConfigurationBuilder for Android 11-->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="message/rfc822" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SEND_MULTIPLE" />
+            <data android:mimeType="message/rfc822" />
+        </intent>
+    </queries>
+
     <application
         android:name=".PPPEApplication"
         android:allowBackup="false"
@@ -34,9 +46,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <meta-data
-            android:name="firebase_crashlytics_collection_enabled"
-            android:value="true" />
+<!--        <meta-data-->
+<!--            android:name="firebase_crashlytics_collection_enabled"-->
+<!--            android:value="true" />-->
 
         <activity android:name=".MainActivity">
             <intent-filter>
