@@ -26,8 +26,7 @@ Required external libs
 
 - AndroidX library: appcompat, localbroadcastmanager
 - Google Material library
-- Firebase Crashlytics library
-
+- ACRA - https://github.com/ACRA/acra
 - Android-Accessibility-Service-Boilerplate (for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Service-Boilerplate
 - Android-Accessibility-Utilities(for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities
 
