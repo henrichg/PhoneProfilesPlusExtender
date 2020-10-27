@@ -72,4 +72,4 @@ dependencies {
     //implementation 'com.llew.huawei:verifier:1.1.2'
 }
 
-apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
+//apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin

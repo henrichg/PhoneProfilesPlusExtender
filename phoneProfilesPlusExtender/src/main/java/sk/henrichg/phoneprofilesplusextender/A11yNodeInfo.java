@@ -305,19 +305,16 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
 
         result.append("--------------- Accessibility Node Hierarchy ---------------\n");
 
-        visitNodes(new A11yNodeInfo.OnVisitListener() {
-            @Override
-            public boolean onVisit(A11yNodeInfo nodeInfo) {
+        visitNodes(nodeInfo -> {
 
-                for (int i = 0; i < nodeInfo.getDepthInTree(); i++) {
-                    result.append('-');
-                }
-
-                result.append(nodeInfo.toString());
-                result.append('\n');
-
-                return false;
+            for (int i = 0; i < nodeInfo.getDepthInTree(); i++) {
+                result.append('-');
             }
+
+            result.append(nodeInfo.toString());
+            result.append('\n');
+
+            return false;
         });
 
         result.append("--------------- Accessibility Node Hierarchy ---------------");
@@ -331,12 +328,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
      * @return The first node that matches.
      */
     public A11yNodeInfo getFirstNodeThatMatches(final A11yNodeInfoMatcher matcher) {
-        return visitNodes(new OnVisitListener() {
-            @Override
-            public boolean onVisit(A11yNodeInfo nodeInfo) {
-                return matcher.match(nodeInfo);
-            }
-        });
+        return visitNodes(matcher::match);
     }
 
     public boolean isClassType(Class<?> clazz) {

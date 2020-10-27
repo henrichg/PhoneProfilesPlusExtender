@@ -125,48 +125,42 @@ public class MainActivity extends AppCompatActivity {
             text.setText(sbt);
 
             Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
-            permissionsButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (Permissions.checkSMSMMSPermissions(activity)) {
-                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                        //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                        intent.setData(Uri.parse("package:"+getPackageName()));
-                        if (MainActivity.activityIntentExists(intent, activity)) {
-                            startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
-                        } else {
-                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
-                            dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
-                            //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
-                            dialogBuilder.setPositiveButton(android.R.string.ok, null);
-                            dialogBuilder.show();
-                        }
+            permissionsButton.setOnClickListener(view -> {
+                if (Permissions.checkSMSMMSPermissions(activity)) {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    //intent.addCategory(Intent.CATEGORY_DEFAULT);
+                    intent.setData(Uri.parse("package:"+getPackageName()));
+                    if (MainActivity.activityIntentExists(intent, activity)) {
+                        startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
+                    } else {
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+                        dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
+                        //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
+                        dialogBuilder.setPositiveButton(android.R.string.ok, null);
+                        dialogBuilder.show();
                     }
-                    else
-                        Permissions.grantSMSMMSPermissions(activity);
                 }
+                else
+                    Permissions.grantSMSMMSPermissions(activity);
             });
             permissionsButton = findViewById(R.id.activity_main_call_permissions_button);
-            permissionsButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (Permissions.checkCallPermissions(activity)) {
-                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                        //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                        intent.setData(Uri.parse("package:"+getPackageName()));
-                        if (MainActivity.activityIntentExists(intent, activity)) {
-                            startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
-                        } else {
-                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
-                            dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
-                            //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
-                            dialogBuilder.setPositiveButton(android.R.string.ok, null);
-                            dialogBuilder.show();
-                        }
+            permissionsButton.setOnClickListener(view -> {
+                if (Permissions.checkCallPermissions(activity)) {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    //intent.addCategory(Intent.CATEGORY_DEFAULT);
+                    intent.setData(Uri.parse("package:"+getPackageName()));
+                    if (MainActivity.activityIntentExists(intent, activity)) {
+                        startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
+                    } else {
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+                        dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
+                        //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
+                        dialogBuilder.setPositiveButton(android.R.string.ok, null);
+                        dialogBuilder.show();
                     }
-                    else
-                        Permissions.grantCallPermissions(activity);
                 }
+                else
+                    Permissions.grantCallPermissions(activity);
             });
         }
         else {
@@ -279,19 +273,16 @@ public class MainActivity extends AppCompatActivity {
 
         final Activity activity = this;
         Button accessibilityButton = findViewById(R.id.activity_main_accessibility_service_button);
-        accessibilityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (MainActivity.activityActionExists(Settings.ACTION_ACCESSIBILITY_SETTINGS, activity)) {
-                    Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-                    startActivityForResult(intent, RESULT_ACCESSIBILITY_SETTINGS);
-                } else {
-                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
-                    dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
-                    //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
-                    dialogBuilder.setPositiveButton(android.R.string.ok, null);
-                    dialogBuilder.show();
-                }
+        accessibilityButton.setOnClickListener(view -> {
+            if (MainActivity.activityActionExists(Settings.ACTION_ACCESSIBILITY_SETTINGS, activity)) {
+                Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                startActivityForResult(intent, RESULT_ACCESSIBILITY_SETTINGS);
+            } else {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+                dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
+                //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
+                dialogBuilder.setPositiveButton(android.R.string.ok, null);
+                dialogBuilder.show();
             }
         });
     }
