@@ -24,4 +24,11 @@
     <string name="extender_accessibility_service_profile_lock_device">• Služba Dostupnost pro parametr profilu \"Zamknutí zařízení\":</string>
     <string name="extender_application_releases">Vydání:</string>
     <string name="extender_web_browser_chooser">Zobrazit webový odkaz pomocí</string>
+    <string name="extender_acra_email_subject_text">PhoneProfilesPlus - Zpráva o selhání</string>
+    <string name="extender_acra_email_body_text">PhoneProfilesPlus selhal. Připojena je zpráva o selhání.</string>
+    <string name="extender_acra_notification_title">Je mi líto, PhoneProfilesPlus selhal</string>
+    <string name="extender_acra_notification_text">Kliknutím na tlačítko \"Odeslat\", odešlete autorovi zprávu o selhání. Děkuji velmi pěkně.</string>
+    <string name="extender_acra_notification_send_button">Odeslat</string>
+    <string name="extender_acra_notification_discard_button">Zahodit</string>
+    <string name="extender_notification_channel_crash_report">Zpráva o selhání</string>
 </resources>
