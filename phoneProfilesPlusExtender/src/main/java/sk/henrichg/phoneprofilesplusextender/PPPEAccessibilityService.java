@@ -215,7 +215,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             ) {
                             //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Alert opened");
                             //forceCloseButtonClicked = false;
-                            list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
+                            if ((PPPEApplication.deviceIsSamsung) && (Build.VERSION.SDK_INT >= 29))
+                                list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button1");
+                            else
+                                list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
                             //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list.size()="+list.size());
                             for (final AccessibilityNodeInfo node : list) {
                                 node.performAction(AccessibilityNodeInfo.ACTION_CLICK);

@@ -48,7 +48,7 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = ""
-                                                //"PPPEAccessibilityService"
+                                                //+"PPPEAccessibilityService"
                                                 //+"SMSBroadcastReceiver"
                                                 //+ "|PhoneCallReceiver"
                                                 //+ "|PhoneCallBroadcastReceiver"
@@ -59,6 +59,7 @@ public class PPPEApplication extends Application {
     static final boolean deviceIsOppo = isOppo();
     static final boolean deviceIsRealme = isRealme();
     static final boolean deviceIsHuawei = isHuawei();
+    static final boolean deviceIsSamsung = isSamsung();
 
     // for new log.txt and crash.txt is in /Android/data/sk.henrichg.phoneprofilesplusextender/files
     //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
@@ -225,6 +226,12 @@ public class PPPEApplication extends Application {
         return Build.BRAND.equalsIgnoreCase("huawei") ||
                 Build.MANUFACTURER.equalsIgnoreCase("huawei") ||
                 Build.FINGERPRINT.toLowerCase().contains("huawei");
+    }
+
+    private static boolean isSamsung() {
+        return Build.BRAND.equalsIgnoreCase("samsung") ||
+                Build.MANUFACTURER.equalsIgnoreCase("samsung") ||
+                Build.FINGERPRINT.toLowerCase().contains("samsung");
     }
 
     //--------------------------------------------------------------
