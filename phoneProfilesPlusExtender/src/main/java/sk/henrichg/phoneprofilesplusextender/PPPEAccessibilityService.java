@@ -243,7 +243,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         /*
         if (PPPEApplication.logIntoFile) {
-            // TODO toto je len pre test verzie na zvysenie podpory zariadeni. Pre produkcnu verziu zapoznamkuj !!!
+            // TODO  this is only for testing, for increase support of devices !!! Comment for production version !!!
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.MANUFACTURER="+Build.MANUFACTURER);

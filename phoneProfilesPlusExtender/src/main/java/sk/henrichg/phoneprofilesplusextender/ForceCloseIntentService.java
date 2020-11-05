@@ -198,7 +198,7 @@ public class ForceCloseIntentService extends IntentService {
                 break;
             //try { Thread.sleep(100); } catch (InterruptedException e) { }
             SystemClock.sleep(100);
-        // TODO  *30 je len pre test, pre zistenie udajov na zvysenie podpory !!! Pre produkcnu verziu zapoznamkuj !!!
+        // TODO  30 seconds is only for testing, for get data to increase PPPE support !!! Comment for production version !!!
         } while (SystemClock.uptimeMillis() - start < 5000 /* *30*/);
     }
 
