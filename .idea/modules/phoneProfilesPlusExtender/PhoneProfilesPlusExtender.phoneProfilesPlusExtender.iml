@@ -38,7 +38,7 @@
       <excludeFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: ch.acra:acra-javacore:5.7.0" level="project" />
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0" level="project" />

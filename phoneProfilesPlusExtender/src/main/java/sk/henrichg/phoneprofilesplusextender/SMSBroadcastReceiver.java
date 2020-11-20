@@ -25,6 +25,9 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         //PPPEApplication.logE("##### SMSBroadcastReceiver.onReceive", "xxx");
 
+        //if (intent != null)
+        //    PPPEApplication.logE("SMSBroadcastReceiver.onReceive","intent.getAction()="+intent.getAction());
+
         boolean smsMmsReceived = false;
 
         String origin = "";

@@ -2,14 +2,18 @@ apply plugin: 'com.android.application'
 //apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
     buildToolsVersion '30.0.2'
 
     defaultConfig {
         applicationId "sk.henrichg.phoneprofilesplusextender"
         minSdkVersion 21
+
         //noinspection OldTargetApi
-        targetSdkVersion 28
+        targetSdkVersion 27
+        // 27 is required for:
+        // - android.permission.PROCESS_OUTGOING_CALLS
+
         versionCode 591
         versionName "5.1.4.1b"
 

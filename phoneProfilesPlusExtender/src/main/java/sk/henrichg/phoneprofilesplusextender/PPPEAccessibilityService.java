@@ -87,12 +87,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             ACCESSIBILITY_SERVICE_PERMISSION, null);
 
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+            //PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "sms receiver");
             smsBroadcastReceiver = new SMSBroadcastReceiver();
             IntentFilter intentFilter21 = new IntentFilter();
             intentFilter21.addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
             intentFilter21.setPriority(Integer.MAX_VALUE);
             getBaseContext().registerReceiver(smsBroadcastReceiver, intentFilter21);
 
+            //PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "mms receiver");
             mmsBroadcastReceiver = new SMSBroadcastReceiver();
             IntentFilter intentFilter22;
             intentFilter22 = IntentFilter.create(Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION, "application/vnd.wap.mms-message");
