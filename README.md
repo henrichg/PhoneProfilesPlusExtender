@@ -13,7 +13,7 @@ Android application - Extender for PhoneProfiles and PhoneProfilesPlus
 - Accessibility service for event parameters "Orientation sensor"
 - Accessibility service for event parameters "SMS/MMS sensor"
 - Accessibility service for event parameters "Call sensor"
-
+x
 
 Supported Android SDK
 ----------------------
