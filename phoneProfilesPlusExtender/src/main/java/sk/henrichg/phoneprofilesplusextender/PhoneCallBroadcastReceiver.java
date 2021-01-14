@@ -94,8 +94,11 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
     private static void callStarted(boolean incoming, String phoneNumber, Date eventTime, Context context)
     {
-        //PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "incoming="+incoming);
-        //PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "phoneNumber="+phoneNumber);
+//        PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "incoming="+incoming);
+//        PPPEApplication.logE("PhoneCallBroadcastReceiver.callStarted", "phoneNumber="+phoneNumber);
+
+//        AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+//        audioManager.setSpeakerphoneOn(true);
 
         if (incoming) {
             doCallEvent(/*SERVICE_PHONE_EVENT_START, */CALL_EVENT_INCOMING_CALL_RINGING, phoneNumber, eventTime, context);
@@ -104,6 +107,12 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
     private static void callAnswered(boolean incoming, String phoneNumber, Date eventTime, Context context)
     {
+//        PPPEApplication.logE("PhoneCallBroadcastReceiver.callAnswered", "incoming="+incoming);
+//        PPPEApplication.logE("PhoneCallBroadcastReceiver.callAnswered", "phoneNumber="+phoneNumber);
+
+//        AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+//        audioManager.setSpeakerphoneOn(true);
+
         if (incoming)
             doCallEvent(/*SERVICE_PHONE_EVENT_ANSWER, */CALL_EVENT_INCOMING_CALL_ANSWERED, phoneNumber, eventTime, context);
         else
@@ -112,9 +121,9 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
 
     private static void callEnded(boolean incoming, boolean missed, String phoneNumber, Date eventTime, Context context)
     {
-        //PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "incoming="+incoming);
-        //PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "missed="+missed);
-        //PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "phoneNumber="+phoneNumber);
+//        PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "incoming="+incoming);
+//        PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "missed="+missed);
+//        PPPEApplication.logE("PhoneCallBroadcastReceiver.callEnded", "phoneNumber="+phoneNumber);
 
         if (incoming) {
             if (missed)
@@ -124,6 +133,9 @@ public class PhoneCallBroadcastReceiver extends PhoneCallReceiver {
         }
         else
             doCallEvent(/*SERVICE_PHONE_EVENT_END, */CALL_EVENT_OUTGOING_CALL_ENDED, phoneNumber, eventTime, context);
+
+//        AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+//        audioManager.setSpeakerphoneOn(false);
 
     }
 
