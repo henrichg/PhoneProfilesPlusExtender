@@ -148,7 +148,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
             if (this.getClassName().equalsIgnoreCase(clazz.getName())) return true;
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (getActionList().contains(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK)) return true;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (getActionList().contains(AccessibilityNodeInfo.AccessibilityAction.ACTION_CONTEXT_CLICK)) return true;
@@ -156,7 +156,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
 
             if (getActionList().contains(AccessibilityNodeInfo.AccessibilityAction.ACTION_LONG_CLICK)) return true;
             if (getActionList().contains(AccessibilityNodeInfo.AccessibilityAction.ACTION_SELECT)) return true;
-        }
+        //}
 
         final int actions = getActions();
 

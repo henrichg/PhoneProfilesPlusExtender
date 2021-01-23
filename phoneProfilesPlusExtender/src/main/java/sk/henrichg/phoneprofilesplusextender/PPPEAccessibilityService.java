@@ -20,6 +20,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.List;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class PPPEAccessibilityService extends android.accessibilityservice.AccessibilityService {
 
     static PPPEAccessibilityService instance = null;
@@ -167,11 +168,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                         if (event.getClassName().equals("com.android.settings.applications.InstalledAppDetailsTop")) {
                             //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "App info opened");
                             //forceCloseButtonClicked = false;
-                            if (Build.VERSION.SDK_INT <= 22) {
-                                list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
-                                //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/left_button list="+list.size());
-                            }
-                            else
+                            //if (Build.VERSION.SDK_INT <= 22) {
+                            //    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
+                            //    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/left_button list="+list.size());
+                            //}
+                            //else
                             if (Build.VERSION.SDK_INT >= 29) {
                                 if (PPPEApplication.deviceIsRealme)
                                     list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/middle_button");

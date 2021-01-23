@@ -3,7 +3,6 @@ package sk.henrichg.phoneprofilesplusextender;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
@@ -51,21 +50,21 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
             if (extras != null) {
                 Object[] pdus = (Object[]) extras.get("pdus");
                 if (pdus != null) {
-                    if (Build.VERSION.SDK_INT >= 23) {
+//                    if (Build.VERSION.SDK_INT >= 23) {
                         String format = (String) extras.get("format");
                         for (Object pdu : pdus) {
                             SmsMessage msg = SmsMessage.createFromPdu((byte[]) pdu, format);
                             origin = msg.getOriginatingAddress();
                             //body = msg.getMessageBody();
                         }
-                    }
-                    else {
-                        for (Object pdu : pdus) {
-                            SmsMessage msg = SmsMessage.createFromPdu((byte[]) pdu);
-                            origin = msg.getOriginatingAddress();
-                            //body = msg.getMessageBody();
-                        }
-                    }
+//                    }
+//                    else {
+//                        for (Object pdu : pdus) {
+//                            SmsMessage msg = SmsMessage.createFromPdu((byte[]) pdu);
+//                            origin = msg.getOriginatingAddress();
+//                            //body = msg.getMessageBody();
+//                        }
+//                    }
                 }
             }
         }
