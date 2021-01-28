@@ -110,6 +110,7 @@ public class PPPEApplication extends Application {
                     .setResText(R.string.extender_acra_notification_text)
                     .setResSendButtonText(R.string.extender_acra_notification_send_button)
                     .setResDiscardButtonText(R.string.extender_acra_notification_discard_button)
+                    .setSendOnClick(true)
                     .setEnabled(true);
         else
             builder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class)
@@ -118,6 +119,7 @@ public class PPPEApplication extends Application {
                     .setResText(R.string.extender_acra_notification_text)
                     .setResSendButtonText(R.string.extender_acra_notification_send_button)
                     .setResDiscardButtonText(R.string.extender_acra_notification_discard_button)
+                    .setSendOnClick(true)
                     .setEnabled(true);
         builder.getPluginConfigurationBuilder(MailSenderConfigurationBuilder.class)
                 .setMailTo("henrich.gron@gmail.com")
