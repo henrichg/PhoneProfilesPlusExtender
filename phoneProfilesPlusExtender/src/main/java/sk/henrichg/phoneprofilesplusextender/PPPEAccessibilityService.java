@@ -162,7 +162,12 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 if (forceStopStarted) {
                     //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "in forceStopStarted");
                     // force stop is started in PPP
-                    AccessibilityNodeInfo nodeInfo = event.getSource();
+                    AccessibilityNodeInfo nodeInfo;
+                    try {
+                        nodeInfo = event.getSource();
+                    } catch (Exception e) {
+                        nodeInfo = null;
+                    }
                     if (nodeInfo != null) {
                         List<AccessibilityNodeInfo> list;
                         if (event.getClassName().equals("com.android.settings.applications.InstalledAppDetailsTop")) {
