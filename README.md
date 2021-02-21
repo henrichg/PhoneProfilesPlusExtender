@@ -14,10 +14,11 @@ Android application - Extender for PhoneProfiles and PhoneProfilesPlus
 - Accessibility service for event parameters "SMS/MMS sensor"
 - Accessibility service for event parameters "Call sensor"
 
-Supported Android SDK
+Supported Android versions
 ----------------------
 
-- minSdkVersion = 21
+- From Android 6.0
+- minSdkVersion = 23
 - targetSdkVersion = 27
 
 Required external libs
