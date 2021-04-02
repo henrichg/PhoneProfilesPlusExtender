@@ -3,6 +3,7 @@ package sk.henrichg.phoneprofilesplusextender;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.telephony.TelephonyManager;
 
 import java.util.Date;
@@ -87,6 +88,22 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
             switch (state) {
                 case TelephonyManager.CALL_STATE_RINGING:
                     //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_RINGING");
+
+                    if (intent.hasExtra("subscription")) {
+                        int whichSIM = intent.getExtras().getInt("subscription");
+                        PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "whichSIM=" + whichSIM);
+                    }
+                    else {
+                        PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "subscription extra not exists");
+                        Bundle extras = intent.getExtras();
+                        if (extras != null) {
+                            for (String key : extras.keySet()) {
+                                PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector",
+                                        key + " : " + (extras.get(key) != null ? extras.get(key) : "NULL"));
+                            }
+                        }
+                    }
+
                     String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
                     //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "incomingNumber="+incomingNumber);
                     if ((savedNumber == null) && (incomingNumber == null)) {

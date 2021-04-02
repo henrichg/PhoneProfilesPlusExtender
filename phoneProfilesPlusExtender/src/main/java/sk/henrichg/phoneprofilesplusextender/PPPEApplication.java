@@ -50,7 +50,7 @@ public class PPPEApplication extends Application {
     private static final String logFilterTags = ""
                                                 //+"|PPPEAccessibilityService"
                                                 //+"|SMSBroadcastReceiver"
-                                                //+ "|PhoneCallReceiver"
+                                                + "|PhoneCallReceiver"
                                                 //+ "|PhoneCallBroadcastReceiver"
                                                 //+ "|MainActivity"
                                                 //+ "|FromPhoneProfilesPlusBroadcastReceiver"
