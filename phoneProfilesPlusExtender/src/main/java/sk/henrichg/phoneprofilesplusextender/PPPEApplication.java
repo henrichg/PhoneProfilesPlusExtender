@@ -436,10 +436,7 @@ public class PPPEApplication extends Application {
     }
 
     static boolean isScreenOn(PowerManager powerManager) {
-        //if (Build.VERSION.SDK_INT >= 20)
         return powerManager.isInteractive();
-        //else
-        //    return powerManager.isScreenOn();
     }
 
 }

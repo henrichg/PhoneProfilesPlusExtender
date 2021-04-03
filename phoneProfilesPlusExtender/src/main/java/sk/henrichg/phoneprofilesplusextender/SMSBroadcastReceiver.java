@@ -34,10 +34,8 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
 
         //String smsAction = "android.provider.Telephony.SMS_RECEIVED";
         //String mmsAction = "android.provider.Telephony.WAP_PUSH_RECEIVED";
-        //if (android.os.Build.VERSION.SDK_INT >= 19) {
-            String smsAction = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
-            String mmsAction = Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION;
-        //}
+        String smsAction = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
+        String mmsAction = Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION;
 
         if ((intent != null) && (intent.getAction() != null) && intent.getAction().equals(smsAction))
         {
@@ -50,21 +48,12 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
             if (extras != null) {
                 Object[] pdus = (Object[]) extras.get("pdus");
                 if (pdus != null) {
-//                    if (Build.VERSION.SDK_INT >= 23) {
-                        String format = (String) extras.get("format");
-                        for (Object pdu : pdus) {
-                            SmsMessage msg = SmsMessage.createFromPdu((byte[]) pdu, format);
-                            origin = msg.getOriginatingAddress();
-                            //body = msg.getMessageBody();
-                        }
-//                    }
-//                    else {
-//                        for (Object pdu : pdus) {
-//                            SmsMessage msg = SmsMessage.createFromPdu((byte[]) pdu);
-//                            origin = msg.getOriginatingAddress();
-//                            //body = msg.getMessageBody();
-//                        }
-//                    }
+                    String format = (String) extras.get("format");
+                    for (Object pdu : pdus) {
+                        SmsMessage msg = SmsMessage.createFromPdu((byte[]) pdu, format);
+                        origin = msg.getOriginatingAddress();
+                        //body = msg.getMessageBody();
+                    }
                 }
             }
         }

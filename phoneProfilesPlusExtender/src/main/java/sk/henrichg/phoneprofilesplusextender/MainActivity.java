@@ -99,8 +99,9 @@ public class MainActivity extends AppCompatActivity {
 
         displayAccessibilityServiceStatus();
 
-        if (Build.VERSION.SDK_INT >= 23) {
-            final Activity activity = this;
+        final Activity activity = this;
+
+        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             str1 = getString(R.string.extender_permissions_event_sensor_sms_mms);
             if (Permissions.checkSMSMMSPermissions(activity))
                 str2 = str1 + " " + getString(R.string.extender_permissions_granted);
@@ -110,7 +111,13 @@ public class MainActivity extends AppCompatActivity {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
             sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
             text.setText(sbt);
+        }
+        else {
+            text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
+            text.setVisibility(View.GONE);
+        }
 
+        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             if (Build.VERSION.SDK_INT < 28)
                 str1 = getString(R.string.extender_permissions_event_sensor_call);
             else
@@ -123,13 +130,19 @@ public class MainActivity extends AppCompatActivity {
             text = findViewById(R.id.activity_main_permissions_event_sensor_call);
             sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
             text.setText(sbt);
+        }
+        else {
+            text = findViewById(R.id.activity_main_permissions_event_sensor_call);
+            text.setVisibility(View.GONE);
+        }
 
-            Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
+        Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
+        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             permissionsButton.setOnClickListener(view -> {
                 if (Permissions.checkSMSMMSPermissions(activity)) {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                    intent.setData(Uri.parse("package:"+getPackageName()));
+                    intent.setData(Uri.parse("package:" + getPackageName()));
                     if (MainActivity.activityIntentExists(intent, activity)) {
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                     } else {
@@ -139,16 +152,20 @@ public class MainActivity extends AppCompatActivity {
                         dialogBuilder.setPositiveButton(android.R.string.ok, null);
                         dialogBuilder.show();
                     }
-                }
-                else
+                } else
                     Permissions.grantSMSMMSPermissions(activity);
             });
-            permissionsButton = findViewById(R.id.activity_main_call_permissions_button);
+        }
+        else
+            permissionsButton.setVisibility(View.GONE);
+
+        permissionsButton = findViewById(R.id.activity_main_call_permissions_button);
+        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             permissionsButton.setOnClickListener(view -> {
                 if (Permissions.checkCallPermissions(activity)) {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                    intent.setData(Uri.parse("package:"+getPackageName()));
+                    intent.setData(Uri.parse("package:" + getPackageName()));
                     if (MainActivity.activityIntentExists(intent, activity)) {
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                     } else {
@@ -158,21 +175,12 @@ public class MainActivity extends AppCompatActivity {
                         dialogBuilder.setPositiveButton(android.R.string.ok, null);
                         dialogBuilder.show();
                     }
-                }
-                else
+                } else
                     Permissions.grantCallPermissions(activity);
             });
         }
-        else {
-            text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
-            text.setVisibility(View.GONE);
-            text = findViewById(R.id.activity_main_permissions_event_sensor_call);
-            text.setVisibility(View.GONE);
-            Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
+        else
             permissionsButton.setVisibility(View.GONE);
-            permissionsButton = findViewById(R.id.activity_main_call_permissions_button);
-            permissionsButton.setVisibility(View.GONE);
-        }
 
         LocalBroadcastManager.getInstance(this).registerReceiver(refreshGUIBroadcastReceiver,
                 new IntentFilter(PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver"));
