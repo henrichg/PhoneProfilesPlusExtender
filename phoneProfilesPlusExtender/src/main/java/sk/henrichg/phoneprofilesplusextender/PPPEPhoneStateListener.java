@@ -10,9 +10,9 @@ import java.util.Date;
 
 public class PPPEPhoneStateListener extends PhoneStateListener {
 
-    SubscriptionInfo subscriptionInfo;
+    final SubscriptionInfo subscriptionInfo;
 
-    Context savedContext;
+    final Context savedContext;
 
     int lastState = TelephonyManager.CALL_STATE_IDLE;
     Date eventTime;

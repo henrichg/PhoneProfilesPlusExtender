@@ -116,7 +116,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             telephonyManagerDefault = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
             if (telephonyManagerDefault != null) {
                 int simCount = telephonyManagerDefault.getSimCount();
-                if ((Build.VERSION.SDK_INT >= 24) && (simCount > 1)) {
+                if (simCount > 1) {
                     SubscriptionManager mSubscriptionManager = (SubscriptionManager) getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
                     //SubscriptionManager.from(appContext);
                     if (mSubscriptionManager != null) {
@@ -141,8 +141,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                         if (telephonyManagerSIM1 == null) {
                                             PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "subscriptionId=" + subscriptionId);
                                             //noinspection ConstantConditions
-                                            if (Build.VERSION.SDK_INT >= 24)
-                                                telephonyManagerSIM1 = telephonyManagerDefault.createForSubscriptionId(subscriptionId);
+                                            telephonyManagerSIM1 = telephonyManagerDefault.createForSubscriptionId(subscriptionId);
                                             phoneStateListenerSIM1 = new PPPEPhoneStateListener(subscriptionInfo, getBaseContext());
                                             telephonyManagerSIM1.listen(phoneStateListenerSIM1, PhoneStateListener.LISTEN_CALL_STATE);
                                         }
@@ -151,8 +150,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                         if (telephonyManagerSIM2 == null) {
                                             PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "subscriptionId=" + subscriptionId);
                                             //noinspection ConstantConditions
-                                            if (Build.VERSION.SDK_INT >= 24)
-                                                telephonyManagerSIM2 = telephonyManagerDefault.createForSubscriptionId(subscriptionId);
+                                            telephonyManagerSIM2 = telephonyManagerDefault.createForSubscriptionId(subscriptionId);
                                             phoneStateListenerSIM2 = new PPPEPhoneStateListener(subscriptionInfo, getBaseContext());
                                             telephonyManagerSIM2.listen(phoneStateListenerSIM2, PhoneStateListener.LISTEN_CALL_STATE);
                                         }
@@ -402,15 +400,13 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
         if (phoneStateListenerDefaul != null) {
             try {
-                if (Build.VERSION.SDK_INT >= 24) {
-                    if (phoneStateListenerSIM1 != null) {
-                        telephonyManagerDefault.listen(phoneStateListenerSIM1, PhoneStateListener.LISTEN_NONE);
-                        phoneStateListenerSIM1 = null;
-                    }
-                    if (phoneStateListenerSIM2 != null) {
-                        telephonyManagerDefault.listen(phoneStateListenerSIM2, PhoneStateListener.LISTEN_NONE);
-                        phoneStateListenerSIM2 = null;
-                    }
+                if (phoneStateListenerSIM1 != null) {
+                    telephonyManagerDefault.listen(phoneStateListenerSIM1, PhoneStateListener.LISTEN_NONE);
+                    phoneStateListenerSIM1 = null;
+                }
+                if (phoneStateListenerSIM2 != null) {
+                    telephonyManagerDefault.listen(phoneStateListenerSIM2, PhoneStateListener.LISTEN_NONE);
+                    phoneStateListenerSIM2 = null;
                 }
                 if (phoneStateListenerDefaul != null) {
                     telephonyManagerDefault.listen(phoneStateListenerDefaul, PhoneStateListener.LISTEN_NONE);

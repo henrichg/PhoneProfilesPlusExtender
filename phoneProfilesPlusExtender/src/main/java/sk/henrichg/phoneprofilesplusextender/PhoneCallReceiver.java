@@ -3,8 +3,6 @@ package sk.henrichg.phoneprofilesplusextender;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.telephony.TelephonyManager;
 
 import java.util.Date;
 
@@ -15,11 +13,11 @@ public class PhoneCallReceiver extends BroadcastReceiver {
     //We need a static variable to remember data between instantiations
 //    private static PhoneCallStartEndDetector listener;
     //String outgoingSavedNumber;
-    Context savedContext;
+//    Context savedContext;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        savedContext = context.getApplicationContext();
+//        savedContext = context.getApplicationContext();
         
 //        if (telephony == null)
 //            telephony = (TelephonyManager)savedContext.getSystemService(Context.TELEPHONY_SERVICE);
