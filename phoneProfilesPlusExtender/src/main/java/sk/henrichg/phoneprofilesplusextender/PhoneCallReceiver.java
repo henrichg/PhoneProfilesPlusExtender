@@ -8,34 +8,37 @@ import android.telephony.TelephonyManager;
 
 import java.util.Date;
 
-public abstract class PhoneCallReceiver extends BroadcastReceiver {
+public class PhoneCallReceiver extends BroadcastReceiver {
 
-    private static TelephonyManager telephony;
+//    private static TelephonyManager telephony;
     //The receiver will be recreated whenever android feels like it.
     //We need a static variable to remember data between instantiations
-    private static PhoneCallStartEndDetector listener;
+//    private static PhoneCallStartEndDetector listener;
     //String outgoingSavedNumber;
     Context savedContext;
-
 
     @Override
     public void onReceive(Context context, Intent intent) {
         savedContext = context.getApplicationContext();
         
-        if (telephony == null)
-            telephony = (TelephonyManager)savedContext.getSystemService(Context.TELEPHONY_SERVICE);
+//        if (telephony == null)
+//            telephony = (TelephonyManager)savedContext.getSystemService(Context.TELEPHONY_SERVICE);
 
-        if(listener == null){
-            listener = new PhoneCallStartEndDetector();
-        }
+//        if(listener == null){
+//            listener = new PhoneCallStartEndDetector();
+//        }
 
         //We listen to two intents.  The new outgoing call only tells us of an outgoing call.  We use it to get the number.
         if ((intent != null) && (intent.getAction() != null) && intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
-            if (intent.getExtras() != null)
+            /*if (intent.getExtras() != null)
                 listener.setOutgoingNumber(intent.getExtras().getString(Intent.EXTRA_PHONE_NUMBER));
             else
-                listener.setOutgoingNumber("");
-            return;
+                listener.setOutgoingNumber("");*/
+            if (intent.getExtras() != null)
+                setOutgoingNumber(intent.getExtras().getString(Intent.EXTRA_PHONE_NUMBER));
+            else
+                setOutgoingNumber("");
+//            return;
         }
         /*else {
             if (intent != null) {
@@ -44,19 +47,32 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
             }
         }*/
 
-        listener.onCallStateChanged(intent);
+//        listener.onCallStateChanged(intent);
     }
-        
+
+    void setOutgoingNumber(String number){
+//        PPPEApplication.logE("PhoneCallReceiver.setOutgoingNumber", "outgoingNumber="+number);
+        try {
+            if (PPPEAccessibilityService.phoneStateListenerSIM1 != null)
+                PPPEAccessibilityService.phoneStateListenerSIM1.onOutgoingCallStarted(number, new Date());
+            if (PPPEAccessibilityService.phoneStateListenerSIM2 != null)
+                PPPEAccessibilityService.phoneStateListenerSIM2.onOutgoingCallStarted(number, new Date());
+            if (PPPEAccessibilityService.phoneStateListenerDefaul != null)
+                PPPEAccessibilityService.phoneStateListenerDefaul.onOutgoingCallStarted(number, new Date());
+        } catch (Exception ignored) {}
+    }
+
 
     //Derived classes should override these to respond to specific events of interest
-    protected abstract void onIncomingCallStarted(String number, Date eventTime);
-    protected abstract void onOutgoingCallStarted(String number, Date eventTime);
-    protected abstract void onOutgoingCallAnswered(String number, Date eventTime);
-    protected abstract void onIncomingCallAnswered(String number, Date eventTime);
-    protected abstract void onIncomingCallEnded(String number, Date eventTime);
-    protected abstract void onOutgoingCallEnded(String number, Date eventTime);
-    protected abstract void onMissedCall(String number, Date eventTime);
+    //protected abstract void onIncomingCallStarted(String number, Date eventTime);
+    //protected abstract void onOutgoingCallStarted(String number, Date eventTime);
+    //protected abstract void onOutgoingCallAnswered(String number, Date eventTime);
+    //protected abstract void onIncomingCallAnswered(String number, Date eventTime);
+    //protected abstract void onIncomingCallEnded(String number, Date eventTime);
+    //protected abstract void onOutgoingCallEnded(String number, Date eventTime);
+    //protected abstract void onMissedCall(String number, Date eventTime);
 
+/*
     //Deals with actual events
     private class PhoneCallStartEndDetector {
         int lastState = TelephonyManager.CALL_STATE_IDLE;
@@ -87,23 +103,7 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
             }
             switch (state) {
                 case TelephonyManager.CALL_STATE_RINGING:
-                    //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_RINGING");
-
-                    if (intent.hasExtra("subscription")) {
-                        int whichSIM = intent.getExtras().getInt("subscription");
-                        PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "whichSIM=" + whichSIM);
-                    }
-                    else {
-                        PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "subscription extra not exists");
-                        Bundle extras = intent.getExtras();
-                        if (extras != null) {
-                            for (String key : extras.keySet()) {
-                                PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector",
-                                        key + " : " + (extras.get(key) != null ? extras.get(key) : "NULL"));
-                            }
-                        }
-                    }
-
+                    PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_RINGING");
                     String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
                     //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "incomingNumber="+incomingNumber);
                     if ((savedNumber == null) && (incomingNumber == null)) {
@@ -117,11 +117,11 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
                         isIncoming = true;
                         eventTime = new Date();
                         savedNumber = incomingNumber;
-                        onIncomingCallStarted(incomingNumber, eventTime);
+                        //onIncomingCallStarted(incomingNumber, eventTime);
                     }
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
-                    //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_OFFHOOK");
+                    PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_OFFHOOK");
                     //Transition of ringing->off hook are pickups of incoming calls.  Nothing down on them
                     if(lastState != TelephonyManager.CALL_STATE_RINGING){
                         inCall = true;
@@ -134,11 +134,11 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
                         inCall = true;
                         isIncoming = true;
                         eventTime = new Date();
-                        onIncomingCallAnswered(savedNumber, eventTime);
+                        //onIncomingCallAnswered(savedNumber, eventTime);
                     }
                     break;
                 case TelephonyManager.CALL_STATE_IDLE:
-                    //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_IDLE");
+                    PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "state=CALL_STATE_IDLE");
                     //Went to idle-  this is the end of a call.  What type depends on previous state(s)
                     if(!inCall){
                         //Ring but no pickup-  a miss
@@ -147,12 +147,12 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
                     }
                     else 
                     {
-                        if(isIncoming){
-                            onIncomingCallEnded(savedNumber, eventTime);
-                        }
-                        else{
+                        //if(isIncoming){
+                        //    onIncomingCallEnded(savedNumber, eventTime);
+                        //}
+                        //else {
                             onOutgoingCallEnded(savedNumber, eventTime);
-                        }
+                        //}
                         inCall = false;
                     }
                     savedNumber = null;
@@ -162,5 +162,5 @@ public abstract class PhoneCallReceiver extends BroadcastReceiver {
         }
 
     }
-
+*/
 }
