@@ -48,14 +48,15 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     private SMSBroadcastReceiver smsBroadcastReceiver = null;
     private SMSBroadcastReceiver mmsBroadcastReceiver = null;
     private PhoneCallReceiver phoneCallReceiver = null;
+    private SimStateChangedBroadcastReceiver simStateChangedBroadcastReceiver = null;
 
     static PPPEPhoneStateListener phoneStateListenerSIM1 = null;
     static PPPEPhoneStateListener phoneStateListenerSIM2 = null;
     static PPPEPhoneStateListener phoneStateListenerDefaul = null;
 
-    TelephonyManager telephonyManagerSIM1 = null;
-    TelephonyManager telephonyManagerSIM2 = null;
-    TelephonyManager telephonyManagerDefault = null;
+    static TelephonyManager telephonyManagerSIM1 = null;
+    static TelephonyManager telephonyManagerSIM2 = null;
+    static TelephonyManager telephonyManagerDefault = null;
 
     static boolean forceStopStarted = false;
     static boolean applicationForceClosed = false;
@@ -113,67 +114,20 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             intentFilter22.setPriority(Integer.MAX_VALUE);
             getBaseContext().registerReceiver(mmsBroadcastReceiver, intentFilter22);
 
-            telephonyManagerDefault = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-            if (telephonyManagerDefault != null) {
-                int simCount = telephonyManagerDefault.getSimCount();
-                if (simCount > 1) {
-                    SubscriptionManager mSubscriptionManager = (SubscriptionManager) getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
-                    //SubscriptionManager.from(appContext);
-                    if (mSubscriptionManager != null) {
-                        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "mSubscriptionManager != null");
-                        List<SubscriptionInfo> subscriptionList = null;
-                        try {
-                            // Loop through the subscription list i.e. SIM list.
-                            subscriptionList = mSubscriptionManager.getActiveSubscriptionInfoList();
-                            PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "subscriptionList=" + subscriptionList);
-                        } catch (SecurityException e) {
-                            //PPApplication.recordException(e);
-                        }
-                        if (subscriptionList != null) {
-                            PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "subscriptionList.size()=" + subscriptionList.size());
-                            for (int i = 0; i < subscriptionList.size(); i++) {
-                                // Get the active subscription ID for a given SIM card.
-                                SubscriptionInfo subscriptionInfo = subscriptionList.get(i);
-                                PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "subscriptionInfo=" + subscriptionInfo);
-                                if (subscriptionInfo != null) {
-                                    int subscriptionId = subscriptionInfo.getSubscriptionId();
-                                    if (i == 0) {
-                                        if (telephonyManagerSIM1 == null) {
-                                            PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "subscriptionId=" + subscriptionId);
-                                            //noinspection ConstantConditions
-                                            telephonyManagerSIM1 = telephonyManagerDefault.createForSubscriptionId(subscriptionId);
-                                            phoneStateListenerSIM1 = new PPPEPhoneStateListener(subscriptionInfo, getBaseContext());
-                                            telephonyManagerSIM1.listen(phoneStateListenerSIM1, PhoneStateListener.LISTEN_CALL_STATE);
-                                        }
-                                    }
-                                    if (i == 1) {
-                                        if (telephonyManagerSIM2 == null) {
-                                            PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "subscriptionId=" + subscriptionId);
-                                            //noinspection ConstantConditions
-                                            telephonyManagerSIM2 = telephonyManagerDefault.createForSubscriptionId(subscriptionId);
-                                            phoneStateListenerSIM2 = new PPPEPhoneStateListener(subscriptionInfo, getBaseContext());
-                                            telephonyManagerSIM2.listen(phoneStateListenerSIM2, PhoneStateListener.LISTEN_CALL_STATE);
-                                        }
-                                    }
-                                } else
-                                    PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "subscriptionInfo == null");
-                            }
-                        } else
-                            PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "subscriptionList == null");
-                    } else
-                        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "mSubscriptionManager == null");
-                }
-                else {
-                    phoneStateListenerDefaul = new PPPEPhoneStateListener(null, getBaseContext());
-                    telephonyManagerDefault.listen(phoneStateListenerDefaul, PhoneStateListener.LISTEN_CALL_STATE);
-                }
-            }
+            registerPhoneStateListener(true, getBaseContext());
 
             phoneCallReceiver = new PhoneCallReceiver();
             IntentFilter intentFilter6 = new IntentFilter();
             // not needed for unlink volumes and event Call sensor
             intentFilter6.addAction(Intent.ACTION_NEW_OUTGOING_CALL);
             getBaseContext().registerReceiver(phoneCallReceiver, intentFilter6);
+
+            simStateChangedBroadcastReceiver = new SimStateChangedBroadcastReceiver();
+            IntentFilter intentFilter10 = new IntentFilter();
+            //noinspection deprecation
+            intentFilter10.addAction("android.intent.action.SIM_STATE_CHANGED");
+            getBaseContext().registerReceiver(simStateChangedBroadcastReceiver, intentFilter10);
+
         }
 
         Intent refreshIntent = new Intent(PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver");
@@ -398,31 +352,110 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 getBaseContext().unregisterReceiver(mmsBroadcastReceiver);
             } catch (Exception ignored) {}
         }
-        if (phoneStateListenerDefaul != null) {
-            try {
-                if (phoneStateListenerSIM1 != null) {
-                    telephonyManagerDefault.listen(phoneStateListenerSIM1, PhoneStateListener.LISTEN_NONE);
-                    phoneStateListenerSIM1 = null;
-                }
-                if (phoneStateListenerSIM2 != null) {
-                    telephonyManagerDefault.listen(phoneStateListenerSIM2, PhoneStateListener.LISTEN_NONE);
-                    phoneStateListenerSIM2 = null;
-                }
-                if (phoneStateListenerDefaul != null) {
-                    telephonyManagerDefault.listen(phoneStateListenerDefaul, PhoneStateListener.LISTEN_NONE);
-                    phoneStateListenerDefaul = null;
-                }
-            } catch (Exception ignored) {}
-        }
+        registerPhoneStateListener(false, this);
         if (phoneCallReceiver != null) {
             try {
                 getBaseContext().unregisterReceiver(phoneCallReceiver);
+            } catch (Exception ignored) {}
+        }
+        if (simStateChangedBroadcastReceiver != null) {
+            try {
+                getBaseContext().unregisterReceiver(simStateChangedBroadcastReceiver);
             } catch (Exception ignored) {}
         }
 
         instance = null;
 
         return super.onUnbind(intent);
+    }
+
+    static void registerPhoneStateListener(boolean register, Context context) {
+        if (!register) {
+            if (PPPEAccessibilityService.phoneStateListenerSIM1 != null) {
+                try {
+                    if (PPPEAccessibilityService.telephonyManagerSIM1 != null)
+                        PPPEAccessibilityService.telephonyManagerSIM1.listen(PPPEAccessibilityService.phoneStateListenerSIM1, PhoneStateListener.LISTEN_NONE);
+                    PPPEAccessibilityService.phoneStateListenerSIM1 = null;
+                    PPPEAccessibilityService.telephonyManagerSIM1 = null;
+                } catch (Exception ignored) {
+                }
+            }
+            if (PPPEAccessibilityService.phoneStateListenerSIM2 != null) {
+                try {
+                    if (PPPEAccessibilityService.telephonyManagerSIM2 != null)
+                        PPPEAccessibilityService.telephonyManagerSIM2.listen(PPPEAccessibilityService.phoneStateListenerSIM2, PhoneStateListener.LISTEN_NONE);
+                    PPPEAccessibilityService.phoneStateListenerSIM2 = null;
+                    PPPEAccessibilityService.telephonyManagerSIM2 = null;
+                } catch (Exception ignored) {
+                }
+            }
+            if (PPPEAccessibilityService.phoneStateListenerDefaul != null) {
+                try {
+                    if (PPPEAccessibilityService.telephonyManagerDefault != null)
+                        PPPEAccessibilityService.telephonyManagerDefault.listen(PPPEAccessibilityService.phoneStateListenerDefaul, PhoneStateListener.LISTEN_NONE);
+                    PPPEAccessibilityService.phoneStateListenerDefaul = null;
+                    PPPEAccessibilityService.telephonyManagerDefault = null;
+                } catch (Exception ignored) {
+                }
+            }
+        }
+        else {
+            PPPEAccessibilityService.telephonyManagerDefault = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+            if (PPPEAccessibilityService.telephonyManagerDefault != null) {
+                int simCount = PPPEAccessibilityService.telephonyManagerDefault.getSimCount();
+                if (simCount > 1) {
+                    SubscriptionManager mSubscriptionManager = (SubscriptionManager) context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+                    //SubscriptionManager.from(appContext);
+                    if (mSubscriptionManager != null) {
+                        PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "mSubscriptionManager != null");
+                        List<SubscriptionInfo> subscriptionList = null;
+                        try {
+                            // Loop through the subscription list i.e. SIM list.
+                            subscriptionList = mSubscriptionManager.getActiveSubscriptionInfoList();
+                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionList=" + subscriptionList);
+                        } catch (SecurityException e) {
+                            //PPApplication.recordException(e);
+                        }
+                        if (subscriptionList != null) {
+                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionList.size()=" + subscriptionList.size());
+                            for (int i = 0; i < subscriptionList.size(); i++) {
+                                // Get the active subscription ID for a given SIM card.
+                                SubscriptionInfo subscriptionInfo = subscriptionList.get(i);
+                                PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionInfo=" + subscriptionInfo);
+                                if (subscriptionInfo != null) {
+                                    int subscriptionId = subscriptionInfo.getSubscriptionId();
+                                    if (i == 0) {
+                                        if (PPPEAccessibilityService.telephonyManagerSIM1 == null) {
+                                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionId=" + subscriptionId);
+                                            //noinspection ConstantConditions
+                                            PPPEAccessibilityService.telephonyManagerSIM1 = PPPEAccessibilityService.telephonyManagerDefault.createForSubscriptionId(subscriptionId);
+                                            PPPEAccessibilityService.phoneStateListenerSIM1 = new PPPEPhoneStateListener(subscriptionInfo, context);
+                                            PPPEAccessibilityService.telephonyManagerSIM1.listen(PPPEAccessibilityService.phoneStateListenerSIM1, PhoneStateListener.LISTEN_CALL_STATE);
+                                        }
+                                    }
+                                    if (i == 1) {
+                                        if (PPPEAccessibilityService.telephonyManagerSIM2 == null) {
+                                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionId=" + subscriptionId);
+                                            //noinspection ConstantConditions
+                                            PPPEAccessibilityService.telephonyManagerSIM2 = PPPEAccessibilityService.telephonyManagerDefault.createForSubscriptionId(subscriptionId);
+                                            PPPEAccessibilityService.phoneStateListenerSIM2 = new PPPEPhoneStateListener(subscriptionInfo, context);
+                                            PPPEAccessibilityService.telephonyManagerSIM2.listen(PPPEAccessibilityService.phoneStateListenerSIM2, PhoneStateListener.LISTEN_CALL_STATE);
+                                        }
+                                    }
+                                } else
+                                    PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionInfo == null");
+                            }
+                        } else
+                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionList == null");
+                    } else
+                        PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "mSubscriptionManager == null");
+                }
+                else {
+                    PPPEAccessibilityService.phoneStateListenerDefaul = new PPPEPhoneStateListener(null, context);
+                    PPPEAccessibilityService.telephonyManagerDefault.listen(PPPEAccessibilityService.phoneStateListenerDefaul, PhoneStateListener.LISTEN_CALL_STATE);
+                }
+            }
+        }
     }
 
     @SuppressLint("LongLogTag")
