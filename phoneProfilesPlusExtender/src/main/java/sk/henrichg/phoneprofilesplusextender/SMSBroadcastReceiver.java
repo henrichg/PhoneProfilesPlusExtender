@@ -15,6 +15,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
     private static final String ACTION_SMS_MMS_RECEIVED = PPPEApplication.PACKAGE_NAME + ".ACTION_SMS_MMS_RECEIVED";
     private static final String EXTRA_ORIGIN = PPPEApplication.PACKAGE_NAME + ".origin";
     private static final String EXTRA_TIME = PPPEApplication.PACKAGE_NAME + ".time";
+    private static final String EXTRA_SUBSCRIPTION_ID = PPPEApplication.PACKAGE_NAME + ".subscription_id";
 
     //private static ContentObserver smsObserver;
     //private static ContentObserver mmsObserver;
@@ -31,6 +32,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
 
         String origin = "";
         //String body = "";
+        int subscriptionId = -1;
 
         //String smsAction = "android.provider.Telephony.SMS_RECEIVED";
         //String mmsAction = "android.provider.Telephony.WAP_PUSH_RECEIVED";
@@ -41,11 +43,13 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
         {
             //PPPEApplication.logE("SMSBroadcastReceiver.onReceive","SMS received");
 
-
             smsMmsReceived = true;
 
             Bundle extras = intent.getExtras();
             if (extras != null) {
+
+                subscriptionId = extras.getInt("subscription", -1);
+
                 Object[] pdus = (Object[]) extras.get("pdus");
                 if (pdus != null) {
                     String format = (String) extras.get("format");
@@ -111,6 +115,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                 Intent sendIntent = new Intent(ACTION_SMS_MMS_RECEIVED);
                 sendIntent.putExtra(EXTRA_ORIGIN, origin);  //TODO encrypt it!!!
                 sendIntent.putExtra(EXTRA_TIME, time);
+                sendIntent.putExtra(EXTRA_SUBSCRIPTION_ID, subscriptionId);
                 context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
             }
         }
