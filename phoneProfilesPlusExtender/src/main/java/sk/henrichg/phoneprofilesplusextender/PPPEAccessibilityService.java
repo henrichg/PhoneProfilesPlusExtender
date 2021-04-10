@@ -408,26 +408,26 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     SubscriptionManager mSubscriptionManager = (SubscriptionManager) context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
                     //SubscriptionManager.from(appContext);
                     if (mSubscriptionManager != null) {
-                        PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "mSubscriptionManager != null");
+//                        PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "mSubscriptionManager != null");
                         List<SubscriptionInfo> subscriptionList = null;
                         try {
                             // Loop through the subscription list i.e. SIM list.
                             subscriptionList = mSubscriptionManager.getActiveSubscriptionInfoList();
-                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionList=" + subscriptionList);
+//                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionList=" + subscriptionList);
                         } catch (SecurityException e) {
                             //PPApplication.recordException(e);
                         }
                         if (subscriptionList != null) {
-                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionList.size()=" + subscriptionList.size());
+//                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionList.size()=" + subscriptionList.size());
                             for (int i = 0; i < subscriptionList.size(); i++) {
                                 // Get the active subscription ID for a given SIM card.
                                 SubscriptionInfo subscriptionInfo = subscriptionList.get(i);
-                                PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionInfo=" + subscriptionInfo);
+//                                PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionInfo=" + subscriptionInfo);
                                 if (subscriptionInfo != null) {
                                     int subscriptionId = subscriptionInfo.getSubscriptionId();
                                     if (i == 0) {
                                         if (PPPEAccessibilityService.telephonyManagerSIM1 == null) {
-                                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionId=" + subscriptionId);
+//                                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionId=" + subscriptionId);
                                             //noinspection ConstantConditions
                                             PPPEAccessibilityService.telephonyManagerSIM1 = PPPEAccessibilityService.telephonyManagerDefault.createForSubscriptionId(subscriptionId);
                                             PPPEAccessibilityService.phoneStateListenerSIM1 = new PPPEPhoneStateListener(subscriptionInfo, context);
@@ -436,20 +436,23 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     }
                                     if (i == 1) {
                                         if (PPPEAccessibilityService.telephonyManagerSIM2 == null) {
-                                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionId=" + subscriptionId);
+//                                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionId=" + subscriptionId);
                                             //noinspection ConstantConditions
                                             PPPEAccessibilityService.telephonyManagerSIM2 = PPPEAccessibilityService.telephonyManagerDefault.createForSubscriptionId(subscriptionId);
                                             PPPEAccessibilityService.phoneStateListenerSIM2 = new PPPEPhoneStateListener(subscriptionInfo, context);
                                             PPPEAccessibilityService.telephonyManagerSIM2.listen(PPPEAccessibilityService.phoneStateListenerSIM2, PhoneStateListener.LISTEN_CALL_STATE);
                                         }
                                     }
-                                } else
-                                    PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionInfo == null");
+                                }
+//                                else
+//                                    PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionInfo == null");
                             }
-                        } else
-                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionList == null");
-                    } else
-                        PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "mSubscriptionManager == null");
+                        }
+//                        else
+//                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionList == null");
+                    }
+//                    else
+//                        PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "mSubscriptionManager == null");
                 }
                 else {
                     PPPEAccessibilityService.phoneStateListenerDefaul = new PPPEPhoneStateListener(null, context);

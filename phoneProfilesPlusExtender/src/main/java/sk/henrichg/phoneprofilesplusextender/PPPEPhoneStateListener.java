@@ -54,11 +54,11 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
         }
         switch (state) {
             case TelephonyManager.CALL_STATE_RINGING:
-                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_RINGING");
-                if (subscriptionInfo != null)
-                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
-                else
-                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
+//                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_RINGING");
+//                if (subscriptionInfo != null)
+//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
+//                else
+//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
 
                 //PPPEApplication.logE("PhoneCallReceiver.PhoneCallStartEndDetector", "incomingNumber="+incomingNumber);
                 if ((savedNumber == null) && (phoneNumber == null)) {
@@ -76,11 +76,11 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
                 }
                 break;
             case TelephonyManager.CALL_STATE_OFFHOOK:
-                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_OFFHOOK");
-                if (subscriptionInfo != null)
-                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
-                else
-                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
+//                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_OFFHOOK");
+//                if (subscriptionInfo != null)
+//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
+//                else
+//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
                 //Transition of ringing->off hook are pickups of incoming calls.  Nothing down on them
                 if(lastState != TelephonyManager.CALL_STATE_RINGING){
                     inCall = true;
@@ -96,11 +96,11 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
                 }
                 break;
             case TelephonyManager.CALL_STATE_IDLE:
-                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_IDLE");
-                if (subscriptionInfo != null)
-                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
-                else
-                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
+//                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_IDLE");
+//                if (subscriptionInfo != null)
+//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
+//                else
+//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
                 //Went to idle-  this is the end of a call.  What type depends on previous state(s)
                 if(!inCall){
                     //Ring but no pickup-  a miss
@@ -145,7 +145,7 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
     protected void onOutgoingCallStarted(String number, Date eventTime)
     {
-        PPPEApplication.logE("PPPEPhoneStateListener.onOutgoingCallStarted", "number="+number);
+//        PPPEApplication.logE("PPPEPhoneStateListener.onOutgoingCallStarted", "number="+number);
         doCall(savedContext, SERVICE_PHONE_EVENT_START, false, false, number, eventTime);
     }
 
