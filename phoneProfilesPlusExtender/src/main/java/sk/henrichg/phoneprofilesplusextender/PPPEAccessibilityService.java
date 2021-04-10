@@ -330,6 +330,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_CALL_EVENT_TYPE, PPPEPhoneStateListener.CALL_EVENT_SERVICE_UNBIND);
         sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_PHONE_NUMBER, "");
         sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_EVENT_TIME, 0);
+        sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_SIM_SLOT, 0);
         sendBroadcast(sendIntent);//, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
 
         if (fromPhoneProfilesPlusBroadcastReceiver != null) {

@@ -25,6 +25,7 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
     static final String EXTRA_CALL_EVENT_TYPE = PPPEApplication.PACKAGE_NAME + ".call_event_type";
     static final String EXTRA_PHONE_NUMBER = PPPEApplication.PACKAGE_NAME + ".phone_number";
     static final String EXTRA_EVENT_TIME = PPPEApplication.PACKAGE_NAME + ".event_time";
+    static final String EXTRA_SIM_SLOT = PPPEApplication.PACKAGE_NAME + ".sim_slot";
 
     static final int SERVICE_PHONE_EVENT_START = 1;
     static final int SERVICE_PHONE_EVENT_ANSWER = 2;
@@ -162,20 +163,26 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
                         final boolean incoming, final boolean missed,
                         final String number, final Date eventTime) {
         final Context appContext = context.getApplicationContext();
+
+
+        int simSlot = 0;
+        if (subscriptionInfo != null)
+            simSlot = subscriptionInfo.getSimSlotIndex()+1;
+
         switch (phoneEvent) {
             case SERVICE_PHONE_EVENT_START:
-                callStarted(incoming, number, eventTime, appContext);
+                callStarted(incoming, number, eventTime, appContext, simSlot);
                 break;
             case SERVICE_PHONE_EVENT_ANSWER:
-                callAnswered(incoming, number, eventTime, appContext);
+                callAnswered(incoming, number, eventTime, appContext, simSlot);
                 break;
             case SERVICE_PHONE_EVENT_END:
-                callEnded(incoming, missed, number, eventTime, appContext);
+                callEnded(incoming, missed, number, eventTime, appContext, simSlot);
                 break;
         }
     }
 
-    private static void doCallEvent(/*int servicePhoneEvent, */int eventType, String phoneNumber, Date eventTime, Context context)
+    private static void doCallEvent(/*int servicePhoneEvent, */int eventType, String phoneNumber, Date eventTime, Context context, int simSlot)
     {
         //PPPEApplication.logE("PPPEPhoneStateListener.doCallEvent", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
         if (PPPEApplication.registeredCallFunctionPPP) {
@@ -184,11 +191,12 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
             sendIntent.putExtra(EXTRA_CALL_EVENT_TYPE, eventType);
             sendIntent.putExtra(EXTRA_PHONE_NUMBER, phoneNumber); //TODO encrypt it!!!
             sendIntent.putExtra(EXTRA_EVENT_TIME, eventTime.getTime());
+            sendIntent.putExtra(EXTRA_SIM_SLOT, simSlot);
             context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
         }
     }
 
-    private static void callStarted(boolean incoming, String phoneNumber, Date eventTime, Context context)
+    private static void callStarted(boolean incoming, String phoneNumber, Date eventTime, Context context, int simSlot)
     {
 //        PPPEApplication.logE("PPPEPhoneStateListener.callStarted", "incoming="+incoming);
 //        PPPEApplication.logE("PPPEPhoneStateListener.callStarted", "phoneNumber="+phoneNumber);
@@ -197,11 +205,11 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 //        audioManager.setSpeakerphoneOn(true);
 
         if (incoming) {
-            doCallEvent(/*SERVICE_PHONE_EVENT_START, */CALL_EVENT_INCOMING_CALL_RINGING, phoneNumber, eventTime, context);
+            doCallEvent(/*SERVICE_PHONE_EVENT_START, */CALL_EVENT_INCOMING_CALL_RINGING, phoneNumber, eventTime, context, simSlot);
         }
     }
 
-    private static void callAnswered(boolean incoming, String phoneNumber, Date eventTime, Context context)
+    private static void callAnswered(boolean incoming, String phoneNumber, Date eventTime, Context context, int simSlot)
     {
 //        PPPEApplication.logE("PPPEPhoneStateListener.callAnswered", "incoming="+incoming);
 //        PPPEApplication.logE("PPPEPhoneStateListener.callAnswered", "phoneNumber="+phoneNumber);
@@ -210,12 +218,12 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 //        audioManager.setSpeakerphoneOn(true);
 
         if (incoming)
-            doCallEvent(/*SERVICE_PHONE_EVENT_ANSWER, */CALL_EVENT_INCOMING_CALL_ANSWERED, phoneNumber, eventTime, context);
+            doCallEvent(/*SERVICE_PHONE_EVENT_ANSWER, */CALL_EVENT_INCOMING_CALL_ANSWERED, phoneNumber, eventTime, context, simSlot);
         else
-            doCallEvent(/*SERVICE_PHONE_EVENT_ANSWER, */CALL_EVENT_OUTGOING_CALL_ANSWERED, phoneNumber, eventTime, context);
+            doCallEvent(/*SERVICE_PHONE_EVENT_ANSWER, */CALL_EVENT_OUTGOING_CALL_ANSWERED, phoneNumber, eventTime, context, simSlot);
     }
 
-    private static void callEnded(boolean incoming, boolean missed, String phoneNumber, Date eventTime, Context context)
+    private static void callEnded(boolean incoming, boolean missed, String phoneNumber, Date eventTime, Context context, int simSlot)
     {
 //        PPPEApplication.logE("PPPEPhoneStateListener.callEnded", "incoming="+incoming);
 //        PPPEApplication.logE("PPPEPhoneStateListener.callEnded", "missed="+missed);
@@ -223,12 +231,12 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
         if (incoming) {
             if (missed)
-                doCallEvent(/*SERVICE_PHONE_EVENT_END, */CALL_EVENT_MISSED_CALL, phoneNumber, eventTime, context);
+                doCallEvent(/*SERVICE_PHONE_EVENT_END, */CALL_EVENT_MISSED_CALL, phoneNumber, eventTime, context, simSlot);
             else
-                doCallEvent(/*SERVICE_PHONE_EVENT_END, */CALL_EVENT_INCOMING_CALL_ENDED, phoneNumber, eventTime, context);
+                doCallEvent(/*SERVICE_PHONE_EVENT_END, */CALL_EVENT_INCOMING_CALL_ENDED, phoneNumber, eventTime, context, simSlot);
         }
         else
-            doCallEvent(/*SERVICE_PHONE_EVENT_END, */CALL_EVENT_OUTGOING_CALL_ENDED, phoneNumber, eventTime, context);
+            doCallEvent(/*SERVICE_PHONE_EVENT_END, */CALL_EVENT_OUTGOING_CALL_ENDED, phoneNumber, eventTime, context, simSlot);
 
 //        AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
 //        audioManager.setSpeakerphoneOn(false);
