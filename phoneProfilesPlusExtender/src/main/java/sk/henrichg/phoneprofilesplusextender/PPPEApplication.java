@@ -96,7 +96,31 @@ public class PPPEApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+/*
+        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
+                .setBuildConfigClass(BuildConfig.class)
+                .setReportFormat(StringFormat.KEY_VALUE_LIST);
+        //builder.getPluginConfigurationBuilder(ToastConfigurationBuilder.class)
+        //        .setResText(R.string.acra_toast_text)
+        //        .setEnabled(true);
+        builder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class)
+                .setResChannelName(R.string.extender_notification_channel_crash_report)
+                .setResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT)
+                .setResIcon(R.drawable.ic_exclamation_notify)
+                .setResTitle(R.string.extender_acra_notification_title)
+                .setResText(R.string.extender_acra_notification_text)
+                .setResSendButtonText(R.string.extender_acra_notification_send_button)
+                .setResDiscardButtonText(R.string.extender_acra_notification_discard_button)
+                .setSendOnClick(true)
+                .setEnabled(true);
+        builder.getPluginConfigurationBuilder(MailSenderConfigurationBuilder.class)
+                .setMailTo("henrich.gron@gmail.com")
+                .setResSubject(R.string.extender_acra_email_subject_text)
+                .setResBody(R.string.extender_acra_email_body_text)
+                .setReportAsFile(true)
+                .setReportFileName("crash_report.txt")
+                .setEnabled(true);
+*/
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .setBuildConfigClass(BuildConfig.class)
                 .setReportFormat(StringFormat.KEY_VALUE_LIST);
@@ -109,8 +133,8 @@ public class PPPEApplication extends Application {
                 .setResIcon(R.drawable.ic_exclamation_notify)
                 .setResTitle(R.string.extender_acra_notification_title)
                 .setResText(R.string.extender_acra_notification_text)
-                .setResSendButtonText(R.string.extender_acra_notification_send_button)
-                .setResDiscardButtonText(R.string.extender_acra_notification_discard_button)
+                .setResSendButtonIcon(0)
+                .setResDiscardButtonIcon(0)
                 .setSendOnClick(true)
                 .setEnabled(true);
         builder.getPluginConfigurationBuilder(MailSenderConfigurationBuilder.class)
