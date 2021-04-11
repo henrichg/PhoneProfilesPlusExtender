@@ -41,7 +41,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
 
         if ((intent != null) && (intent.getAction() != null) && intent.getAction().equals(smsAction))
         {
-            //PPPEApplication.logE("SMSBroadcastReceiver.onReceive","SMS received");
+//            PPPEApplication.logE("SMSBroadcastReceiver.onReceive","SMS received");
 
             smsMmsReceived = true;
 
@@ -49,6 +49,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
             if (extras != null) {
 
                 subscriptionId = extras.getInt("subscription", -1);
+//                PPPEApplication.logE("SMSBroadcastReceiver.onReceive","subscriptionId="+subscriptionId);
 
                 Object[] pdus = (Object[]) extras.get("pdus");
                 if (pdus != null) {
