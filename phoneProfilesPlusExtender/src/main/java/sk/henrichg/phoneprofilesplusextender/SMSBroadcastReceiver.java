@@ -48,6 +48,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
             Bundle extras = intent.getExtras();
             if (extras != null) {
 
+                // from: https://github.com/moezbhatti/qksms/blob/master/data/src/main/java/com/moez/QKSMS/receiver/SmsReceiver.kt
                 subscriptionId = extras.getInt("subscription", -1);
 //                PPPEApplication.logE("SMSBroadcastReceiver.onReceive","subscriptionId="+subscriptionId);
 
