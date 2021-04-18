@@ -17,8 +17,8 @@ Android application - Extender for PhoneProfiles and PhoneProfilesPlus
 Supported Android versions
 ----------------------
 
-- From Android 6.0
-- minSdkVersion = 23
+- From Android 7.0
+- minSdkVersion = 24
 - targetSdkVersion = 27
 
 Required external libs
