@@ -27,8 +27,6 @@
     <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - 崩溃报告</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender 已崩溃。附件是崩溃报告。</string>
     <string name="extender_acra_notification_title">对不起，PhoneProfilesPlusExtender 崩溃了</string>
-    <string name="extender_acra_notification_text">请单击“发送”按钮，向作者发送崩溃报告，非常感谢您。</string>
-    <string name="extender_acra_notification_send_button">发送​​</string>
-    <string name="extender_acra_notification_discard_button">丢弃</string>
+    <string name="extender_acra_notification_text">请点击此处，向作者发送崩溃报告，非常感谢您。</string>
     <string name="extender_notification_channel_crash_report">崩溃报告</string>
 </resources>

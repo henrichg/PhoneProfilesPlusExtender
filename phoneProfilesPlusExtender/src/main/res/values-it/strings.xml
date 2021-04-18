@@ -27,8 +27,6 @@
     <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Rapporto Crash</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender è crashato. In allegato il rapporto di crash.</string>
     <string name="extender_acra_notification_title">Spiacenti, PhoneProfilesPlusExtender è crashato</string>
-    <string name="extender_acra_notification_text">Sei pregato di cliccare il pulsante \"Invia\", per inviare il rapporto di crash all\'autore. Grazie mille.</string>
-    <string name="extender_acra_notification_send_button">Invia</string>
-    <string name="extender_acra_notification_discard_button">Scarta</string>
+    <string name="extender_acra_notification_text">Sei pregato di cliccare qui, per inviare la segnalazione di crash all\'autore. Grazie mille.</string>
     <string name="extender_notification_channel_crash_report">Rapporto di crash</string>
 </resources>

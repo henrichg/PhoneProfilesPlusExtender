@@ -27,8 +27,6 @@
     <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Izveštaj o grešci</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender se isključio. Pridodat je Izveštaj o grešci.</string>
     <string name="extender_acra_notification_title">Žao nam je, PhoneProfilesPlusExtender se isključio</string>
-    <string name="extender_acra_notification_text">Kliknite na dugme \"Pošalji\", da pošaljete Izveštaj o grešci autoru aplikacije. Hvala Vam na tome.</string>
-    <string name="extender_acra_notification_send_button">Pošalji</string>
-    <string name="extender_acra_notification_discard_button">Odbaci</string>
+    <string name="extender_acra_notification_text">Please click here, to send crash report to author. Thank you very much.</string>
     <string name="extender_notification_channel_crash_report">Izveštaj o grešci</string>
 </resources>

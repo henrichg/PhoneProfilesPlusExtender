@@ -27,8 +27,6 @@
     <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - raport błędu</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender uległ awarii. Załączono raport błędu.</string>
     <string name="extender_acra_notification_title">Przepraszamy, PhoneProfilesPlusExtender uległ awarii</string>
-    <string name="extender_acra_notification_text">Kliknij przycisk \"Wyślij\", aby wysłać raport o awarii do autora. Dziękuję bardzo.</string>
-    <string name="extender_acra_notification_send_button">Wyślij</string>
-    <string name="extender_acra_notification_discard_button">Odrzuć</string>
+    <string name="extender_acra_notification_text">Kliknij tutaj, aby wysłać zgłoszenie awarii do autora. Dziękujemy.</string>
     <string name="extender_notification_channel_crash_report">Raport błędu</string>
 </resources>

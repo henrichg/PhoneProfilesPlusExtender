@@ -27,8 +27,6 @@
     <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Absturzbericht</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender ist abgestürzt. Anbei finden Sie den Absturzbericht.</string>
     <string name="extender_acra_notification_title">Leider ist PhoneProfilesPlusExtender abgestürzt</string>
-    <string name="extender_acra_notification_text">Bitte klicken Sie auf die Schaltfläche „Senden“, um den Absturzbericht an den Autor zu senden. Vielen Dank.</string>
-    <string name="extender_acra_notification_send_button">Senden</string>
-    <string name="extender_acra_notification_discard_button">Verwerfen</string>
+    <string name="extender_acra_notification_text">Bitte klicken Sie hier, um den Absturzbericht an den Autor zu senden. Vielen Dank.</string>
     <string name="extender_notification_channel_crash_report">Absturzbericht</string>
 </resources>

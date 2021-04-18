@@ -27,8 +27,6 @@
     <string name="extender_acra_email_subject_text">PhoneProfilesPlus simgesi - Çökme raporu</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlus çöktü. Çökme raporu eklendi.</string>
     <string name="extender_acra_notification_title">Maalesef PhoneProfilesPlus çöktü</string>
-    <string name="extender_acra_notification_text">Lutfen, çökme raporunu yazara göndermek için \"Gönder\" butonuna dokunun. Çok teşekkür ederiz.</string>
-    <string name="extender_acra_notification_send_button">Gönder</string>
-    <string name="extender_acra_notification_discard_button">Vazgeç</string>
+    <string name="extender_acra_notification_text">Please click here, to send crash report to author. Thank you very much.</string>
     <string name="extender_notification_channel_crash_report">Çökme raporu</string>
 </resources>

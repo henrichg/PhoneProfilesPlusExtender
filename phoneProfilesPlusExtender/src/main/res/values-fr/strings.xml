@@ -27,8 +27,6 @@
     <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Rapport d\'erreur</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender c\'est arrêté. La pièce jointe est un rapport d\'erreur.</string>
     <string name="extender_acra_notification_title">Désolé, PhoneProfilesPlusExtender a planté</string>
-    <string name="extender_acra_notification_text">Veuillez cliquer sur le bouton \"Envoyer\", pour envoyer un rapport de plantage à l\'auteur. Merci beaucoup.</string>
-    <string name="extender_acra_notification_send_button">Envoyer</string>
-    <string name="extender_acra_notification_discard_button">Abandonner</string>
+    <string name="extender_acra_notification_text">Veuillez cliquer ici pour envoyer un rapport de plantage à l\'auteur. Merci beaucoup.</string>
     <string name="extender_notification_channel_crash_report">Rapport d\'erreur</string>
 </resources>

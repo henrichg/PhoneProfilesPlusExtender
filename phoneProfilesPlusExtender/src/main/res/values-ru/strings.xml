@@ -27,8 +27,6 @@
     <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Отчёт об ошибке</string>
     <string name="extender_acra_email_body_text">В PhoneProfilesPlusExtender произошла ошибка. Прилагаю отчёт об ошибке.</string>
     <string name="extender_acra_notification_title">К сожалению, в PhoneProfilesPlusExtender произошла ошибка</string>
-    <string name="extender_acra_notification_text">Нажмите, пожалуйста, \"Отправить\", чтобы послать автору отчёт об ошибке. Огромное спасибо.</string>
-    <string name="extender_acra_notification_send_button">Отправить</string>
-    <string name="extender_acra_notification_discard_button">Отменить</string>
+    <string name="extender_acra_notification_text">Нажмите, пожалуйста, сюда, чтобы отправить автору отчёт об ошибке. Большое спасибо.</string>
     <string name="extender_notification_channel_crash_report">Отчёт об ошибке</string>
 </resources>

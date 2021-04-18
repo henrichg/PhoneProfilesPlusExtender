@@ -27,8 +27,6 @@
     <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Αναφορά κατάρρευσης</string>
     <string name="extender_acra_email_body_text">Το PhoneProfilesPlusExtender τερματίστηκε απροσδόκητα. Συνημμένη είναι η αναφορά κατάρρευσης.</string>
     <string name="extender_acra_notification_title">Συγγνώμη, το PhoneProfilesPlusExtender τερματίστηκε απροσδόκητα</string>
-    <string name="extender_acra_notification_text">Παρακαλώ πατήστε κλικ στο κουμπί \"Αποστολή\", για να στείλετε αναφορά κατάρρευσης στον προγραμματιστή. Σας ευχαριστούμε πολύ.</string>
-    <string name="extender_acra_notification_send_button">Αποστολή</string>
-    <string name="extender_acra_notification_discard_button">Απόρριψη</string>
+    <string name="extender_acra_notification_text">Please click here, to send crash report to author. Thank you very much.</string>
     <string name="extender_notification_channel_crash_report">Αναφορά κατάρρευσης</string>
 </resources>

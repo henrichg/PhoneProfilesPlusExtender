@@ -27,8 +27,6 @@
     <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender — Звіт про аварію</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender був пошкоджений. Прикріплений звіт про аварію.</string>
     <string name="extender_acra_notification_title">На жаль, PhoneProfilesPlusExtender зазнав аварії</string>
-    <string name="extender_acra_notification_text">Будь ласка, натисніть кнопку \"Відправити\", щоб надіслати звіт про аварію автору. Дуже дякуємо.</string>
-    <string name="extender_acra_notification_send_button">Відправити</string>
-    <string name="extender_acra_notification_discard_button">Відхилити</string>
+    <string name="extender_acra_notification_text">Будь ласка, натисніть тут, щоб надіслати звіт про помилку автору. Дуже дякуємо.</string>
     <string name="extender_notification_channel_crash_report">Звіт про аварію</string>
 </resources>
