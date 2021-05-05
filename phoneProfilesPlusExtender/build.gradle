@@ -9,7 +9,7 @@ android {
         applicationId "sk.henrichg.phoneprofilesplusextender"
         minSdkVersion 24
 
-        //noinspection OldTargetApi
+        //noinspection ExpiredTargetSdkVersion,OldTargetApi
         targetSdkVersion 27
         // 27 is required for:
         // - android.permission.PROCESS_OUTGOING_CALLS
