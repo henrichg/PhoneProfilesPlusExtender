@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     compileSdkVersion 28
@@ -58,10 +57,10 @@ android {
 }
 
 dependencies {
-//    implementation 'com.google.firebase:firebase-analytics:17.6.0'
-//    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
-    implementation 'ch.acra:acra-mail:5.8.1'
-    implementation 'ch.acra:acra-notification:5.8.1'
+    //noinspection GradleDependency
+    implementation 'ch.acra:acra-mail:5.7.0'
+    //noinspection GradleDependency
+    implementation 'ch.acra:acra-notification:5.7.0'
 
     //noinspection GradleDependency
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -76,5 +75,3 @@ dependencies {
 
     //implementation 'com.llew.huawei:verifier:1.1.2'
 }
-
-//apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
