@@ -97,6 +97,9 @@ public class PPPEApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        if (ACRA.isACRASenderServiceProcess())
+            return;
+
 /*        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .setBuildConfigClass(BuildConfig.class)
                 .setReportFormat(StringFormat.KEY_VALUE_LIST);
@@ -122,11 +125,11 @@ public class PPPEApplication extends Application {
                 .setEnabled(true);
 
         ACRA.init(this, builder);
-*/
+
         // don't schedule anything in crash reporter process
         if (ACRA.isACRASenderServiceProcess())
             return;
-
+*/
         instance = this;
 
         if (checkAppReplacingState())
