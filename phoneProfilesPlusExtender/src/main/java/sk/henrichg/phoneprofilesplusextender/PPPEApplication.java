@@ -96,37 +96,13 @@ public class PPPEApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-/*
-        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
+
+/*        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .setBuildConfigClass(BuildConfig.class)
                 .setReportFormat(StringFormat.KEY_VALUE_LIST);
         //builder.getPluginConfigurationBuilder(ToastConfigurationBuilder.class)
         //        .setResText(R.string.acra_toast_text)
         //        .setEnabled(true);
-        builder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class)
-                .setResChannelName(R.string.extender_notification_channel_crash_report)
-                .setResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT)
-                .setResIcon(R.drawable.ic_exclamation_notify)
-                .setResTitle(R.string.extender_acra_notification_title)
-                .setResText(R.string.extender_acra_notification_text)
-                .setResSendButtonText(R.string.extender_acra_notification_send_button)
-                .setResDiscardButtonText(R.string.extender_acra_notification_discard_button)
-                .setSendOnClick(true)
-                .setEnabled(true);
-        builder.getPluginConfigurationBuilder(MailSenderConfigurationBuilder.class)
-                .setMailTo("henrich.gron@gmail.com")
-                .setResSubject(R.string.extender_acra_email_subject_text)
-                .setResBody(R.string.extender_acra_email_body_text)
-                .setReportAsFile(true)
-                .setReportFileName("crash_report.txt")
-                .setEnabled(true);
-*/
-        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
-                .setBuildConfigClass(BuildConfig.class)
-                .setReportFormat(StringFormat.KEY_VALUE_LIST);
-        /*builder.getPluginConfigurationBuilder(ToastConfigurationBuilder.class)
-                .setResText(R.string.acra_toast_text)
-                .setEnabled(true);*/
         builder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class)
                 .setResChannelName(R.string.extender_notification_channel_crash_report)
                 .setResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT)
@@ -146,7 +122,7 @@ public class PPPEApplication extends Application {
                 .setEnabled(true);
 
         ACRA.init(this, builder);
-
+*/
         // don't schedule anything in crash reporter process
         if (ACRA.isACRASenderServiceProcess())
             return;
@@ -224,6 +200,45 @@ public class PPPEApplication extends Application {
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+
+        if (ACRA.isACRASenderServiceProcess()) {
+            Log.e("##### PPPEApplication.attachBaseContext", "ACRA.isACRASenderServiceProcess()");
+            return;
+        }
+
+        Log.e("##### PPPEApplication.attachBaseContext", "ACRA inittialization");
+        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
+                .withBuildConfigClass(BuildConfig.class)
+                .withReportFormat(StringFormat.KEY_VALUE_LIST);
+        /*builder.getPluginConfigurationBuilder(ToastConfigurationBuilder.class)
+                .setResText(R.string.acra_toast_text)
+                .setEnabled(true);*/
+        builder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class)
+                .withResChannelName(R.string.extender_notification_channel_crash_report)
+                .withResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT)
+                .withResIcon(R.drawable.ic_exclamation_notify)
+                .withResTitle(R.string.extender_acra_notification_title)
+                .withResText(R.string.extender_acra_notification_text)
+                .withResSendButtonIcon(0)
+                .withResDiscardButtonIcon(0)
+                .withSendOnClick(true)
+                .withEnabled(true);
+        builder.getPluginConfigurationBuilder(MailSenderConfigurationBuilder.class)
+                .withMailTo("henrich.gron@gmail.com")
+                .withResSubject(R.string.extender_acra_email_subject_text)
+                .withResBody(R.string.extender_acra_email_body_text)
+                .withReportAsFile(true)
+                .withReportFileName("crash_report.txt")
+                .withEnabled(true);
+
+        //ACRA.DEV_LOGGING = true;
+
+        ACRA.init(this, builder);
     }
 
     //--------------------------------------------------------------
