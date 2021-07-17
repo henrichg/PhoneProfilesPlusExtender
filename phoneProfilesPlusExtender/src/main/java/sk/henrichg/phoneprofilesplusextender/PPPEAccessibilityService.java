@@ -199,7 +199,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             //}
                             //else
                             if (Build.VERSION.SDK_INT >= 29) {
-                                if (PPPEApplication.deviceIsRealme)
+                                if (PPPEApplication.deviceIsOppo || PPPEApplication.deviceIsRealme)
                                     list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/middle_button");
                                 else
                                 if (PPPEApplication.deviceIsHuawei)
