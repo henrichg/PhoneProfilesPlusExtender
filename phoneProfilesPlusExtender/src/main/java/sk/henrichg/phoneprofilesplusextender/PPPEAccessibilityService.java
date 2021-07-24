@@ -28,7 +28,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     static PPPEAccessibilityService instance = null;
 
-    private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
+    //private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
 
     static final String ACCESSIBILITY_SERVICE_PERMISSION = PPPEApplication.PACKAGE_NAME + ".ACCESSIBILITY_SERVICE_PERMISSION";
 
@@ -480,15 +480,27 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         AccessibilityManager manager = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
         if (manager != null) {
             List<AccessibilityServiceInfo> runningServices =
-                    manager.getEnabledAccessibilityServiceList(AccessibilityEvent.TYPES_ALL_MASK);
+                    manager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC);
 
             for (AccessibilityServiceInfo service : runningServices) {
                 if (service != null) {
                     //Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "serviceId=" + service.getId());
-                    if (SERVICE_ID.equals(service.getId())) {
-                        //Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "true");
-                        return true;
-                    }
+                    try {
+                        if (service.getId().contains(PPPEApplication.PACKAGE_NAME)) {
+                            //PPApplication.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
+                            return true;
+                        }
+/*
+                        if (service.packageNames != null) {
+                            for (String packageName : service.packageNames) {
+                                if (PPApplication.EXTENDER_ACCESSIBILITY_PACKAGE_NAME.equals(packageName)) {
+                                    //PPApplication.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
+                                    return true;
+                                }
+                            }
+                        }
+ */
+                    } catch (Exception ignored) {}
                 }
             }
             //Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "false");
