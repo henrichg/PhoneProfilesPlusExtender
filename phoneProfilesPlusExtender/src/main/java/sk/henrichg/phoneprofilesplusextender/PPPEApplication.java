@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.PowerManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import androidx.core.content.pm.PackageInfoCompat;
@@ -92,6 +93,25 @@ public class PPPEApplication extends Application {
     static boolean registeredCallFunctionPPP = true;
     static boolean registeredLockDeviceFunctionPP = true;
     static boolean registeredLockDeviceFunctionPPP = true;
+
+    static FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
+    static  ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
+    static  SMSBroadcastReceiver smsBroadcastReceiver = null;
+    static  SMSBroadcastReceiver mmsBroadcastReceiver = null;
+    static  PhoneCallReceiver phoneCallReceiver = null;
+    static  SimStateChangedBroadcastReceiver simStateChangedBroadcastReceiver = null;
+
+    static PPPEPhoneStateListener phoneStateListenerSIM1 = null;
+    static PPPEPhoneStateListener phoneStateListenerSIM2 = null;
+    static PPPEPhoneStateListener phoneStateListenerDefaul = null;
+
+    static TelephonyManager telephonyManagerSIM1 = null;
+    static TelephonyManager telephonyManagerSIM2 = null;
+    static TelephonyManager telephonyManagerDefault = null;
+
+    static boolean forceStopStarted = false;
+    static boolean applicationForceClosed = false;
+    static boolean forceStopPerformed = false;
 
     @Override
     public void onCreate() {

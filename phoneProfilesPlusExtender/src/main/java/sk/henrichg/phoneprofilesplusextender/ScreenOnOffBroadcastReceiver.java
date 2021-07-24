@@ -22,7 +22,7 @@ public class ScreenOnOffBroadcastReceiver extends BroadcastReceiver {
             //Log.e("ScreenOnOffBroadcastReceiver.onReceive","ACTION_SCREEN_OFF");
             ForceCloseIntentService.screenOffReceived = true;
 
-            if (PPPEAccessibilityService.forceStopStarted) {
+            if (PPPEApplication.forceStopStarted) {
                 // simulate home button click
                 Intent startMain = new Intent(Intent.ACTION_MAIN);
                 startMain.addCategory(Intent.CATEGORY_HOME);

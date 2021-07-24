@@ -13,7 +13,7 @@ android {
         // 27 is required for:
         // - android.permission.PROCESS_OUTGOING_CALLS
 
-        versionCode 641
+        versionCode 642
         versionName "6.0.1.1b"
 
         resConfigs "en", "af", "ar", "bn-rIN", "bg", "ca", "cs", "da", "de", "el", "es", "et", "fa",

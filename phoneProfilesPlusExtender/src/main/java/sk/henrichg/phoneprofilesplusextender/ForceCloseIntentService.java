@@ -55,7 +55,7 @@ public class ForceCloseIntentService extends IntentService {
 
         if (!(applications.isEmpty() || (applications.equals("-")))) {
 
-            PPPEAccessibilityService.forceStopStarted = true;
+            PPPEApplication.forceStopStarted = true;
             //Log.e("ForceCloseIntentService", "forceStopStarted=true");
 
             startForceStopActivity();
@@ -87,8 +87,8 @@ public class ForceCloseIntentService extends IntentService {
                             startForceStopActivity();
                             if (ForceStopActivity.instance != null) {
                                 try {
-                                    PPPEAccessibilityService.applicationForceClosed = false;
-                                    PPPEAccessibilityService.forceStopPerformed = false;
+                                    PPPEApplication.applicationForceClosed = false;
+                                    PPPEApplication.forceStopPerformed = false;
                                     //ForceStopActivity.instance.appInfoClosed = false;
                                     ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
                                     waitForApplicationForceClosed();
@@ -106,7 +106,7 @@ public class ForceCloseIntentService extends IntentService {
 
             --forceStopApplicationsStartCount;
 
-            PPPEAccessibilityService.forceStopStarted = false;
+            PPPEApplication.forceStopStarted = false;
             //Log.e("ForceCloseIntentService", "forceStopStarted=false");
         }
 
@@ -194,7 +194,7 @@ public class ForceCloseIntentService extends IntentService {
     {
         long start = SystemClock.uptimeMillis();
         do {
-            if ((ForceStopActivity.instance == null) || (PPPEAccessibilityService.applicationForceClosed))
+            if ((ForceStopActivity.instance == null) || (PPPEApplication.applicationForceClosed))
                 break;
             //try { Thread.sleep(100); } catch (InterruptedException e) { }
             SystemClock.sleep(100);
