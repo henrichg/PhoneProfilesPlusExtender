@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setData(Uri.parse("package:" + getPackageName()));
                     if (MainActivity.activityIntentExists(intent, activity)) {
+                        //noinspection deprecation
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                     } else {
                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
@@ -167,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setData(Uri.parse("package:" + getPackageName()));
                     if (MainActivity.activityIntentExists(intent, activity)) {
+                        //noinspection deprecation
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                     } else {
                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
@@ -201,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         // If request is cancelled, the result arrays are empty.
         if (requestCode == Permissions.PERMISSIONS_REQUEST_CODE) {
             boolean allGranted = true;
@@ -284,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
         accessibilityButton.setOnClickListener(view -> {
             if (MainActivity.activityActionExists(Settings.ACTION_ACCESSIBILITY_SETTINGS, activity)) {
                 Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                //noinspection deprecation
                 startActivityForResult(intent, RESULT_ACCESSIBILITY_SETTINGS);
             } else {
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);

@@ -90,6 +90,7 @@ public class ForceCloseIntentService extends IntentService {
                                     PPPEApplication.applicationForceClosed = false;
                                     PPPEApplication.forceStopPerformed = false;
                                     //ForceStopActivity.instance.appInfoClosed = false;
+                                    //noinspection deprecation
                                     ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
                                     waitForApplicationForceClosed();
                                     //waitForAppInfoEnd();
