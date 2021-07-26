@@ -56,7 +56,7 @@ public class PPPEApplication extends Application {
                                                 //+"|PPPEPhoneStateListener"
 
                                                 //+ "|MainActivity"
-                                                //+ "|FromPhoneProfilesPlusBroadcastReceiver"
+                                                + "|FromPhoneProfilesPlusBroadcastReceiver"
             ;
 
     static final boolean deviceIsOppo = isOppo();
@@ -68,7 +68,8 @@ public class PPPEApplication extends Application {
     //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
     private static final String LOG_FILENAME = "log.txt";
 
-    static final String ACTION_REGISTER_PPPE_FUNCTION = "sk.henrichg.phoneprofilesplusextender.ACTION_REGISTER_PPPE_FUNCTION";
+    static final String ACTION_PPPEXTENDER_IS_RUNNING = PPPEApplication.PACKAGE_NAME + ".ACTION_PPPEXTENDER_IS_RUNNING";
+    static final String ACTION_REGISTER_PPPE_FUNCTION = PPPEApplication.PACKAGE_NAME + ".ACTION_REGISTER_PPPE_FUNCTION";
 
     static final String EXTRA_REGISTRATION_APP = "registration_app";
     static final String EXTRA_REGISTRATION_TYPE = "registration_type";

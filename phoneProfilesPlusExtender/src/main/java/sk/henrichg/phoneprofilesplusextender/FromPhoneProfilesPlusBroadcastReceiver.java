@@ -9,6 +9,8 @@ import android.os.Build;
 
 class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
 
+    private static final String ACTION_PPPEXTENDER_IS_RUNNING_ANSWER = PPPEApplication.PACKAGE_NAME + ".ACTION_PPPEXTENDER_IS_RUNNING_ANSWER";
+
     @SuppressLint({"LongLogTag", "InlinedApi"})
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -76,6 +78,13 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                 }
             }
             //PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
+        }
+        else
+        if (action.equals(PPPEApplication.ACTION_PPPEXTENDER_IS_RUNNING)) {
+            // send answer to PPP
+            PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "PPPEApplication.ACTION_PPPEXTENDER_IS_RUNNING");
+            Intent sendIntent = new Intent(ACTION_PPPEXTENDER_IS_RUNNING_ANSWER);
+            context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
         }
         else
         if (action.equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {
