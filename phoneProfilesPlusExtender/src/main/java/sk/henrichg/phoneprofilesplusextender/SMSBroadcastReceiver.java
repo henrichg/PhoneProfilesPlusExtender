@@ -118,7 +118,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                 sendIntent.putExtra(EXTRA_ORIGIN, origin);  //TODO encrypt it!!!
                 sendIntent.putExtra(EXTRA_TIME, time);
                 sendIntent.putExtra(EXTRA_SUBSCRIPTION_ID, subscriptionId);
-                context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+                context.sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
             }
         }
     }

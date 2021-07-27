@@ -192,7 +192,7 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
             sendIntent.putExtra(EXTRA_PHONE_NUMBER, phoneNumber); //TODO encrypt it!!!
             sendIntent.putExtra(EXTRA_EVENT_TIME, eventTime.getTime());
             sendIntent.putExtra(EXTRA_SIM_SLOT, simSlot);
-            context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+            context.sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
         }
     }
 

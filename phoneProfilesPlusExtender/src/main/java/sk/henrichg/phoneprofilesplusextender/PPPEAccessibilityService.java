@@ -30,8 +30,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     //private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
 
-    static final String ACCESSIBILITY_SERVICE_PERMISSION = PPPEApplication.PACKAGE_NAME + ".ACCESSIBILITY_SERVICE_PERMISSION";
-
     private static final String ACTION_ACCESSIBILITY_SERVICE_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_CONNECTED";
     private static final String ACTION_FOREGROUND_APPLICATION_CHANGED = PPPEApplication.PACKAGE_NAME + ".ACTION_FOREGROUND_APPLICATION_CHANGED";
     private static final String ACTION_ACCESSIBILITY_SERVICE_UNBIND = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_UNBIND";
@@ -81,7 +79,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
             intentFilter.addAction(ACTION_LOCK_DEVICE);
             getBaseContext().registerReceiver(PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
-                    ACCESSIBILITY_SERVICE_PERMISSION, null);
+                    PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION, null);
         }
 
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
@@ -127,7 +125,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(refreshIntent);
 
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
-        sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+        sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
 
     }
 
@@ -157,7 +155,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
                             intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
                             intent.putExtra(EXTRA_CLASS_NAME, event.getClassName().toString());
-                            sendBroadcast(intent, ACCESSIBILITY_SERVICE_PERMISSION);
+                            sendBroadcast(intent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
                         }
                     }
                 }

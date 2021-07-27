@@ -84,7 +84,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
             // send answer to PPP
             PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "PPPEApplication.ACTION_PPPEXTENDER_IS_RUNNING");
             Intent sendIntent = new Intent(ACTION_PPPEXTENDER_IS_RUNNING_ANSWER);
-            context.sendBroadcast(sendIntent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+            context.sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
         }
         else
         if (action.equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {
