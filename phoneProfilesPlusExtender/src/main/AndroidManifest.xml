@@ -50,7 +50,8 @@
 <!--            android:name="firebase_crashlytics_collection_enabled"-->
 <!--            android:value="true" />-->
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            tools:ignore="IntentFilterExportedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -66,7 +67,8 @@
         <service
             android:name=".PPPEAccessibilityService"
             android:label="@string/extender_accessibility_service_name"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService"/>
             </intent-filter>
