@@ -44,6 +44,14 @@
             android:text="@string/extender_application_releases"
             android:textSize="15sp"/>
 
+        <TextView
+            android:id="@+id/activity_main_scroll_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/extender_scroll_info"
+            android:textStyle="italic"
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_profile_force_stop_application"
