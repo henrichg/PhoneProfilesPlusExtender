@@ -134,6 +134,24 @@
             android:textColor="?attr/colorAccent"
             android:background="?attr/selectableItemBackground" />
 
+        <TextView
+            android:id="@+id/activity_main_battery_optimization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/extender_battery_optimization_optimized"
+            android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/activity_main_battery_optimization_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/extender_battery_optimization_button"
+            android:textColor="?attr/colorAccent"
+            android:background="?attr/selectableItemBackground" />
+
     </LinearLayout>
 
 </ScrollView>

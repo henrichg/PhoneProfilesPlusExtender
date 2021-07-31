@@ -502,6 +502,18 @@ public class PPPEApplication extends Application {
         }
     }
 
+    static boolean isIgnoreBatteryOptimizationEnabled(Context appContext) {
+        PowerManager pm = (PowerManager) appContext.getSystemService(Context.POWER_SERVICE);
+        try {
+            if (pm != null) {
+                return pm.isIgnoringBatteryOptimizations(PACKAGE_NAME);
+            }
+        } catch (Exception ignore) {
+            return false;
+        }
+        return false;
+    }
+
     static boolean isScreenOn(PowerManager powerManager) {
         return powerManager.isInteractive();
     }
