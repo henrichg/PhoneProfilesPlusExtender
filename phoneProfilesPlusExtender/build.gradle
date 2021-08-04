@@ -14,7 +14,7 @@ android {
         // - android.permission.PROCESS_OUTGOING_CALLS
 
         versionCode 646
-        versionName "6.0.1.2b"
+        versionName "6.1b"
 
         resConfigs "en", "af", "ar", "bn-rIN", "bg", "ca", "cs", "da", "de", "el", "es", "et", "fa",
                 "fi", "fr", "ga-rIN", "hi", "hr", "hu", "in", "is", "it", "iw", "ja", "ko", "ku",
