@@ -14,7 +14,6 @@
         android:paddingEnd="15dp"
         android:paddingBottom="15dp">
 
-
         <ImageView
             android:id="@+id/activity_main_application_icon"
             android:layout_width="50dp"
@@ -92,17 +91,19 @@
             android:id="@+id/activity_main_accessibility_service_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_accessibility_service_button"
             android:textColor="?attr/colorAccent"
-            android:background="?attr/selectableItemBackground" />
+            android:textStyle="bold"
+            android:background="@drawable/pp_button_background_selector"
+            style="?android:attr/borderlessButtonStyle" />
 
         <TextView
             android:id="@+id/activity_main_permissions_event_sensor_sms_mms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
             android:textSize="15sp"/>
 
@@ -110,17 +111,19 @@
             android:id="@+id/activity_main_sms_permissions_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_permissions_button"
             android:textColor="?attr/colorAccent"
-            android:background="?attr/selectableItemBackground" />
+            android:textStyle="bold"
+            android:background="@drawable/pp_button_background_selector"
+            style="?android:attr/borderlessButtonStyle" />
 
         <TextView
             android:id="@+id/activity_main_permissions_event_sensor_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
             android:textSize="15sp"/>
 
@@ -128,17 +131,19 @@
             android:id="@+id/activity_main_call_permissions_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_permissions_button"
             android:textColor="?attr/colorAccent"
-            android:background="?attr/selectableItemBackground" />
+            android:textStyle="bold"
+            android:background="@drawable/pp_button_background_selector"
+            style="?android:attr/borderlessButtonStyle" />
 
         <TextView
             android:id="@+id/activity_main_battery_optimization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="@string/extender_battery_optimization_optimized"
             android:textSize="15sp"/>
 
@@ -146,11 +151,13 @@
             android:id="@+id/activity_main_battery_optimization_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_battery_optimization_button"
             android:textColor="?attr/colorAccent"
-            android:background="?attr/selectableItemBackground" />
+            android:textStyle="bold"
+            android:background="@drawable/pp_button_background_selector"
+            style="?android:attr/borderlessButtonStyle" />
 
     </LinearLayout>
 

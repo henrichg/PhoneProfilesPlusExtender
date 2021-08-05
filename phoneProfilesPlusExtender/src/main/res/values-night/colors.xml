@@ -12,4 +12,8 @@
     <color name="activitySecondaryTextColor">#CFFFFFFF</color>
     <color name="activityDisabledTextColor">#2FFFFFFF</color>
 
+    <color name="buttonBorderColor">#FF707070</color>
+    <color name="buttonBackgroundColor">#FF1C1C1C</color>
+    <color name="buttonClickedBackgroundColor">#FF505050</color>
+
 </resources>

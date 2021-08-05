@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         String str1 = getString(R.string.extender_application_releases);
         String str2 = str1 + " https://github.com/henrichg/PhoneProfilesPlusExtender/releases";
         Spannable sbt = new SpannableString(str2);
-        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void updateDrawState(@NonNull TextPaint ds) {
