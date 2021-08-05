@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int RESULT_ACCESSIBILITY_SETTINGS = 1900;
     private static final int RESULT_PERMISSIONS_SETTINGS = 1901;
+    private static final int RESULT_BATTERY_OPTIMIZATION_SETTINGS = 1902;
 
     private final BroadcastReceiver refreshGUIBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -136,6 +137,16 @@ public class MainActivity extends AppCompatActivity {
             text.setVisibility(View.GONE);
         }
 
+        str1 = getString(R.string.extender_battery_optimization_text);
+        if (PPPEApplication.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
+            str2 = str1 + " " + getString(R.string.extender_battery_optimization_not_optimized);
+        else
+            str2 = str1 + " " + getString(R.string.extender_battery_optimization_optimized);
+        sbt = new SpannableString(str2);
+        text = findViewById(R.id.activity_main_battery_optimization);
+        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
+        text.setText(sbt);
+
         Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             permissionsButton.setOnClickListener(view -> {
@@ -144,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setData(Uri.parse("package:" + getPackageName()));
                     if (MainActivity.activityIntentExists(intent, activity)) {
+                        //noinspection deprecation
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                     } else {
                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
@@ -167,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setData(Uri.parse("package:" + getPackageName()));
                     if (MainActivity.activityIntentExists(intent, activity)) {
+                        //noinspection deprecation
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                     } else {
                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
@@ -182,6 +195,22 @@ public class MainActivity extends AppCompatActivity {
         else
             permissionsButton.setVisibility(View.GONE);
 
+        Button batteryOptimizationButton = findViewById(R.id.activity_main_battery_optimization_button);
+        batteryOptimizationButton.setOnClickListener(view -> {
+            Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+            //intent.addCategory(Intent.CATEGORY_DEFAULT);
+            if (MainActivity.activityIntentExists(intent, activity)) {
+                //noinspection deprecation
+                startActivityForResult(intent, RESULT_BATTERY_OPTIMIZATION_SETTINGS);
+            } else {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+                dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
+                //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
+                dialogBuilder.setPositiveButton(android.R.string.ok, null);
+                dialogBuilder.show();
+            }
+        });
+
         LocalBroadcastManager.getInstance(this).registerReceiver(refreshGUIBroadcastReceiver,
                 new IntentFilter(PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver"));
 
@@ -195,12 +224,15 @@ public class MainActivity extends AppCompatActivity {
             reloadActivity(this/*, true*/);
         if (requestCode == RESULT_PERMISSIONS_SETTINGS)
             reloadActivity(this/*, true*/);
+        if (requestCode == RESULT_BATTERY_OPTIMIZATION_SETTINGS)
+            reloadActivity(this/*, true*/);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         // If request is cancelled, the result arrays are empty.
         if (requestCode == Permissions.PERMISSIONS_REQUEST_CODE) {
             boolean allGranted = true;
@@ -284,6 +316,7 @@ public class MainActivity extends AppCompatActivity {
         accessibilityButton.setOnClickListener(view -> {
             if (MainActivity.activityActionExists(Settings.ACTION_ACCESSIBILITY_SETTINGS, activity)) {
                 Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                //noinspection deprecation
                 startActivityForResult(intent, RESULT_ACCESSIBILITY_SETTINGS);
             } else {
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);

@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.PowerManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import androidx.core.content.pm.PackageInfoCompat;
@@ -44,18 +46,18 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
     // TODO: DISABLE IT FOR RELEASE VERSION!!!
-    static final boolean logIntoFile = false;
+    static final boolean logIntoFile = true;
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = ""
-                                                //+"|PPPEAccessibilityService"
+                                                +"|PPPEAccessibilityService"
                                                 //+"|SMSBroadcastReceiver"
 
                                                 //+"|PhoneCallReceiver"
                                                 //+"|PPPEPhoneStateListener"
 
                                                 //+ "|MainActivity"
-                                                //+ "|FromPhoneProfilesPlusBroadcastReceiver"
+                                                + "|FromPhoneProfilesPlusBroadcastReceiver"
             ;
 
     static final boolean deviceIsOppo = isOppo();
@@ -67,7 +69,10 @@ public class PPPEApplication extends Application {
     //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
     private static final String LOG_FILENAME = "log.txt";
 
-    static final String ACTION_REGISTER_PPPE_FUNCTION = "sk.henrichg.phoneprofilesplusextender.ACTION_REGISTER_PPPE_FUNCTION";
+    static final String ACCESSIBILITY_SERVICE_PERMISSION = PPPEApplication.PACKAGE_NAME + ".ACCESSIBILITY_SERVICE_PERMISSION";
+
+    static final String ACTION_PPPEXTENDER_IS_RUNNING = PPPEApplication.PACKAGE_NAME + ".ACTION_PPPEXTENDER_IS_RUNNING";
+    static final String ACTION_REGISTER_PPPE_FUNCTION = PPPEApplication.PACKAGE_NAME + ".ACTION_REGISTER_PPPE_FUNCTION";
 
     static final String EXTRA_REGISTRATION_APP = "registration_app";
     static final String EXTRA_REGISTRATION_TYPE = "registration_type";
@@ -92,6 +97,26 @@ public class PPPEApplication extends Application {
     static boolean registeredCallFunctionPPP = true;
     static boolean registeredLockDeviceFunctionPP = true;
     static boolean registeredLockDeviceFunctionPPP = true;
+
+    static PPPEApplicationIsRunningBroadcastReceiver pPPEApplicationIsRunningBroadcastReceiver = null;
+    static FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
+    static ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
+    static SMSBroadcastReceiver smsBroadcastReceiver = null;
+    static SMSBroadcastReceiver mmsBroadcastReceiver = null;
+    static PhoneCallReceiver phoneCallReceiver = null;
+    static SimStateChangedBroadcastReceiver simStateChangedBroadcastReceiver = null;
+
+    static PPPEPhoneStateListener phoneStateListenerSIM1 = null;
+    static PPPEPhoneStateListener phoneStateListenerSIM2 = null;
+    static PPPEPhoneStateListener phoneStateListenerDefaul = null;
+
+    static TelephonyManager telephonyManagerSIM1 = null;
+    static TelephonyManager telephonyManagerSIM2 = null;
+    static TelephonyManager telephonyManagerDefault = null;
+
+    static boolean forceStopStarted = false;
+    static boolean applicationForceClosed = false;
+    static boolean forceStopPerformed = false;
 
     @Override
     public void onCreate() {
@@ -189,6 +214,14 @@ public class PPPEApplication extends Application {
         }
         Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
         //}
+
+        if (pPPEApplicationIsRunningBroadcastReceiver == null) {
+            pPPEApplicationIsRunningBroadcastReceiver = new PPPEApplicationIsRunningBroadcastReceiver();
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(ACTION_PPPEXTENDER_IS_RUNNING);
+            getBaseContext().registerReceiver(pPPEApplicationIsRunningBroadcastReceiver, intentFilter,
+                    ACCESSIBILITY_SERVICE_PERMISSION, null);
+        }
 
     }
 
@@ -467,6 +500,18 @@ public class PPPEApplication extends Application {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    static boolean isIgnoreBatteryOptimizationEnabled(Context appContext) {
+        PowerManager pm = (PowerManager) appContext.getSystemService(Context.POWER_SERVICE);
+        try {
+            if (pm != null) {
+                return pm.isIgnoringBatteryOptimizations(PACKAGE_NAME);
+            }
+        } catch (Exception ignore) {
+            return false;
+        }
+        return false;
     }
 
     static boolean isScreenOn(PowerManager powerManager) {

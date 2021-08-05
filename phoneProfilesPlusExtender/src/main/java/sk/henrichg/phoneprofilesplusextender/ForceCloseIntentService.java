@@ -55,7 +55,7 @@ public class ForceCloseIntentService extends IntentService {
 
         if (!(applications.isEmpty() || (applications.equals("-")))) {
 
-            PPPEAccessibilityService.forceStopStarted = true;
+            PPPEApplication.forceStopStarted = true;
             //Log.e("ForceCloseIntentService", "forceStopStarted=true");
 
             startForceStopActivity();
@@ -87,9 +87,10 @@ public class ForceCloseIntentService extends IntentService {
                             startForceStopActivity();
                             if (ForceStopActivity.instance != null) {
                                 try {
-                                    PPPEAccessibilityService.applicationForceClosed = false;
-                                    PPPEAccessibilityService.forceStopPerformed = false;
+                                    PPPEApplication.applicationForceClosed = false;
+                                    PPPEApplication.forceStopPerformed = false;
                                     //ForceStopActivity.instance.appInfoClosed = false;
+                                    //noinspection deprecation
                                     ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
                                     waitForApplicationForceClosed();
                                     //waitForAppInfoEnd();
@@ -106,7 +107,7 @@ public class ForceCloseIntentService extends IntentService {
 
             --forceStopApplicationsStartCount;
 
-            PPPEAccessibilityService.forceStopStarted = false;
+            PPPEApplication.forceStopStarted = false;
             //Log.e("ForceCloseIntentService", "forceStopStarted=false");
         }
 
@@ -130,7 +131,7 @@ public class ForceCloseIntentService extends IntentService {
                 for (long _profileId : profileIdList) {
                     Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_END);
                     _intent.putExtra(EXTRA_PROFILE_ID, _profileId);
-                    sendBroadcast(_intent, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+                    sendBroadcast(_intent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
                 }
             }
             profileIdList.clear();
@@ -194,7 +195,7 @@ public class ForceCloseIntentService extends IntentService {
     {
         long start = SystemClock.uptimeMillis();
         do {
-            if ((ForceStopActivity.instance == null) || (PPPEAccessibilityService.applicationForceClosed))
+            if ((ForceStopActivity.instance == null) || (PPPEApplication.applicationForceClosed))
                 break;
             //try { Thread.sleep(100); } catch (InterruptedException e) { }
             SystemClock.sleep(100);

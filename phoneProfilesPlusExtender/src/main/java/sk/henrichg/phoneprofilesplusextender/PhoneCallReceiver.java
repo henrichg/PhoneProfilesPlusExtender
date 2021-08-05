@@ -51,12 +51,12 @@ public class PhoneCallReceiver extends BroadcastReceiver {
     void setOutgoingNumber(String number){
 //        PPPEApplication.logE("PhoneCallReceiver.setOutgoingNumber", "outgoingNumber="+number);
         try {
-            if (PPPEAccessibilityService.phoneStateListenerSIM1 != null)
-                PPPEAccessibilityService.phoneStateListenerSIM1.onOutgoingCallStarted(number, new Date());
-            if (PPPEAccessibilityService.phoneStateListenerSIM2 != null)
-                PPPEAccessibilityService.phoneStateListenerSIM2.onOutgoingCallStarted(number, new Date());
-            if (PPPEAccessibilityService.phoneStateListenerDefaul != null)
-                PPPEAccessibilityService.phoneStateListenerDefaul.onOutgoingCallStarted(number, new Date());
+            if (PPPEApplication.phoneStateListenerSIM1 != null)
+                PPPEApplication.phoneStateListenerSIM1.onOutgoingCallStarted(number, new Date());
+            if (PPPEApplication.phoneStateListenerSIM2 != null)
+                PPPEApplication.phoneStateListenerSIM2.onOutgoingCallStarted(number, new Date());
+            if (PPPEApplication.phoneStateListenerDefaul != null)
+                PPPEApplication.phoneStateListenerDefaul.onOutgoingCallStarted(number, new Date());
         } catch (Exception ignored) {}
     }
 
