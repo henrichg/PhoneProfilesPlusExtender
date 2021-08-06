@@ -31,6 +31,8 @@
         <item name="android:textViewStyle">@style/TextViewTheme</item>
         <item name="android:windowBackground">@color/activityBackgroundColor</item>
 
+        <item name="textAllCaps">false</item>
+
 <!--        <item name="buttonBackground">@drawable/pp_button_background_selector</item>-->
     </style>
 
