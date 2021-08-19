@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '30.0.3'
+    buildToolsVersion '31.0.0'
 
     defaultConfig {
         applicationId "sk.henrichg.phoneprofilesplusextender"
@@ -16,7 +16,7 @@ android {
         versionCode 660
         versionName "6.1"
 
-        resConfigs "en", "af", "ar", "bn-rIN", "bg", "ca", "cs", "da", "de", "el", "es", "et", "fa",
+        resConfigs "en", "ar", "bn-rIN", "bg", "ca", "cs", "da", "de", "el", "es", "et", "fa",
                 "fi", "fr", "ga-rIN", "hi", "hr", "hu", "in", "is", "it", "iw", "ja", "ko", "ku",
                 "lb", "lv", "ms", "nl", "no", "pl", "pt-rBR", "pt-rPT", "ro", "ru", "sk", "sl", "sr",
                 "b+sr+Latn", "sv", "te", "th", "tr", "uk", "vi", "zh-rCN", "zh-rTW"
