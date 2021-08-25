@@ -50,14 +50,14 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = ""
-                                                +"|PPPEAccessibilityService"
+                                                //+"|PPPEAccessibilityService"
                                                 //+"|SMSBroadcastReceiver"
 
                                                 //+"|PhoneCallReceiver"
                                                 //+"|PPPEPhoneStateListener"
 
                                                 //+ "|MainActivity"
-                                                + "|FromPhoneProfilesPlusBroadcastReceiver"
+                                                //+ "|FromPhoneProfilesPlusBroadcastReceiver"
             ;
 
     static final boolean deviceIsOppo = isOppo();
