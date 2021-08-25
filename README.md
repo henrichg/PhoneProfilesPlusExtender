@@ -6,6 +6,7 @@ PhoneProfilesPlusExtender
 [![version](https://img.shields.io/badge/version-6.1-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/6.1)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![License](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/henrichg/PhoneProfilesPlus/blob/master/LICENSE)
+[![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AF5QK49DMAL2U&currency_code=EUR)
 
 Android application - Extender for PhoneProfiles and PhoneProfilesPlus

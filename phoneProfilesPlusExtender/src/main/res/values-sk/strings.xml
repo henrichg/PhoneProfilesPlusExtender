@@ -33,5 +33,5 @@
     <string name="extender_battery_optimization_text">• Optimalizácia batérie pre PhoneProfilesPlusExtender - pridajte ho do skupiny „Neoptimalizované“:</string>
     <string name="extender_battery_optimization_optimized">Optimalizované</string>
     <string name="extender_battery_optimization_not_optimized">Neoptimalizované</string>
-    <string name="extender_battery_optimization_button">Otvor Optimalizáciu batérie</string>
+    <string name="extender_battery_optimization_button">Otvor\nOptimalizáciu batérie</string>
 </resources>

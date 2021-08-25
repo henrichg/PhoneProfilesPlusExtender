@@ -33,5 +33,5 @@
     <string name="extender_battery_optimization_text">• Optimización de la batería para PhoneProfilesPlusExtender - por favor, añádelo al grupo \"No optimizado\":</string>
     <string name="extender_battery_optimization_optimized">Optimizado</string>
     <string name="extender_battery_optimization_not_optimized">No optimizado</string>
-    <string name="extender_battery_optimization_button">Abrir optimización de Batería</string>
+    <string name="extender_battery_optimization_button">Abrir\noptimización de Batería</string>
 </resources>
