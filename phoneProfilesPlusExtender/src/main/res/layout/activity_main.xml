@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/aactivity_main_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/activity_margin_start"
+    android:layout_marginEnd="@dimen/activity_margin_end" >
+
+<ScrollView
     android:id="@+id/activity_main_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="sk.henrichg.phoneprofilesplusextender.MainActivity" >
+    tools:context="sk.henrichg.phoneprofilesplusextender.MainActivity"
+    tools:ignore="UselessParent" >
 
     <LinearLayout
         android:orientation="vertical"
@@ -166,3 +174,5 @@
     </LinearLayout>
 
 </ScrollView>
+
+</LinearLayout>
