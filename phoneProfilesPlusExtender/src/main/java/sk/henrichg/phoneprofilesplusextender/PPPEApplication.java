@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -72,7 +71,7 @@ public class PPPEApplication extends Application {
 
     static final String ACCESSIBILITY_SERVICE_PERMISSION = PPPEApplication.PACKAGE_NAME + ".ACCESSIBILITY_SERVICE_PERMISSION";
 
-    static final String ACTION_PPPEXTENDER_IS_RUNNING = PPPEApplication.PACKAGE_NAME + ".ACTION_PPPEXTENDER_IS_RUNNING";
+    static final String ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED";
     static final String ACTION_REGISTER_PPPE_FUNCTION = PPPEApplication.PACKAGE_NAME + ".ACTION_REGISTER_PPPE_FUNCTION";
 
     static final String EXTRA_REGISTRATION_APP = "registration_app";
@@ -99,7 +98,6 @@ public class PPPEApplication extends Application {
     static boolean registeredLockDeviceFunctionPP = true;
     static boolean registeredLockDeviceFunctionPPP = true;
 
-    static PPPEApplicationIsRunningBroadcastReceiver pPPEApplicationIsRunningBroadcastReceiver = null;
     static FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
     static ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
     static SMSBroadcastReceiver smsBroadcastReceiver = null;
@@ -215,14 +213,6 @@ public class PPPEApplication extends Application {
         }
         Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
         //}
-
-        if (pPPEApplicationIsRunningBroadcastReceiver == null) {
-            pPPEApplicationIsRunningBroadcastReceiver = new PPPEApplicationIsRunningBroadcastReceiver();
-            IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction(ACTION_PPPEXTENDER_IS_RUNNING);
-            getBaseContext().registerReceiver(pPPEApplicationIsRunningBroadcastReceiver, intentFilter,
-                    ACCESSIBILITY_SERVICE_PERMISSION, null);
-        }
 
     }
 
