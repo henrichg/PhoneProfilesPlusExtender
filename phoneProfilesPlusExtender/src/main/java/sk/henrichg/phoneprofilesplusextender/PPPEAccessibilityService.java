@@ -235,6 +235,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             ) {
                             //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Alert opened");
                             //forceCloseButtonClicked = false;
+                            if ((PPPEApplication.deviceIsSamsung) && (Build.VERSION.SDK_INT >= 30))
+                                list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
+                            else
                             if ((PPPEApplication.deviceIsSamsung) && (Build.VERSION.SDK_INT >= 29))
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button1");
                             else
@@ -261,8 +264,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
         }
 
-        /*
-        if (PPPEApplication.logIntoFile) {
+/*        if (PPPEApplication.logIntoFile) {
             // TODO  this is only for testing, for increase support of devices !!! Comment for production version !!!
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
@@ -289,8 +291,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     }
                 }
             } catch (Exception ignored) {}
-        }
-        */
+        }*/
     }
 
     private ActivityInfo tryGetActivity(ComponentName componentName) {
