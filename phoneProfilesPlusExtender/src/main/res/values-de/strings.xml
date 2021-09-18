@@ -24,7 +24,7 @@
     <string name="extender_accessibility_service_profile_lock_device">• Dienst Eingabehilfen für den Profilparameter „Gerät sperren”:</string>
     <string name="extender_application_releases">Versionen:</string>
     <string name="extender_web_browser_chooser">Link öffnen mit</string>
-    <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Absturzbericht</string>
+    <string name="extender_acra_email_subject_text">absturzbericht</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender ist abgestürzt. Anbei finden Sie den Absturzbericht.</string>
     <string name="extender_acra_notification_title">Leider ist PhoneProfilesPlusExtender abgestürzt</string>
     <string name="extender_acra_notification_text">Bitte klicken Sie hier, um den Absturzbericht an den Autor zu senden. Vielen Dank.</string>
@@ -34,4 +34,6 @@
     <string name="extender_battery_optimization_optimized">Optimiert</string>
     <string name="extender_battery_optimization_not_optimized">Nicht optimiert</string>
     <string name="extender_battery_optimization_button">Akku-Optimierung\nöffnen</string>
+    <string name="extender_acra_email_body_device">Gerät:</string>
+    <string name="extender_acra_email_body_android_version">Android-Version:</string>
 </resources>

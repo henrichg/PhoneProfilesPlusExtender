@@ -24,7 +24,7 @@
     <string name="extender_accessibility_service_profile_lock_device">• Service d\'accessibilité pour le paramètre de profil \"Verrouillage de l\'appareil\" :</string>
     <string name="extender_application_releases">Versions :</string>
     <string name="extender_web_browser_chooser">Voir le lien web en utilisant</string>
-    <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Rapport d\'erreur</string>
+    <string name="extender_acra_email_subject_text">rapport d\'erreur</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender c\'est arrêté. La pièce jointe est un rapport d\'erreur.</string>
     <string name="extender_acra_notification_title">Désolé, PhoneProfilesPlusExtender a planté</string>
     <string name="extender_acra_notification_text">Veuillez cliquer ici pour envoyer un rapport de plantage à l\'auteur. Merci beaucoup.</string>
@@ -34,4 +34,6 @@
     <string name="extender_battery_optimization_optimized">Optimized</string>
     <string name="extender_battery_optimization_not_optimized">Not optimized</string>
     <string name="extender_battery_optimization_button">Open\nBattery optimization</string>
+    <string name="extender_acra_email_body_device">Device:</string>
+    <string name="extender_acra_email_body_android_version">Android version:</string>
 </resources>

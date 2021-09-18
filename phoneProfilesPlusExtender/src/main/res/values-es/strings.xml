@@ -24,7 +24,7 @@
     <string name="extender_accessibility_service_profile_lock_device">• Servicio de accesibilidad para el parámetro de perfil \"Bloqueo de dispositivo\":</string>
     <string name="extender_application_releases">Lanzamientos:</string>
     <string name="extender_web_browser_chooser">Ver dirección web utilizando</string>
-    <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Informe de error</string>
+    <string name="extender_acra_email_subject_text">informe de error</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender ha fallado. Adjunto está el informe de error.</string>
     <string name="extender_acra_notification_title">Lo sentimos, PhoneProfilesPlusExtender ha fallado</string>
     <string name="extender_acra_notification_text">Haz clic aquí, por favor, para enviar un informe de error al autor. Muchas gracias.</string>
@@ -34,4 +34,6 @@
     <string name="extender_battery_optimization_optimized">Optimizado</string>
     <string name="extender_battery_optimization_not_optimized">No optimizado</string>
     <string name="extender_battery_optimization_button">Abrir\noptimización de Batería</string>
+    <string name="extender_acra_email_body_device">Dispositivo:</string>
+    <string name="extender_acra_email_body_android_version">Versión de Android:</string>
 </resources>

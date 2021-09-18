@@ -24,7 +24,7 @@
     <string name="extender_accessibility_service_profile_lock_device">• Toegankelijkheid service voor profiel parameter \"Apparaat vergrendelen\":</string>
     <string name="extender_application_releases">Releases:</string>
     <string name="extender_web_browser_chooser">Bekijk weblink met</string>
-    <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Crashrapport</string>
+    <string name="extender_acra_email_subject_text">crashrapport</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender is gecrasht. In de bijlage het crashrapport.</string>
     <string name="extender_acra_notification_title">Sorry, PhoneProfilesPlusExtender is gecrasht</string>
     <string name="extender_acra_notification_text">Klik hier om een crashrapport te verzenden naar de auteur. Dank je wel.</string>
@@ -34,4 +34,6 @@
     <string name="extender_battery_optimization_optimized">Geoptimaliseerd</string>
     <string name="extender_battery_optimization_not_optimized">Niet geoptimaliseerd</string>
     <string name="extender_battery_optimization_button">Open\nBatterijoptimalisatie</string>
+    <string name="extender_acra_email_body_device">Apparaat:</string>
+    <string name="extender_acra_email_body_android_version">Android versie:</string>
 </resources>

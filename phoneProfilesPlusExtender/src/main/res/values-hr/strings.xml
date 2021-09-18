@@ -24,14 +24,16 @@
     <string name="extender_accessibility_service_profile_lock_device">Servis pristupačnosti za parametar profila \"Zaključaj uređaj\":</string>
     <string name="extender_application_releases">Izdanja:</string>
     <string name="extender_web_browser_chooser">Pregled korištenja web linka</string>
-    <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Izvješće o pogrešci</string>
+    <string name="extender_acra_email_subject_text">izvješće o pogrešci</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender se isključio. Pridodato je izvješće o pogrešci.</string>
     <string name="extender_acra_notification_title">Žao nam je, PhoneProfilesPlusExtender se isključio</string>
     <string name="extender_acra_notification_text">Molimo da kliknete ovdje, da biste poslali izvešće o pogrešci autoru. Hvala Vam.</string>
     <string name="extender_notification_channel_crash_report">Izvješće o pogreškama</string>
-    <string name="extender_scroll_info">Note: Scroll down in this screen to show all parameters.</string>
-    <string name="extender_battery_optimization_text">• Battery optimization for PhoneProfilesPlusExtender - please add it to \"Not optimized\" group:</string>
-    <string name="extender_battery_optimization_optimized">Optimized</string>
-    <string name="extender_battery_optimization_not_optimized">Not optimized</string>
-    <string name="extender_battery_optimization_button">Open\nBattery optimization</string>
+    <string name="extender_scroll_info">Napomena: Prevucite na dole na ovome zaslonu za prikaz svih parametara.</string>
+    <string name="extender_battery_optimization_text">• Optimizacija baterije za PhoneProfilesPlusExtender - molimo dodajte aplikaciju u grupu \"Ne optimizirano\":</string>
+    <string name="extender_battery_optimization_optimized">Optimizirano</string>
+    <string name="extender_battery_optimization_not_optimized">Ne optimizirano</string>
+    <string name="extender_battery_optimization_button">Otvori\n Optimizacija baterije</string>
+    <string name="extender_acra_email_body_device">Uređaj:</string>
+    <string name="extender_acra_email_body_android_version">Verzija Androida:</string>
 </resources>

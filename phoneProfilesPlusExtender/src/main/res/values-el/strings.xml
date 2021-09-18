@@ -24,7 +24,7 @@
     <string name="extender_accessibility_service_profile_lock_device">• Accessibility service for profile parameter \"Lock device\":</string>
     <string name="extender_application_releases">Releases:</string>
     <string name="extender_web_browser_chooser">View web link using</string>
-    <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender - Αναφορά κατάρρευσης</string>
+    <string name="extender_acra_email_subject_text">αναφορά κατάρευσης</string>
     <string name="extender_acra_email_body_text">Το PhoneProfilesPlusExtender τερματίστηκε απροσδόκητα. Συνημμένη είναι η αναφορά κατάρρευσης.</string>
     <string name="extender_acra_notification_title">Συγγνώμη, το PhoneProfilesPlusExtender τερματίστηκε απροσδόκητα</string>
     <string name="extender_acra_notification_text">Please click here, to send crash report to author. Thank you very much.</string>
@@ -34,4 +34,6 @@
     <string name="extender_battery_optimization_optimized">Optimized</string>
     <string name="extender_battery_optimization_not_optimized">Not optimized</string>
     <string name="extender_battery_optimization_button">Open\nBattery optimization</string>
+    <string name="extender_acra_email_body_device">Device:</string>
+    <string name="extender_acra_email_body_android_version">Android version:</string>
 </resources>
