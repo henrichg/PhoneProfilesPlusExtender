@@ -35,5 +35,5 @@
     <string name="extender_battery_optimization_not_optimized">Not optimized</string>
     <string name="extender_battery_optimization_button">Open\nBattery optimization</string>
     <string name="extender_acra_email_body_device">Device:</string>
-    <string name="extender_acra_email_body_android_version">Android version:</string>
+    <string name="extender_acra_email_body_android_version">Version Android :</string>
 </resources>
