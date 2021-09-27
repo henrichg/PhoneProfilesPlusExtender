@@ -4,11 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.PowerManager;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -71,7 +71,7 @@ public class PPPEApplication extends Application {
 
     static final String ACCESSIBILITY_SERVICE_PERMISSION = PPPEApplication.PACKAGE_NAME + ".ACCESSIBILITY_SERVICE_PERMISSION";
 
-    static final String ACTION_PPPEXTENDER_IS_RUNNING = PPPEApplication.PACKAGE_NAME + ".ACTION_PPPEXTENDER_IS_RUNNING";
+    static final String ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED";
     static final String ACTION_REGISTER_PPPE_FUNCTION = PPPEApplication.PACKAGE_NAME + ".ACTION_REGISTER_PPPE_FUNCTION";
 
     static final String EXTRA_REGISTRATION_APP = "registration_app";
@@ -98,7 +98,6 @@ public class PPPEApplication extends Application {
     static boolean registeredLockDeviceFunctionPP = true;
     static boolean registeredLockDeviceFunctionPPP = true;
 
-    static PPPEApplicationIsRunningBroadcastReceiver pPPEApplicationIsRunningBroadcastReceiver = null;
     static FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
     static ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
     static SMSBroadcastReceiver smsBroadcastReceiver = null;
@@ -215,14 +214,6 @@ public class PPPEApplication extends Application {
         Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
         //}
 
-        if (pPPEApplicationIsRunningBroadcastReceiver == null) {
-            pPPEApplicationIsRunningBroadcastReceiver = new PPPEApplicationIsRunningBroadcastReceiver();
-            IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction(ACTION_PPPEXTENDER_IS_RUNNING);
-            getBaseContext().registerReceiver(pPPEApplicationIsRunningBroadcastReceiver, intentFilter,
-                    ACCESSIBILITY_SERVICE_PERMISSION, null);
-        }
-
     }
 
     // workaround for: java.lang.NullPointerException: Attempt to invoke virtual method
@@ -247,6 +238,30 @@ public class PPPEApplication extends Application {
             return;
         }
 
+        String packageVersion = "";
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(PPPEApplication.PACKAGE_NAME, 0);
+            packageVersion = " - v" + pInfo.versionName + " (" + PPPEApplication.getVersionCode(pInfo) + ")";
+        } catch (Exception e) {
+            PPPEApplication.recordException(e);
+        }
+
+        String body;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1)
+            body = getString(R.string.extender_acra_email_body_device) + " " +
+                    Settings.Global.getString(getContentResolver(), Settings.Global.DEVICE_NAME) +
+                    " (" + Build.MODEL + ")" + " \n";
+        else {
+            String manufacturer = Build.MANUFACTURER;
+            String model = Build.MODEL;
+            if (model.startsWith(manufacturer))
+                body = getString(R.string.extender_acra_email_body_device) + " " + model + " \n";
+            else
+                body = getString(R.string.extender_acra_email_body_device) + " " + manufacturer + " " + model + " \n";
+        }
+        body = body + getString(R.string.extender_acra_email_body_android_version) + " " + Build.VERSION.RELEASE + " \n\n";
+        body = body + getString(R.string.extender_acra_email_body_text);
+
         Log.e("##### PPPEApplication.attachBaseContext", "ACRA inittialization");
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .withBuildConfigClass(BuildConfig.class)
@@ -256,7 +271,7 @@ public class PPPEApplication extends Application {
                 .setEnabled(true);*/
         builder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class)
                 .withResChannelName(R.string.extender_notification_channel_crash_report)
-                .withResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT)
+                .withResChannelImportance(NotificationManager.IMPORTANCE_HIGH)
                 .withResIcon(R.drawable.ic_exclamation_notify)
                 .withResTitle(R.string.extender_acra_notification_title)
                 .withResText(R.string.extender_acra_notification_text)
@@ -266,8 +281,8 @@ public class PPPEApplication extends Application {
                 .withEnabled(true);
         builder.getPluginConfigurationBuilder(MailSenderConfigurationBuilder.class)
                 .withMailTo("henrich.gron@gmail.com")
-                .withResSubject(R.string.extender_acra_email_subject_text)
-                .withResBody(R.string.extender_acra_email_body_text)
+                .withSubject("PhoneProfilesPlusExtender" + packageVersion + " - " + getString(R.string.extender_acra_email_subject_text))
+                .withBody(body)
                 .withReportAsFile(true)
                 .withReportFileName("crash_report.txt")
                 .withEnabled(true);
@@ -516,6 +531,11 @@ public class PPPEApplication extends Application {
 
     static boolean isScreenOn(PowerManager powerManager) {
         return powerManager.isInteractive();
+    }
+
+    static int getVersionCode(PackageInfo pInfo) {
+        //return pInfo.versionCode;
+        return (int) PackageInfoCompat.getLongVersionCode(pInfo);
     }
 
 }

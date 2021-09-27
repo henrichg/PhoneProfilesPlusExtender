@@ -30,7 +30,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     //private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
 
-    private static final String ACTION_ACCESSIBILITY_SERVICE_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_CONNECTED";
+    static final String ACTION_ACCESSIBILITY_SERVICE_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_CONNECTED";
     private static final String ACTION_ACCESSIBILITY_SERVICE_UNBIND = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_UNBIND";
 
     private static final String ACTION_FOREGROUND_APPLICATION_CHANGED = PPPEApplication.PACKAGE_NAME + ".ACTION_FOREGROUND_APPLICATION_CHANGED";
@@ -63,7 +63,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         setServiceInfo(config);
         */
 
-
         if (PPPEApplication.screenOnOffReceiver == null) {
             PPPEApplication.screenOnOffReceiver = new ScreenOnOffBroadcastReceiver();
             IntentFilter intentFilter5 = new IntentFilter();
@@ -76,6 +75,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         if (PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver == null) {
             PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver = new FromPhoneProfilesPlusBroadcastReceiver();
             IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(PPPEApplication.ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED);
             intentFilter.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
             intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
             intentFilter.addAction(ACTION_LOCK_DEVICE);
@@ -235,6 +235,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             ) {
                             //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Alert opened");
                             //forceCloseButtonClicked = false;
+                            if ((PPPEApplication.deviceIsSamsung) && (Build.VERSION.SDK_INT >= 30))
+                                list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
+                            else
                             if ((PPPEApplication.deviceIsSamsung) && (Build.VERSION.SDK_INT >= 29))
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button1");
                             else
@@ -261,8 +264,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
         }
 
-        /*
-        if (PPPEApplication.logIntoFile) {
+/*        if (PPPEApplication.logIntoFile) {
             // TODO  this is only for testing, for increase support of devices !!! Comment for production version !!!
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
@@ -289,8 +291,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     }
                 }
             } catch (Exception ignored) {}
-        }
-        */
+        }*/
     }
 
     private ActivityInfo tryGetActivity(ComponentName componentName) {

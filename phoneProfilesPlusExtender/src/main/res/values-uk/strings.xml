@@ -24,7 +24,7 @@
     <string name="extender_accessibility_service_profile_lock_device">• Служба спец. можливостей для параметра профілю \"Блокування телефону\":</string>
     <string name="extender_application_releases">Версії:</string>
     <string name="extender_web_browser_chooser">Перегляд веб-посилання за допомогою</string>
-    <string name="extender_acra_email_subject_text">PhoneProfilesPlusExtender — Звіт про аварію</string>
+    <string name="extender_acra_email_subject_text">звіт про аварію</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender був пошкоджений. Прикріплений звіт про аварію.</string>
     <string name="extender_acra_notification_title">На жаль, PhoneProfilesPlusExtender зазнав аварії</string>
     <string name="extender_acra_notification_text">Будь ласка, натисніть тут, щоб надіслати звіт про помилку автору. Дуже дякуємо.</string>
@@ -34,4 +34,6 @@
     <string name="extender_battery_optimization_optimized">Оптимізовано</string>
     <string name="extender_battery_optimization_not_optimized">Не оптимізовано</string>
     <string name="extender_battery_optimization_button">Оптимізація батареї</string>
+    <string name="extender_acra_email_body_device">Пристрій:</string>
+    <string name="extender_acra_email_body_android_version">Версія Android:</string>
 </resources>

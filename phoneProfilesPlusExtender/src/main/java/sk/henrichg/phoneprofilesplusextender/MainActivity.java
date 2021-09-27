@@ -246,8 +246,8 @@ public class MainActivity extends AppCompatActivity {
                 //if (!onlyNotification) {
                 Context context = getApplicationContext();
                 Toast msg = Toast.makeText(context,
-                        context.getResources().getString(R.string.extender_app_name) + ": " +
-                                context.getResources().getString(R.string.extender_toast_permissions_not_granted),
+                        context.getString(R.string.extender_app_name) + ": " +
+                                context.getString(R.string.extender_toast_permissions_not_granted),
                         Toast.LENGTH_SHORT);
                 msg.show();
                 //}
