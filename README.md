@@ -17,18 +17,16 @@ Android application - Extender for PhoneProfiles and PhoneProfilesPlus
 - Accessibility service for event parameters "SMS/MMS sensor"
 - Accessibility service for event parameters "Call sensor"
 
-Supported Android versions
-----------------------
+##### Supported Android versions
 
 - From Android 7.0
 - minSdkVersion = 24
 - targetSdkVersion = 27
 
-Required external libs
-----------------------
+##### Required external libs - open-source
 
-- AndroidX library: appcompat, localbroadcastmanager
-- Google Material library
+- AndroidX library: appcompat, localbroadcastmanager - https://developer.android.com/jetpack/androidx/versions
+- Google Material components - https://github.com/material-components/material-components-android
 - ACRA - https://github.com/ACRA/acra
 - Android-Accessibility-Service-Boilerplate (for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Service-Boilerplate
 - Android-Accessibility-Utilities(for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities
