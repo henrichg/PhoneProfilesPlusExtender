@@ -59,9 +59,7 @@ android {
 }
 
 dependencies {
-    //noinspection GradleDependency
     implementation 'ch.acra:acra-mail:5.8.4'
-    //noinspection GradleDependency
     implementation 'ch.acra:acra-notification:5.8.4'
 
     //noinspection GradleDependency
