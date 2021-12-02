@@ -24,6 +24,12 @@ Android application - Extender for PhoneProfiles and PhoneProfilesPlus
 - Accessibility service for event parameters "SMS/MMS sensor"
 - Accessibility service for event parameters "Call sensor"
 
+[Privacy Policy](https://sites.google.com/site/phoneprofilesplus/home/privacy-policy)
+
+_**** Please report me bugs, comments and suggestions to my e-mail: <henrich.gron@gmail.com>. Speed up the especially bug fixes. Thank you very much. ****_
+
+_*** Please help me with translation, thank you: <https://crowdin.com/project/phoneprofilesplus> ***_
+
 ##### Supported Android versions
 
 - From Android 7.0
