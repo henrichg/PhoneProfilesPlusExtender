@@ -9,6 +9,15 @@ PhoneProfilesPlusExtender
 [![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AF5QK49DMAL2U&currency_code=EUR)
 
+__[GitHub release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
+
+__Another sources of PhoneProfilesPlusExtender:__
+
+__Galaxy Store (for Samsung devices):__
+&nbsp;&nbsp;&nbsp;Use keyword "PhoneProfilesPlusExtender" for search this application in these stores.
+
+---
+
 Android application - Extender for PhoneProfiles and PhoneProfilesPlus
 - Accessibility service for profile parameter "Force stop applications"
 - Accessibility service for profile parameter "Lock device"
