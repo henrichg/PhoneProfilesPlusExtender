@@ -37,6 +37,7 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 - From Android 7.0
 - minSdkVersion = 24
 - targetSdkVersion = 27
+- compiledSdkVersion = 28
 
 ##### Required external libs - open-source
 
