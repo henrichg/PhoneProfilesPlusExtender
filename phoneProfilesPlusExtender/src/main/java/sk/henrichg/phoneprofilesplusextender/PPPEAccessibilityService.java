@@ -46,7 +46,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     protected void onServiceConnected() {
         super.onServiceConnected();
 
-//        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "xxx");
+        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
 
         instance = this;
 
@@ -127,6 +127,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
         sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
+
+        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[END]");
 
     }
 
@@ -305,13 +307,13 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     @Override
     public void onInterrupt() {
         instance = null;
-//        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
+        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
         //Log.d("PPPEAccessibilityService", "onUnbind");
-//        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "xxx");
+        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
 
         //final Context context = getApplicationContext();
 
@@ -379,6 +381,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
 
         instance = null;
+
+        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[END]");
 
         return super.onUnbind(intent);
     }
