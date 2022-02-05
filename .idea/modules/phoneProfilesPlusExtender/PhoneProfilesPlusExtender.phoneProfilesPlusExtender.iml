@@ -4,8 +4,8 @@
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
         <option name="GRADLE_PROJECT_PATH" value=":phoneProfilesPlusExtender" />
-        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="7.0.3" />
-        <option name="LAST_KNOWN_AGP_VERSION" value="7.0.3" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="7.1.0" />
+        <option name="LAST_KNOWN_AGP_VERSION" value="7.1.0" />
       </configuration>
     </facet>
     <facet type="android" name="Android">
@@ -29,6 +29,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender">
       <sourceFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/src/main/res" type="java-resource" />

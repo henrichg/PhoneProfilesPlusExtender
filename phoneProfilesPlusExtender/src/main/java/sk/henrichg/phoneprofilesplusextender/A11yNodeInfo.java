@@ -306,7 +306,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
                 result.append('-');
             }
 
-            result.append(nodeInfo.toString());
+            result.append(nodeInfo/*.toString()*/);
             result.append('\n');
 
             return false;

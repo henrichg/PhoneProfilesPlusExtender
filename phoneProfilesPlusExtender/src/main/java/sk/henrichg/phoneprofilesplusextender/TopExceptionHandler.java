@@ -30,7 +30,7 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
     {
         if (PPPEApplication.crashIntoFile) {
             StackTraceElement[] arr = e.getStackTrace();
-            String report = e.toString() + "\n\n";
+            String report = e/*.toString()*/ + "\n\n";
 
             report += "----- App version code: " + actualVersionCode + "\n\n";
 
@@ -50,7 +50,7 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
             report += "--------- Cause ---------------\n\n";
             Throwable cause = e.getCause();
             if (cause != null) {
-                report += cause.toString() + "\n\n";
+                report += cause/*.toString()*/ + "\n\n";
                 arr = cause.getStackTrace();
                 for (StackTraceElement anArr : arr) {
                     report += "    " + anArr.toString() + "\n";

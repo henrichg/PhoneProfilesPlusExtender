@@ -66,7 +66,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
         /*else
         if(intent.getAction().equals("android.provider.Telephony.SMS_SENT"))
         {
-            PPApplication.logE("SMSBroadcastReceiver.onReceive","sent");
+            PPPEApplication.logE("SMSBroadcastReceiver.onReceive","sent");
         }*/
         else
         if ((intent != null) && (intent.getAction() != null) && intent.getAction().equals(mmsAction)) {
@@ -142,7 +142,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
         {
             public void onChange(boolean selfChange)
             {
-                PPApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","xxx");
+                PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","xxx");
 
                 // read outgoing sms from db
                 Cursor cursor = _context.getContentResolver().query(Uri.parse(CONTENT_SMS), null, null, null, null);
@@ -154,7 +154,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                     // is sent successfully (available in SENT box).
                     if (protocol != null || type != MESSAGE_TYPE_SENT)
                     {
-                        PPApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","no SMS in SENT box");
+                        PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","no SMS in SENT box");
                         return;
                     }
                     int dateColumn = cursor.getColumnIndex("date");
@@ -165,10 +165,10 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                     Date date = new Date(cursor.getLong(dateColumn));
                     //String message = cursor.getString(bodyColumn);
 
-                    PPApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","sms sent");
-                    PPApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","to="+to);
-                    PPApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","date="+date);
-                    //PPApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","message="+message);
+                    PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","sms sent");
+                    PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","to="+to);
+                    PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","date="+date);
+                    //PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","message="+message);
 
                     SharedPreferences preferences = _context.getSharedPreferences(PPApplication.APPLICATION_PREFS_NAME, Context.MODE_PRIVATE);
                     Editor editor = preferences.edit();
@@ -212,7 +212,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
         {
             public void onChange(boolean selfChange)
             {
-                PPApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","xxx");
+                PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","xxx");
 
                 // read outgoing mms from db
                 Uri uriMMS = Uri.parse("content://mms/");
@@ -223,8 +223,8 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                    currMMSCount = mmsCur.getCount();
                 }
 
-                PPApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","mmsCount="+mmsCount);
-                PPApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","currMMSCount="+currMMSCount);
+                PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","mmsCount="+mmsCount);
+                PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","currMMSCount="+currMMSCount);
                 
                 if (currMMSCount > mmsCount)
                 {
@@ -233,12 +233,12 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                         // 132 (RETRIEVE CONF) 130 (NOTIF IND) 128 (SEND REQ)
                         int type = Integer.parseInt(mmsCur.getString(mmsCur.getColumnIndex("m_type")));
 
-                        PPApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","type="+type);
+                        PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","type="+type);
 
                         if (type == 128) {
                            // Outgoing MMS
 
-                            PPApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","mms sent");
+                            PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","mms sent");
 
                             int id = Integer.parseInt(mmsCur.getString(mmsCur.getColumnIndex("_id")));
 
@@ -254,7 +254,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                                         int addColIndex = addrCur.getColumnIndex("address");
                                          String to = addrCur.getString(addColIndex);
 
-                                        PPApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","to="+to);
+                                        PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","to="+to);
 
                                         SharedPreferences preferences = _context.getSharedPreferences(PPApplication.APPLICATION_PREFS_NAME, Context.MODE_PRIVATE);
                                         Editor editor = preferences.edit();
