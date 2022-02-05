@@ -3,7 +3,7 @@
 PhoneProfilesPlusExtender
 =========================
 
-[![version](https://img.shields.io/badge/version-6.1.3-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/6.1.3)
+[![version](https://img.shields.io/badge/version-6.1.4-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/6.1.4)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![License](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/henrichg/PhoneProfilesPlus/blob/master/LICENSE)
 [![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)
