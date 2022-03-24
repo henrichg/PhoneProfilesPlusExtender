@@ -11,6 +11,7 @@
     android:id="@+id/activity_main_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:fadeScrollbars="false"
     tools:context="sk.henrichg.phoneprofilesplusextender.MainActivity"
     tools:ignore="UselessParent" >
 
