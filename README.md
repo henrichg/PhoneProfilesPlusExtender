@@ -14,7 +14,7 @@ __[GitHub release (direct download)](https://github.com/henrichg/PhoneProfilesPl
 __Another sources of PhoneProfilesPlusExtender:__
 
 __Galaxy Store (for Samsung devices):__
-&nbsp;&nbsp;&nbsp;Use keyword "PhoneProfilesPlusExtender" for search this application in these stores.
+&nbsp;&nbsp;&nbsp;Use keyword "PhoneProfilesPlusExtender" for search this application in this store.
 
 ---
 
