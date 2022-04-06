@@ -197,7 +197,15 @@ public class MainActivity extends AppCompatActivity {
 
         Button batteryOptimizationButton = findViewById(R.id.activity_main_battery_optimization_button);
         batteryOptimizationButton.setOnClickListener(view -> {
-            Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+            //Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+
+            //    DO NOT USE IT, CHANGE IS NOT DISPLAYED IN SYSTEM SETTINGS
+            //    But in ONEPLUS it IS ONLY SOLUTION !!!
+            String packageName = PPPEApplication.PACKAGE_NAME;
+            @SuppressLint("BatteryLife")
+            Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+            intent.setData(Uri.parse("package:" + packageName));
+
             //intent.addCategory(Intent.CATEGORY_DEFAULT);
             if (MainActivity.activityIntentExists(intent, activity)) {
                 //noinspection deprecation
