@@ -262,12 +262,13 @@ public class PPPEApplication extends Application {
         body = body + getString(R.string.extender_acra_email_body_text);
 
         Log.e("##### PPPEApplication.attachBaseContext", "ACRA inittialization");
+
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .withBuildConfigClass(BuildConfig.class)
                 .withReportFormat(StringFormat.KEY_VALUE_LIST);
-        /*builder.getPluginConfigurationBuilder(ToastConfigurationBuilder.class)
-                .setResText(R.string.acra_toast_text)
-                .setEnabled(true);*/
+        //builder.getPluginConfigurationBuilder(ToastConfigurationBuilder.class)
+        //        .setResText(R.string.acra_toast_text)
+        //        .setEnabled(true);
         builder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class)
                 .withResChannelName(R.string.extender_notification_channel_crash_report)
                 .withResChannelImportance(NotificationManager.IMPORTANCE_HIGH)
@@ -286,6 +287,33 @@ public class PPPEApplication extends Application {
                 .withReportFileName("crash_report.txt")
                 .withEnabled(true);
 
+/*      // not possible because compile sdka must be 31 :-(
+        CoreConfigurationBuilder builder = new CoreConfigurationBuilder()
+                .withBuildConfigClass(BuildConfig.class)
+                .withReportFormat(StringFormat.KEY_VALUE_LIST);
+
+        builder.withPluginConfigurations(
+                new NotificationConfigurationBuilder()
+                        .withChannelName(getString(R.string.extender_notification_channel_crash_report))
+                        .withChannelImportance(NotificationManager.IMPORTANCE_HIGH)
+                        .withResIcon(R.drawable.ic_exclamation_notify)
+                        .withTitle(getString(R.string.extender_acra_notification_title))
+                        .withText(getString(R.string.extender_acra_notification_text))
+                        .withResSendButtonIcon(0)
+                        .withResDiscardButtonIcon(0)
+                        .withSendOnClick(true)
+                        .withEnabled(true)
+                        .build(),
+                new MailSenderConfigurationBuilder()
+                        .withMailTo("henrich.gron@gmail.com")
+                        .withSubject("PhoneProfilesPlusExtender" + packageVersion + " - " + getString(R.string.extender_acra_email_subject_text))
+                        .withBody(body)
+                        .withReportAsFile(true)
+                        .withReportFileName("crash_report.txt")
+                        .withEnabled(true)
+                        .build()
+        );
+*/
         //ACRA.DEV_LOGGING = true;
 
         ACRA.init(this, builder);
