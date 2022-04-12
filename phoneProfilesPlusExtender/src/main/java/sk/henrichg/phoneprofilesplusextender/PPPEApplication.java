@@ -287,7 +287,7 @@ public class PPPEApplication extends Application {
                 .withReportFileName("crash_report.txt")
                 .withEnabled(true);
 
-/*      // not possible because compile sdka must be 31 :-(
+/*        // not possible because compile sdk must be 31 :-(
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder()
                 .withBuildConfigClass(BuildConfig.class)
                 .withReportFormat(StringFormat.KEY_VALUE_LIST);

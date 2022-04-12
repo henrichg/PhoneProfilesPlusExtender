@@ -49,11 +49,13 @@ android {
 }
 
 dependencies {
-    // not possible because compile sdka must be 31 :-(
-    //implementation 'androidx.concurrent:concurrent-futures:1.1.0'
-    //api "com.google.guava:guava:31.1-android"
+    //api "com.google.guava:guava:28.0-android"
     //implementation 'ch.acra:acra-mail:5.9.0'
-    //implementation 'ch.acra:acra-notification:5.9.0'
+    //implementation 'ch.acra:acra-notification:5.9.0' // requires androidx.core-1.7.0. -> compile sdk 31 :-(
+    //noinspection GradleDependency
+    implementation 'ch.acra:acra-mail:5.8.4'
+    //noinspection GradleDependency
+    implementation 'ch.acra:acra-notification:5.8.4'
 
     //noinspection GradleDependency
     implementation 'ch.acra:acra-mail:5.8.4'
