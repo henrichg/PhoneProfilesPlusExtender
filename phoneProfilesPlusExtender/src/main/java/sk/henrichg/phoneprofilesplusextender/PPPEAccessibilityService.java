@@ -1,6 +1,5 @@
 package sk.henrichg.phoneprofilesplusextender;
 
-import android.accessibilityservice.AccessibilityServiceInfo;
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
@@ -18,7 +17,6 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
