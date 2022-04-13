@@ -12,6 +12,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "BatteryLife"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -197,15 +198,20 @@ public class MainActivity extends AppCompatActivity {
 
         Button batteryOptimizationButton = findViewById(R.id.activity_main_battery_optimization_button);
         batteryOptimizationButton.setOnClickListener(view -> {
-            //Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
 
-            //    DO NOT USE IT, CHANGE IS NOT DISPLAYED IN SYSTEM SETTINGS
-            //    But in ONEPLUS it IS ONLY SOLUTION !!!
             String packageName = PPPEApplication.PACKAGE_NAME;
-            @SuppressLint("BatteryLife")
-            Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-            intent.setData(Uri.parse("package:" + packageName));
+            Intent intent;
 
+            PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
+            if (pm.isIgnoringBatteryOptimizations(packageName)) {
+                intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+            }
+            else {
+                //    DO NOT USE IT, CHANGE IS NOT DISPLAYED IN SYSTEM SETTINGS
+                //    But in ONEPLUS it IS ONLY SOLUTION !!!
+                intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                intent.setData(Uri.parse("package:" + packageName));
+            }
             //intent.addCategory(Intent.CATEGORY_DEFAULT);
             if (MainActivity.activityIntentExists(intent, activity)) {
                 //noinspection deprecation

@@ -60,7 +60,8 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 //                else
 //                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
 
-//                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "incomingNumber="+savedNumber);
+//                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "phoneNumber="+phoneNumber);
+//                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "savedNumber="+savedNumber);
                 if ((savedNumber == null) && (phoneNumber == null)) {
                     // CALL_STATE_RINGING is called twice.
                     // When savedNumber and incomingNumber are not filled,
