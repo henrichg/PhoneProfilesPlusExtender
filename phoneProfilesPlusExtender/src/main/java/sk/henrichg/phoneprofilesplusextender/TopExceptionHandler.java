@@ -3,6 +3,8 @@ package sk.henrichg.phoneprofilesplusextender;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -26,7 +28,7 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
     }
 
     @SuppressWarnings("StringConcatenationInLoop")
-    public void uncaughtException(Thread t, Throwable e)
+    public void uncaughtException(@NonNull Thread t, @NonNull Throwable e)
     {
         if (PPPEApplication.crashIntoFile) {
             StackTraceElement[] arr = e.getStackTrace();
