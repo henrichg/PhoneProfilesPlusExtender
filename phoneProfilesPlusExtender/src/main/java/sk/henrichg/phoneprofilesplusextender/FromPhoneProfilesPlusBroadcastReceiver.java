@@ -15,7 +15,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         if ((intent == null) || (intent.getAction() == null))
             return;
 
-        //PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
+//        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
 
         String action = intent.getAction();
         if (action.equals(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION)) {

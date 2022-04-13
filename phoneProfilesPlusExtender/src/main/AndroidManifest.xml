@@ -21,6 +21,7 @@
     <!-- required for answer call to get phone number -->
     <!--    hard restricted-->
     <!--    not allowed for compile sdk > 28  :-( -->
+    <!--suppress DeprecatedClassUsageInspection -->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
     <!--    hard restricted-->
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>

@@ -50,13 +50,13 @@ public class PPPEApplication extends Application {
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = ""
                                                 //+"|PPPEAccessibilityService"
-                                                //+"|SMSBroadcastReceiver"
+                                                +"|SMSBroadcastReceiver"
 
-                                                //+"|PhoneCallReceiver"
-                                                //+"|PPPEPhoneStateListener"
+                                                +"|PhoneCallReceiver"
+                                                +"|PPPEPhoneStateListener"
 
                                                 //+ "|MainActivity"
-                                                //+ "|FromPhoneProfilesPlusBroadcastReceiver"
+                                                + "|FromPhoneProfilesPlusBroadcastReceiver"
             ;
 
     static final boolean deviceIsOppo = isOppo();
