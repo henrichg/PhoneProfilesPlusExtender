@@ -52,11 +52,11 @@ public class PPPEApplication extends Application {
                                                 //+"|PPPEAccessibilityService"
                                                 +"|SMSBroadcastReceiver"
 
-                                                +"|PhoneCallReceiver"
-                                                +"|PPPEPhoneStateListener"
+                                                //+"|PhoneCallReceiver"
+                                                //+"|PPPEPhoneStateListener"
 
                                                 //+ "|MainActivity"
-                                                + "|FromPhoneProfilesPlusBroadcastReceiver"
+                                                //+ "|FromPhoneProfilesPlusBroadcastReceiver"
             ;
 
     static final boolean deviceIsOppo = isOppo();
@@ -158,8 +158,9 @@ public class PPPEApplication extends Application {
         if (checkAppReplacingState())
             return;
 
-        ///////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
         // Bypass Android's hidden API restrictions
+        // !!! WARNING - this is required also for android.jar from android-hidden-api !!!
         // https://github.com/tiann/FreeReflection
         if (Build.VERSION.SDK_INT >= 28) {
             try {
@@ -170,11 +171,13 @@ public class PPPEApplication extends Application {
                 Method getRuntime = (Method) getDeclaredMethod.invoke(vmRuntimeClass, "getRuntime", null);
                 Method setHiddenApiExemptions = (Method) getDeclaredMethod.invoke(vmRuntimeClass, "setHiddenApiExemptions", new Class[]{String[].class});
 
-                Object vmRuntime = getRuntime.invoke(null);
-
-                setHiddenApiExemptions.invoke(vmRuntime, new Object[]{new String[]{"L"}});
+                if (getRuntime != null) {
+                    Object vmRuntime = getRuntime.invoke(null);
+                    if (setHiddenApiExemptions != null)
+                        setHiddenApiExemptions.invoke(vmRuntime, new Object[]{new String[]{"L"}});
+                }
             } catch (Exception e) {
-                Log.e("PPApplication.onCreate", Log.getStackTraceString(e));
+                //Log.e("PPApplication.onCreate", Log.getStackTraceString(e));
                 PPPEApplication.recordException(e);
             }
         }
@@ -262,7 +265,7 @@ public class PPPEApplication extends Application {
         body = body + getString(R.string.extender_acra_email_body_text);
 
         Log.e("##### PPPEApplication.attachBaseContext", "ACRA inittialization");
-
+/*
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .withBuildConfigClass(BuildConfig.class)
                 .withReportFormat(StringFormat.KEY_VALUE_LIST);
@@ -286,8 +289,8 @@ public class PPPEApplication extends Application {
                 .withReportAsFile(true)
                 .withReportFileName("crash_report.txt")
                 .withEnabled(true);
-
-/*        // not possible because compile sdk must be 31 :-(
+*/
+        // not possible because compile sdk must be 31 :-(
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder()
                 .withBuildConfigClass(BuildConfig.class)
                 .withReportFormat(StringFormat.KEY_VALUE_LIST);
@@ -313,7 +316,7 @@ public class PPPEApplication extends Application {
                         .withEnabled(true)
                         .build()
         );
-*/
+
         //ACRA.DEV_LOGGING = true;
 
         ACRA.init(this, builder);

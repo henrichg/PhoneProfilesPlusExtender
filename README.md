@@ -38,12 +38,13 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 - From Android 7.0
 - minSdkVersion = 24
 - targetSdkVersion = 27
-- compiledSdkVersion = 28
+- compiledSdkVersion = 31
 
 ##### Required external libs - open-source
 
 - AndroidX library: appcompat, localbroadcastmanager - https://developer.android.com/jetpack/androidx/versions
 - Google Material components - https://github.com/material-components/material-components-android
+- guava - https://github.com/google/guava
 - ACRA - https://github.com/ACRA/acra
 - Android-Accessibility-Utilities(only modified class A11NodeInfo - for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities
 - Android-Accessibility-Utilities(only modified class A11NodeInfoMatcher - for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities
