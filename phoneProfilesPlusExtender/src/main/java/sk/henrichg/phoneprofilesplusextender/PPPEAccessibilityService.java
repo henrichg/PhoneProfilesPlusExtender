@@ -9,11 +9,13 @@ import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.provider.Settings;
 import android.provider.Telephony;
 import android.telephony.PhoneStateListener;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
@@ -29,6 +31,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     static PPPEAccessibilityService instance = null;
 
     //private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
+
+    private static final String EXTENDER_ACCESSIBILITY_PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender";
 
     static final String ACTION_ACCESSIBILITY_SERVICE_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_CONNECTED";
     private static final String ACTION_ACCESSIBILITY_SERVICE_UNBIND = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_UNBIND";
@@ -481,7 +485,43 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     @SuppressLint("LongLogTag")
     static boolean isEnabled(Context context) {
-        AccessibilityManager manager = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+        //int accessibilityEnabled = 0;
+        final String service = EXTENDER_ACCESSIBILITY_PACKAGE_NAME + "/" + EXTENDER_ACCESSIBILITY_PACKAGE_NAME + ".PPPEAccessibilityService";
+//        PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "service = " + service);
+
+        // Do not use: it returns always 0 :-(
+        /*try {
+            accessibilityEnabled = Settings.Secure.getInt(
+                    context.getApplicationContext().getContentResolver(),
+                    android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
+            PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "accessibilityEnabled = " + accessibilityEnabled);
+        } catch (Settings.SettingNotFoundException e) {
+            PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "Error finding setting, default accessibility to not found: "
+                    + e.getMessage());
+        }*/
+
+        TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(':');
+        //if (accessibilityEnabled == 1) {
+        //    PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "***ACCESSIBILITY IS ENABLED*** -----------------");
+        String settingValue = Settings.Secure.getString(
+                context.getApplicationContext().getContentResolver(),
+                Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+        if (settingValue != null) {
+            mStringColonSplitter.setString(settingValue);
+            while (mStringColonSplitter.hasNext()) {
+                String accessibilityService = mStringColonSplitter.next();
+//                    PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "-------------- > accessibilityService :: " + accessibilityService/* + " " + service*/);
+                if (accessibilityService.equalsIgnoreCase(service)) {
+                    //PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "We've found the correct setting - accessibility is switched on!");
+//                        PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "***ACCESSIBILITY IS ENABLED*** -----------------");
+                    return true;
+                }
+            }
+        }
+
+        return false;
+
+/*        AccessibilityManager manager = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
         if (manager != null) {
             List<AccessibilityServiceInfo> runningServices =
                     manager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC);
@@ -494,16 +534,16 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             //PPPEApplication.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
                             return true;
                         }
-/*
-                        if (service.packageNames != null) {
-                            for (String packageName : service.packageNames) {
-                                if (PPApplication.EXTENDER_ACCESSIBILITY_PACKAGE_NAME.equals(packageName)) {
-                                    //PPPEApplication.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
-                                    return true;
-                                }
-                            }
-                        }
- */
+
+//                        if (service.packageNames != null) {
+//                            for (String packageName : service.packageNames) {
+//                                if (PPApplication.EXTENDER_ACCESSIBILITY_PACKAGE_NAME.equals(packageName)) {
+//                                    //PPPEApplication.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
+//                                    return true;
+//                                }
+//                            }
+//                        }
+
                     } catch (Exception ignored) {}
                 }
             }
@@ -511,7 +551,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             return false;
         }
         //Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "false");
-        return false;
+        return false;*/
     }
 
 }
