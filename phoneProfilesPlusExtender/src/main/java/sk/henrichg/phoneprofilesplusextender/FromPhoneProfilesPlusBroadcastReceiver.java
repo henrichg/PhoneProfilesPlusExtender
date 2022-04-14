@@ -90,10 +90,12 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
             //Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "profileId="+profileId);
             //Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "applications="+intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
 
-            Intent scanServiceIntent = new Intent(context, ForceCloseIntentService.class);
-            scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_APPLICATIONS, intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
-            scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, profileId);
-            context.startService(scanServiceIntent);
+            if (PPPEAccessibilityService.instance != null) {
+                Intent scanServiceIntent = new Intent(PPPEAccessibilityService.instance, ForceCloseIntentService.class);
+                scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_APPLICATIONS, intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
+                scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, profileId);
+                PPPEAccessibilityService.instance.startService(scanServiceIntent);
+            }
         }
         else
         if (action.equals(PPPEAccessibilityService.ACTION_LOCK_DEVICE)) {
