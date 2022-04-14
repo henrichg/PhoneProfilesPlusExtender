@@ -45,12 +45,12 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
     // TODO: DISABLE IT FOR RELEASE VERSION!!!
-    static final boolean logIntoFile = false;
+    static final boolean logIntoFile = true;
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = ""
-                                                //+"|PPPEAccessibilityService"
-                                                +"|SMSBroadcastReceiver"
+                                                +"|PPPEAccessibilityService"
+                                                //+"|SMSBroadcastReceiver"
 
                                                 //+"|PhoneCallReceiver"
                                                 //+"|PPPEPhoneStateListener"
@@ -63,6 +63,7 @@ public class PPPEApplication extends Application {
     static final boolean deviceIsRealme = isRealme();
     static final boolean deviceIsHuawei = isHuawei();
     static final boolean deviceIsSamsung = isSamsung();
+    static final boolean deviceIsXiaomi = isXiaomi();
 
     // for new log.txt and crash.txt is in /Android/data/sk.henrichg.phoneprofilesplusextender/files
     //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
@@ -346,6 +347,12 @@ public class PPPEApplication extends Application {
         return Build.BRAND.equalsIgnoreCase("samsung") ||
                 Build.MANUFACTURER.equalsIgnoreCase("samsung") ||
                 Build.FINGERPRINT.toLowerCase().contains("samsung");
+    }
+
+    private static boolean isXiaomi() {
+        return Build.BRAND.equalsIgnoreCase("xiaomi") ||
+                Build.MANUFACTURER.equalsIgnoreCase("xiaomi") ||
+                Build.FINGERPRINT.toLowerCase().contains("xiaomi");
     }
 
     //--------------------------------------------------------------

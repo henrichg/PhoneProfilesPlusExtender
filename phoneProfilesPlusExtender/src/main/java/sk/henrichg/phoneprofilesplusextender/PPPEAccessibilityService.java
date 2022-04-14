@@ -48,7 +48,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     protected void onServiceConnected() {
         super.onServiceConnected();
 
-        //PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
+        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
 
         instance = this;
 
@@ -173,10 +173,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             //////////////////
 
             try {
-                //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "forceStopStarted="+forceStopStarted);
+                //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "forceStopStarted="+PPPEApplication.forceStopStarted);
                 //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
                 if (PPPEApplication.forceStopStarted) {
-                    //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "in forceStopStarted");
+//                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "in forceStopStarted");
                     // force stop is started in PPP
                     AccessibilityNodeInfo nodeInfo;
                     try {
@@ -185,51 +185,86 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                         nodeInfo = null;
                     }
                     if (nodeInfo != null) {
-                        List<AccessibilityNodeInfo> list;
-                        if (event.getClassName().equals("com.android.settings.applications.InstalledAppDetailsTop")) {
-                            //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "App info opened");
-                            //forceCloseButtonClicked = false;
-                            //if (Build.VERSION.SDK_INT <= 22) {
-                            //    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
-                            //    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/left_button list="+list.size());
-                            //}
-                            //else
-                            if (Build.VERSION.SDK_INT >= 29) {
-                                if (PPPEApplication.deviceIsOppo || PPPEApplication.deviceIsRealme)
-                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/middle_button");
-                                else
-                                if (PPPEApplication.deviceIsHuawei)
-                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
-                                else
-                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button3");
-                                //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button3="+list.size());
+//                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
+                        List<AccessibilityNodeInfo> list = null;
+                        if (event.getClassName().equals("com.android.settings.applications.InstalledAppDetailsTop") ||
+                            event.getClassName().equals("com.miui.appmanager.ApplicationsDetailsActivity")) {
+//                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "App info opened");
+
+                            boolean doNext = true;
+
+                            if (Build.VERSION.SDK_INT >= 30) {
+                                if (PPPEApplication.deviceIsXiaomi) {
+                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.miui.securitycenter:id/action_menu_item_child_text");
+//                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Xiaomi list="+list);
+                                    doNext = false;
+                                }
                             }
-                            else {
-                                if (PPPEApplication.deviceIsOppo || PPPEApplication.deviceIsRealme) {
-                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
+                            if (doNext) {
+                                if (Build.VERSION.SDK_INT >= 29) {
+                                    if (PPPEApplication.deviceIsOppo || PPPEApplication.deviceIsRealme)
+                                        list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/middle_button");
+                                    else if (PPPEApplication.deviceIsHuawei)
+                                        list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
+                                    else
+                                        list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button3");
+                                    //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button3="+list.size());
                                 } else {
-                                    list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
-                                    //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/right_button="+list.size());
-                                    if (list.size() == 0) {
-                                        // Samsung Galaxy S10
-                                        list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button2_negative");
-                                        //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button2_negative="+list.size());
+                                    if (PPPEApplication.deviceIsOppo || PPPEApplication.deviceIsRealme) {
+                                        list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
+                                    } else {
+                                        list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
+                                        //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/right_button="+list.size());
+                                        if (list.size() == 0) {
+                                            // Samsung Galaxy S10
+                                            list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button2_negative");
+                                            //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button2_negative="+list.size());
+                                        }
                                     }
                                 }
                             }
-                            for (AccessibilityNodeInfo node : list) {
-                                if (node.isEnabled()) {
-                                    //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "force close button clicked");
-                                    node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                                    PPPEApplication.forceStopPerformed = true;
+                            if (list != null) {
+                                for (AccessibilityNodeInfo node : list) {
+                                    if (node.isEnabled()) {
+                                        if ((Build.VERSION.SDK_INT >= 30) && PPPEApplication.deviceIsXiaomi) {
+                                            AccessibilityNodeInfo _node = node.getParent();
+                                            if (_node.isEnabled()) {
+                                                _node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                                                PPPEApplication.forceStopPerformed = true;
+//                                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Force stop clicked");
+                                            }
+                                        } else {
+                                            node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                                            PPPEApplication.forceStopPerformed = true;
+                                        }
+                                        if (PPPEApplication.forceStopPerformed)
+                                            // not needed to check next nodes
+                                            break;
+                                    }
                                 }
-                                else {
+                                if (!PPPEApplication.forceStopPerformed) {
+                                    // app is already force closed or clickable node not exists, close App info
+//                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Force stop NOT clicked");
                                     PPPEApplication.applicationForceClosed = true;
                                     PPPEApplication.forceStopPerformed = false;
-                                    /*if (ForceStopActivity.instance != null)
-                                        ForceStopActivity.instance.finishActivity(100);
-                                    else
-                                        performGlobalAction(GLOBAL_ACTION_BACK);*/
+                                    if (Build.VERSION.SDK_INT >= 30) {
+                                        if (PPPEApplication.deviceIsXiaomi) {
+                                            // finishActivity(100) not working
+                                            sleep(500);
+                                            performGlobalAction(GLOBAL_ACTION_BACK);
+                                        }
+                                    }
+                                }
+                            } else {
+                                // viewId not found, close App info
+                                PPPEApplication.applicationForceClosed = true;
+                                PPPEApplication.forceStopPerformed = false;
+                                if (Build.VERSION.SDK_INT >= 30) {
+                                    if (PPPEApplication.deviceIsXiaomi) {
+                                        // finishActivity(100) not working
+                                        sleep(500);
+                                        performGlobalAction(GLOBAL_ACTION_BACK);
+                                    }
                                 }
                             }
                         } else
@@ -249,16 +284,50 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list.size()="+list.size());
                             for (final AccessibilityNodeInfo node : list) {
                                 node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+
+                                // close App info
                                 PPPEApplication.applicationForceClosed = true;
                                 PPPEApplication.forceStopPerformed = false;
-                                /*sleep(200);
-                                if (ForceStopActivity.instance != null)
-                                    ForceStopActivity.instance.finishActivity(100);
-                                else
-                                    performGlobalAction(GLOBAL_ACTION_BACK);*/
+                                if (Build.VERSION.SDK_INT >= 30) {
+                                    if (PPPEApplication.deviceIsXiaomi) {
+                                        // finishActivity(100) not working
+                                        sleep(500);
+                                        performGlobalAction(GLOBAL_ACTION_BACK);
+                                    }
+                                }
                             }
                         }
                     }
+
+                    /*if (PPPEApplication.logIntoFile) {
+                        // TODO  this is only for testing, for increase support of devices !!! Comment for production version !!!
+                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
+                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
+                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.MANUFACTURER="+Build.MANUFACTURER);
+                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.FINGERPRINT="+Build.FINGERPRINT);
+
+                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
+
+                        try {
+                            switch (event.getEventType()) {
+                                //On Gesture events print out the entire view hierarchy!
+
+                                case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
+                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent-TYPE_GESTURE_DETECTION_START", A11yNodeInfo.wrap(getRootInActiveWindow()).toViewHierarchy());
+
+                                case AccessibilityEvent.TYPE_VIEW_CLICKED:
+                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent-TYPE_VIEW_CLICKED", event.getSource().toString());
+
+                                default: {
+                                    //The event has different types, for you, you want to look for "action clicked"
+                                    if (event.getSource() != null) {
+                                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent-OTHERS", A11yNodeInfo.wrap(event.getSource()).toViewHierarchy());
+                                    }
+                                }
+                            }
+                        } catch (Exception ignored) {}
+                    }*/
+
                 }
                 //////////////////
 
@@ -550,6 +619,15 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
         //Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "false");
         return false;*/
+    }
+
+    public static void sleep(long ms) {
+        /*long start = SystemClock.uptimeMillis();
+        do {
+            SystemClock.sleep(100);
+        } while (SystemClock.uptimeMillis() - start < ms);*/
+        //SystemClock.sleep(ms);
+        try{ Thread.sleep(ms); }catch(InterruptedException ignored){ }
     }
 
 }

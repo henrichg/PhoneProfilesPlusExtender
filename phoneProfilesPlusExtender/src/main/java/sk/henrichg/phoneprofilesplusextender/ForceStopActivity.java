@@ -32,6 +32,8 @@ public class ForceStopActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // to finish all App info activities started with startActivityForResult(intent, 100);
+        // IN XIAOMI DEVICES THIS NOT WORKING !!! WHY ???
         finishActivity(100);
         instance = null;
     }
