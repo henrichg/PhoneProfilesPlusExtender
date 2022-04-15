@@ -269,12 +269,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             if ((list != null) && (list.size() != 0)) {
                                 for (final AccessibilityNodeInfo node : list) {
                                     node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-
-                                    closeAppInfo();
                                 }
-                            } else {
-                                closeAppInfo();
                             }
+                            closeAppInfo();
                         }
                     }
 
