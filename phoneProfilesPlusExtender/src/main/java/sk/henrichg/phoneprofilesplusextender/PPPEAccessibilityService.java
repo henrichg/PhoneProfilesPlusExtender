@@ -71,7 +71,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             intentFilter5.addAction(Intent.ACTION_SCREEN_ON);
             intentFilter5.addAction(Intent.ACTION_SCREEN_OFF);
             intentFilter5.addAction(Intent.ACTION_USER_PRESENT);
-            getBaseContext().registerReceiver(PPPEApplication.screenOnOffReceiver, intentFilter5);
+            registerReceiver(PPPEApplication.screenOnOffReceiver, intentFilter5);
         }
 
         if (PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver == null) {
@@ -81,7 +81,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             intentFilter.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
             intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
             intentFilter.addAction(ACTION_LOCK_DEVICE);
-            getBaseContext().registerReceiver(PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
+            registerReceiver(PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                     PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION, null);
         }
 
@@ -92,7 +92,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 IntentFilter intentFilter21 = new IntentFilter();
                 intentFilter21.addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
                 intentFilter21.setPriority(Integer.MAX_VALUE);
-                getBaseContext().registerReceiver(PPPEApplication.smsBroadcastReceiver, intentFilter21);
+                registerReceiver(PPPEApplication.smsBroadcastReceiver, intentFilter21);
             }
 
             if (PPPEApplication.mmsBroadcastReceiver == null) {
@@ -101,17 +101,17 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 IntentFilter intentFilter22;
                 intentFilter22 = IntentFilter.create(Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION, "application/vnd.wap.mms-message");
                 intentFilter22.setPriority(Integer.MAX_VALUE);
-                getBaseContext().registerReceiver(PPPEApplication.mmsBroadcastReceiver, intentFilter22);
+                registerReceiver(PPPEApplication.mmsBroadcastReceiver, intentFilter22);
             }
 
-            registerPhoneStateListener(true, getBaseContext());
+            registerPhoneStateListener(true, this);
 
             if (PPPEApplication.phoneCallReceiver == null) {
                 PPPEApplication.phoneCallReceiver = new PhoneCallReceiver();
                 IntentFilter intentFilter6 = new IntentFilter();
                 // not needed for unlink volumes and event Call sensor
                 intentFilter6.addAction(Intent.ACTION_NEW_OUTGOING_CALL);
-                getBaseContext().registerReceiver(PPPEApplication.phoneCallReceiver, intentFilter6);
+                registerReceiver(PPPEApplication.phoneCallReceiver, intentFilter6);
             }
 
             if (PPPEApplication.simStateChangedBroadcastReceiver == null) {
@@ -119,13 +119,13 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 IntentFilter intentFilter10 = new IntentFilter();
                 //noinspection deprecation
                 intentFilter10.addAction("android.intent.action.SIM_STATE_CHANGED");
-                getBaseContext().registerReceiver(PPPEApplication.simStateChangedBroadcastReceiver, intentFilter10);
+                registerReceiver(PPPEApplication.simStateChangedBroadcastReceiver, intentFilter10);
             }
 
         }
 
         Intent refreshIntent = new Intent(PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver");
-        LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(refreshIntent);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(refreshIntent);
 
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
         sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
@@ -392,7 +392,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         if (PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver != null) {
             try {
-                getBaseContext().unregisterReceiver(PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver);
+                unregisterReceiver(PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver);
                 PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver = null;
             } catch (Exception e) {
                 PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver = null;
@@ -400,7 +400,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
         if (PPPEApplication.screenOnOffReceiver != null) {
             try {
-                getBaseContext().unregisterReceiver(PPPEApplication.screenOnOffReceiver);
+                unregisterReceiver(PPPEApplication.screenOnOffReceiver);
                 PPPEApplication.screenOnOffReceiver = null;
             } catch (Exception e) {
                 PPPEApplication.screenOnOffReceiver = null;
@@ -408,7 +408,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
         if (PPPEApplication.smsBroadcastReceiver != null) {
             try {
-                getBaseContext().unregisterReceiver(PPPEApplication.smsBroadcastReceiver);
+                unregisterReceiver(PPPEApplication.smsBroadcastReceiver);
                 PPPEApplication.smsBroadcastReceiver = null;
             } catch (Exception e) {
                 PPPEApplication.smsBroadcastReceiver = null;
@@ -416,7 +416,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
         if (PPPEApplication.mmsBroadcastReceiver != null) {
             try {
-                getBaseContext().unregisterReceiver(PPPEApplication.mmsBroadcastReceiver);
+                unregisterReceiver(PPPEApplication.mmsBroadcastReceiver);
                 PPPEApplication.mmsBroadcastReceiver = null;
             } catch (Exception e) {
                 PPPEApplication.mmsBroadcastReceiver = null;
@@ -425,7 +425,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         registerPhoneStateListener(false, this);
         if (PPPEApplication.phoneCallReceiver != null) {
             try {
-                getBaseContext().unregisterReceiver(PPPEApplication.phoneCallReceiver);
+                unregisterReceiver(PPPEApplication.phoneCallReceiver);
                 PPPEApplication.phoneCallReceiver = null;
             } catch (Exception e) {
                 PPPEApplication.phoneCallReceiver = null;
@@ -433,7 +433,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
         if (PPPEApplication.simStateChangedBroadcastReceiver != null) {
             try {
-                getBaseContext().unregisterReceiver(PPPEApplication.simStateChangedBroadcastReceiver);
+                unregisterReceiver(PPPEApplication.simStateChangedBroadcastReceiver);
                 PPPEApplication.simStateChangedBroadcastReceiver = null;
             } catch (Exception e) {
                 PPPEApplication.simStateChangedBroadcastReceiver = null;

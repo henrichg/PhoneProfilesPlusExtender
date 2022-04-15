@@ -120,7 +120,7 @@ public class ForceCloseIntentService extends IntentService {
         if (forceStopApplicationsStartCount <= 0) {
             if (ForceStopActivity.instance != null) {
                 try {
-                    ForceStopActivity.instance.finish();
+                    ForceStopActivity.instance.finishAffinity();
                     //Log.e("ForceCloseIntentService.onHandleIntent", "ForceStopActivity finished");
                 } catch (Exception ignored) {}
                 ForceStopActivity.instance = null;
