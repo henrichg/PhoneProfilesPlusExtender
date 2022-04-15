@@ -223,7 +223,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     }
                                 }
                             }
-                            if (list != null) {
+                            if ((list != null) && (list.size() != 0)) {
                                 for (AccessibilityNodeInfo node : list) {
                                     if (node.isEnabled()) {
                                         if ((Build.VERSION.SDK_INT >= 30) && PPPEApplication.deviceIsXiaomi) {
@@ -245,27 +245,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 if (!PPPEApplication.forceStopPerformed) {
                                     // app is already force closed or clickable node not exists, close App info
 //                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Force stop NOT clicked");
-                                    PPPEApplication.applicationForceClosed = true;
-                                    PPPEApplication.forceStopPerformed = false;
-                                    if (Build.VERSION.SDK_INT >= 30) {
-                                        if (PPPEApplication.deviceIsXiaomi) {
-                                            // finishActivity(100) not working
-                                            sleep(500);
-                                            performGlobalAction(GLOBAL_ACTION_BACK);
-                                        }
-                                    }
+                                    closeAppInfo();
                                 }
                             } else {
                                 // viewId not found, close App info
-                                PPPEApplication.applicationForceClosed = true;
-                                PPPEApplication.forceStopPerformed = false;
-                                if (Build.VERSION.SDK_INT >= 30) {
-                                    if (PPPEApplication.deviceIsXiaomi) {
-                                        // finishActivity(100) not working
-                                        sleep(500);
-                                        performGlobalAction(GLOBAL_ACTION_BACK);
-                                    }
-                                }
+                                closeAppInfo();
                             }
                         } else
                         if (PPPEApplication.forceStopPerformed// ||
@@ -282,19 +266,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             else
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
                             //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list.size()="+list.size());
-                            for (final AccessibilityNodeInfo node : list) {
-                                node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                            if ((list != null) && (list.size() != 0)) {
+                                for (final AccessibilityNodeInfo node : list) {
+                                    node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
 
-                                // close App info
-                                PPPEApplication.applicationForceClosed = true;
-                                PPPEApplication.forceStopPerformed = false;
-                                if (Build.VERSION.SDK_INT >= 30) {
-                                    if (PPPEApplication.deviceIsXiaomi) {
-                                        // finishActivity(100) not working
-                                        sleep(500);
-                                        performGlobalAction(GLOBAL_ACTION_BACK);
-                                    }
+                                    closeAppInfo();
                                 }
+                            } else {
+                                closeAppInfo();
                             }
                         }
                     }
@@ -365,6 +344,19 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 }
             } catch (Exception ignored) {}
         }*/
+    }
+
+    private void closeAppInfo() {
+        // close App info
+        PPPEApplication.applicationForceClosed = true;
+        PPPEApplication.forceStopPerformed = false;
+        if (Build.VERSION.SDK_INT >= 30) {
+            if (PPPEApplication.deviceIsXiaomi) {
+                // finishActivity(100) not working
+                sleep(500);
+                performGlobalAction(GLOBAL_ACTION_BACK);
+            }
+        }
     }
 
     private ActivityInfo tryGetActivity(ComponentName componentName) {
@@ -621,7 +613,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         return false;*/
     }
 
-    public static void sleep(long ms) {
+    static void sleep(@SuppressWarnings("SameParameterValue") long ms) {
         /*long start = SystemClock.uptimeMillis();
         do {
             SystemClock.sleep(100);
@@ -629,5 +621,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         //SystemClock.sleep(ms);
         try{ Thread.sleep(ms); }catch(InterruptedException ignored){ }
     }
+
 
 }
