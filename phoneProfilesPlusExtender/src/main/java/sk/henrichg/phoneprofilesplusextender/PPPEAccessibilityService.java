@@ -348,11 +348,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     private void closeAppInfo() {
         // close App info
-        PPPEApplication.applicationForceClosed = true;
+        PPPEApplication.applicationForceClosed = true; // end ForceCloseIntentService.waitForApplicationForceClosed()
         PPPEApplication.forceStopPerformed = false;
         if (Build.VERSION.SDK_INT >= 30) {
             if (PPPEApplication.deviceIsXiaomi) {
-                // finishActivity(100) not working
+                // finishActivity(100) not working :-(
                 sleep(500);
                 performGlobalAction(GLOBAL_ACTION_BACK);
             }
