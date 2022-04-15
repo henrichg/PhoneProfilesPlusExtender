@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.PowerManager;
@@ -77,7 +79,7 @@ public class ForceCloseIntentService extends IntentService {
                 if (!keyguardLocked && isScreenOn) {
                     // start App info only if keyguard is not locked and screen is on
                     String packageName = getPackageName(split);
-                    //if (isAppRunning(packageName)) { !!! Force stop also stopped (not running in foreground) applications
+                    if (isAppRunning(packageName)) {
                         Intent appInfoIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         //appInfoIntent.addCategory(Intent.CATEGORY_DEFAULT);
                         appInfoIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -102,7 +104,7 @@ public class ForceCloseIntentService extends IntentService {
                                 }
                             }
                         }
-                    //}
+                    }
                 }
             }
 
@@ -177,7 +179,6 @@ public class ForceCloseIntentService extends IntentService {
         }
     }
 
-    /*
     private boolean isAppRunning(final String packageName) {
         if (packageName.isEmpty())
             return false;
@@ -194,7 +195,6 @@ public class ForceCloseIntentService extends IntentService {
     private static boolean isSTOPPED(ApplicationInfo pkgInfo) {
         return ((pkgInfo.flags & ApplicationInfo.FLAG_STOPPED) != 0);
     }
-    */
 
     private void waitForApplicationForceClosed()
     {
