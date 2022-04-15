@@ -12,7 +12,7 @@
 <!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
 <!--    android:description="@string/extender_accessibility_service_description"-->
 <!--    android:accessibilityEventTypes="typeAllMask"-->
-<!--    android:accessibilityFlags="flagIncludeNotImportantViews|flagReportViewIds"-->
+<!--    android:accessibilityFlags="flagIncludeNotImportantViews|flagReportViewIds|flagRetrieveInteractiveWindows"-->
 <!--    android:canRetrieveWindowContent="true"-->
 <!--    android:canRequestTouchExplorationMode="true"-->
 <!--    android:accessibilityFeedbackType="feedbackSpoken"-->

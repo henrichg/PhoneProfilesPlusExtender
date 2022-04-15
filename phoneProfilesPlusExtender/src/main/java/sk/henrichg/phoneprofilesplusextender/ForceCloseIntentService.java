@@ -96,6 +96,7 @@ public class ForceCloseIntentService extends IntentService {
                                     ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
                                     //Log.e("ForceCloseIntentService.onHandleIntent", "App info started");
                                     waitForApplicationForceClosed();
+                                    //Log.e("ForceCloseIntentService.onHandleIntent", "after wait");
                                     //waitForAppInfoEnd();
                                     //ForceStopActivity.instance.finishActivity(100);
                                 } catch (Exception e) {
@@ -200,12 +201,16 @@ public class ForceCloseIntentService extends IntentService {
     {
         long start = SystemClock.uptimeMillis();
         do {
+//            Log.e("ForceCloseIntentService.waitForApplicationForceClosed", "ForceStopActivity.instance="+ForceStopActivity.instance);
+//            Log.e("ForceCloseIntentService.waitForApplicationForceClosed", "PPPEApplication.applicationForceClosed="+PPPEApplication.applicationForceClosed);
+
             if ((ForceStopActivity.instance == null) || (PPPEApplication.applicationForceClosed))
                 break;
             //try { Thread.sleep(100); } catch (InterruptedException e) { }
+//            Log.e("ForceCloseIntentService.waitForApplicationForceClosed", "in wait");
             SystemClock.sleep(100);
         // TODO  30 seconds is only for testing, for get data to increase PPPE support !!! Comment for production version !!!
-        } while (SystemClock.uptimeMillis() - start < 5000 /* *30*/);
+        } while ((SystemClock.uptimeMillis() - start) < 5000 /* *30*/);
     }
 
     /*

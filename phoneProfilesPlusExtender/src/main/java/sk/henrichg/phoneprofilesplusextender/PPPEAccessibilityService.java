@@ -200,16 +200,16 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     doNext = false;
                                 }
                             }
-                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "doNext="+doNext);
+//                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "doNext="+doNext);
                             if (doNext) {
                                 if (Build.VERSION.SDK_INT >= 29) {
-                                    if (PPPEApplication.deviceIsOppo || PPPEApplication.deviceIsRealme)
+                                    if (PPPEApplication.deviceIsOppo || PPPEApplication.deviceIsRealme || PPPEApplication.deviceIsOnePlus)
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/middle_button");
                                     else if (PPPEApplication.deviceIsHuawei)
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
                                     else
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button3");
-                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button3="+list.size());
+//                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button3="+list.size());
                                 } else {
                                     if (PPPEApplication.deviceIsOppo || PPPEApplication.deviceIsRealme) {
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
@@ -250,6 +250,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 }
                             } else {
                                 // viewId not found, close App info
+//                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "viewId not found");
                                 closeAppInfo();
                             }
                         } else
@@ -266,8 +267,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button1");
                             else
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
-                            //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list.size()="+list.size());
+//                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list="+list);
                             if ((list != null) && (list.size() != 0)) {
+//                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list.size()="+list.size());
                                 for (final AccessibilityNodeInfo node : list) {
                                     node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                                 }
@@ -277,7 +279,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     }
 
                     /*
-                    if (PPPEApplication.logIntoFile) {
+                    //if (PPPEApplication.logIntoFile) {
                         // TODO  this is only for testing, for increase support of devices !!! Comment for production version !!!
                         PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
                         PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
@@ -306,7 +308,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 }
                             }
                         } catch (Exception ignored) {}
-                    }
+                    //}
                     */
 
                 }
@@ -318,7 +320,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
         }
 
-        if (PPPEApplication.logIntoFile) {
+        /*if (PPPEApplication.logIntoFile) {
             // TODO  this is only for testing, for increase support of devices !!! Comment for production version !!!
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
             PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
@@ -346,7 +348,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     }
                 }
             } catch (Exception ignored) {}
-        }
+        }*/
     }
 
     private void closeAppInfo() {
