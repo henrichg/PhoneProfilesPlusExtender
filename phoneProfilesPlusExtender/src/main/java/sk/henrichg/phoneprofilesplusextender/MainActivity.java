@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         text = findViewById(R.id.activity_main_application_releases);
         String str1 = getString(R.string.extender_application_releases);
-        String str2 = str1 + " https://github.com/henrichg/PhoneProfilesPlusExtender/releases";
+        String str2 = str1 + " https://github.com/henrichg/PhoneProfilesPlusExtender/releases" + " \u21D2";
         Spannable sbt = new SpannableString(str2);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         ClickableSpan clickableSpan = new ClickableSpan() {
@@ -106,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             str1 = getString(R.string.extender_permissions_event_sensor_sms_mms);
             if (Permissions.checkSMSMMSPermissions(activity))
-                str2 = str1 + " " + getString(R.string.extender_permissions_granted);
+                str2 = str1 + " [ " + getString(R.string.extender_permissions_granted) + " ]";
             else
-                str2 = str1 + " " + getString(R.string.extender_permissions_not_granted);
+                str2 = str1 + " [ " + getString(R.string.extender_permissions_not_granted) + " ]";
             sbt = new SpannableString(str2);
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
             sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
@@ -125,9 +125,9 @@ public class MainActivity extends AppCompatActivity {
             else
                 str1 = getString(R.string.extender_permissions_event_sensor_call_28);
             if (Permissions.checkCallPermissions(activity))
-                str2 = str1 + " " + getString(R.string.extender_permissions_granted);
+                str2 = str1 + " [ " + getString(R.string.extender_permissions_granted) + " ]";
             else
-                str2 = str1 + " " + getString(R.string.extender_permissions_not_granted);
+                str2 = str1 + " [ " + getString(R.string.extender_permissions_not_granted) + " ]";
             sbt = new SpannableString(str2);
             text = findViewById(R.id.activity_main_permissions_event_sensor_call);
             sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
@@ -140,9 +140,9 @@ public class MainActivity extends AppCompatActivity {
 
         str1 = getString(R.string.extender_battery_optimization_text);
         if (PPPEApplication.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
-            str2 = str1 + " " + getString(R.string.extender_battery_optimization_not_optimized);
+            str2 = str1 + " [ " + getString(R.string.extender_battery_optimization_not_optimized) + " ]";
         else
-            str2 = str1 + " " + getString(R.string.extender_battery_optimization_optimized);
+            str2 = str1 + " [ " + getString(R.string.extender_battery_optimization_optimized) + " ]";
         sbt = new SpannableString(str2);
         text = findViewById(R.id.activity_main_battery_optimization);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
@@ -277,9 +277,9 @@ public class MainActivity extends AppCompatActivity {
         String str1 = getString(R.string.extender_accessibility_service_profile_force_stop_applications);
         String str2;
         if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
-            str2 = str1 + " " + getString(R.string.extender_accessibility_service_enabled);
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
         else
-            str2 = str1 + " " + getString(R.string.extender_accessibility_service_disabled);
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
         Spannable sbt = new SpannableString(str2);
         TextView text = findViewById(R.id.activity_main_accessibility_service_profile_force_stop_application);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
@@ -287,9 +287,9 @@ public class MainActivity extends AppCompatActivity {
 
         str1 = getString(R.string.extender_accessibility_service_profile_lock_device);
         if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
-            str2 = str1 + " " + getString(R.string.extender_accessibility_service_enabled);
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
         else
-            str2 = str1 + " " + getString(R.string.extender_accessibility_service_disabled);
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
         sbt = new SpannableString(str2);
         text = findViewById(R.id.activity_main_accessibility_service_profile_lock_device);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
@@ -297,9 +297,9 @@ public class MainActivity extends AppCompatActivity {
 
         str1 = getString(R.string.extender_accessibility_service_event_sensor_applications_orientation);
         if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
-            str2 = str1 + " " + getString(R.string.extender_accessibility_service_enabled);
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
         else
-            str2 = str1 + " " + getString(R.string.extender_accessibility_service_disabled);
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
         sbt = new SpannableString(str2);
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_applications_orientation);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
@@ -307,9 +307,9 @@ public class MainActivity extends AppCompatActivity {
 
         str1 = getString(R.string.extender_accessibility_service_event_sensor_sms_mms);
         if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
-            str2 = str1 + " " + getString(R.string.extender_accessibility_service_enabled);
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
         else
-            str2 = str1 + " " + getString(R.string.extender_accessibility_service_disabled);
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
         sbt = new SpannableString(str2);
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_sms_mms);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
@@ -317,9 +317,9 @@ public class MainActivity extends AppCompatActivity {
 
         str1 = getString(R.string.extender_accessibility_service_event_sensor_call);
         if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
-            str2 = str1 + " " + getString(R.string.extender_accessibility_service_enabled);
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
         else
-            str2 = str1 + " " + getString(R.string.extender_accessibility_service_disabled);
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
         sbt = new SpannableString(str2);
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_call);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
