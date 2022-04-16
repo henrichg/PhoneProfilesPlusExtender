@@ -507,7 +507,7 @@ public class PPPEApplication extends Application {
     }
 
     @SuppressWarnings("unused")
-    static void logToCrashlytics(String s) {
+    static void logToACRA(String s) {
         try {
             //FirebaseCrashlytics.getInstance().log(s);
             ACRA.getErrorReporter().putCustomData("Log", s);
