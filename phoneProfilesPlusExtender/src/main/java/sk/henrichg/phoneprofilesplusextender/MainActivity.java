@@ -104,15 +104,22 @@ public class MainActivity extends AppCompatActivity {
         final Activity activity = this;
 
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+            text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
             str1 = getString(R.string.extender_permissions_event_sensor_sms_mms);
-            if (Permissions.checkSMSMMSPermissions(activity))
+            /*if (Permissions.checkSMSMMSPermissions(activity))
                 str2 = str1 + " [ " + getString(R.string.extender_permissions_granted) + " ]";
             else
                 str2 = str1 + " [ " + getString(R.string.extender_permissions_not_granted) + " ]";
             sbt = new SpannableString(str2);
-            text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
             sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
-            text.setText(sbt);
+            text.setText(sbt);*/
+            text.setText(str1);
+
+            text = findViewById(R.id.activity_main_sms_permissions_status);
+            if (Permissions.checkSMSMMSPermissions(activity))
+                text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
+            else
+                text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
         }
         else {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
@@ -120,33 +127,47 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+            text = findViewById(R.id.activity_main_permissions_event_sensor_call);
             if (Build.VERSION.SDK_INT < 28)
                 str1 = getString(R.string.extender_permissions_event_sensor_call);
             else
                 str1 = getString(R.string.extender_permissions_event_sensor_call_28);
-            if (Permissions.checkCallPermissions(activity))
+            /*if (Permissions.checkCallPermissions(activity))
                 str2 = str1 + " [ " + getString(R.string.extender_permissions_granted) + " ]";
             else
                 str2 = str1 + " [ " + getString(R.string.extender_permissions_not_granted) + " ]";
             sbt = new SpannableString(str2);
-            text = findViewById(R.id.activity_main_permissions_event_sensor_call);
             sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
-            text.setText(sbt);
+            text.setText(sbt);*/
+            text.setText(str1);
+
+            text = findViewById(R.id.activity_main_call_permissions_status);
+            if (Permissions.checkCallPermissions(activity))
+                text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
+            else
+                text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
         }
         else {
             text = findViewById(R.id.activity_main_permissions_event_sensor_call);
             text.setVisibility(View.GONE);
         }
 
+        text = findViewById(R.id.activity_main_battery_optimization);
         str1 = getString(R.string.extender_battery_optimization_text);
-        if (PPPEApplication.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
+        /*if (PPPEApplication.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
             str2 = str1 + " [ " + getString(R.string.extender_battery_optimization_not_optimized) + " ]";
         else
             str2 = str1 + " [ " + getString(R.string.extender_battery_optimization_optimized) + " ]";
         sbt = new SpannableString(str2);
-        text = findViewById(R.id.activity_main_battery_optimization);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
-        text.setText(sbt);
+        text.setText(sbt);*/
+        text.setText(str1);
+
+        text = findViewById(R.id.activity_main_battery_optimization_status);
+        if (PPPEApplication.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
+            text.setText("[ " + getString(R.string.extender_battery_optimization_not_optimized) + " ]");
+        else
+            text.setText("[ " + getString(R.string.extender_battery_optimization_optimized) + " ]");
 
         Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
@@ -273,57 +294,69 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void displayAccessibilityServiceStatus() {
+        TextView text = findViewById(R.id.activity_main_accessibility_service_profile_force_stop_application);
         String str1 = getString(R.string.extender_accessibility_service_profile_force_stop_applications);
-        String str2;
+        /*String str2;
         if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
             str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
         else
             str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
         Spannable sbt = new SpannableString(str2);
-        TextView text = findViewById(R.id.activity_main_accessibility_service_profile_force_stop_application);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
-        text.setText(sbt);
+        text.setText(sbt);*/
+        text.setText(str1);
 
-        str1 = getString(R.string.extender_accessibility_service_profile_lock_device);
-        if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
-            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
-        else
-            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
-        sbt = new SpannableString(str2);
         text = findViewById(R.id.activity_main_accessibility_service_profile_lock_device);
-        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
-        text.setText(sbt);
-
-        str1 = getString(R.string.extender_accessibility_service_event_sensor_applications_orientation);
-        if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
+        str1 = getString(R.string.extender_accessibility_service_profile_lock_device);
+        /*if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
             str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
         else
             str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
         sbt = new SpannableString(str2);
+        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
+        text.setText(sbt);*/
+        text.setText(str1);
+
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_applications_orientation);
-        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
-        text.setText(sbt);
-
-        str1 = getString(R.string.extender_accessibility_service_event_sensor_sms_mms);
-        if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
+        str1 = getString(R.string.extender_accessibility_service_event_sensor_applications_orientation);
+        /*if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
             str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
         else
             str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
         sbt = new SpannableString(str2);
+        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
+        text.setText(sbt);*/
+        text.setText(str1);
+
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_sms_mms);
-        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
-        text.setText(sbt);
-
-        str1 = getString(R.string.extender_accessibility_service_event_sensor_call);
-        if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
+        str1 = getString(R.string.extender_accessibility_service_event_sensor_sms_mms);
+        /*if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
             str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
         else
             str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
         sbt = new SpannableString(str2);
-        text = findViewById(R.id.activity_main_accessibility_service_event_sensor_call);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
-        text.setText(sbt);
+        text.setText(sbt);*/
+        text.setText(str1);
+
+        text = findViewById(R.id.activity_main_accessibility_service_event_sensor_call);
+        str1 = getString(R.string.extender_accessibility_service_event_sensor_call);
+        /*if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
+        else
+            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
+        sbt = new SpannableString(str2);
+        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
+        text.setText(sbt);*/
+        text.setText(str1);
+
+        text = findViewById(R.id.activity_main_accessibility_service_status);
+        if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
+            text.setText("[ " + getString(R.string.extender_accessibility_service_enabled) + " ]");
+        else
+            text.setText("[ " + getString(R.string.extender_accessibility_service_disabled) + " ]");
 
         final Activity activity = this;
         Button accessibilityButton = findViewById(R.id.activity_main_accessibility_service_button);
