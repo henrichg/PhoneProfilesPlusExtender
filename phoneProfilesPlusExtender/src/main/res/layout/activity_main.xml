@@ -120,6 +120,27 @@
             style="?android:attr/borderlessButtonStyle" />
 
         <TextView
+            android:id="@+id/activity_main_permission_popup_windows_in_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/extender_permissions_not_granted"
+            android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/activity_main_popup_windows_in_background_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/extender_popup_windows_in_background_button"
+            android:textColor="?attr/colorAccent"
+            android:textStyle="bold"
+            android:background="@drawable/pp_button_background_selector"
+            android:textAllCaps="false"
+            style="?android:attr/borderlessButtonStyle" />
+
+        <TextView
             android:id="@+id/activity_main_permissions_event_sensor_sms_mms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
