@@ -14,7 +14,7 @@ android {
         // - android.permission.PROCESS_OUTGOING_CALLS
 
         versionCode 696
-        versionName "6.2b"
+        versionName "7.0b"
         resConfigs 'en', 'ar', 'bn-rIN', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fr', 'ga-rIN', 'hi', 'hr', 'hu', 'in', 'is', 'it', 'iw', 'ja', 'ko', 'ku', 'lb', 'lv', 'ms', 'nl', 'no', 'pl', 'pt-rBR', 'pt-rPT', 'ro', 'ru', 'sk', 'sl', 'sr', 'b+sr+Latn', 'sv', 'te', 'th', 'tr', 'uk', 'vi', 'zh-rCN', 'zh-rTW'
 
 
