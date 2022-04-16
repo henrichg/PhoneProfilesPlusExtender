@@ -244,12 +244,11 @@ public class MainActivity extends AppCompatActivity {
                 displayPopupWindowsInBackground = true;
             }
         }
+        text = findViewById(R.id.activity_main_permission_popup_windows_in_background);
         if (displayPopupWindowsInBackground) {
-            text = findViewById(R.id.activity_main_permission_popup_windows_in_background);
             str1 = getString(R.string.extender_permissions_popup_windows_in_background);
             text.setText(str1);
         } else {
-            text = findViewById(R.id.activity_main_permission_popup_windows_in_background);
             text.setVisibility(View.GONE);
         }
 

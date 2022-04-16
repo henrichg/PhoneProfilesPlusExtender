@@ -275,7 +275,7 @@ public class PPPEApplication extends Application {
         body = body + getString(R.string.extender_acra_email_body_text);
 
         Log.e("##### PPPEApplication.attachBaseContext", "ACRA inittialization");
-/*
+
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .withBuildConfigClass(BuildConfig.class)
                 .withReportFormat(StringFormat.KEY_VALUE_LIST);
@@ -299,8 +299,8 @@ public class PPPEApplication extends Application {
                 .withReportAsFile(true)
                 .withReportFileName("crash_report.txt")
                 .withEnabled(true);
-*/
-        // not possible because compile sdk must be 31 :-(
+
+/*
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder()
                 .withBuildConfigClass(BuildConfig.class)
                 .withReportFormat(StringFormat.KEY_VALUE_LIST);
@@ -326,7 +326,7 @@ public class PPPEApplication extends Application {
                         .withEnabled(true)
                         .build()
         );
-
+*/
         //ACRA.DEV_LOGGING = true;
 
         ACRA.init(this, builder);
