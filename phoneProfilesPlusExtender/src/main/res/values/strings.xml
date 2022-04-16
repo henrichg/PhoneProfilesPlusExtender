@@ -44,5 +44,11 @@
     <string name="extender_acra_email_body_android_version">Android version:</string>
     <string name="extender_permissions_popup_windows_in_background">Please enable \"Display pop-up windows while running in the background\". Without this enabled, \"Force stop applications\" will not be working.</string>
     <string name="extender_popup_windows_in_background_button">Open\nOther permissions\n(MIUI)</string>
+    <string name="extender_notification_channel_grant_permission">Grant permission</string>
+    <string name="extender_notification_channel_grant_permission_description">Shows permission which is needed grant it.</string>
+    <string name="extender_notification_permission_title">Permission not granted</string>
+    <string name="extender_notification_sms_mms_permission_text">Permission for event parameter \"SMS/MMS sensor\" is not granted. Click this notification to open Extender. In it use button for grant this permission.</string>
+    <string name="extender_notification_call_permission_text">Permission for event parameter \"Call sensor\" is not granted. Click this notification to open Extender. In it use button for grant this permission.</string>
+
 </resources>
 

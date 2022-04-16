@@ -2,6 +2,7 @@ package sk.henrichg.phoneprofilesplusextender;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -12,6 +13,7 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.pm.PackageInfoCompat;
 
 import org.acra.ACRA;
@@ -69,6 +71,10 @@ public class PPPEApplication extends Application {
     // for new log.txt and crash.txt is in /Android/data/sk.henrichg.phoneprofilesplusextender/files
     //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
     private static final String LOG_FILENAME = "log.txt";
+
+    static final String GRANT_PERMISSION_NOTIFICATION_CHANNEL = "phoneProfilesPlusExtender_grant_permission";
+    static final int GRANT_PERMISSIONS_NOTIFICATION_ID = 102;
+    static final String GRANT_PERMISSIONS_NOTIFICATION_TAG = PACKAGE_NAME+"_GRANT_PROFILE_PERMISSIONS_NOTIFICATION";
 
     static final String ACCESSIBILITY_SERVICE_PERMISSION = PPPEApplication.PACKAGE_NAME + ".ACCESSIBILITY_SERVICE_PERMISSION";
 
@@ -580,6 +586,38 @@ public class PPPEApplication extends Application {
     static int getVersionCode(PackageInfo pInfo) {
         //return pInfo.versionCode;
         return (int) PackageInfoCompat.getLongVersionCode(pInfo);
+    }
+
+    static void createGrantPermissionNotificationChannel(Context context) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            try {
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context.getApplicationContext());
+                if (notificationManager.getNotificationChannel(PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL) != null)
+                    return;
+
+                // The user-visible name of the channel.
+                CharSequence name = context.getString(R.string.extender_notification_channel_grant_permission);
+                // The user-visible description of the channel.
+                String description = context.getString(R.string.extender_notification_channel_grant_permission_description);
+
+                NotificationChannel channel = new NotificationChannel(PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL, name, NotificationManager.IMPORTANCE_HIGH);
+
+                // Configure the notification channel.
+                //channel.setImportance(importance);
+                channel.setDescription(description);
+                channel.enableLights(true);
+                // Sets the notification light color for notifications posted to this
+                // channel, if the device supports this feature.
+                //channel.setLightColor(Color.RED);
+                channel.enableVibration(true);
+                //channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                channel.setBypassDnd(true);
+
+                notificationManager.createNotificationChannel(channel);
+            } catch (Exception e) {
+                PPPEApplication.recordException(e);
+            }
+        }
     }
 
 }

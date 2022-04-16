@@ -2,6 +2,7 @@ package sk.henrichg.phoneprofilesplusextender;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -10,10 +11,10 @@ class Permissions {
 
     static final int PERMISSIONS_REQUEST_CODE = 9091;
 
-    static boolean checkSMSMMSPermissions(Activity activity) {
-        if (PPPEApplication.hasSystemFeature(activity.getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
-            boolean grantedReceiveSMS = ContextCompat.checkSelfPermission(activity.getApplicationContext(), Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED;
-            boolean grantedReceiveMMS = ContextCompat.checkSelfPermission(activity.getApplicationContext(), Manifest.permission.RECEIVE_MMS) == PackageManager.PERMISSION_GRANTED;
+    static boolean checkSMSMMSPermissions(Context context) {
+        if (PPPEApplication.hasSystemFeature(context.getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+            boolean grantedReceiveSMS = ContextCompat.checkSelfPermission(context.getApplicationContext(), Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED;
+            boolean grantedReceiveMMS = ContextCompat.checkSelfPermission(context.getApplicationContext(), Manifest.permission.RECEIVE_MMS) == PackageManager.PERMISSION_GRANTED;
 
             return grantedReceiveSMS && grantedReceiveMMS;
         }
@@ -21,11 +22,11 @@ class Permissions {
             return false;
     }
 
-    static boolean checkCallPermissions(Activity activity) {
-        if (PPPEApplication.hasSystemFeature(activity.getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
-            boolean grantedReadPhoneState = ContextCompat.checkSelfPermission(activity.getApplicationContext(), Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED;
-            boolean grantedProcessOutgoingCalls = ContextCompat.checkSelfPermission(activity.getApplicationContext(), Manifest.permission.PROCESS_OUTGOING_CALLS) == PackageManager.PERMISSION_GRANTED;
-            boolean grantedReadCallLog = ContextCompat.checkSelfPermission(activity.getApplicationContext(), Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED;
+    static boolean checkCallPermissions(Context context) {
+        if (PPPEApplication.hasSystemFeature(context.getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+            boolean grantedReadPhoneState = ContextCompat.checkSelfPermission(context.getApplicationContext(), Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED;
+            boolean grantedProcessOutgoingCalls = ContextCompat.checkSelfPermission(context.getApplicationContext(), Manifest.permission.PROCESS_OUTGOING_CALLS) == PackageManager.PERMISSION_GRANTED;
+            boolean grantedReadCallLog = ContextCompat.checkSelfPermission(context.getApplicationContext(), Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED;
 
             return grantedReadPhoneState && grantedProcessOutgoingCalls && grantedReadCallLog;
         }

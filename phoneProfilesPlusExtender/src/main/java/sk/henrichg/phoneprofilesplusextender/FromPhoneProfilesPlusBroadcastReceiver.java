@@ -2,10 +2,15 @@ package sk.henrichg.phoneprofilesplusextender;
 
 import android.accessibilityservice.AccessibilityService;
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
 
@@ -57,12 +62,22 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                         break;
                     case PPPEApplication.REGISTRATION_TYPE_SMS_REGISTER:
                         PPPEApplication.registeredSMSFunctionPPP = true;
+                        if (!Permissions.checkSMSMMSPermissions(context)) {
+                            showPermissionNotification(context,
+                                    context.getString(R.string.extender_notification_permission_title),
+                                    context.getString(R.string.extender_notification_sms_mms_permission_text));
+                        }
                         break;
                     case PPPEApplication.REGISTRATION_TYPE_SMS_UNREGISTER:
                         PPPEApplication.registeredSMSFunctionPPP = false;
                         break;
                     case PPPEApplication.REGISTRATION_TYPE_CALL_REGISTER:
                         PPPEApplication.registeredCallFunctionPPP = true;
+                        if (!Permissions.checkCallPermissions(context)) {
+                            showPermissionNotification(context,
+                                    context.getString(R.string.extender_notification_permission_title),
+                                    context.getString(R.string.extender_notification_call_permission_text));
+                        }
                         break;
                     case PPPEApplication.REGISTRATION_TYPE_CALL_UNREGISTER:
                         PPPEApplication.registeredCallFunctionPPP = false;
@@ -106,4 +121,40 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
             }
         }
     }
+
+    static private void showPermissionNotification(Context context, String title, String text) {
+        //noinspection UnnecessaryLocalVariable
+        String nTitle = title;
+        //noinspection UnnecessaryLocalVariable
+        String nText = text;
+        PPPEApplication.createGrantPermissionNotificationChannel(context);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL)
+                .setColor(ContextCompat.getColor(context, R.color.notificationDecorationColor))
+                .setSmallIcon(R.drawable.ic_exclamation_notify) // notification icon
+                .setContentTitle(nTitle) // title for notification
+                .setContentText(nText)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(nText))
+                .setAutoCancel(true); // clear notification after click
+
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        @SuppressLint("UnspecifiedImmutableFlag")
+        PendingIntent pi = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(pi);
+        mBuilder.setPriority(NotificationCompat.PRIORITY_MAX);
+        mBuilder.setCategory(NotificationCompat.CATEGORY_RECOMMENDATION);
+        mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+        mBuilder.setOnlyAlertOnce(true);
+
+        NotificationManagerCompat mNotificationManager = NotificationManagerCompat.from(context);
+        try {
+            mNotificationManager.notify(
+                    PPPEApplication.GRANT_PERMISSIONS_NOTIFICATION_TAG,
+                    PPPEApplication.GRANT_PERMISSIONS_NOTIFICATION_ID, mBuilder.build());
+        } catch (Exception e) {
+            //Log.e("IgnoreBatteryOptimizationNotification.showNotification", Log.getStackTraceString(e));
+            PPPEApplication.recordException(e);
+        }
+    }
+
 }

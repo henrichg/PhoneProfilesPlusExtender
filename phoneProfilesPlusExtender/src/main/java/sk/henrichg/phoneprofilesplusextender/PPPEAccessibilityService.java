@@ -65,6 +65,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         setServiceInfo(config);
         */
 
+        PPPEApplication.createGrantPermissionNotificationChannel(this);
+
         if (PPPEApplication.screenOnOffReceiver == null) {
             PPPEApplication.screenOnOffReceiver = new ScreenOnOffBroadcastReceiver();
             IntentFilter intentFilter5 = new IntentFilter();
