@@ -1,6 +1,7 @@
 package sk.henrichg.phoneprofilesplusextender;
 
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,9 +34,18 @@ public class ForceStopActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // to finish all App info activities started with startActivityForResult(intent, 100);
-        // IN XIAOMI DEVICES THIS NOT WORKING !!! WHY ???
-        finishActivity(100);
+
+        // do finish all App info activities started with startActivityForResult(intent, 100);
+        boolean canFinish = true;
+        if (Build.VERSION.SDK_INT >= 30) {
+            if (PPPEApplication.deviceIsXiaomi) {
+                // IN XIAOMI DEVICES THIS NOT WORKING !!! WHY ???
+                canFinish = false;
+            }
+        }
+        if (canFinish)
+            finishActivity(100);
+
         instance = null;
 //        Log.e("ForceStopActivity.onDestroy","xxx");
     }
