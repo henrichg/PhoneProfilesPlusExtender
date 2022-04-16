@@ -124,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
         else {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
             text.setVisibility(View.GONE);
+            text = findViewById(R.id.activity_main_sms_permissions_status);
+            text.setVisibility(View.GONE);
         }
 
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
@@ -149,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             text = findViewById(R.id.activity_main_permissions_event_sensor_call);
+            text.setVisibility(View.GONE);
+            text = findViewById(R.id.activity_main_call_permissions_status);
             text.setVisibility(View.GONE);
         }
 
