@@ -65,7 +65,9 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                         if (!Permissions.checkSMSMMSPermissions(context)) {
                             showPermissionNotification(context,
                                     context.getString(R.string.extender_notification_permission_title),
-                                    context.getString(R.string.extender_notification_sms_mms_permission_text));
+                                    context.getString(R.string.extender_notification_sms_mms_permission_text),
+                                    PPPEApplication.GRANT_PERMISSIONS_SMS_NOTIFICATION_ID,
+                                    PPPEApplication.GRANT_PERMISSIONS_SMS_NOTIFICATION_TAG);
                         }
                         break;
                     case PPPEApplication.REGISTRATION_TYPE_SMS_UNREGISTER:
@@ -76,7 +78,9 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                         if (!Permissions.checkCallPermissions(context)) {
                             showPermissionNotification(context,
                                     context.getString(R.string.extender_notification_permission_title),
-                                    context.getString(R.string.extender_notification_call_permission_text));
+                                    context.getString(R.string.extender_notification_call_permission_text),
+                                    PPPEApplication.GRANT_PERMISSIONS_CALL_NOTIFICATION_ID,
+                                    PPPEApplication.GRANT_PERMISSIONS_CALL_NOTIFICATION_TAG);
                         }
                         break;
                     case PPPEApplication.REGISTRATION_TYPE_CALL_UNREGISTER:
@@ -122,7 +126,8 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
-    static private void showPermissionNotification(Context context, String title, String text) {
+    static private void showPermissionNotification(Context context, String title, String text,
+                                                    int notificationID, String notificationTag) {
         //noinspection UnnecessaryLocalVariable
         String nTitle = title;
         //noinspection UnnecessaryLocalVariable
@@ -148,9 +153,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
 
         NotificationManagerCompat mNotificationManager = NotificationManagerCompat.from(context);
         try {
-            mNotificationManager.notify(
-                    PPPEApplication.GRANT_PERMISSIONS_NOTIFICATION_TAG,
-                    PPPEApplication.GRANT_PERMISSIONS_NOTIFICATION_ID, mBuilder.build());
+            mNotificationManager.notify(notificationTag, notificationID, mBuilder.build());
         } catch (Exception e) {
             //Log.e("IgnoreBatteryOptimizationNotification.showNotification", Log.getStackTraceString(e));
             PPPEApplication.recordException(e);
