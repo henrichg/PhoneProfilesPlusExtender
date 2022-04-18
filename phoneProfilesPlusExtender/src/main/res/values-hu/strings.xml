@@ -3,7 +3,7 @@
 <!--suppress XmlUnusedNamespaceDeclaration -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!--suppress CheckTagEmptyBody -->
-    <string name="extender_accessibility_service_description">Engedélyezze a PhoneProfilesPlusExtender alkalmazását:\n• profilparaméter \"Alkalmazások eröltetett leállítása\"\n• eseményparaméterek: \"Alkalmazás-érzékelő\", \"Tájolás-érzékelő\", \"SMS / MMS-érzékelő\", \"Hívásérzékelő\".</string>
+    <string name="extender_accessibility_service_description">Extender for PhoneProfilesPlus. It working only in conjunction with PhoneProfilesPlus.</string>
     <string name="extender_about_application_version">Verzió:</string>
     <string name="extender_accessibility_service_profile_force_stop_applications">• Kisegítő szolgáltatás a profil paraméterhez \"Alkalmazások kényszerített leállítása\"</string>
     <string name="extender_accessibility_service_event_sensor_applications_orientation">• Kisegítő szolgáltatás az esemény paraméterekhez \"Alkalmazás erzékelő\" és \"Irány érzékelő\"</string>
@@ -36,4 +36,11 @@
     <string name="extender_battery_optimization_button">Open\nBattery optimization</string>
     <string name="extender_acra_email_body_device">Device:</string>
     <string name="extender_acra_email_body_android_version">Android version:</string>
+    <string name="extender_permissions_popup_windows_in_background">Please enable \"Display pop-up windows while running in the background\". Without this enabled, \"Force stop applications\" will not be working.</string>
+    <string name="extender_popup_windows_in_background_button">Open\nOther permissions\n(MIUI)</string>
+    <string name="extender_notification_channel_grant_permission">Grant permission</string>
+    <string name="extender_notification_channel_grant_permission_description">Shows permission which is needed grant it.</string>
+    <string name="extender_notification_permission_title">Permission not granted</string>
+    <string name="extender_notification_sms_mms_permission_text">Permission for event parameter \"SMS/MMS sensor\" is not granted. Click this notification to open Extender. In it use button for grant this permission.</string>
+    <string name="extender_notification_call_permission_text">Permission for event parameter \"Call sensor\" is not granted. Click this notification to open Extender. In it use button for grant this permission.</string>
 </resources>

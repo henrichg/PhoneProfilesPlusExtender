@@ -3,7 +3,7 @@
 <!--suppress XmlUnusedNamespaceDeclaration -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!--suppress CheckTagEmptyBody -->
-    <string name="extender_accessibility_service_description">Povoľte PhoneProfilesPlusExtender pre:\n• parameter profilu \"Vynútiť zastavenie aplikácií\"\n• parametre udalosti \"Senzor aplikácií\", \"Senzor orientácie\", \"Senzor SMS/MMS\", \"Senzor hovorov\".</string>
+    <string name="extender_accessibility_service_description">Extender pre PhoneProfilesPlus. Funguje iba v spojení s PhoneProfilesPlus.</string>
     <string name="extender_about_application_version">Verzia:</string>
     <string name="extender_accessibility_service_profile_force_stop_applications">• Služba Dostupnosť pre parameter profilu \"Vynútiť zastavenie aplikácií\"</string>
     <string name="extender_accessibility_service_event_sensor_applications_orientation">• Služba Dostupnosť pre parametre udalosti \"Senzor aplikácií\" a \"Senzor orientácie\"</string>
@@ -36,4 +36,11 @@
     <string name="extender_battery_optimization_button">Otvor\nOptimalizáciu batérie</string>
     <string name="extender_acra_email_body_device">Zariadenie:</string>
     <string name="extender_acra_email_body_android_version">Verzia Android:</string>
+    <string name="extender_permissions_popup_windows_in_background">Povoľte \"Zobrazovať kontextové okná pri spustení na pozadí\". Bez tohoto povolenia nebude funkcia \"Vynútiť zastavenie aplikácií\" fungovať.</string>
+    <string name="extender_popup_windows_in_background_button">Otvor\nĎalšie povolenia\n(MIUI)</string>
+    <string name="extender_notification_channel_grant_permission">Udelenie povolenia</string>
+    <string name="extender_notification_channel_grant_permission_description">Zobrazuje povolenie, ktoré je potrebné, aby ste udelili.</string>
+    <string name="extender_notification_permission_title">Povolenie nebolo udelené</string>
+    <string name="extender_notification_sms_mms_permission_text">Povolenie pre parameter udalosti \"Senzor SMS/MMS\" nie je udelené. Kliknutím na toto upozornenie otvoríte Extender. V ňom použite tlačidlo na udelenie tohto povolenia.</string>
+    <string name="extender_notification_call_permission_text">Povolenie pre parameter udalosti \"Senzor hovoru\" nie je udelené. Kliknutím na toto upozornenie otvoríte Extender. V ňom použite tlačidlo na udelenie tohto povolenia.</string>
 </resources>

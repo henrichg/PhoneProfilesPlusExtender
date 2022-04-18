@@ -3,7 +3,7 @@
 <!--suppress XmlUnusedNamespaceDeclaration -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!--suppress CheckTagEmptyBody -->
-    <string name="extender_accessibility_service_description">Consenti a PhoneProfilesPlusExtender per:\n• parametro del profilo \"Forza interruzione applicazioni\"\n• parametri evento \"Sensore dell\'applicazione\", \"Sensore di orientamento\", \"sensore SMS/MMS\", \"Sensore di chiamata\".</string>
+    <string name="extender_accessibility_service_description">Extender per PhoneProfilesPlus. Funziona solo in combinazione con PhoneProfilesPlus.</string>
     <string name="extender_about_application_version">Versione:</string>
     <string name="extender_accessibility_service_profile_force_stop_applications">• Servizio di accessibilità per il parametro del profilo \"Forza interruzione applicazioni\"</string>
     <string name="extender_accessibility_service_event_sensor_applications_orientation">• Servizio di accessibilità per i parametri evento \"Sensore di applicazione\" e \"Sensore di orientamento\"</string>
@@ -36,4 +36,11 @@
     <string name="extender_battery_optimization_button">Apri\nottimizzazione della batteria</string>
     <string name="extender_acra_email_body_device">Dispositivo:</string>
     <string name="extender_acra_email_body_android_version">Versione Android:</string>
+    <string name="extender_permissions_popup_windows_in_background">Si prega di abilitare \"Mostra le finestre pop-up durante l\'esecuzione in background\". Senza questo abilitato, \"Forza il blocco applicazioni\" non funzionera.</string>
+    <string name="extender_popup_windows_in_background_button">Apri\nAltre autorizzazioni\n(MIUI)</string>
+    <string name="extender_notification_channel_grant_permission">Concedi l\'autorizzazione</string>
+    <string name="extender_notification_channel_grant_permission_description">Mostra il permesso che è necessario concedere.</string>
+    <string name="extender_notification_permission_title">Autorizzazione non concessa</string>
+    <string name="extender_notification_sms_mms_permission_text">L\'autorizzazione per il parametro evento \"SMS/MMS sensor\" non è concessa. Fare clic su questa notifica per aprire Extender. In esso utilizzare il pulsante per concedere questo permesso.</string>
+    <string name="extender_notification_call_permission_text">Il permesso per il parametro evento \"Call sensor\" non è concesso. Fare clic su questa notifica per aprire Extender. In esso utilizzare il pulsante per concedere questo permesso.</string>
 </resources>

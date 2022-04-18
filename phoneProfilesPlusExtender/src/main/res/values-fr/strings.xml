@@ -3,7 +3,7 @@
 <!--suppress XmlUnusedNamespaceDeclaration -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!--suppress CheckTagEmptyBody -->
-    <string name="extender_accessibility_service_description">Autoriser PhoneProfilesPlusExtender pour:\n- paramètre de profil \"Applications d\’arrêt forcé\"\n- paramètres d\’événement \"Application sensor\", \"Capteur d\’orientation\", \"SMS/MMS sensor\", \"Call sensor\". </string>
+    <string name="extender_accessibility_service_description">Extender pour PhoneProfilesPlus. Il ne fonctionne qu\'avec PhoneProfilesPlus.</string>
     <string name="extender_about_application_version">Version :</string>
     <string name="extender_accessibility_service_profile_force_stop_applications">- Service d\’accessibilité pour le paramètre de profil \"Applications d\’arrêt forcé\"</string>
     <string name="extender_accessibility_service_event_sensor_applications_orientation">- Service d\’accessibilité pour les paramètres d\’événement \"Application sensor\" et \"Capteur d\’orientation\"</string>
@@ -36,4 +36,11 @@
     <string name="extender_battery_optimization_button">Open\nBattery optimization</string>
     <string name="extender_acra_email_body_device">Device:</string>
     <string name="extender_acra_email_body_android_version">Version Android :</string>
+    <string name="extender_permissions_popup_windows_in_background">Please enable \"Display pop-up windows while running in the background\". Without this enabled, \"Force stop applications\" will not be working.</string>
+    <string name="extender_popup_windows_in_background_button">Open\nOther permissions\n(MIUI)</string>
+    <string name="extender_notification_channel_grant_permission">Accorder la permission</string>
+    <string name="extender_notification_channel_grant_permission_description">Affiche la permission nécessaire pour l\'accorder.</string>
+    <string name="extender_notification_permission_title">Autorisation non accordée</string>
+    <string name="extender_notification_sms_mms_permission_text">L\'autorisation pour le paramètre d\'événement \"Capteur SMS/MMS\" n\'est pas accordée. Cliquez sur cette notification pour ouvrir Extender. Dans celle-ci, utiliser le bouton pour accorder cette autorisation.</string>
+    <string name="extender_notification_call_permission_text">L\'autorisation pour le paramètre \"Capteur d\'appel\" n\'est pas accordée. Cliquez sur cette notification pour ouvrir Extender. Dedans, utilisez le bouton pour accorder cette autorisation.</string>
 </resources>

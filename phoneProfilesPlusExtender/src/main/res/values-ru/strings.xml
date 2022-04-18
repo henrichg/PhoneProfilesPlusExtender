@@ -3,7 +3,7 @@
 <!--suppress XmlUnusedNamespaceDeclaration -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!--suppress CheckTagEmptyBody -->
-    <string name="extender_accessibility_service_description">Разрешите доступ службе PhoneProfilesPlusExtender для использования:\n• параметра профиля \"Принудительная остановка приложений\"\n• параметров события \"Датчик приложений\", \"Датчик ориентации\", \"Датчик SMS/MMS\", \"Датчик вызовов\".</string>
+    <string name="extender_accessibility_service_description">Extender для PhoneProfilesPlus. Он работает только вместе с PhoneProfilesPlus.</string>
     <string name="extender_about_application_version">Версия:</string>
     <string name="extender_accessibility_service_profile_force_stop_applications">• Служба спец. возможностей для параметра профиля \"Принудительная остановка приложений\"</string>
     <string name="extender_accessibility_service_event_sensor_applications_orientation">• Служба спец. возможностей для параметров события \"Датчик приложений\" и \"Датчик ориентации\"</string>
@@ -36,4 +36,11 @@
     <string name="extender_battery_optimization_button">Открыть\n\"Экономию заряда батареи\"</string>
     <string name="extender_acra_email_body_device">Устройство:</string>
     <string name="extender_acra_email_body_android_version">Версия Android:</string>
+    <string name="extender_permissions_popup_windows_in_background">Предоставьте, пожалуйста, разрешение \"Отображать всплывающие окна, когда запущено в фоновом режиме\". Без этого принудительная остановка приложений работать не будет.</string>
+    <string name="extender_popup_windows_in_background_button">Открыть\nДругие разрешения\n(MIUI)</string>
+    <string name="extender_notification_channel_grant_permission">Предоставление разрешения</string>
+    <string name="extender_notification_channel_grant_permission_description">Показывает разрешение, которое нужно предоставить.</string>
+    <string name="extender_notification_permission_title">Разрешение не предоставлено</string>
+    <string name="extender_notification_sms_mms_permission_text">Разрешение для параметра \"Датчик SMS/MMS\" не предоставлено. Нажмите на это уведомление, чтобы открыть Extender, и предоставьте разрешение, нажав на соответствующую кнопку.</string>
+    <string name="extender_notification_call_permission_text">Разрешение для параметра \"Датчик вызовов\" не предоставлено. Нажмите на это уведомление, чтобы открыть Extender, и предоставьте разрешение, нажав на соответствующую кнопку.</string>
 </resources>
