@@ -11,7 +11,7 @@ PhoneProfilesPlusExtender
 
 __[GitHub release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
 
-__Another sources of PhoneProfilesPlusExtender :__
+__Another sources of PhoneProfilesPlusExtender:__
 
 Use keyword "PhoneProfilesPlus" for search this application in these stores.
 
