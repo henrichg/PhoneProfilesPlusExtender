@@ -37,7 +37,7 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 [1](art/01.png),
 [2](art/02.png),
 [3](art/03.png),
-[4](art/04.png),
+[4](art/04.png)
 
 ##### Supported Android versions
 
