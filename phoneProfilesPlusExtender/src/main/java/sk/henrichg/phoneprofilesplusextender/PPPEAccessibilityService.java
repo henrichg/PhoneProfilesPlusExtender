@@ -48,7 +48,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     protected void onServiceConnected() {
         super.onServiceConnected();
 
-        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
+//        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
 
         instance = this;
 
