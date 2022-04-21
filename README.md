@@ -34,7 +34,7 @@ _**** Please report me bugs, comments and suggestions to my e-mail: <henrich.gro
 _*** Please help me with translation, thank you: <https://crowdin.com/project/phoneprofilesplus> ***_
 
 ##### Screenshots
-[[1]](art/01.png),
+- [[1]](art/01.png),
 [[2]](art/02.png),
 [[3]](art/03.png),
 [[4]](art/04.png)
