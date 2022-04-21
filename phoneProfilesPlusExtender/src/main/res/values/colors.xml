@@ -16,4 +16,6 @@
     <color name="buttonBackgroundColor">#FFFAFAFA</color>
     <color name="buttonClickedBackgroundColor">#FFDADADA</color>
 
+    <color name="notificationDecorationColor">#DC8160</color>
+
 </resources>

@@ -12,13 +12,21 @@
 
     <uses-permission android:name="sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION"/>
 
+    <!--    hard restricted-->
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <!--    hard restricted-->
     <uses-permission android:name="android.permission.RECEIVE_MMS"/>
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!-- required for answer call to get phone number -->
+    <!--    hard restricted-->
+    <!--    not allowed for compile sdk > 28  :-( -->
+    <!--suppress DeprecatedClassUsageInspection -->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <!--    hard restricted-->
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <uses-feature
         android:name="android.hardware.telephony"

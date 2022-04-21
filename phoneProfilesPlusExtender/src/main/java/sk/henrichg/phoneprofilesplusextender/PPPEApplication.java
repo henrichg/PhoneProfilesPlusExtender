@@ -2,6 +2,7 @@ package sk.henrichg.phoneprofilesplusextender;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -12,6 +13,7 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.pm.PackageInfoCompat;
 
 import org.acra.ACRA;
@@ -49,7 +51,7 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = ""
-                                                //+"|PPPEAccessibilityService"
+                                                +"|PPPEAccessibilityService"
                                                 //+"|SMSBroadcastReceiver"
 
                                                 //+"|PhoneCallReceiver"
@@ -63,14 +65,22 @@ public class PPPEApplication extends Application {
     static final boolean deviceIsRealme = isRealme();
     static final boolean deviceIsHuawei = isHuawei();
     static final boolean deviceIsSamsung = isSamsung();
+    static final boolean deviceIsXiaomi = isXiaomi();
+    static final boolean deviceIsOnePlus = isOnePlus();
 
     // for new log.txt and crash.txt is in /Android/data/sk.henrichg.phoneprofilesplusextender/files
     //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
     private static final String LOG_FILENAME = "log.txt";
 
+    static final String GRANT_PERMISSION_NOTIFICATION_CHANNEL = "phoneProfilesPlusExtender_grant_permission";
+    static final int GRANT_PERMISSIONS_SMS_NOTIFICATION_ID = 101;
+    static final String GRANT_PERMISSIONS_SMS_NOTIFICATION_TAG = PACKAGE_NAME+"_GRANT_PROFILE_PERMISSIONS_SMS_NOTIFICATION";
+    static final int GRANT_PERMISSIONS_CALL_NOTIFICATION_ID = 102;
+    static final String GRANT_PERMISSIONS_CALL_NOTIFICATION_TAG = PACKAGE_NAME+"_GRANT_PROFILE_PERMISSIONS_CALL_NOTIFICATION";
+
     static final String ACCESSIBILITY_SERVICE_PERMISSION = PPPEApplication.PACKAGE_NAME + ".ACCESSIBILITY_SERVICE_PERMISSION";
 
-    static final String ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED";
+    //static final String ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED";
     static final String ACTION_REGISTER_PPPE_FUNCTION = PPPEApplication.PACKAGE_NAME + ".ACTION_REGISTER_PPPE_FUNCTION";
 
     static final String EXTRA_REGISTRATION_APP = "registration_app";
@@ -158,8 +168,9 @@ public class PPPEApplication extends Application {
         if (checkAppReplacingState())
             return;
 
-        ///////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
         // Bypass Android's hidden API restrictions
+        // !!! WARNING - this is required also for android.jar from android-hidden-api !!!
         // https://github.com/tiann/FreeReflection
         if (Build.VERSION.SDK_INT >= 28) {
             try {
@@ -170,11 +181,13 @@ public class PPPEApplication extends Application {
                 Method getRuntime = (Method) getDeclaredMethod.invoke(vmRuntimeClass, "getRuntime", null);
                 Method setHiddenApiExemptions = (Method) getDeclaredMethod.invoke(vmRuntimeClass, "setHiddenApiExemptions", new Class[]{String[].class});
 
-                Object vmRuntime = getRuntime.invoke(null);
-
-                setHiddenApiExemptions.invoke(vmRuntime, new Object[]{new String[]{"L"}});
+                if (getRuntime != null) {
+                    Object vmRuntime = getRuntime.invoke(null);
+                    if (setHiddenApiExemptions != null)
+                        setHiddenApiExemptions.invoke(vmRuntime, new Object[]{new String[]{"L"}});
+                }
             } catch (Exception e) {
-                Log.e("PPApplication.onCreate", Log.getStackTraceString(e));
+                //Log.e("PPApplication.onCreate", Log.getStackTraceString(e));
                 PPPEApplication.recordException(e);
             }
         }
@@ -262,12 +275,13 @@ public class PPPEApplication extends Application {
         body = body + getString(R.string.extender_acra_email_body_text);
 
         Log.e("##### PPPEApplication.attachBaseContext", "ACRA inittialization");
+
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .withBuildConfigClass(BuildConfig.class)
                 .withReportFormat(StringFormat.KEY_VALUE_LIST);
-        /*builder.getPluginConfigurationBuilder(ToastConfigurationBuilder.class)
-                .setResText(R.string.acra_toast_text)
-                .setEnabled(true);*/
+        //builder.getPluginConfigurationBuilder(ToastConfigurationBuilder.class)
+        //        .setResText(R.string.acra_toast_text)
+        //        .setEnabled(true);
         builder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class)
                 .withResChannelName(R.string.extender_notification_channel_crash_report)
                 .withResChannelImportance(NotificationManager.IMPORTANCE_HIGH)
@@ -286,6 +300,33 @@ public class PPPEApplication extends Application {
                 .withReportFileName("crash_report.txt")
                 .withEnabled(true);
 
+/*
+        CoreConfigurationBuilder builder = new CoreConfigurationBuilder()
+                .withBuildConfigClass(BuildConfig.class)
+                .withReportFormat(StringFormat.KEY_VALUE_LIST);
+
+        builder.withPluginConfigurations(
+                new NotificationConfigurationBuilder()
+                        .withChannelName(getString(R.string.extender_notification_channel_crash_report))
+                        .withChannelImportance(NotificationManager.IMPORTANCE_HIGH)
+                        .withResIcon(R.drawable.ic_exclamation_notify)
+                        .withTitle(getString(R.string.extender_acra_notification_title))
+                        .withText(getString(R.string.extender_acra_notification_text))
+                        .withResSendButtonIcon(0)
+                        .withResDiscardButtonIcon(0)
+                        .withSendOnClick(true)
+                        .withEnabled(true)
+                        .build(),
+                new MailSenderConfigurationBuilder()
+                        .withMailTo("henrich.gron@gmail.com")
+                        .withSubject("PhoneProfilesPlusExtender" + packageVersion + " - " + getString(R.string.extender_acra_email_subject_text))
+                        .withBody(body)
+                        .withReportAsFile(true)
+                        .withReportFileName("crash_report.txt")
+                        .withEnabled(true)
+                        .build()
+        );
+*/
         //ACRA.DEV_LOGGING = true;
 
         ACRA.init(this, builder);
@@ -315,6 +356,18 @@ public class PPPEApplication extends Application {
         return Build.BRAND.equalsIgnoreCase("samsung") ||
                 Build.MANUFACTURER.equalsIgnoreCase("samsung") ||
                 Build.FINGERPRINT.toLowerCase().contains("samsung");
+    }
+
+    private static boolean isXiaomi() {
+        return Build.BRAND.equalsIgnoreCase("xiaomi") ||
+                Build.MANUFACTURER.equalsIgnoreCase("xiaomi") ||
+                Build.FINGERPRINT.toLowerCase().contains("xiaomi");
+    }
+
+    private static boolean isOnePlus() {
+        return Build.BRAND.equalsIgnoreCase("oneplus") ||
+                Build.MANUFACTURER.equalsIgnoreCase("oneplus") ||
+                Build.FINGERPRINT.toLowerCase().contains("oneplus");
     }
 
     //--------------------------------------------------------------
@@ -462,7 +515,7 @@ public class PPPEApplication extends Application {
     }
 
     @SuppressWarnings("unused")
-    static void logToCrashlytics(String s) {
+    static void logToACRA(String s) {
         try {
             //FirebaseCrashlytics.getInstance().log(s);
             ACRA.getErrorReporter().putCustomData("Log", s);
@@ -535,6 +588,38 @@ public class PPPEApplication extends Application {
     static int getVersionCode(PackageInfo pInfo) {
         //return pInfo.versionCode;
         return (int) PackageInfoCompat.getLongVersionCode(pInfo);
+    }
+
+    static void createGrantPermissionNotificationChannel(Context context) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            try {
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context.getApplicationContext());
+                if (notificationManager.getNotificationChannel(PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL) != null)
+                    return;
+
+                // The user-visible name of the channel.
+                CharSequence name = context.getString(R.string.extender_notification_channel_grant_permission);
+                // The user-visible description of the channel.
+                String description = context.getString(R.string.extender_notification_channel_grant_permission_description);
+
+                NotificationChannel channel = new NotificationChannel(PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL, name, NotificationManager.IMPORTANCE_HIGH);
+
+                // Configure the notification channel.
+                //channel.setImportance(importance);
+                channel.setDescription(description);
+                channel.enableLights(true);
+                // Sets the notification light color for notifications posted to this
+                // channel, if the device supports this feature.
+                //channel.setLightColor(Color.RED);
+                channel.enableVibration(true);
+                //channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                channel.setBypassDnd(true);
+
+                notificationManager.createNotificationChannel(channel);
+            } catch (Exception e) {
+                PPPEApplication.recordException(e);
+            }
+        }
     }
 
 }

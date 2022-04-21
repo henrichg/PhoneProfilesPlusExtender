@@ -44,7 +44,7 @@ public class ForceCloseIntentService extends IntentService {
         }
 
         long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
-        //Log.e("ForceCloseIntentService", "profileId="+profileId);
+        //Log.e("ForceCloseIntentService.onHandleIntent", "profileId="+profileId);
 
         if (profileId != 0) {
             ForceCloseIntentService.profileIdList.add(profileId);
@@ -52,11 +52,12 @@ public class ForceCloseIntentService extends IntentService {
         }
 
         String applications = intent.getStringExtra(EXTRA_APPLICATIONS);
+        //Log.e("ForceCloseIntentService.onHandleIntent", "applications="+applications);
 
         if (!(applications.isEmpty() || (applications.equals("-")))) {
 
             PPPEApplication.forceStopStarted = true;
-            //Log.e("ForceCloseIntentService", "forceStopStarted=true");
+            //Log.e("ForceCloseIntentService.onHandleIntent", "forceStopStarted=true");
 
             startForceStopActivity();
 
@@ -84,6 +85,7 @@ public class ForceCloseIntentService extends IntentService {
                         appInfoIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         appInfoIntent.setData(Uri.parse("package:" + packageName));
                         if (activityIntentExists(appInfoIntent, this)) {
+                            //Log.e("ForceCloseIntentService.onHandleIntent", "activity intent exists");
                             startForceStopActivity();
                             if (ForceStopActivity.instance != null) {
                                 try {
@@ -92,7 +94,9 @@ public class ForceCloseIntentService extends IntentService {
                                     //ForceStopActivity.instance.appInfoClosed = false;
                                     //noinspection deprecation
                                     ForceStopActivity.instance.startActivityForResult(appInfoIntent, 100);
+                                    //Log.e("ForceCloseIntentService.onHandleIntent", "App info started");
                                     waitForApplicationForceClosed();
+                                    //Log.e("ForceCloseIntentService.onHandleIntent", "after wait");
                                     //waitForAppInfoEnd();
                                     //ForceStopActivity.instance.finishActivity(100);
                                 } catch (Exception e) {
@@ -109,14 +113,16 @@ public class ForceCloseIntentService extends IntentService {
 
             PPPEApplication.forceStopStarted = false;
             //Log.e("ForceCloseIntentService", "forceStopStarted=false");
+
         }
 
-        //Log.e("ForceCloseIntentService", "forceStopApplicationsStartCount="+forceStopApplicationsStartCount);
+        //Log.e("ForceCloseIntentService.onHandleIntent", "forceStopApplicationsStartCount="+forceStopApplicationsStartCount);
 
         if (forceStopApplicationsStartCount <= 0) {
             if (ForceStopActivity.instance != null) {
                 try {
-                    ForceStopActivity.instance.finish();
+                    ForceStopActivity.instance.finishAffinity();
+                    //Log.e("ForceCloseIntentService.onHandleIntent", "ForceStopActivity finished");
                 } catch (Exception ignored) {}
                 ForceStopActivity.instance = null;
             }
@@ -195,12 +201,16 @@ public class ForceCloseIntentService extends IntentService {
     {
         long start = SystemClock.uptimeMillis();
         do {
+//            Log.e("ForceCloseIntentService.waitForApplicationForceClosed", "ForceStopActivity.instance="+ForceStopActivity.instance);
+//            Log.e("ForceCloseIntentService.waitForApplicationForceClosed", "PPPEApplication.applicationForceClosed="+PPPEApplication.applicationForceClosed);
+
             if ((ForceStopActivity.instance == null) || (PPPEApplication.applicationForceClosed))
                 break;
             //try { Thread.sleep(100); } catch (InterruptedException e) { }
+//            Log.e("ForceCloseIntentService.waitForApplicationForceClosed", "in wait");
             SystemClock.sleep(100);
         // TODO  30 seconds is only for testing, for get data to increase PPPE support !!! Comment for production version !!!
-        } while (SystemClock.uptimeMillis() - start < 5000 /* *30*/);
+        } while ((SystemClock.uptimeMillis() - start) < 5000 /* *30*/);
     }
 
     /*
@@ -216,13 +226,19 @@ public class ForceCloseIntentService extends IntentService {
     }
     */
 
+    // start activity from service restrictions
+    // exceptions is also AccessibilityService
+    //https://developer.android.com/guide/components/activities/background-starts
+    // BUT NOT IN XIAOMI DEVICES WITH ANDROID 11 !!! WHY ???
+    // !!! Must be enabled Apps/Manage apps/PPPE/Other permissions/Display pop-up windows while running in the background
     private void startForceStopActivity() {
+//        Log.e("ForceCloseIntentService.startForceStopActivity", "ForceStopActivity.instance="+ForceStopActivity.instance);
         if (ForceStopActivity.instance == null) {
-            Intent forceStopActivityIntent = new Intent(this, ForceStopActivity.class);
+            Intent forceStopActivityIntent = new Intent(PPPEAccessibilityService.instance, ForceStopActivity.class);
             forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
             forceStopActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(forceStopActivityIntent);
+            PPPEAccessibilityService.instance.startActivity(forceStopActivityIntent);
             waitForceStopActivityStart();
         }
     }
