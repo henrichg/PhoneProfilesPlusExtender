@@ -130,8 +130,11 @@ public class PPPEApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        if (ACRA.isACRASenderServiceProcess())
+        // This is required : https://www.acra.ch/docs/Troubleshooting-Guide#applicationoncreate
+        if (ACRA.isACRASenderServiceProcess()) {
+            Log.e("################# PPPEApplication.onCreate", "ACRA.isACRASenderServiceProcess()");
             return;
+        }
 
 /*        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .setBuildConfigClass(BuildConfig.class)
@@ -245,8 +248,9 @@ public class PPPEApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
 
+        // This is required : https://www.acra.ch/docs/Troubleshooting-Guide#applicationoncreate
         if (ACRA.isACRASenderServiceProcess()) {
-            Log.e("##### PPPEApplication.attachBaseContext", "ACRA.isACRASenderServiceProcess()");
+            Log.e("################# PPPEApplication.attachBaseContext", "ACRA.isACRASenderServiceProcess()");
             return;
         }
 
@@ -276,6 +280,7 @@ public class PPPEApplication extends Application {
 
         Log.e("##### PPPEApplication.attachBaseContext", "ACRA inittialization");
 
+/*
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .withBuildConfigClass(BuildConfig.class)
                 .withReportFormat(StringFormat.KEY_VALUE_LIST);
@@ -299,8 +304,8 @@ public class PPPEApplication extends Application {
                 .withReportAsFile(true)
                 .withReportFileName("crash_report.txt")
                 .withEnabled(true);
+*/
 
-/*
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder()
                 .withBuildConfigClass(BuildConfig.class)
                 .withReportFormat(StringFormat.KEY_VALUE_LIST);
@@ -326,7 +331,7 @@ public class PPPEApplication extends Application {
                         .withEnabled(true)
                         .build()
         );
-*/
+
         //ACRA.DEV_LOGGING = true;
 
         ACRA.init(this, builder);
