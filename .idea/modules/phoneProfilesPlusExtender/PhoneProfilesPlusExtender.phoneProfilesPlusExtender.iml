@@ -26,6 +26,8 @@
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/intermediates/javac/debug/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/intermediates/javac/debugUnitTest/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender">
       <excludeFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/.gradle" />
