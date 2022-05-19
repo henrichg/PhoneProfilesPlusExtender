@@ -48,7 +48,6 @@
         android:name=".PPPEApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/extender_app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
@@ -59,6 +58,7 @@
 <!--            android:value="true" />-->
 
         <activity android:name=".MainActivity"
+            android:label="@string/extender_app_name"
             tools:ignore="IntentFilterExportedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

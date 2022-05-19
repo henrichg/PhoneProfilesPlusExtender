@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         //PPPEApplication.logE("MainActivity.onCreated", "xxx");
 
         if (getSupportActionBar() != null) {
+            //getSupportActionBar().setHomeButtonEnabled(false);
+            //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setTitle(R.string.extender_app_name);
             getSupportActionBar().setElevation(0);
         }
 
