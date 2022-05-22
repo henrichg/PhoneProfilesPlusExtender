@@ -57,6 +57,17 @@
 <!--            android:name="firebase_crashlytics_collection_enabled"-->
 <!--            android:value="true" />-->
 
+<!-- https://developer.android.com/about/versions/13/features/app-languages
+     requires appcompat 1.6.0+ -->
+<!--        <service-->
+<!--            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"-->
+<!--            android:enabled="false"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="autoStoreLocales"-->
+<!--                android:value="true" />-->
+<!--        </service>-->
+
         <activity android:name=".MainActivity"
             android:label="@string/extender_app_name"
             tools:ignore="IntentFilterExportedReceiver">
