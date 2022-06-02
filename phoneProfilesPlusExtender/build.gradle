@@ -59,8 +59,8 @@ dependencies {
 //    //noinspection GradleDependency
 //    implementation 'ch.acra:acra-notification:5.8.4'
 
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'androidx.appcompat:appcompat-resources:1.4.1'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat-resources:1.4.2'
 
     //noinspection GradleDependency
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
