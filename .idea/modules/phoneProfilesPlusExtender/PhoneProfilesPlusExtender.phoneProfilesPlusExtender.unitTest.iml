@@ -23,7 +23,7 @@
     <content url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/generated/ap_generated_sources/debugUnitTest/out" />
     <content url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/src/test" />
     <content url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/src/testDebug" />
-    <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 32 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="PhoneProfilesPlusExtender.phoneProfilesPlusExtender.main" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:31.0.1-jre" level="project" />
