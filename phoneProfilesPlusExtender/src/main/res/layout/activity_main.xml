@@ -32,7 +32,7 @@
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/empty_string"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_launcher"/>
+            android:src="@drawable/pppe_icon"/>
 
         <TextView
             android:id="@+id/activity_main_application_version"
