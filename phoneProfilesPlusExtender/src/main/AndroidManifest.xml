@@ -48,10 +48,10 @@
         android:name=".PPPEApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+<!--        android:roundIcon="@mipmap/ic_launcher_round"-->
 
 <!--        <meta-data-->
 <!--            android:name="firebase_crashlytics_collection_enabled"-->
