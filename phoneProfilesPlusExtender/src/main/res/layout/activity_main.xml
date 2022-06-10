@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_app_name"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
 
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:text="@string/extender_application_releases"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_scroll_info"
@@ -59,42 +59,42 @@
             android:layout_marginBottom="15dp"
             android:text="@string/extender_scroll_info"
             android:textStyle="italic"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_profile_force_stop_application"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/extender_accessibility_service_disabled"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_profile_lock_device"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/extender_accessibility_service_disabled"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_event_sensor_applications_orientation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/extender_accessibility_service_disabled"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_event_sensor_sms_mms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/extender_accessibility_service_disabled"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_event_sensor_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/extender_accessibility_service_disabled"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_status"
@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <Button
             android:id="@+id/activity_main_popup_windows_in_background_button"
@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_sms_permissions_status"
@@ -177,7 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_call_permissions_status"
@@ -208,7 +208,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/extender_battery_optimization_optimized"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_battery_optimization_status"
