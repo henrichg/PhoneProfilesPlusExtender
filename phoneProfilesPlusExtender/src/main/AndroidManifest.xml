@@ -46,6 +46,7 @@
 
     <application
         android:name=".PPPEApplication"
+        android:label="@string/extender_app_name"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
@@ -70,7 +71,7 @@
 
         <activity android:name=".MainActivity"
             android:label="@string/extender_app_name"
-            tools:ignore="IntentFilterExportedReceiver">
+            tools:ignore="IntentFilterExportedReceiver,RedundantLabel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

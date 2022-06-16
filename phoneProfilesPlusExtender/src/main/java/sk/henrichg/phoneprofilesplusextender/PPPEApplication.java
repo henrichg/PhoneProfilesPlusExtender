@@ -216,19 +216,6 @@ public class PPPEApplication extends Application {
             PPPEApplication.setCustomKey("DEBUG", BuildConfig.DEBUG);
         } catch (Exception ignored) {}
 
-        //if (BuildConfig.DEBUG) {
-        long actualVersionCode = 0;
-        try {
-            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            //actualVersionCode = pInfo.versionCode;
-            actualVersionCode = PackageInfoCompat.getLongVersionCode(pInfo);
-        } catch (Exception e) {
-            Log.e("PPPEApplication.onCreate", Log.getStackTraceString(e));
-            PPPEApplication.recordException(e);
-        }
-        Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
-        //}
-
     }
 
     // workaround for: java.lang.NullPointerException: Attempt to invoke virtual method
@@ -335,6 +322,18 @@ public class PPPEApplication extends Application {
         //ACRA.DEV_LOGGING = true;
 
         ACRA.init(this, builder);
+
+        //if (BuildConfig.DEBUG) {
+        long actualVersionCode = 0;
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            //actualVersionCode = pInfo.versionCode;
+            actualVersionCode = PackageInfoCompat.getLongVersionCode(pInfo);
+        } catch (Exception ignored) {}
+
+        Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
+        //}
+
     }
 
     //--------------------------------------------------------------
