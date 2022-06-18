@@ -43,4 +43,6 @@
     <string name="extender_notification_permission_title">未授予权限</string>
     <string name="extender_notification_sms_mms_permission_text">未授予事件参数“SMS/MMS传感器”权限，点击此通知打开扩展。使用按钮授予此权限。</string>
     <string name="extender_notification_call_permission_text">未授予事件参数“调用传感器”的权限，点击此通知打开扩展。使用按钮授予此权限。</string>
+    <string name="extender_notifications_permission_text">Notifications permission is not granted.\n\nPlease enable notifications for PhoneProfilesPlusExtender. Without this enabled, notifications from PhoneProfilesPlusExtender will not be displayed.</string>
+    <string name="extender_enable_notificaitons_button">Enable</string>
 </resources>

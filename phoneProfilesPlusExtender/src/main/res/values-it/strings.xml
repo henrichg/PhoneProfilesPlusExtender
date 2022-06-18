@@ -43,4 +43,6 @@
     <string name="extender_notification_permission_title">Autorizzazione non concessa</string>
     <string name="extender_notification_sms_mms_permission_text">L\'autorizzazione per il parametro evento \"SMS/MMS sensor\" non è concessa. Fare clic su questa notifica per aprire Extender. In esso utilizzare il pulsante per concedere questo permesso.</string>
     <string name="extender_notification_call_permission_text">Il permesso per il parametro evento \"Call sensor\" non è concesso. Fare clic su questa notifica per aprire Extender. In esso utilizzare il pulsante per concedere questo permesso.</string>
+    <string name="extender_notifications_permission_text">Notifications permission is not granted.\n\nPlease enable notifications for PhoneProfilesPlusExtender. Without this enabled, notifications from PhoneProfilesPlusExtender will not be displayed.</string>
+    <string name="extender_enable_notificaitons_button">Enable</string>
 </resources>

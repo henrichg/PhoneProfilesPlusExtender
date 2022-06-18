@@ -43,4 +43,6 @@
     <string name="extender_notification_permission_title">Geen toestemming verleend</string>
     <string name="extender_notification_sms_mms_permission_text">Toestemming voor event parameter \"SMS/MMS sensor\" is niet gegeven. Klik op deze notificatie om de extensie te openen. Binnen deze optie kun je de knop gebruiken om deze machtiging te verlenen.</string>
     <string name="extender_notification_call_permission_text">Er is geen toestemming gegeven voor de event parameter \"Oproep sensor\". Klik op deze melding om de Extender te openen. Daarbinnen gebruik je de knop om de toestemming te verlenen.</string>
+    <string name="extender_notifications_permission_text">Notifications permission is not granted.\n\nPlease enable notifications for PhoneProfilesPlusExtender. Without this enabled, notifications from PhoneProfilesPlusExtender will not be displayed.</string>
+    <string name="extender_enable_notificaitons_button">Enable</string>
 </resources>
