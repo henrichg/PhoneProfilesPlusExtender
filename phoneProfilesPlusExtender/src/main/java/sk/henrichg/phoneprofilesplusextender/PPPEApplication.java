@@ -9,6 +9,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.PowerManager;
+import android.os.Process;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -170,6 +171,14 @@ public class PPPEApplication extends Application {
 
         if (checkAppReplacingState())
             return;
+
+        int uid = Process.myUid();
+
+        Log.e("##### PPPEApplication.onCreate", "Start  uid="+uid);
+
+        PPPEApplication.createGrantPermissionNotificationChannel(this);
+
+        Log.e("##### PPPEApplication.onCreate", "after cerate notification channel");
 
         ////////////////////////////////////////////////////////////////////////////////////
         // Bypass Android's hidden API restrictions
