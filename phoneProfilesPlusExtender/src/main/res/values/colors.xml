@@ -18,4 +18,6 @@
 
     <color name="notificationDecorationColor">#DC8160</color>
 
+    <color name="dialogBorderColor">#FFFFFFFF</color>
+
 </resources>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight">
         <!-- disable initial empty screen - useful for dark theme -->
         <item name="android:windowDisablePreview">true</item>
@@ -13,11 +12,18 @@
 
         <item name="android:windowLightStatusBar">@bool/windowLightStatusBar</item>
         <item name="android:navigationBarColor">@color/primaryDark</item>
-        <item name="android:windowLightNavigationBar">@bool/windowLightStatusBar</item>
 
         <item name="android:textViewStyle">@style/TextViewTheme</item>
-
         <item name="android:windowBackground">@color/activityBackgroundColor</item>
+
+        <item name="textAllCaps">false</item>
+
+        <item name="activityDisabledTextColor">@color/activityDisabledTextColor</item>
+
+        <item name="alertDialogTheme">@style/AlertDialogStyleDayNight</item>
+        <item name="dialogTheme">@style/DialogStyleDayNight</item>
+
+        <item name="android:windowLightNavigationBar">@bool/windowLightStatusBar</item>
     </style>
 
 </resources>

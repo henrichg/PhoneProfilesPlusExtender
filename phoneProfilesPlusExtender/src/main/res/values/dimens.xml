@@ -5,4 +5,8 @@
     <dimen name="activity_margin_start">0dp</dimen>
     <dimen name="activity_margin_end">0dp</dimen>
 
+    <dimen name="dialog_corner_radius">10dp</dimen>
+    <dimen name="dialog_transparent_padding">15dp</dimen>
+    <dimen name="dialog_background_padding">3dp</dimen>
+
 </resources>
