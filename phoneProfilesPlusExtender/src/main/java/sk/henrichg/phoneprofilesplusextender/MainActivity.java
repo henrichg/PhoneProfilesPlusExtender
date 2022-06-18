@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
@@ -16,7 +15,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
-import android.service.notification.StatusBarNotification;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextPaint;
@@ -125,30 +123,28 @@ public class MainActivity extends AppCompatActivity {
                     AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
                     dialogBuilder.setMessage(R.string.extender_notifications_permission_text);
                     //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
-                    dialogBuilder.setPositiveButton(R.string.extender_enable_notificaitons_button, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                    dialogBuilder.setPositiveButton(R.string.extender_enable_notificaitons_button, (dialog, which) -> {
 
-                            boolean ok = false;
+                        boolean ok = false;
 
-                            Intent intent = new Intent();
-                            intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-                            intent.putExtra(Settings.EXTRA_APP_PACKAGE, PPPEApplication.PACKAGE_NAME);
+                        Intent intent = new Intent();
+                        intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+                        intent.putExtra(Settings.EXTRA_APP_PACKAGE, PPPEApplication.PACKAGE_NAME);
 
-                            if (activityIntentExists(intent, getApplicationContext())) {
-                                try {
-                                    startActivity(intent);
-                                    ok = true;
-                                } catch (Exception e) {
-                                    PPPEApplication.recordException(e);
-                                }
+                        if (activityIntentExists(intent, getApplicationContext())) {
+                            try {
+                                startActivity(intent);
+                                ok = true;
+                            } catch (Exception e) {
+                                PPPEApplication.recordException(e);
                             }
-                            if (!ok) {
-                                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
-                                dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
-                                //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
-                                dialogBuilder.setPositiveButton(android.R.string.ok, null);
-                                AlertDialog _dialog = dialogBuilder.create();
+                        }
+                        if (!ok) {
+                            AlertDialog.Builder dialogBuilder1 = new AlertDialog.Builder(MainActivity.this);
+                            dialogBuilder1.setMessage(R.string.extender_setting_screen_not_found_alert);
+                            //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
+                            dialogBuilder1.setPositiveButton(android.R.string.ok, null);
+                            AlertDialog _dialog = dialogBuilder1.create();
 
 //                                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
 //                                    @Override
@@ -160,11 +156,10 @@ public class MainActivity extends AppCompatActivity {
 //                                    }
 //                                });
 
-                                if (!isFinishing())
-                                    _dialog.show();
-                            }
-
+                            if (!isFinishing())
+                                _dialog.show();
                         }
+
                     });
                     //dialogBuilder.setNegativeButton(R.string.extender_dont_enable_notificaitons_button, null);
 
