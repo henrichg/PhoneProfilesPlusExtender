@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconLauncherShape">
+        <ignore path="/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/phoneProfilesPlusExtender/src/main/res/mipmap-hdpi/ic_launcher_adaptive_back.png" />
+        <ignore path="/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/phoneProfilesPlusExtender/src/main/res/mipmap-hdpi/ic_launcher_adaptive_back.png" />
+        <ignore path="/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/phoneProfilesPlusExtender/src/main/res/mipmap-mdpi/ic_launcher_adaptive_back.png" />
+        <ignore path="/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/phoneProfilesPlusExtender/src/main/res/mipmap-xhdpi/ic_launcher_adaptive_back.png" />
+        <ignore path="/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/phoneProfilesPlusExtender/src/main/res/mipmap-xxhdpi/ic_launcher_adaptive_back.png" />
+        <ignore path="/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/phoneProfilesPlusExtender/src/main/res/mipmap-xxxhdpi/ic_launcher_adaptive_back.png" />
+    </issue>
+</lint>

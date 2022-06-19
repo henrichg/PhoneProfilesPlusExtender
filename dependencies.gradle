@@ -1,0 +1,17 @@
+ext.ppVersions = [
+    publishVersion: '8.0b',
+    publishVersionCode: 790,
+
+    minSdk: 24,
+
+    targetSdk: 27,
+    // 27 is required for:
+    // - android.permission.PROCESS_OUTGOING_CALLS
+
+    compileSdk: 32,
+    buildTools: '33.0.0',
+
+    appcompatXLib: '1.4.2',
+
+    acra: '5.9.3'
+]

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.os.Process;
 import android.provider.Settings;
@@ -30,6 +31,8 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import me.drakeet.support.toast.ToastCompat;
 
 //import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
@@ -633,6 +636,26 @@ public class PPPEApplication extends Application {
                 PPPEApplication.recordException(e);
             }
         }
+    }
+
+    static void showToast(final Context context, final String text,
+                          @SuppressWarnings("SameParameterValue") final int length) {
+        final Context appContext = context.getApplicationContext();
+        Handler handler = new Handler(context.getApplicationContext().getMainLooper());
+        handler.post(() -> {
+//                PPApplication.logE("[IN_THREAD_HANDLER] PPApplication.startHandlerThread", "START run - from=PPApplication.showToast");
+            try {
+                //ToastCompat msg = ToastCompat.makeText(appContext, text, length);
+                ToastCompat msg = ToastCompat.makeCustom(appContext,
+                        R.layout.toast_layout, R.drawable.toast_background,
+                        R.id.custom_toast_message, text,
+                        length);
+                //Toast msg = Toast.makeText(appContext, text, length);
+                msg.show();
+            } catch (Exception ignored) {
+                //PPApplication.recordException(e);
+            }
+        });
     }
 
 }

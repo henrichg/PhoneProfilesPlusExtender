@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PhoneProfilesPlusExtender.iml" filepath="$PROJECT_DIR$/PhoneProfilesPlusExtender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.iml" filepath="$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.iml" filepath="$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.main.iml" filepath="$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.main.iml" />

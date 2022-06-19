@@ -2,7 +2,6 @@ package sk.henrichg.phoneprofilesplusextender;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -146,12 +145,10 @@ public class MainActivity extends AppCompatActivity {
             }
             if (!allGranted) {
                 //if (!onlyNotification) {
-                Context context = getApplicationContext();
-                Toast msg = Toast.makeText(context,
-                        context.getString(R.string.extender_app_name) + ": " +
-                                context.getString(R.string.extender_toast_permissions_not_granted),
+                PPPEApplication.showToast(getApplicationContext(),
+                        getString(R.string.extender_app_name) + ": " +
+                                getString(R.string.extender_toast_permissions_not_granted),
                         Toast.LENGTH_SHORT);
-                msg.show();
                 //}
             }
             reloadActivity(this/*, true*/);
