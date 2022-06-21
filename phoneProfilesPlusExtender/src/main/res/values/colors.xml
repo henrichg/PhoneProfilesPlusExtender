@@ -3,7 +3,7 @@
     <color name="primary">#FFFFFF</color>
 <!--    <color name="primaryDark">#A7A7A7</color>-->
     <color name="primaryDark">#FFFFFF</color>
-    <color name="accent">#DC8160</color>       <!-- A400(A200) -->
+    <color name="accent">#d89142</color>       <!-- A400(A200) -->
     <!--<color name="accent_disabled">#70DC8160</color>-->
     <color name="navigationBar">#000000</color>
 
@@ -16,7 +16,7 @@
     <color name="buttonBackgroundColor">#FFFAFAFA</color>
     <color name="buttonClickedBackgroundColor">#FFDADADA</color>
 
-    <color name="notificationDecorationColor">#DC8160</color>
+    <color name="notificationDecorationColor">#d89142</color>
 
     <color name="dialogBorderColor">#FFFFFFFF</color>
 

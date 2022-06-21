@@ -3,7 +3,7 @@
     <color name="primary">#202020</color>
 <!--    <color name="primaryDark">#202020</color>-->
     <color name="primaryDark">#202020</color>
-    <color name="accent">#E99B7F</color>
+    <color name="accent">#f8b162</color>
     <!--<color name="accent_disabled">#70E99B7F</color>-->
     <color name="navigationBar">#000000</color>
 
@@ -16,7 +16,7 @@
     <color name="buttonBackgroundColor">#FF1C1C1C</color>
     <color name="buttonClickedBackgroundColor">#FF505050</color>
 
-    <color name="notificationDecorationColor">#DC8160</color>
+    <color name="notificationDecorationColor">#d89142</color>
 
     <color name="dialogBorderColor">#FF454545</color>
 
