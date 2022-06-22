@@ -34,10 +34,10 @@ _**** Please report me bugs, comments and suggestions to my e-mail: <henrich.gro
 _*** Please help me with translation, thank you: <https://crowdin.com/project/phoneprofilesplus> ***_
 
 ##### Screenshots
-- [[1]](art/01.png),
-[[2]](art/02.png),
-[[3]](art/03.png),
-[[4]](art/04.png)
+- [[1]](art/phoneScreenshots/01.png),
+[[2]](art/phoneScreenshots/02.png),
+[[3]](art/phoneScreenshots/03.png),
+[[4]](art/phoneScreenshots/04.png)
 
 ##### Supported Android versions
 
