@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#FFFFFF</color>
-<!--    <color name="primaryDark">#A7A7A7</color>-->
     <color name="primaryDark">#FFFFFF</color>
-    <color name="accent">#d89142</color>       <!-- A400(A200) -->
+    <color name="accent">#cc893e</color>
     <!--<color name="accent_disabled">#70DC8160</color>-->
     <color name="navigationBar">#000000</color>
 
@@ -16,7 +15,7 @@
     <color name="buttonBackgroundColor">#FFFAFAFA</color>
     <color name="buttonClickedBackgroundColor">#FFDADADA</color>
 
-    <color name="notificationDecorationColor">#d89142</color>
+    <color name="notificationDecorationColor">#cc893e</color>
 
     <color name="dialogBorderColor">#FFFFFFFF</color>
 
