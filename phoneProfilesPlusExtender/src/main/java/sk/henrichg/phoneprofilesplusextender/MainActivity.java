@@ -21,7 +21,6 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,7 +35,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.pm.PackageInfoCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     String defaultLanguage = "";
     String defaultCountry = "";
     String defaultScript = "";
+
+    final Collator collator = Collator.getInstance();
 
     private final BroadcastReceiver refreshGUIBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -149,13 +152,18 @@ public class MainActivity extends AppCompatActivity {
 //            Log.e("MainActivity.onOptionsItemSelected", "storedScript="+storedScript);
 
             final String[] languageValues = getResources().getStringArray(R.array.chooseLanguageValues);
-            ArrayList<String> languageNames = new ArrayList<>();
+            ArrayList<Language> languages = new ArrayList<>();
+
             for (String languageValue : languageValues) {
+                Language language = new Language();
                 if (languageValue.equals("[sys]")) {
-                    languageNames.add(getString(R.string.extender_menu_choose_language_system_language));
+                    language.language = languageValue;
+                    language.country = "";
+                    language.script = "";
+                    language.name = getString(R.string.extender_menu_choose_language_system_language);
                 } else {
                     String[] splits = languageValue.split("-");
-                    String language = splits[0];
+                    String sLanguage = splits[0];
                     String country = "";
                     if (splits.length >= 2)
                         country = splits[1];
@@ -165,50 +173,53 @@ public class MainActivity extends AppCompatActivity {
 
                     Locale loc = null;
                     if (country.isEmpty() && script.isEmpty())
-                        loc = new Locale.Builder().setLanguage(language).build();
+                        loc = new Locale.Builder().setLanguage(sLanguage).build();
                     if (!country.isEmpty() && script.isEmpty())
-                        loc = new Locale.Builder().setLanguage(language).setRegion(country).build();
+                        loc = new Locale.Builder().setLanguage(sLanguage).setRegion(country).build();
                     if (country.isEmpty() && !script.isEmpty())
-                        loc = new Locale.Builder().setLanguage(language).setScript(script).build();
+                        loc = new Locale.Builder().setLanguage(sLanguage).setScript(script).build();
                     if (!country.isEmpty() && !script.isEmpty())
-                        loc = new Locale.Builder().setLanguage(language).setRegion(country).setScript(script).build();
+                        loc = new Locale.Builder().setLanguage(sLanguage).setRegion(country).setScript(script).build();
 
-                    String name = loc.getDisplayName(loc);
-                    languageNames.add(name.substring(0, 1).toUpperCase(loc) + name.substring(1));
+                    language.language = sLanguage;
+                    language.country = country;
+                    language.script = script;
+                    language.name = loc.getDisplayName(loc);
+                    language.name = language.name.substring(0, 1).toUpperCase(loc) + language.name.substring(1);
                 }
+                languages.add(language);
             }
-            final String[] languageNameChoices = new String[languageNames.size()];
-            for(int i = 0; i < languageNames.size(); i++) languageNameChoices[i] = languageNames.get(i);
 
-            for (int i = 0; i < languageValues.length; i++) {
-                String[] splits = languageValues[i].split("-");
-                String language = splits[0];
-                String country = "";
-                if (splits.length >= 2)
-                    country = splits[1];
-                String script = "";
-                if (splits.length >= 3)
-                    script = splits[2];
+            languages.sort(new AlphabeticallyComparator());
 
-                if (language.equals(storedLanguage) &&
+            final String[] languageNameChoices = new String[languages.size()];
+            for(int i = 0; i < languages.size(); i++) languageNameChoices[i] = languages.get(i).name;
+
+            for (int i = 0; i < languages.size(); i++) {
+                Language language = languages.get(i);
+                String sLanguage = language.language;
+                String country = language.country;
+                String script = language.script;
+
+                if (sLanguage.equals(storedLanguage) &&
                         storedCountry.isEmpty() &&
                         storedScript.isEmpty()) {
                     selectedLanguage = i;
                     break;
                 }
-                if (language.equals(storedLanguage) &&
+                if (sLanguage.equals(storedLanguage) &&
                         country.equals(storedCountry) &&
                         storedScript.isEmpty()) {
                     selectedLanguage = i;
                     break;
                 }
-                if (language.equals(storedLanguage) &&
+                if (sLanguage.equals(storedLanguage) &&
                         storedCountry.isEmpty() &&
                         script.equals(storedScript)) {
                     selectedLanguage = i;
                     break;
                 }
-                if (language.equals(storedLanguage) &&
+                if (sLanguage.equals(storedLanguage) &&
                         country.equals(storedCountry) &&
                         script.equals(storedScript)) {
                     selectedLanguage = i;
@@ -230,14 +241,10 @@ public class MainActivity extends AppCompatActivity {
                     .setSingleChoiceItems(languageNameChoices, selectedLanguage, (dialog, which) -> {
                         selectedLanguage = which;
 
-                        String[] splits = languageValues[selectedLanguage].split("-");
-                        defaultLanguage = splits[0];
-                        defaultCountry = "";
-                        if (splits.length >= 2)
-                            defaultCountry = splits[1];
-                        defaultScript = "";
-                        if (splits.length >= 3)
-                            defaultScript = splits[2];
+                        Language language = languages.get(selectedLanguage);
+                        defaultLanguage = language.language;
+                        defaultCountry = language.country;
+                        defaultScript = language.script;
 
 //                        Log.e("MainActivity.onOptionsItemSelected", "defaultLanguage="+defaultLanguage);
 //                        Log.e("MainActivity.onOptionsItemSelected", "defaultCountry="+defaultCountry);
@@ -642,6 +649,20 @@ public class MainActivity extends AppCompatActivity {
         }
         else
             activity.recreate();
+    }
+
+    private static class Language {
+        String language;
+        String country;
+        String script;
+        String name;
+    }
+
+    private class AlphabeticallyComparator implements Comparator<Language> {
+
+        public int compare(Language lhs, Language rhs) {
+            return collator.compare(lhs.name, rhs.name);
+        }
     }
 
 }

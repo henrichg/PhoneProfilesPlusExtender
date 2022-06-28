@@ -61,7 +61,7 @@ public class LocaleHelper {
 
         String languageToStore = language;
         String countryToStore = country;
-        String scriptToStore = country;
+        String scriptToStore = script;
 
 //        Log.e("LocaleHelper.setLocale", "languageToStore="+languageToStore);
 //        Log.e("LocaleHelper.setLocale", "countryToStore="+countryToStore);
