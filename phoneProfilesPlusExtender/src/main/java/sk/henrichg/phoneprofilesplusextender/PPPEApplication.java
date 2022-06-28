@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Handler;
 import android.os.PowerManager;
@@ -17,6 +18,8 @@ import android.util.Log;
 
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.pm.PackageInfoCompat;
+import androidx.core.os.ConfigurationCompat;
+import androidx.core.os.LocaleListCompat;
 
 import org.acra.ACRA;
 import org.acra.config.CoreConfigurationBuilder;
@@ -48,6 +51,8 @@ public class PPPEApplication extends Application {
 
     static final String PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender";
 
+    static final String APPLICATION_PREFS_NAME = "phone_profiles_plus_extender_preferences";
+
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
     // TODO: DISABLE IT FOR RELEASE VERSION!!!
@@ -55,7 +60,7 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = ""
-                                                +"|PPPEAccessibilityService"
+                                                //+"|PPPEAccessibilityService"
                                                 //+"|SMSBroadcastReceiver"
 
                                                 //+"|PhoneCallReceiver"
@@ -245,7 +250,10 @@ public class PPPEApplication extends Application {
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
+        //super.attachBaseContext(base);
+        LocaleListCompat locales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
+        super.attachBaseContext(LocaleHelper.onAttach(base, locales.get(0).getLanguage()));
+        //super.attachBaseContext(LocaleHelper.onAttach(base));
 
         // This is required : https://www.acra.ch/docs/Troubleshooting-Guide#applicationoncreate
         if (ACRA.isACRASenderServiceProcess()) {

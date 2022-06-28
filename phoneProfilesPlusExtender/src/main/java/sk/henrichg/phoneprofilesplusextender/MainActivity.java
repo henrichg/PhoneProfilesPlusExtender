@@ -9,9 +9,11 @@ import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.text.Spannable;
@@ -20,6 +22,8 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.StyleSpan;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,15 +34,22 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.pm.PackageInfoCompat;
+import androidx.core.os.ConfigurationCompat;
+import androidx.core.os.LocaleListCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int RESULT_ACCESSIBILITY_SETTINGS = 1900;
     private static final int RESULT_PERMISSIONS_SETTINGS = 1901;
     private static final int RESULT_BATTERY_OPTIMIZATION_SETTINGS = 1902;
+
+    int selectedLanguage = 0;
+    String defaultLanguage = "";
 
     private final BroadcastReceiver refreshGUIBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -110,6 +121,93 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        /*if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
+        else*/
+        if (itemId == R.id.menu_choose_language) {
+            String storedLanguage = LocaleHelper.getLanguage(getApplicationContext());
+            final String[] languageValues = getResources().getStringArray(R.array.chooseLanguageValues);
+            ArrayList<String> languageNames = new ArrayList<>();
+            for (String languageValue : languageValues) {
+                if (languageValue.equals("[sys]")) {
+                    languageNames.add(getString(R.string.extender_menu_choose_language_system_language));
+                } else {
+                    Locale loc = new Locale(languageValue);
+                    String name = loc.getDisplayLanguage(loc);
+                    languageNames.add(name.substring(0, 1).toUpperCase(loc) + name.substring(1));
+                }
+            }
+            final String[] languageNameChoices = new String[languageNames.size()];
+            for(int i = 0; i < languageNames.size(); i++) languageNameChoices[i] = languageNames.get(i);
+
+            for (int i = 0; i < languageValues.length; i++) {
+                if (languageValues[i].equals(storedLanguage)) {
+                    selectedLanguage = i;
+                    break;
+                }
+            }
+
+            //Log.e("MainActivity.onOptionsItemSelected", "defualt language="+Locale.getDefault().getDisplayLanguage());
+            // this is list of locales by order in system settings. Index 0 = default locale in system
+            //LocaleListCompat locales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
+            //for (int i = 0; i < locales.size(); i++) {
+            //    Log.e("MainActivity.onOptionsItemSelected", "language="+locales.get(i).getDisplayLanguage());
+            //}
+
+            AlertDialog chooseLanguageDialog = new AlertDialog.Builder(this)
+                    .setTitle(R.string.extender_menu_choose_language)
+                    .setCancelable(true)
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setSingleChoiceItems(languageNameChoices, selectedLanguage, (dialog, which) -> {
+                        selectedLanguage = which;
+                        defaultLanguage = languageValues[selectedLanguage];
+                        if (defaultLanguage.equals("[sys]")) {
+                            LocaleListCompat systemLocales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
+                            defaultLanguage = systemLocales.get(0).getLanguage();
+                        }
+                        LocaleHelper.setLocale(getApplicationContext(), defaultLanguage);
+                        reloadActivity(this, false);
+                        dialog.dismiss();
+                    })
+                    .create();
+
+//                    dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+//                        @Override
+//                        public void onShow(DialogInterface dialog) {
+//                            Button positive = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+//                            if (positive != null) positive.setAllCaps(false);
+//                            Button negative = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+//                            if (negative != null) negative.setAllCaps(false);
+//                        }
+//                    });
+
+            chooseLanguageDialog.show();
+
+
+            return true;
+        }
+        else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     protected void onStart()
     {
         super.onStart();
@@ -122,11 +220,11 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_ACCESSIBILITY_SETTINGS)
-            reloadActivity(this/*, true*/);
+            reloadActivity(this, false);
         if (requestCode == RESULT_PERMISSIONS_SETTINGS)
-            reloadActivity(this/*, true*/);
+            reloadActivity(this, false);
         if (requestCode == RESULT_BATTERY_OPTIMIZATION_SETTINGS)
-            reloadActivity(this/*, true*/);
+            reloadActivity(this, false);
     }
 
     @Override
@@ -151,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT);
                 //}
             }
-            reloadActivity(this/*, true*/);
+            reloadActivity(this, false);
 
             // other 'case' lines to check for other
             // permissions this app might request
@@ -461,28 +559,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static void reloadActivity(Activity activity/*, boolean newIntent*/)
+    private static void reloadActivity(Activity activity,
+                                       @SuppressWarnings("SameParameterValue") boolean newIntent)
     {
-        /*if (newIntent)
+        if (newIntent)
         {
             final Activity _activity = activity;
-            new Handler(activity.getMainLooper()).post(new Runnable() {
+            new Handler(activity.getMainLooper()).post(() -> {
+                try {
+                    Intent intent = _activity.getIntent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    _activity.finish();
+                    _activity.overridePendingTransition(0, 0);
 
-                @Override
-                public void run() {
-                    try {
-                        Intent intent = _activity.getIntent();
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        _activity.finish();
-                        _activity.overridePendingTransition(0, 0);
-
-                        _activity.startActivity(intent);
-                        _activity.overridePendingTransition(0, 0);
-                    } catch (Exception ignored) {}
-                }
+                    _activity.startActivity(intent);
+                    _activity.overridePendingTransition(0, 0);
+                } catch (Exception ignored) {}
             });
         }
-        else*/
+        else
             activity.recreate();
     }
 

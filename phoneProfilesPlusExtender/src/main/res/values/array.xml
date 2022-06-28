@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--suppress CheckTagEmptyBody -->
+
+    <string-array name="chooseLanguageValues">
+        <item>[sys]</item>
+        <item>en</item>
+        <item>sk</item>
+        <item>cs</item>
+    </string-array>
+
+</resources>
