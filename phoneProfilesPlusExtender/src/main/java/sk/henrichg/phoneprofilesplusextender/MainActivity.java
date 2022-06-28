@@ -144,9 +144,9 @@ public class MainActivity extends AppCompatActivity {
             String storedLanguage = LocaleHelper.getLanguage(getApplicationContext());
             String storedCountry = LocaleHelper.getCountry(getApplicationContext());
             String storedScript = LocaleHelper.getScript(getApplicationContext());
-            Log.e("MainActivity.onOptionsItemSelected", "storedLanguage="+storedLanguage);
-            Log.e("MainActivity.onOptionsItemSelected", "storedCountry="+storedCountry);
-            Log.e("MainActivity.onOptionsItemSelected", "storedScript="+storedScript);
+//            Log.e("MainActivity.onOptionsItemSelected", "storedLanguage="+storedLanguage);
+//            Log.e("MainActivity.onOptionsItemSelected", "storedCountry="+storedCountry);
+//            Log.e("MainActivity.onOptionsItemSelected", "storedScript="+storedScript);
 
             final String[] languageValues = getResources().getStringArray(R.array.chooseLanguageValues);
             ArrayList<String> languageNames = new ArrayList<>();
@@ -239,9 +239,9 @@ public class MainActivity extends AppCompatActivity {
                         if (splits.length >= 3)
                             defaultScript = splits[2];
 
-                        Log.e("MainActivity.onOptionsItemSelected", "defaultLanguage="+defaultLanguage);
-                        Log.e("MainActivity.onOptionsItemSelected", "defaultCountry="+defaultCountry);
-                        Log.e("MainActivity.onOptionsItemSelected", "defaultScript="+defaultScript);
+//                        Log.e("MainActivity.onOptionsItemSelected", "defaultLanguage="+defaultLanguage);
+//                        Log.e("MainActivity.onOptionsItemSelected", "defaultCountry="+defaultCountry);
+//                        Log.e("MainActivity.onOptionsItemSelected", "defaultScript="+defaultScript);
 
                         LocaleHelper.setLocale(getApplicationContext(),
                                 defaultLanguage, defaultCountry, defaultScript, true);
