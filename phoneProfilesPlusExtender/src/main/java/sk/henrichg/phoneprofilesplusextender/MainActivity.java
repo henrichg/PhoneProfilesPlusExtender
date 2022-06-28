@@ -9,7 +9,6 @@ import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +21,7 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,8 +34,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.pm.PackageInfoCompat;
-import androidx.core.os.ConfigurationCompat;
-import androidx.core.os.LocaleListCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.ArrayList;
@@ -50,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     int selectedLanguage = 0;
     String defaultLanguage = "";
+    String defaultCountry = "";
+    String defaultScript = "";
 
     private final BroadcastReceiver refreshGUIBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -142,14 +142,38 @@ public class MainActivity extends AppCompatActivity {
         else*/
         if (itemId == R.id.menu_choose_language) {
             String storedLanguage = LocaleHelper.getLanguage(getApplicationContext());
+            String storedCountry = LocaleHelper.getCountry(getApplicationContext());
+            String storedScript = LocaleHelper.getScript(getApplicationContext());
+            Log.e("MainActivity.onOptionsItemSelected", "storedLanguage="+storedLanguage);
+            Log.e("MainActivity.onOptionsItemSelected", "storedCountry="+storedCountry);
+            Log.e("MainActivity.onOptionsItemSelected", "storedScript="+storedScript);
+
             final String[] languageValues = getResources().getStringArray(R.array.chooseLanguageValues);
             ArrayList<String> languageNames = new ArrayList<>();
             for (String languageValue : languageValues) {
                 if (languageValue.equals("[sys]")) {
                     languageNames.add(getString(R.string.extender_menu_choose_language_system_language));
                 } else {
-                    Locale loc = new Locale(languageValue);
-                    String name = loc.getDisplayLanguage(loc);
+                    String[] splits = languageValue.split("-");
+                    String language = splits[0];
+                    String country = "";
+                    if (splits.length >= 2)
+                        country = splits[1];
+                    String script = "";
+                    if (splits.length >= 3)
+                        script = splits[2];
+
+                    Locale loc = null;
+                    if (country.isEmpty() && script.isEmpty())
+                        loc = new Locale.Builder().setLanguage(language).build();
+                    if (!country.isEmpty() && script.isEmpty())
+                        loc = new Locale.Builder().setLanguage(language).setRegion(country).build();
+                    if (country.isEmpty() && !script.isEmpty())
+                        loc = new Locale.Builder().setLanguage(language).setScript(script).build();
+                    if (!country.isEmpty() && !script.isEmpty())
+                        loc = new Locale.Builder().setLanguage(language).setRegion(country).setScript(script).build();
+
+                    String name = loc.getDisplayName(loc);
                     languageNames.add(name.substring(0, 1).toUpperCase(loc) + name.substring(1));
                 }
             }
@@ -157,7 +181,36 @@ public class MainActivity extends AppCompatActivity {
             for(int i = 0; i < languageNames.size(); i++) languageNameChoices[i] = languageNames.get(i);
 
             for (int i = 0; i < languageValues.length; i++) {
-                if (languageValues[i].equals(storedLanguage)) {
+                String[] splits = languageValues[i].split("-");
+                String language = splits[0];
+                String country = "";
+                if (splits.length >= 2)
+                    country = splits[1];
+                String script = "";
+                if (splits.length >= 3)
+                    script = splits[2];
+
+                if (language.equals(storedLanguage) &&
+                        storedCountry.isEmpty() &&
+                        storedScript.isEmpty()) {
+                    selectedLanguage = i;
+                    break;
+                }
+                if (language.equals(storedLanguage) &&
+                        country.equals(storedCountry) &&
+                        storedScript.isEmpty()) {
+                    selectedLanguage = i;
+                    break;
+                }
+                if (language.equals(storedLanguage) &&
+                        storedCountry.isEmpty() &&
+                        script.equals(storedScript)) {
+                    selectedLanguage = i;
+                    break;
+                }
+                if (language.equals(storedLanguage) &&
+                        country.equals(storedCountry) &&
+                        script.equals(storedScript)) {
                     selectedLanguage = i;
                     break;
                 }
@@ -176,12 +229,23 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton(android.R.string.cancel, null)
                     .setSingleChoiceItems(languageNameChoices, selectedLanguage, (dialog, which) -> {
                         selectedLanguage = which;
-                        defaultLanguage = languageValues[selectedLanguage];
-                        if (defaultLanguage.equals("[sys]")) {
-                            LocaleListCompat systemLocales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
-                            defaultLanguage = systemLocales.get(0).getLanguage();
-                        }
-                        LocaleHelper.setLocale(getApplicationContext(), defaultLanguage);
+
+                        String[] splits = languageValues[selectedLanguage].split("-");
+                        defaultLanguage = splits[0];
+                        defaultCountry = "";
+                        if (splits.length >= 2)
+                            defaultCountry = splits[1];
+                        defaultScript = "";
+                        if (splits.length >= 3)
+                            defaultScript = splits[2];
+
+                        Log.e("MainActivity.onOptionsItemSelected", "defaultLanguage="+defaultLanguage);
+                        Log.e("MainActivity.onOptionsItemSelected", "defaultCountry="+defaultCountry);
+                        Log.e("MainActivity.onOptionsItemSelected", "defaultScript="+defaultScript);
+
+                        LocaleHelper.setLocale(getApplicationContext(),
+                                defaultLanguage, defaultCountry, defaultScript, true);
+
                         reloadActivity(this, false);
                         dialog.dismiss();
                     })

@@ -54,4 +54,4 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 - guava - https://github.com/google/guava
 - Android-Accessibility-Utilities(only modified class A11NodeInfo - for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities
 - Android-Accessibility-Utilities(only modified class A11NodeInfoMatcher - for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities
-
+- Multi-language_App (only modified class LocaleHelper.java) https://github.com/anurajr1/Multi-language_App

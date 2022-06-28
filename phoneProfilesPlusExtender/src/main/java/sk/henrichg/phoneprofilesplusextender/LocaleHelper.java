@@ -3,80 +3,116 @@ package sk.henrichg.phoneprofilesplusextender;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+
+import androidx.core.os.ConfigurationCompat;
+import androidx.core.os.LocaleListCompat;
 
 import java.util.Locale;
 
 public class LocaleHelper {
 
     private static final String SELECTED_LANGUAGE = "Locale.Helper.Selected.Language";
+    private static final String SELECTED_COUNTRY = "Locale.Helper.Selected.Country";
+    private static final String SELECTED_SCRIPT = "Locale.Helper.Selected.Script";
 
     public static Context onAttach(Context context) {
-        String lang = getPersistedData(context, Locale.getDefault().getLanguage());
-        return setLocale(context, lang);
+        LocaleListCompat systemLocales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
+        String language = getPersistedData(context, SELECTED_LANGUAGE, systemLocales.get(0).getLanguage());
+        String country = getPersistedData(context, SELECTED_COUNTRY, systemLocales.get(0).getCountry());
+        String script = getPersistedData(context, SELECTED_SCRIPT, systemLocales.get(0).getScript());
+        if (language.equals("[sys]")) {
+            language = systemLocales.get(0).getLanguage();
+            country = systemLocales.get(0).getCountry();
+            script = systemLocales.get(0).getScript();
+        }
+        return setLocale(context, language, country, script, false);
     }
 
+    /*
     public static Context onAttach(Context context, String defaultLanguage) {
         String lang = getPersistedData(context, defaultLanguage);
-        return setLocale(context, lang);
+        if (lang.equals("[sys]")) {
+            LocaleListCompat systemLocales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
+            lang = systemLocales.get(0).getLanguage();
+        }
+        return setLocale(context, lang, false);
     }
+    */
 
     public static String getLanguage(Context context) {
-        return getPersistedData(context, Locale.getDefault().getLanguage());
+        return getPersistedData(context, SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
+    }
+    public static String getCountry(Context context) {
+        return getPersistedData(context, SELECTED_COUNTRY, Locale.getDefault().getCountry());
+    }
+    public static String getScript(Context context) {
+        return getPersistedData(context, SELECTED_SCRIPT, Locale.getDefault().getScript());
     }
 
-    public static Context setLocale(Context context, String language) {
-        persist(context, language);
+    public static Context setLocale(Context context,
+                                    String language,
+                                    String country,
+                                    String script,
+                                    boolean persist)
+    {
+        if (language.equals("[sys]")) {
+            LocaleListCompat systemLocales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
+            language = systemLocales.get(0).getLanguage();
+            country = systemLocales.get(0).getCountry();
+            script = systemLocales.get(0).getScript();
+        }
 
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return updateResources(context, language);
-        //}
+        Context localizedContext = updateResources(context, language, country, script);
 
-        //return updateResourcesLegacy(context, language);
+        if ((localizedContext != null) && persist){
+            persist(context, SELECTED_LANGUAGE, language);
+            persist(context, SELECTED_COUNTRY, country);
+            persist(context, SELECTED_SCRIPT, script);
+        }
+
+        return localizedContext;
     }
 
-    private static String getPersistedData(Context context, String defaultLanguage) {
+    private static String getPersistedData(Context context, String data, String defaultValue) {
         //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences preferences = context.getSharedPreferences(PPPEApplication.APPLICATION_PREFS_NAME, Context.MODE_PRIVATE);
-        return preferences.getString(SELECTED_LANGUAGE, defaultLanguage);
+        return preferences.getString(data, defaultValue);
     }
 
-    private static void persist(Context context, String language) {
+    private static void persist(Context context, String data, String value) {
         //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences preferences = context.getSharedPreferences(PPPEApplication.APPLICATION_PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(SELECTED_LANGUAGE, language);
+        editor.putString(data, value);
         editor.apply();
     }
 
     //@TargetApi(Build.VERSION_CODES.N)
-    private static Context updateResources(Context context, String language) {
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
+    private static Context updateResources(Context context,
+                                           String language,
+                                           String country,
+                                           String script) {
+        //Locale locale = new Locale(language);
+        Locale locale = null;
 
-        Configuration configuration = context.getResources().getConfiguration();
-        configuration.setLocale(locale);
-        configuration.setLayoutDirection(locale);
+        if (country.isEmpty() && script.isEmpty())
+            locale = new Locale(language);
+        if (!country.isEmpty())
+            locale = new Locale(language, country);
+        if (script.equals("Latn"))
+            locale = new Locale.Builder().setLanguage("sr").setScript("Latn").build();
 
-        return context.createConfigurationContext(configuration);
-    }
+        if (locale != null) {
+            Locale.setDefault(locale);
 
-    /*
-    @SuppressWarnings("deprecation")
-    private static Context updateResourcesLegacy(Context context, String language) {
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
-
-        Resources resources = context.getResources();
-
-        Configuration configuration = resources.getConfiguration();
-        configuration.locale = locale;
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            Configuration configuration = context.getResources().getConfiguration();
+            configuration.setLocale(locale);
             configuration.setLayoutDirection(locale);
-        //}
 
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-
-        return context;
+            return context.createConfigurationContext(configuration);
+        } else
+            return null;
     }
-    */
+
 }

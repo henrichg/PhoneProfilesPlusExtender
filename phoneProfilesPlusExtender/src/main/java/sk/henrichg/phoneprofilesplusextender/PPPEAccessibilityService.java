@@ -45,6 +45,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     static final String ACTION_LOCK_DEVICE = PPPEApplication.PACKAGE_NAME + ".ACTION_LOCK_DEVICE";
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+    @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
 

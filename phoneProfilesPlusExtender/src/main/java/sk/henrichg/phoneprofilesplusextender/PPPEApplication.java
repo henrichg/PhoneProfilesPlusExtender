@@ -251,9 +251,7 @@ public class PPPEApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         //super.attachBaseContext(base);
-        LocaleListCompat locales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
-        super.attachBaseContext(LocaleHelper.onAttach(base, locales.get(0).getLanguage()));
-        //super.attachBaseContext(LocaleHelper.onAttach(base));
+        super.attachBaseContext(LocaleHelper.onAttach(base));
 
         // This is required : https://www.acra.ch/docs/Troubleshooting-Guide#applicationoncreate
         if (ACRA.isACRASenderServiceProcess()) {
