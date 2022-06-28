@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.util.Log;
 
 import androidx.core.os.ConfigurationCompat;
 import androidx.core.os.LocaleListCompat;
@@ -21,11 +22,11 @@ public class LocaleHelper {
         String language = getPersistedData(context, SELECTED_LANGUAGE, systemLocales.get(0).getLanguage());
         String country = getPersistedData(context, SELECTED_COUNTRY, systemLocales.get(0).getCountry());
         String script = getPersistedData(context, SELECTED_SCRIPT, systemLocales.get(0).getScript());
-        if (language.equals("[sys]")) {
+        /*if (language.equals("[sys]")) {
             language = systemLocales.get(0).getLanguage();
             country = systemLocales.get(0).getCountry();
             script = systemLocales.get(0).getScript();
-        }
+        }*/
         return setLocale(context, language, country, script, false);
     }
 
@@ -43,9 +44,11 @@ public class LocaleHelper {
     public static String getLanguage(Context context) {
         return getPersistedData(context, SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
     }
+
     public static String getCountry(Context context) {
         return getPersistedData(context, SELECTED_COUNTRY, Locale.getDefault().getCountry());
     }
+
     public static String getScript(Context context) {
         return getPersistedData(context, SELECTED_SCRIPT, Locale.getDefault().getScript());
     }
@@ -54,21 +57,33 @@ public class LocaleHelper {
                                     String language,
                                     String country,
                                     String script,
-                                    boolean persist)
-    {
+                                    boolean persist) {
+
+        String languageToStore = language;
+        String countryToStore = country;
+        String scriptToStore = country;
+
+        Log.e("LocaleHelper.setLocale", "languageToStore="+languageToStore);
+        Log.e("LocaleHelper.setLocale", "countryToStore="+countryToStore);
+        Log.e("LocaleHelper.setLocale", "scriptToStore="+scriptToStore);
+
         if (language.equals("[sys]")) {
             LocaleListCompat systemLocales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
             language = systemLocales.get(0).getLanguage();
             country = systemLocales.get(0).getCountry();
             script = systemLocales.get(0).getScript();
+
+            Log.e("LocaleHelper.setLocale", "language="+language);
+            Log.e("LocaleHelper.setLocale", "country="+country);
+            Log.e("LocaleHelper.setLocale", "script="+script);
         }
 
         Context localizedContext = updateResources(context, language, country, script);
 
-        if ((localizedContext != null) && persist){
-            persist(context, SELECTED_LANGUAGE, language);
-            persist(context, SELECTED_COUNTRY, country);
-            persist(context, SELECTED_SCRIPT, script);
+        if ((localizedContext != null) && persist) {
+            persist(context, SELECTED_LANGUAGE, languageToStore);
+            persist(context, SELECTED_COUNTRY, countryToStore);
+            persist(context, SELECTED_SCRIPT, scriptToStore);
         }
 
         return localizedContext;

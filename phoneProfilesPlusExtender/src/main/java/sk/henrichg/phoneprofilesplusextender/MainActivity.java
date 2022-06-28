@@ -263,7 +263,6 @@ public class MainActivity extends AppCompatActivity {
 
             chooseLanguageDialog.show();
 
-
             return true;
         }
         else {

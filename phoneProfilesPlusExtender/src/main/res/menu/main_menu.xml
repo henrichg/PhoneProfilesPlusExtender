@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:keep="@menu/activator_top_bar">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menu_choose_language"
         android:title="@string/extender_menu_choose_language"
         android:orderInCategory="100"
