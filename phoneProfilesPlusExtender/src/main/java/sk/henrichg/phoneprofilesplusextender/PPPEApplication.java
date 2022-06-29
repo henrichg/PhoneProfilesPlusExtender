@@ -5,6 +5,7 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -86,7 +87,7 @@ public class PPPEApplication extends Application {
 
     static final String ACCESSIBILITY_SERVICE_PERMISSION = PPPEApplication.PACKAGE_NAME + ".ACCESSIBILITY_SERVICE_PERMISSION";
 
-    //static final String ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED";
+    static final String ACTION_PPPEXTENDER_STARTED = PPPEApplication.PACKAGE_NAME + ".ACTION_PPPEXTENDER_STARTED";
     static final String ACTION_REGISTER_PPPE_FUNCTION = PPPEApplication.PACKAGE_NAME + ".ACTION_REGISTER_PPPE_FUNCTION";
 
     static final String EXTRA_REGISTRATION_APP = "registration_app";
@@ -230,6 +231,8 @@ public class PPPEApplication extends Application {
             PPPEApplication.setCustomKey("DEBUG", BuildConfig.DEBUG);
         } catch (Exception ignored) {}
 
+        Intent sendIntent = new Intent(ACTION_PPPEXTENDER_STARTED);
+        sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
     }
 
     // workaround for: java.lang.NullPointerException: Attempt to invoke virtual method
