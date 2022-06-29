@@ -1,10 +1,10 @@
 package sk.henrichg.phoneprofilesplusextender;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.util.Log;
 
 import androidx.core.os.ConfigurationCompat;
 import androidx.core.os.LocaleListCompat;
@@ -104,6 +104,7 @@ public class LocaleHelper {
     }
 
     //@TargetApi(Build.VERSION_CODES.N)
+    @SuppressLint("AppBundleLocaleChanges")
     private static Context updateResources(Context context,
                                            String language,
                                            String country,

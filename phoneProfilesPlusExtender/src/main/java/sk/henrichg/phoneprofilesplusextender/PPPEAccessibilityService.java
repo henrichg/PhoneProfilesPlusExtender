@@ -380,17 +380,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
     }
 
-    @Override
-    public void onInterrupt() {
-        instance = null;
-        //PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
-    }
-
-    @Override
-    public boolean onUnbind(Intent intent) {
-        //Log.d("PPPEAccessibilityService", "onUnbind");
-        //PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
-
+    private void accessibilityDisabled() {
         //final Context context = getApplicationContext();
 
         // for event sensors: Applications and Orientation
@@ -457,6 +447,22 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
 
         instance = null;
+    }
+
+    @Override
+    public void onInterrupt() {
+        instance = null;
+//        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
+
+        accessibilityDisabled();
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        //Log.d("PPPEAccessibilityService", "onUnbind");
+//        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
+
+        accessibilityDisabled();
 
         //PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[END]");
 
