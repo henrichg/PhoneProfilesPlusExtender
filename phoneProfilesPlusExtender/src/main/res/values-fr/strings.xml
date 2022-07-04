@@ -43,6 +43,8 @@
     <string name="extender_notification_permission_title">Autorisation non accordée</string>
     <string name="extender_notification_sms_mms_permission_text">L\'autorisation pour le paramètre d\'événement \"Capteur SMS/MMS\" n\'est pas accordée. Cliquez sur cette notification pour ouvrir Extender. Dans celle-ci, utiliser le bouton pour accorder cette autorisation.</string>
     <string name="extender_notification_call_permission_text">L\'autorisation pour le paramètre \"Capteur d\'appel\" n\'est pas accordée. Cliquez sur cette notification pour ouvrir Extender. Dedans, utilisez le bouton pour accorder cette autorisation.</string>
-    <string name="extender_notifications_permission_text">Notifications permission is not granted.\n\nPlease enable notifications for PhoneProfilesPlusExtender. Without this enabled, notifications from PhoneProfilesPlusExtender will not be displayed.</string>
-    <string name="extender_enable_notificaitons_button">Enable</string>
+    <string name="extender_notifications_permission_text">La permission pour les notifications n\'est pas accordée.\n\n Validez cette permission pour PhoneProfilesPlus. Sans cela les notifications de PhoneProfilesPlus ne seront pas affichées.</string>
+    <string name="extender_enable_notificaitons_button">Activé</string>
+    <string name="extender_menu_choose_language">Choisissez la langue</string>
+    <string name="extender_menu_choose_language_system_language">[Système]</string>
 </resources>

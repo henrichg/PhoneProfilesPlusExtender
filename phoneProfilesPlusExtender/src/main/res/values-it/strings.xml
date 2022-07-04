@@ -45,4 +45,6 @@
     <string name="extender_notification_call_permission_text">Il permesso per il parametro evento \"Call sensor\" non è concesso. Fare clic su questa notifica per aprire Extender. In esso utilizzare il pulsante per concedere questo permesso.</string>
     <string name="extender_notifications_permission_text">Notifications permission is not granted.\n\nPlease enable notifications for PhoneProfilesPlusExtender. Without this enabled, notifications from PhoneProfilesPlusExtender will not be displayed.</string>
     <string name="extender_enable_notificaitons_button">Enable</string>
+    <string name="extender_menu_choose_language">Choose language</string>
+    <string name="extender_menu_choose_language_system_language">[System]</string>
 </resources>

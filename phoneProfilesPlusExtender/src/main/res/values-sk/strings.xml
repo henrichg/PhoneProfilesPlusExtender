@@ -45,4 +45,6 @@
     <string name="extender_notification_call_permission_text">Povolenie pre parameter udalosti \"Senzor hovoru\" nie je udelené. Kliknutím na toto upozornenie otvoríte Extender. V ňom použite tlačidlo na udelenie tohto povolenia.</string>
     <string name="extender_notifications_permission_text">Povolenie na notifikácie nie je udelené.\n\nPovoľte upozornenia pre PhoneProfilesPlusExtender. Bez tohto povolenia sa upozornenia z PhoneProfilesPlusExtender nebudú zobrazovať.</string>
     <string name="extender_enable_notificaitons_button">Povoliť</string>
+    <string name="extender_menu_choose_language">Vybrať jazyk</string>
+    <string name="extender_menu_choose_language_system_language">[Systémový]</string>
 </resources>
