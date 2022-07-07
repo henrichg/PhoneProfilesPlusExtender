@@ -23,6 +23,9 @@
         <item name="alertDialogTheme">@style/AlertDialogStyleDayNight</item>
         <item name="dialogTheme">@style/DialogStyleDayNight</item>
 
+        <item name="android:popupMenuStyle">@style/PopupMenu_dayNight</item>
+        <item name="actionOverflowMenuStyle">@style/PopupMenu_dayNight</item>
+
         <item name="android:windowLightNavigationBar">@bool/windowLightStatusBar</item>
     </style>
 

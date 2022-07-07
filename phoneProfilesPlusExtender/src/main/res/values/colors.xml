@@ -11,6 +11,9 @@
     <color name="activitySecondaryTextColor">#BF000000</color>
     <color name="activityDisabledTextColor">#2F000000</color>
 
+    <color name="activityPopupMenuBackgroundColor">#FFF7F7F7</color>
+    <color name="popupMenuBorderColor">#FFCCCCCC</color>
+
     <color name="buttonBorderColor">#FFAAAAAA</color>
     <color name="buttonBackgroundColor">#FFFAFAFA</color>
     <color name="buttonClickedBackgroundColor">#FFDADADA</color>
