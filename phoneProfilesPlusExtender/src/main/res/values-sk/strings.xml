@@ -17,7 +17,7 @@
     <string name="extender_permissions_not_granted">Neudelené</string>
     <string name="extender_permissions_granted">Udelené</string>
     <string name="extender_permissions_button">Udeľ/odopri\npráva</string>
-    <string name="extender_accessibility_service_event_sensor_call">• Služba Dostupnosť pre parametre udalosti \"Sensor hovoru\". Funkcia dostupnosti nie je použitá, bežiaci servis je potrebný pre príjem hovorov.</string>
+    <string name="extender_accessibility_service_event_sensor_call">• Služba Dostupnosť pre parametre udalosti \"Senzor hovoru\". Funkcia dostupnosti nie je použitá, bežiaci servis je potrebný pre príjem hovorov.</string>
     <string name="extender_permissions_event_sensor_call">• Povolenia pre parametre udalosti \"Senzor hovoru\" - povolenie Telefón</string>
     <string name="extender_permissions_event_sensor_call_28">• Povolenia pre parametre udalosti \"Senzor hovoru\" - povolenie Telefón, Denníky hovorov</string>
     <string name="extender_toast_permissions_not_granted">Povolenia nie sú udelené</string>
