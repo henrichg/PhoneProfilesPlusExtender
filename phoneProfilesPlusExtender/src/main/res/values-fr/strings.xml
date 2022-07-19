@@ -30,10 +30,10 @@
     <string name="extender_acra_notification_text">Veuillez cliquer ici pour envoyer un rapport de plantage à l\'auteur. Merci beaucoup.</string>
     <string name="extender_notification_channel_crash_report">Rapport d\'erreur</string>
     <string name="extender_scroll_info">Note: Faites défiler vers le bas dans cet écran pour afficher tous les paramètres.</string>
-    <string name="extender_battery_optimization_text">• Battery optimization for PhoneProfilesPlusExtender - please add it to \"Not optimized\" group</string>
+    <string name="extender_battery_optimization_text">• Optimisation de la batterie pour PhoneProfilesPlusExtender - veuillez l\'ajouter au groupe \"Non optimisé\"</string>
     <string name="extender_battery_optimization_optimized">Optimisée</string>
     <string name="extender_battery_optimization_not_optimized">Non optimisée</string>
-    <string name="extender_battery_optimization_button">Open\nBattery optimization</string>
+    <string name="extender_battery_optimization_button">Ouvrir\nOptimisation de la batterie</string>
     <string name="extender_acra_email_body_device">Appareil:</string>
     <string name="extender_acra_email_body_android_version">Version Android :</string>
     <string name="extender_permissions_popup_windows_in_background">Veuillez activer « Afficher les fenêtres pop-up lors de l\'exécution en arrière-plan ». Sans cette option, « Forcer l\'arrêt des applications » ne fonctionnera pas.</string>
