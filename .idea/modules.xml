@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PhoneProfilesPlusExtender.iml" filepath="$PROJECT_DIR$/PhoneProfilesPlusExtender.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.iml" filepath="$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.main.iml" filepath="$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/phoneProfilesPlusExtender/PhoneProfilesPlusExtender.phoneProfilesPlusExtender.unitTest.iml" />
     </modules>
   </component>
 </project>
