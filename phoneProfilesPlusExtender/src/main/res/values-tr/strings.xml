@@ -3,7 +3,7 @@
 <!--suppress XmlUnusedNamespaceDeclaration -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!--suppress CheckTagEmptyBody -->
-    <string name="extender_accessibility_service_description">Extender for PhoneProfilesPlus. It working only in conjunction with PhoneProfilesPlus.</string>
+    <string name="extender_accessibility_service_description">PhoneProfilesPlus için Genişletici. Yalnızca PhoneProfilesPlus ile birlikte çalışır.</string>
     <string name="extender_about_application_version">Sürüm:</string>
     <string name="extender_accessibility_service_profile_force_stop_applications">• \"Zorla durdurulan uygulamalar\" Tercih değeri için Erişebilirlik hizmeti</string>
     <string name="extender_accessibility_service_event_sensor_applications_orientation">• \"Uygulama şartı\" ve \"Ekran döndürme şartı\" Durum şartı için Erişilebilirlik hizmeti</string>
@@ -30,17 +30,21 @@
     <string name="extender_acra_notification_text">Lutfen, çökme raporunu yazara göndermek için buraya dokunun. Çok teşekkür ederiz.</string>
     <string name="extender_notification_channel_crash_report">Çökme raporu</string>
     <string name="extender_scroll_info">Not: Tüm değerleri göstermek için bu ekranda aşağı kaydırın.</string>
-    <string name="extender_battery_optimization_text">• PhoneProfilesPlusExtender için pilin en iyi duruma getirilmesi - lutfen \"En iyi duruma getirilmedi\" grubuna ekleyin</string>
+    <string name="extender_battery_optimization_text">• PhoneProfilesPlusExtender için pilin en iyi duruma getirilmesi - lütfen \"En iyi duruma getirilmedi\" grubuna ekleyin</string>
     <string name="extender_battery_optimization_optimized">En iyi duruma getirildi</string>
     <string name="extender_battery_optimization_not_optimized">En iyi duruma getirilmedi</string>
     <string name="extender_battery_optimization_button">\"Pilin en iyi duruma getirilmesi\"ni aç</string>
     <string name="extender_acra_email_body_device">Cihaz:</string>
     <string name="extender_acra_email_body_android_version">Android sürümü:</string>
-    <string name="extender_permissions_popup_windows_in_background">Please enable \"Display pop-up windows while running in the background\". Without this enabled, \"Force stop applications\" will not be working.</string>
-    <string name="extender_popup_windows_in_background_button">Open\nOther permissions\n(MIUI)</string>
+    <string name="extender_permissions_popup_windows_in_background">Lütfen \"Arka planda çalışırken açılır pencereleri görüntüle\"yi faal hale getirin. Bu yapılmadan, \"Uygulamaları durdurmaya zorla\" çalışmayacaktır.</string>
+    <string name="extender_popup_windows_in_background_button">Aç\nDiğer izinler\n(MIUI)</string>
     <string name="extender_notification_channel_grant_permission">İzin ver</string>
     <string name="extender_notification_channel_grant_permission_description">Hangi izinlere ihtiyaç olduğunu gösterir.</string>
     <string name="extender_notification_permission_title">İzin verilmedi</string>
-    <string name="extender_notification_sms_mms_permission_text">Permission for event parameter \"SMS/MMS sensor\" is not granted. Click this notification to open Extender. In it use button for grant this permission.</string>
-    <string name="extender_notification_call_permission_text">Permission for event parameter \"Call sensor\" is not granted. Click this notification to open Extender. In it use button for grant this permission.</string>
+    <string name="extender_notification_sms_mms_permission_text">\"SMS/MMS şartı\" durum değeri için izin verilmedi. Genişletici\'yi açmak için bu bildirime dokunun. İçinde bu izni vermek için düğmeyi kullanın.</string>
+    <string name="extender_notification_call_permission_text">\"Çağrı şartı\" durum değeri için izin verilmedi. Genişletici\'yi açmak için bu bildirime dokunun. İçinde bu izni vermek için düğmeyi kullanın.</string>
+    <string name="extender_notifications_permission_text">Notifications permission is not granted.\n\nPlease enable notifications for PhoneProfilesPlusExtender. Without this enabled, notifications from PhoneProfilesPlusExtender will not be displayed.</string>
+    <string name="extender_enable_notificaitons_button">Enable</string>
+    <string name="extender_menu_choose_language">Choose language</string>
+    <string name="extender_menu_choose_language_system_language">[System]</string>
 </resources>

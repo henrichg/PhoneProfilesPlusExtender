@@ -38,6 +38,11 @@ public class ForceCloseIntentService extends IntentService {
         //setIntentRedelivery(true);
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
     protected void onHandleIntent(Intent intent) {
         if (intent == null) {
             return;

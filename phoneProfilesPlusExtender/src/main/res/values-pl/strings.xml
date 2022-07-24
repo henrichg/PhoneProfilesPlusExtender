@@ -3,7 +3,7 @@
 <!--suppress XmlUnusedNamespaceDeclaration -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!--suppress CheckTagEmptyBody -->
-    <string name="extender_accessibility_service_description">Extender for PhoneProfilesPlus. It working only in conjunction with PhoneProfilesPlus.</string>
+    <string name="extender_accessibility_service_description">Extender dla PhoneProfilesPlus. Działa tylko w połączeniu z PhoneProfilesPlus.</string>
     <string name="extender_about_application_version">Wersja:</string>
     <string name="extender_accessibility_service_profile_force_stop_applications">• Usługa ułatwień dostępu dla parametru Profili \"Wymuś zatrzymanie aplikacji\" Profili</string>
     <string name="extender_accessibility_service_event_sensor_applications_orientation">• Usługa Ułatwień Dostępu dla czujników: \"Czujnik Aplikacji\", \"Czujnik Orientacji\"</string>
@@ -36,11 +36,15 @@
     <string name="extender_battery_optimization_button">Otwórz\noptymalizację baterii</string>
     <string name="extender_acra_email_body_device">Urządzenie:</string>
     <string name="extender_acra_email_body_android_version">Wersja Androida:</string>
-    <string name="extender_permissions_popup_windows_in_background">Please enable \"Display pop-up windows while running in the background\". Without this enabled, \"Force stop applications\" will not be working.</string>
-    <string name="extender_popup_windows_in_background_button">Open\nOther permissions\n(MIUI)</string>
-    <string name="extender_notification_channel_grant_permission">Grant permission</string>
-    <string name="extender_notification_channel_grant_permission_description">Shows permission which is needed grant it.</string>
-    <string name="extender_notification_permission_title">Permission not granted</string>
-    <string name="extender_notification_sms_mms_permission_text">Permission for event parameter \"SMS/MMS sensor\" is not granted. Click this notification to open Extender. In it use button for grant this permission.</string>
-    <string name="extender_notification_call_permission_text">Permission for event parameter \"Call sensor\" is not granted. Click this notification to open Extender. In it use button for grant this permission.</string>
+    <string name="extender_permissions_popup_windows_in_background">Proszę włączyć \"Wyświetlanie wyskakujących okienek podczas pracy w tle\". Bez tego nie będzie działać \"Wymuś zatrzymanie aplikacji\".</string>
+    <string name="extender_popup_windows_in_background_button">Otwórz\ninne uprawnienia\n(MIUI)</string>
+    <string name="extender_notification_channel_grant_permission">Przyznaj uprawnienia</string>
+    <string name="extender_notification_channel_grant_permission_description">Pokazuje, które uprawnienia musisz przyznać.</string>
+    <string name="extender_notification_permission_title">Nie przyznano uprawnień</string>
+    <string name="extender_notification_sms_mms_permission_text">Nie przyznano uprawnień dla parametru zdarzenia \"Czujnik SMS/MMS\". Kliknij to powiadomienie, aby otworzyć Extender. Po uruchomieniu użyj przycisku przyznawania uprawnień.</string>
+    <string name="extender_notification_call_permission_text">Nie przyznano uprawnień dla parametru zdarzenia \"Czujnik rozmowy tel\". Kliknij to powiadomienie, aby otworzyć Extender. Po uruchomieniu użyj przycisku przyznawania uprawnień.</string>
+    <string name="extender_notifications_permission_text">Notifications permission is not granted.\n\nPlease enable notifications for PhoneProfilesPlusExtender. Without this enabled, notifications from PhoneProfilesPlusExtender will not be displayed.</string>
+    <string name="extender_enable_notificaitons_button">Enable</string>
+    <string name="extender_menu_choose_language">Choose language</string>
+    <string name="extender_menu_choose_language_system_language">[System]</string>
 </resources>

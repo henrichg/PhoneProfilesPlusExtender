@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#202020</color>
-<!--    <color name="primaryDark">#202020</color>-->
-    <color name="primaryDark">#202020</color>
-    <color name="accent">#E99B7F</color>
+    <color name="primary">#201a18</color>
+    <color name="primaryDark">#201a18</color>
+    <color name="accent">#f8b162</color>
     <!--<color name="accent_disabled">#70E99B7F</color>-->
     <color name="navigationBar">#000000</color>
 
-    <color name="activityBackgroundColor">#FF202020</color>
+    <color name="activityBackgroundColor">#FF201a18</color>
     <!--<color name="activityTextColor">#FFFFFFFF</color>-->
     <color name="activitySecondaryTextColor">#CFFFFFFF</color>
     <color name="activityDisabledTextColor">#2FFFFFFF</color>
 
-    <color name="buttonBorderColor">#FF707070</color>
-    <color name="buttonBackgroundColor">#FF1C1C1C</color>
-    <color name="buttonClickedBackgroundColor">#FF505050</color>
+    <color name="activityPopupMenuBackgroundColor">#FF1a1513</color>
+    <color name="popupMenuBorderColor">#FF403430</color>
 
-    <color name="notificationDecorationColor">#DC8160</color>
+    <color name="buttonBorderColor">#FF735c55</color>
+    <color name="buttonBackgroundColor">#FF1a1513</color>
+    <color name="buttonClickedBackgroundColor">#FF403430</color>
+
+    <color name="notificationDecorationColor">#cc893e</color>
+
+    <color name="dialogBorderColor">#FF403430</color>
+
+    <color name="toastBackgroundColor">#FF3a3a3a</color>
+    <color name="toastTextColor">#FFFFFFFF</color>
+    <color name="toastBorderColor">#FF707070</color>
 
 </resources>

@@ -5,10 +5,13 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Handler;
 import android.os.PowerManager;
+import android.os.Process;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -30,6 +33,8 @@ import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import me.drakeet.support.toast.ToastCompat;
+
 //import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 //import com.llew.huawei.verifier.LoadedApkHuaWei;
@@ -43,6 +48,8 @@ public class PPPEApplication extends Application {
     private static PPPEApplication instance;
 
     static final String PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender";
+
+    static final String APPLICATION_PREFS_NAME = "phone_profiles_plus_extender_preferences";
 
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
@@ -80,7 +87,7 @@ public class PPPEApplication extends Application {
 
     static final String ACCESSIBILITY_SERVICE_PERMISSION = PPPEApplication.PACKAGE_NAME + ".ACCESSIBILITY_SERVICE_PERMISSION";
 
-    //static final String ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED";
+    static final String ACTION_PPPEXTENDER_STARTED = PPPEApplication.PACKAGE_NAME + ".ACTION_PPPEXTENDER_STARTED";
     static final String ACTION_REGISTER_PPPE_FUNCTION = PPPEApplication.PACKAGE_NAME + ".ACTION_REGISTER_PPPE_FUNCTION";
 
     static final String EXTRA_REGISTRATION_APP = "registration_app";
@@ -130,8 +137,11 @@ public class PPPEApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        if (ACRA.isACRASenderServiceProcess())
+        // This is required : https://www.acra.ch/docs/Troubleshooting-Guide#applicationoncreate
+        if (ACRA.isACRASenderServiceProcess()) {
+            Log.e("################# PPPEApplication.onCreate", "ACRA.isACRASenderServiceProcess()");
             return;
+        }
 
 /*        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .setBuildConfigClass(BuildConfig.class)
@@ -167,6 +177,14 @@ public class PPPEApplication extends Application {
 
         if (checkAppReplacingState())
             return;
+
+        int uid = Process.myUid();
+
+        Log.e("##### PPPEApplication.onCreate", "Start  uid="+uid);
+
+        PPPEApplication.createGrantPermissionNotificationChannel(this);
+
+        Log.e("##### PPPEApplication.onCreate", "after cerate notification channel");
 
         ////////////////////////////////////////////////////////////////////////////////////
         // Bypass Android's hidden API restrictions
@@ -213,19 +231,8 @@ public class PPPEApplication extends Application {
             PPPEApplication.setCustomKey("DEBUG", BuildConfig.DEBUG);
         } catch (Exception ignored) {}
 
-        //if (BuildConfig.DEBUG) {
-        long actualVersionCode = 0;
-        try {
-            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            //actualVersionCode = pInfo.versionCode;
-            actualVersionCode = PackageInfoCompat.getLongVersionCode(pInfo);
-        } catch (Exception e) {
-            Log.e("PPPEApplication.onCreate", Log.getStackTraceString(e));
-            PPPEApplication.recordException(e);
-        }
-        Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
-        //}
-
+        Intent sendIntent = new Intent(ACTION_PPPEXTENDER_STARTED);
+        sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
     }
 
     // workaround for: java.lang.NullPointerException: Attempt to invoke virtual method
@@ -243,10 +250,12 @@ public class PPPEApplication extends Application {
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
+        //super.attachBaseContext(base);
+        super.attachBaseContext(LocaleHelper.onAttach(base));
 
+        // This is required : https://www.acra.ch/docs/Troubleshooting-Guide#applicationoncreate
         if (ACRA.isACRASenderServiceProcess()) {
-            Log.e("##### PPPEApplication.attachBaseContext", "ACRA.isACRASenderServiceProcess()");
+            Log.e("################# PPPEApplication.attachBaseContext", "ACRA.isACRASenderServiceProcess()");
             return;
         }
 
@@ -276,6 +285,7 @@ public class PPPEApplication extends Application {
 
         Log.e("##### PPPEApplication.attachBaseContext", "ACRA inittialization");
 
+/*
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .withBuildConfigClass(BuildConfig.class)
                 .withReportFormat(StringFormat.KEY_VALUE_LIST);
@@ -299,8 +309,8 @@ public class PPPEApplication extends Application {
                 .withReportAsFile(true)
                 .withReportFileName("crash_report.txt")
                 .withEnabled(true);
+*/
 
-/*
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder()
                 .withBuildConfigClass(BuildConfig.class)
                 .withReportFormat(StringFormat.KEY_VALUE_LIST);
@@ -326,10 +336,22 @@ public class PPPEApplication extends Application {
                         .withEnabled(true)
                         .build()
         );
-*/
+
         //ACRA.DEV_LOGGING = true;
 
         ACRA.init(this, builder);
+
+        //if (BuildConfig.DEBUG) {
+        long actualVersionCode = 0;
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            //actualVersionCode = pInfo.versionCode;
+            actualVersionCode = PackageInfoCompat.getLongVersionCode(pInfo);
+        } catch (Exception ignored) {}
+
+        Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
+        //}
+
     }
 
     //--------------------------------------------------------------
@@ -620,6 +642,26 @@ public class PPPEApplication extends Application {
                 PPPEApplication.recordException(e);
             }
         }
+    }
+
+    static void showToast(final Context context, final String text,
+                          @SuppressWarnings("SameParameterValue") final int length) {
+        final Context appContext = context.getApplicationContext();
+        Handler handler = new Handler(context.getApplicationContext().getMainLooper());
+        handler.post(() -> {
+//                PPApplication.logE("[IN_THREAD_HANDLER] PPApplication.startHandlerThread", "START run - from=PPApplication.showToast");
+            try {
+                //ToastCompat msg = ToastCompat.makeText(appContext, text, length);
+                ToastCompat msg = ToastCompat.makeCustom(appContext,
+                        R.layout.toast_layout, R.drawable.toast_background,
+                        R.id.custom_toast_message, text,
+                        length);
+                //Toast msg = Toast.makeText(appContext, text, length);
+                msg.show();
+            } catch (Exception ignored) {
+                //PPApplication.recordException(e);
+            }
+        });
     }
 
 }

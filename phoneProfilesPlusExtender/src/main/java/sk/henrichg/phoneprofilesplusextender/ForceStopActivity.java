@@ -1,5 +1,6 @@
 package sk.henrichg.phoneprofilesplusextender;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +15,11 @@ public class ForceStopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         overridePendingTransition(0, 0);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 
     @Override

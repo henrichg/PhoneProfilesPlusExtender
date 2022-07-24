@@ -43,4 +43,8 @@
     <string name="extender_notification_permission_title">Дозвіл не надано</string>
     <string name="extender_notification_sms_mms_permission_text">Дозвіл на параметр подій \"Датчик SMS/MMS\" не надано. Натисніть це сповіщення, щоб відкрити Extender. У ньому натисніть на кнопку для надання цього дозволу.</string>
     <string name="extender_notification_call_permission_text">Дозвіл на параметр подій \"Датчик викликів\" не надано. Натисніть це сповіщення, щоб відкрити Extender. У ньому натисніть кнопку для надання цього дозволу.</string>
+    <string name="extender_notifications_permission_text">Немає дозволу на сповіщення.\n\nЩоб їх отримувати, надайте дозвіл для PhoneProfilesPlusExtender.</string>
+    <string name="extender_enable_notificaitons_button">Увімкнути</string>
+    <string name="extender_menu_choose_language">Виберіть мову</string>
+    <string name="extender_menu_choose_language_system_language">[System]</string>
 </resources>

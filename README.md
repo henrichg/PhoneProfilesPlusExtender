@@ -34,23 +34,24 @@ _**** Please report me bugs, comments and suggestions to my e-mail: <henrich.gro
 _*** Please help me with translation, thank you: <https://crowdin.com/project/phoneprofilesplus> ***_
 
 ##### Screenshots
-- [[1]](art/01.png),
-[[2]](art/02.png),
-[[3]](art/03.png),
-[[4]](art/04.png)
+- [[1]](art/phoneScreenshots/01.png),
+[[2]](art/phoneScreenshots/02.png),
+[[3]](art/phoneScreenshots/03.png),
+[[4]](art/phoneScreenshots/04.png)
 
 ##### Supported Android versions
 
 - From Android 7.0
 - minSdkVersion = 24
 - targetSdkVersion = 27
-- compiledSdkVersion = 31
+- compiledSdkVersion = 32
 
 ##### Required external libs - open-source
 
 - AndroidX library: appcompat, localbroadcastmanager - https://developer.android.com/jetpack/androidx/versions
 - Google Material components - https://github.com/material-components/material-components-android
 - ACRA - https://github.com/ACRA/acra
+- guava - https://github.com/google/guava
 - Android-Accessibility-Utilities(only modified class A11NodeInfo - for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities
 - Android-Accessibility-Utilities(only modified class A11NodeInfoMatcher - for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities
-
+- Multi-language_App (only modified class LocaleHelper.java) https://github.com/anurajr1/Multi-language_App

@@ -26,13 +26,15 @@
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/intermediates/javac/debug/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/intermediates/javac/debugUnitTest/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender">
       <excludeFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build" />
       <excludeFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/out" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 32 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

@@ -17,7 +17,7 @@
     <string name="extender_permissions_not_granted">Neudelené</string>
     <string name="extender_permissions_granted">Udelené</string>
     <string name="extender_permissions_button">Udeľ/odopri\npráva</string>
-    <string name="extender_accessibility_service_event_sensor_call">• Služba Dostupnosť pre parametre udalosti \"Sensor hovoru\". Funkcia dostupnosti nie je použitá, bežiaci servis je potrebný pre príjem hovorov.</string>
+    <string name="extender_accessibility_service_event_sensor_call">• Služba Dostupnosť pre parametre udalosti \"Senzor hovoru\". Funkcia dostupnosti nie je použitá, bežiaci servis je potrebný pre príjem hovorov.</string>
     <string name="extender_permissions_event_sensor_call">• Povolenia pre parametre udalosti \"Senzor hovoru\" - povolenie Telefón</string>
     <string name="extender_permissions_event_sensor_call_28">• Povolenia pre parametre udalosti \"Senzor hovoru\" - povolenie Telefón, Denníky hovorov</string>
     <string name="extender_toast_permissions_not_granted">Povolenia nie sú udelené</string>
@@ -43,4 +43,8 @@
     <string name="extender_notification_permission_title">Povolenie nebolo udelené</string>
     <string name="extender_notification_sms_mms_permission_text">Povolenie pre parameter udalosti \"Senzor SMS/MMS\" nie je udelené. Kliknutím na toto upozornenie otvoríte Extender. V ňom použite tlačidlo na udelenie tohto povolenia.</string>
     <string name="extender_notification_call_permission_text">Povolenie pre parameter udalosti \"Senzor hovoru\" nie je udelené. Kliknutím na toto upozornenie otvoríte Extender. V ňom použite tlačidlo na udelenie tohto povolenia.</string>
+    <string name="extender_notifications_permission_text">Povolenie na notifikácie nie je udelené.\n\nPovoľte upozornenia pre PhoneProfilesPlusExtender. Bez tohto povolenia sa upozornenia z PhoneProfilesPlusExtender nebudú zobrazovať.</string>
+    <string name="extender_enable_notificaitons_button">Povoliť</string>
+    <string name="extender_menu_choose_language">Vybrať jazyk</string>
+    <string name="extender_menu_choose_language_system_language">[Systémový]</string>
 </resources>

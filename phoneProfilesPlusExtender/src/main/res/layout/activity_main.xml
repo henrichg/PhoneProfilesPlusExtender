@@ -21,18 +21,19 @@
         android:layout_height="wrap_content"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
+        android:paddingTop="5dp"
         android:paddingBottom="15dp">
 
         <ImageView
             android:id="@+id/activity_main_application_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:adjustViewBounds="true"
             android:layout_marginBottom="5dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/empty_string"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_launcher"/>
+            android:src="@drawable/ic_pppe_app_icon"/>
 
         <TextView
             android:id="@+id/activity_main_application_version"
@@ -40,9 +41,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_app_name"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"/>
 
         <TextView
             android:id="@+id/activity_main_application_releases"
@@ -50,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:text="@string/extender_application_releases"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_scroll_info"
@@ -59,42 +61,42 @@
             android:layout_marginBottom="15dp"
             android:text="@string/extender_scroll_info"
             android:textStyle="italic"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_profile_force_stop_application"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/extender_accessibility_service_disabled"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_profile_lock_device"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/extender_accessibility_service_disabled"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_event_sensor_applications_orientation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/extender_accessibility_service_disabled"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_event_sensor_sms_mms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/extender_accessibility_service_disabled"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_event_sensor_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/extender_accessibility_service_disabled"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_status"
@@ -125,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <Button
             android:id="@+id/activity_main_popup_windows_in_background_button"
@@ -146,7 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_sms_permissions_status"
@@ -177,7 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_call_permissions_status"
@@ -208,7 +210,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/extender_battery_optimization_optimized"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/activity_main_battery_optimization_status"

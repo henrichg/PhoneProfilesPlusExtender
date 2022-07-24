@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#FFFFFF</color>
-<!--    <color name="primaryDark">#A7A7A7</color>-->
     <color name="primaryDark">#FFFFFF</color>
-    <color name="accent">#DC8160</color>       <!-- A400(A200) -->
+    <color name="accent">#cc893e</color>
     <!--<color name="accent_disabled">#70DC8160</color>-->
     <color name="navigationBar">#000000</color>
 
@@ -12,10 +11,19 @@
     <color name="activitySecondaryTextColor">#BF000000</color>
     <color name="activityDisabledTextColor">#2F000000</color>
 
+    <color name="activityPopupMenuBackgroundColor">#FFF7F7F7</color>
+    <color name="popupMenuBorderColor">#FFCCCCCC</color>
+
     <color name="buttonBorderColor">#FFAAAAAA</color>
     <color name="buttonBackgroundColor">#FFFAFAFA</color>
     <color name="buttonClickedBackgroundColor">#FFDADADA</color>
 
-    <color name="notificationDecorationColor">#DC8160</color>
+    <color name="notificationDecorationColor">#cc893e</color>
+
+    <color name="dialogBorderColor">#FFFFFFFF</color>
+
+    <color name="toastBackgroundColor">#FF3a3a3a</color>
+    <color name="toastTextColor">#FFFFFFFF</color>
+    <color name="toastBorderColor">#FF707070</color>
 
 </resources>

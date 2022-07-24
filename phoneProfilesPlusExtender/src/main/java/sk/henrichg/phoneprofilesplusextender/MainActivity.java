@@ -12,6 +12,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.text.Spannable;
@@ -20,6 +21,8 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.StyleSpan;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -32,13 +35,24 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.pm.PackageInfoCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int RESULT_ACCESSIBILITY_SETTINGS = 1900;
     private static final int RESULT_PERMISSIONS_SETTINGS = 1901;
     private static final int RESULT_BATTERY_OPTIMIZATION_SETTINGS = 1902;
+
+    int selectedLanguage = 0;
+    String defaultLanguage = "";
+    String defaultCountry = "";
+    String defaultScript = "";
+
+    final Collator languagesCollator = Collator.getInstance();
 
     private final BroadcastReceiver refreshGUIBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -60,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         //PPPEApplication.logE("MainActivity.onCreated", "xxx");
 
         if (getSupportActionBar() != null) {
+            //getSupportActionBar().setHomeButtonEnabled(false);
+            //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setTitle(R.string.extender_app_name);
             getSupportActionBar().setElevation(0);
         }
 
@@ -104,7 +121,168 @@ public class MainActivity extends AppCompatActivity {
 
         LocalBroadcastManager.getInstance(this).registerReceiver(refreshGUIBroadcastReceiver,
                 new IntentFilter(PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver"));
+    }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        /*if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
+        else*/
+        if (itemId == R.id.menu_choose_language) {
+            String storedLanguage = LocaleHelper.getLanguage(getApplicationContext());
+            String storedCountry = LocaleHelper.getCountry(getApplicationContext());
+            String storedScript = LocaleHelper.getScript(getApplicationContext());
+//            Log.e("MainActivity.onOptionsItemSelected", "storedLanguage="+storedLanguage);
+//            Log.e("MainActivity.onOptionsItemSelected", "storedCountry="+storedCountry);
+//            Log.e("MainActivity.onOptionsItemSelected", "storedScript="+storedScript);
+
+            final String[] languageValues = getResources().getStringArray(R.array.chooseLanguageValues);
+            ArrayList<Language> languages = new ArrayList<>();
+
+            for (String languageValue : languageValues) {
+                Language language = new Language();
+                if (languageValue.equals("[sys]")) {
+                    language.language = languageValue;
+                    language.country = "";
+                    language.script = "";
+                    language.name = getString(R.string.extender_menu_choose_language_system_language);
+                } else {
+                    String[] splits = languageValue.split("-");
+                    String sLanguage = splits[0];
+                    String country = "";
+                    if (splits.length >= 2)
+                        country = splits[1];
+                    String script = "";
+                    if (splits.length >= 3)
+                        script = splits[2];
+
+                    Locale loc = null;
+                    if (country.isEmpty() && script.isEmpty())
+                        loc = new Locale.Builder().setLanguage(sLanguage).build();
+                    if (!country.isEmpty() && script.isEmpty())
+                        loc = new Locale.Builder().setLanguage(sLanguage).setRegion(country).build();
+                    if (country.isEmpty() && !script.isEmpty())
+                        loc = new Locale.Builder().setLanguage(sLanguage).setScript(script).build();
+                    if (!country.isEmpty() && !script.isEmpty())
+                        loc = new Locale.Builder().setLanguage(sLanguage).setRegion(country).setScript(script).build();
+
+                    language.language = sLanguage;
+                    language.country = country;
+                    language.script = script;
+                    language.name = loc.getDisplayName(loc);
+                    language.name = language.name.substring(0, 1).toUpperCase(loc) + language.name.substring(1);
+                }
+                languages.add(language);
+            }
+
+            languages.sort(new LanguagesComparator());
+
+            final String[] languageNameChoices = new String[languages.size()];
+            for(int i = 0; i < languages.size(); i++) languageNameChoices[i] = languages.get(i).name;
+
+            for (int i = 0; i < languages.size(); i++) {
+                Language language = languages.get(i);
+                String sLanguage = language.language;
+                String country = language.country;
+                String script = language.script;
+
+                if (sLanguage.equals(storedLanguage) &&
+                        storedCountry.isEmpty() &&
+                        storedScript.isEmpty()) {
+                    selectedLanguage = i;
+                    break;
+                }
+                if (sLanguage.equals(storedLanguage) &&
+                        country.equals(storedCountry) &&
+                        storedScript.isEmpty()) {
+                    selectedLanguage = i;
+                    break;
+                }
+                if (sLanguage.equals(storedLanguage) &&
+                        storedCountry.isEmpty() &&
+                        script.equals(storedScript)) {
+                    selectedLanguage = i;
+                    break;
+                }
+                if (sLanguage.equals(storedLanguage) &&
+                        country.equals(storedCountry) &&
+                        script.equals(storedScript)) {
+                    selectedLanguage = i;
+                    break;
+                }
+            }
+
+            //Log.e("MainActivity.onOptionsItemSelected", "defualt language="+Locale.getDefault().getDisplayLanguage());
+            // this is list of locales by order in system settings. Index 0 = default locale in system
+            //LocaleListCompat locales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
+            //for (int i = 0; i < locales.size(); i++) {
+            //    Log.e("MainActivity.onOptionsItemSelected", "language="+locales.get(i).getDisplayLanguage());
+            //}
+
+            AlertDialog chooseLanguageDialog = new AlertDialog.Builder(this)
+                    .setTitle(R.string.extender_menu_choose_language)
+                    .setCancelable(true)
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setSingleChoiceItems(languageNameChoices, selectedLanguage, (dialog, which) -> {
+                        selectedLanguage = which;
+
+                        Language language = languages.get(selectedLanguage);
+                        defaultLanguage = language.language;
+                        defaultCountry = language.country;
+                        defaultScript = language.script;
+
+//                        Log.e("MainActivity.onOptionsItemSelected", "defaultLanguage="+defaultLanguage);
+//                        Log.e("MainActivity.onOptionsItemSelected", "defaultCountry="+defaultCountry);
+//                        Log.e("MainActivity.onOptionsItemSelected", "defaultScript="+defaultScript);
+
+                        LocaleHelper.setLocale(getApplicationContext(),
+                                defaultLanguage, defaultCountry, defaultScript, true);
+
+                        reloadActivity(this, false);
+                        dialog.dismiss();
+                    })
+                    .create();
+
+//                    dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+//                        @Override
+//                        public void onShow(DialogInterface dialog) {
+//                            Button positive = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+//                            if (positive != null) positive.setAllCaps(false);
+//                            Button negative = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+//                            if (negative != null) negative.setAllCaps(false);
+//                        }
+//                    });
+
+            chooseLanguageDialog.show();
+
+            return true;
+        }
+        else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+
+        Permissions.grantNotificationsPermission(this);
     }
 
     @Override
@@ -112,11 +290,11 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_ACCESSIBILITY_SETTINGS)
-            reloadActivity(this/*, true*/);
+            reloadActivity(this, false);
         if (requestCode == RESULT_PERMISSIONS_SETTINGS)
-            reloadActivity(this/*, true*/);
+            reloadActivity(this, false);
         if (requestCode == RESULT_BATTERY_OPTIMIZATION_SETTINGS)
-            reloadActivity(this/*, true*/);
+            reloadActivity(this, false);
     }
 
     @Override
@@ -135,15 +313,13 @@ public class MainActivity extends AppCompatActivity {
             }
             if (!allGranted) {
                 //if (!onlyNotification) {
-                Context context = getApplicationContext();
-                Toast msg = Toast.makeText(context,
-                        context.getString(R.string.extender_app_name) + ": " +
-                                context.getString(R.string.extender_toast_permissions_not_granted),
+                PPPEApplication.showToast(getApplicationContext(),
+                        getString(R.string.extender_app_name) + ": " +
+                                getString(R.string.extender_toast_permissions_not_granted),
                         Toast.LENGTH_SHORT);
-                msg.show();
                 //}
             }
-            reloadActivity(this/*, true*/);
+            reloadActivity(this, false);
 
             // other 'case' lines to check for other
             // permissions this app might request
@@ -442,7 +618,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static boolean activityIntentExists(Intent intent, Context context) {
+    static boolean activityIntentExists(Intent intent, Context context) {
         try {
             List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
             return activities.size() > 0;
@@ -453,29 +629,40 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static void reloadActivity(Activity activity/*, boolean newIntent*/)
+    private static void reloadActivity(Activity activity,
+                                       @SuppressWarnings("SameParameterValue") boolean newIntent)
     {
-        /*if (newIntent)
+        if (newIntent)
         {
             final Activity _activity = activity;
-            new Handler(activity.getMainLooper()).post(new Runnable() {
+            new Handler(activity.getMainLooper()).post(() -> {
+                try {
+                    Intent intent = _activity.getIntent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    _activity.finish();
+                    _activity.overridePendingTransition(0, 0);
 
-                @Override
-                public void run() {
-                    try {
-                        Intent intent = _activity.getIntent();
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        _activity.finish();
-                        _activity.overridePendingTransition(0, 0);
-
-                        _activity.startActivity(intent);
-                        _activity.overridePendingTransition(0, 0);
-                    } catch (Exception ignored) {}
-                }
+                    _activity.startActivity(intent);
+                    _activity.overridePendingTransition(0, 0);
+                } catch (Exception ignored) {}
             });
         }
-        else*/
+        else
             activity.recreate();
+    }
+
+    private static class Language {
+        String language;
+        String country;
+        String script;
+        String name;
+    }
+
+    private class LanguagesComparator implements Comparator<Language> {
+
+        public int compare(Language lhs, Language rhs) {
+            return languagesCollator.compare(lhs.name, rhs.name);
+        }
     }
 
 }
