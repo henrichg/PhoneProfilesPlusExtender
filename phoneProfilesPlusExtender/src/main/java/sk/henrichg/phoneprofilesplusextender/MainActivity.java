@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     String defaultCountry = "";
     String defaultScript = "";
 
-    final Collator languagesCollator = Collator.getInstance();
+    final Collator languagesCollator = getCollator();
 
     private final BroadcastReceiver refreshGUIBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -663,6 +663,17 @@ public class MainActivity extends AppCompatActivity {
         public int compare(Language lhs, Language rhs) {
             return languagesCollator.compare(lhs.name, rhs.name);
         }
+    }
+
+    private static Collator getCollator()
+    {
+        Locale appLocale;
+
+        // application locale
+        appLocale = Locale.getDefault();
+
+        // get collator for application locale
+        return Collator.getInstance(appLocale);
     }
 
 }
