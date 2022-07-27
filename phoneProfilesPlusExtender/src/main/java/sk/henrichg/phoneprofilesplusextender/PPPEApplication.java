@@ -123,7 +123,7 @@ public class PPPEApplication extends Application {
 
     static PPPEPhoneStateListener phoneStateListenerSIM1 = null;
     static PPPEPhoneStateListener phoneStateListenerSIM2 = null;
-    static PPPEPhoneStateListener phoneStateListenerDefaul = null;
+    static PPPEPhoneStateListener phoneStateListenerDefault = null;
 
     static TelephonyManager telephonyManagerSIM1 = null;
     static TelephonyManager telephonyManagerSIM2 = null;
