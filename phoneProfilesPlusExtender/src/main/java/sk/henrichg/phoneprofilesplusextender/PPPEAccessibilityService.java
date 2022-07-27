@@ -454,7 +454,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         instance = null;
 //        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
 
-        accessibilityDisabled();
+        //accessibilityDisabled();
     }
 
     @Override
