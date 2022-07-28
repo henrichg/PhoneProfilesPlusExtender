@@ -25,6 +25,8 @@
 
         <item name="android:popupMenuStyle">@style/PopupMenu_dayNight</item>
         <item name="actionOverflowMenuStyle">@style/PopupMenu_dayNight</item>
+        <item name="android:dropDownListViewStyle">@style/PopupMenuItemStyle</item>
+        <item name="dropDownListViewStyle">@style/PopupMenuItemStyle</item>
 
         <item name="android:windowLightNavigationBar">@bool/windowLightStatusBar</item>
     </style>

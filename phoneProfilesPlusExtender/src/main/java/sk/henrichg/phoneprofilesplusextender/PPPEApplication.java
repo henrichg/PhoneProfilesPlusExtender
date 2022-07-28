@@ -24,12 +24,12 @@ import org.acra.config.CoreConfigurationBuilder;
 import org.acra.config.MailSenderConfigurationBuilder;
 import org.acra.config.NotificationConfigurationBuilder;
 import org.acra.data.StringFormat;
+import org.lsposed.hiddenapibypass.HiddenApiBypass;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -123,7 +123,7 @@ public class PPPEApplication extends Application {
 
     static PPPEPhoneStateListener phoneStateListenerSIM1 = null;
     static PPPEPhoneStateListener phoneStateListenerSIM2 = null;
-    static PPPEPhoneStateListener phoneStateListenerDefaul = null;
+    static PPPEPhoneStateListener phoneStateListenerDefault = null;
 
     static TelephonyManager telephonyManagerSIM1 = null;
     static TelephonyManager telephonyManagerSIM2 = null;
@@ -190,7 +190,7 @@ public class PPPEApplication extends Application {
         // Bypass Android's hidden API restrictions
         // !!! WARNING - this is required also for android.jar from android-hidden-api !!!
         // https://github.com/tiann/FreeReflection
-        if (Build.VERSION.SDK_INT >= 28) {
+        /*if (Build.VERSION.SDK_INT >= 28) {
             try {
                 Method forName = Class.class.getDeclaredMethod("forName", String.class);
                 Method getDeclaredMethod = Class.class.getDeclaredMethod("getDeclaredMethod", String.class, Class[].class);
@@ -208,7 +208,7 @@ public class PPPEApplication extends Application {
                 //Log.e("PPApplication.onCreate", Log.getStackTraceString(e));
                 PPPEApplication.recordException(e);
             }
-        }
+        }*/
         //////////////////////////////////////////
 
         // Fix for FC: java.lang.IllegalArgumentException: register too many Broadcast Receivers
@@ -252,6 +252,10 @@ public class PPPEApplication extends Application {
     protected void attachBaseContext(Context base) {
         //super.attachBaseContext(base);
         super.attachBaseContext(LocaleHelper.onAttach(base));
+        //Reflection.unseal(base);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            HiddenApiBypass.addHiddenApiExemptions("L");
+        }
 
         // This is required : https://www.acra.ch/docs/Troubleshooting-Guide#applicationoncreate
         if (ACRA.isACRASenderServiceProcess()) {

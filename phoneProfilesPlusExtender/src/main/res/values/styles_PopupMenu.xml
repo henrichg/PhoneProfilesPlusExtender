@@ -30,6 +30,14 @@
         <item name="android:elevation">0dp</item>
         <item name="android:popupElevation">0dp</item>
         <item name="android:overlapAnchor">true</item>
+
+        <item name="android:dropDownSelector">@drawable/popup_menu_list_item_background</item>
     </style>
+
+    <style name="PopupMenuItemStyle" parent="@android:style/Widget.ListView">
+        <item name="android:listSelector">@drawable/popup_menu_list_item_background</item>
+    </style>
+    <!--    <item name="android:divider">@color/text_color_white</item>-->
+    <!--    <item name="android:dividerHeight">1dp</item>-->
 
 </resources>

@@ -48,6 +48,8 @@ android {
 }
 
 dependencies {
+    implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
+
     // https://developer.android.com/guide/background/listenablefuture
     implementation "com.google.guava:guava:31.0.1-android"
     implementation "ch.acra:acra-mail:$ppVersions.acra"

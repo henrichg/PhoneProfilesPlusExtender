@@ -57,8 +57,8 @@ public class PhoneCallReceiver extends BroadcastReceiver {
                 PPPEApplication.phoneStateListenerSIM1.onOutgoingCallStarted(number, new Date());
             if (PPPEApplication.phoneStateListenerSIM2 != null)
                 PPPEApplication.phoneStateListenerSIM2.onOutgoingCallStarted(number, new Date());
-            if (PPPEApplication.phoneStateListenerDefaul != null)
-                PPPEApplication.phoneStateListenerDefaul.onOutgoingCallStarted(number, new Date());
+            if (PPPEApplication.phoneStateListenerDefault != null)
+                PPPEApplication.phoneStateListenerDefault.onOutgoingCallStarted(number, new Date());
         } catch (Exception ignored) {}
     }
 

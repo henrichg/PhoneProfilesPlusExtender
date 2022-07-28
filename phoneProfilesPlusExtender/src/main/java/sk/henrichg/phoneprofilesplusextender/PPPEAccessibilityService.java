@@ -380,21 +380,23 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
     }
 
-    private void accessibilityDisabled() {
+    private void accessibilityDisabled(@SuppressWarnings("SameParameterValue") boolean forUnbund) {
         //final Context context = getApplicationContext();
 
-        // for event sensors: Applications and Orientation
-        Intent _intent = new Intent(ACTION_ACCESSIBILITY_SERVICE_UNBIND);
-        sendBroadcast(_intent);//, ACCESSIBILITY_SERVICE_PERMISSION);
+        if (forUnbund) {
+            // for event sensors: Applications and Orientation
+            Intent _intent = new Intent(ACTION_ACCESSIBILITY_SERVICE_UNBIND);
+            sendBroadcast(_intent);//, ACCESSIBILITY_SERVICE_PERMISSION);
 
-        // for event Call sensor
-        Intent sendIntent = new Intent(PPPEPhoneStateListener.ACTION_CALL_RECEIVED);
-        //sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
-        sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_CALL_EVENT_TYPE, PPPEPhoneStateListener.CALL_EVENT_SERVICE_UNBIND);
-        sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_PHONE_NUMBER, "");
-        sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_EVENT_TIME, 0);
-        sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_SIM_SLOT, 0);
-        sendBroadcast(sendIntent);//, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+            // for event Call sensor
+            Intent sendIntent = new Intent(PPPEPhoneStateListener.ACTION_CALL_RECEIVED);
+            //sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
+            sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_CALL_EVENT_TYPE, PPPEPhoneStateListener.CALL_EVENT_SERVICE_UNBIND);
+            sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_PHONE_NUMBER, "");
+            sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_EVENT_TIME, 0);
+            sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_SIM_SLOT, 0);
+            sendBroadcast(sendIntent);//, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+        }
 
         if (PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver != null) {
             try {
@@ -451,10 +453,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     @Override
     public void onInterrupt() {
-        instance = null;
 //        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
 
-        accessibilityDisabled();
+        // !!! do not call this, because will not be working Call, SMS sensor
+        //accessibilityDisabled(false);
+        instance = null;
     }
 
     @Override
@@ -462,7 +465,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         //Log.d("PPPEAccessibilityService", "onUnbind");
 //        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
 
-        accessibilityDisabled();
+        accessibilityDisabled(true);
 
         //PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[END]");
 
@@ -489,11 +492,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 } catch (Exception ignored) {
                 }
             }
-            if (PPPEApplication.phoneStateListenerDefaul != null) {
+            if (PPPEApplication.phoneStateListenerDefault != null) {
                 try {
                     if (PPPEApplication.telephonyManagerDefault != null)
-                        PPPEApplication.telephonyManagerDefault.listen(PPPEApplication.phoneStateListenerDefaul, PhoneStateListener.LISTEN_NONE);
-                    PPPEApplication.phoneStateListenerDefaul = null;
+                        PPPEApplication.telephonyManagerDefault.listen(PPPEApplication.phoneStateListenerDefault, PhoneStateListener.LISTEN_NONE);
+                    PPPEApplication.phoneStateListenerDefault = null;
                     PPPEApplication.telephonyManagerDefault = null;
                 } catch (Exception ignored) {
                 }
@@ -529,7 +532,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 //                                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionId=" + subscriptionId);
                                             //noinspection ConstantConditions
                                             PPPEApplication.telephonyManagerSIM1 = PPPEApplication.telephonyManagerDefault.createForSubscriptionId(subscriptionId);
-                                            PPPEApplication.phoneStateListenerSIM1 = new PPPEPhoneStateListener(subscriptionInfo, context);
+                                            //if (PPPEApplication.phoneStateListenerSIM1 == null)
+                                                PPPEApplication.phoneStateListenerSIM1 = new PPPEPhoneStateListener(subscriptionInfo, context);
                                             PPPEApplication.telephonyManagerSIM1.listen(PPPEApplication.phoneStateListenerSIM1, PhoneStateListener.LISTEN_CALL_STATE);
                                         }
                                     }
@@ -538,7 +542,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 //                                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionId=" + subscriptionId);
                                             //noinspection ConstantConditions
                                             PPPEApplication.telephonyManagerSIM2 = PPPEApplication.telephonyManagerDefault.createForSubscriptionId(subscriptionId);
-                                            PPPEApplication.phoneStateListenerSIM2 = new PPPEPhoneStateListener(subscriptionInfo, context);
+                                            //if (PPPEApplication.phoneStateListenerSIM2 == null)
+                                                PPPEApplication.phoneStateListenerSIM2 = new PPPEPhoneStateListener(subscriptionInfo, context);
                                             PPPEApplication.telephonyManagerSIM2.listen(PPPEApplication.phoneStateListenerSIM2, PhoneStateListener.LISTEN_CALL_STATE);
                                         }
                                     }
@@ -554,8 +559,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 //                        PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "mSubscriptionManager == null");
                 }
                 else {
-                    PPPEApplication.phoneStateListenerDefaul = new PPPEPhoneStateListener(null, context);
-                    PPPEApplication.telephonyManagerDefault.listen(PPPEApplication.phoneStateListenerDefaul, PhoneStateListener.LISTEN_CALL_STATE);
+                    //if (PPPEApplication.phoneStateListenerDefault == null)
+                        PPPEApplication.phoneStateListenerDefault = new PPPEPhoneStateListener(null, context);
+                    PPPEApplication.telephonyManagerDefault.listen(PPPEApplication.phoneStateListenerDefault, PhoneStateListener.LISTEN_CALL_STATE);
                 }
             }
         }
