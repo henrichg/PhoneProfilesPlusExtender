@@ -455,6 +455,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     public void onInterrupt() {
 //        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
 
+        // !!! do not call this, because will not be working Call, SMS sensor
         //accessibilityDisabled(false);
         instance = null;
     }
