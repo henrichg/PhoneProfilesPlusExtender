@@ -1,0 +1,2 @@
+v8.0.1
+- Change log: https://henrichg.github.io/PhoneProfilesPlusExtender/FDroid_ChangeLog
