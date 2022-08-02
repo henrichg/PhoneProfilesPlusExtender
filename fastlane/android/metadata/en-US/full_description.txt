@@ -11,3 +11,5 @@
 - It is "plugin", so does NOT work standalone!
 - Designed for co-working with 'PhoneProfilesPlus' application. Without it, this application do nothing.
 
+
+[Privacy Policy](https://henrichg.github.io/PhoneProfilesPlusExtender/privacy_policy.html)
