@@ -1,0 +1,2 @@
+v8.0.1
+- Zoznam zmien: https://henrichg.github.io/PhoneProfilesPlusExtender/FDroid_ChangeLog_SK

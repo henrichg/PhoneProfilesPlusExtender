@@ -1,0 +1,12 @@
+**Aplikace pro Android – Extender for PhoneProfilesPlus**
+
+- Služba dostupnosti pro parametr profilu "Vynutit zastavení aplikací"
+- Služba dostupnosti pro parametr profilu "Zamknout zařízení"
+- Služba dostupnosti pro parametry události "Aplikační senzor"
+- Služba dostupnosti pro parametry události "Senzor orientace"
+- Služba dostupnosti pro parametry události "SMS/MMS senzor"
+- Služba dostupnosti pro parametry události "Senzor hovoru"
+
+*** DŮLEŽITÉ ***
+- Je to "plugin", takže NEFUNGUJE samostatně!
+- Navrženo pro spolupráci s aplikací "PhoneProfilesPlus". Bez ní tato aplikace nedělá nic.
