@@ -17,6 +17,10 @@ Use keyword "PhoneProfilesPlus" for search this application in these stores.
 
 __Galaxy Store (for Samsung devices)__
 
+__[F-Droid release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)__
+&nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_  
+__[F-Droid application (download)](https://www.f-droid.org/)__
+
 ---
 
 Android application - Extender for PhoneProfiles and PhoneProfilesPlus
