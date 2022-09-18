@@ -74,31 +74,28 @@ public class LocaleHelper {
         String countryToStore = country;
         String scriptToStore = script;
 
-//        Log.e("LocaleHelper.setLocale", "languageToStore="+languageToStore);
-//        Log.e("LocaleHelper.setLocale", "countryToStore="+countryToStore);
-//        Log.e("LocaleHelper.setLocale", "scriptToStore="+scriptToStore);
-
         if (language.equals("[sys]")) {
             LocaleListCompat systemLocales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
             try {
                 //noinspection ConstantConditions
-                language = systemLocales.get(0).getLanguage();
+                languageToStore = systemLocales.get(0).getLanguage();
                 //noinspection ConstantConditions
-                country = systemLocales.get(0).getCountry();
+                countryToStore = systemLocales.get(0).getCountry();
                 //noinspection ConstantConditions
-                script = systemLocales.get(0).getScript();
+                scriptToStore = systemLocales.get(0).getScript();
             } catch (Exception e) {
-                language = "en";
-                country = "";
-                script = "";
+//                Log.e("LocaleHelper.setLocale", Log.getStackTraceString(e));
+                languageToStore = "en";
+                countryToStore = "";
+                scriptToStore = "";
             }
-
-//            Log.e("LocaleHelper.setLocale", "language="+language);
-//            Log.e("LocaleHelper.setLocale", "country="+country);
-//            Log.e("LocaleHelper.setLocale", "script="+script);
         }
 
-        Context localizedContext = updateResources(context, language, country, script, !persist);
+//        Log.e("LocaleHelper.setLocale", "language="+languageToStore);
+//        Log.e("LocaleHelper.setLocale", "country="+countryToStore);
+//        Log.e("LocaleHelper.setLocale", "script="+scriptToStore);
+
+        Context localizedContext = updateResources(context, languageToStore, countryToStore, scriptToStore, !persist);
 
         if ((localizedContext != null) && persist) {
             persist(context, SELECTED_LANGUAGE, languageToStore);
@@ -107,6 +104,40 @@ public class LocaleHelper {
         }
 
         return localizedContext;
+    }
+
+    static void setApplicationLocale(Context context) {
+//        String language;
+//        String country;
+//        String script;
+
+        //LocaleListCompat systemLocales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
+        Locale locale = context.getResources().getConfiguration().getLocales().get(0);
+//        try {
+//            //noinspection ConstantConditions
+//            language = locale.getLanguage();
+//            //noinspection ConstantConditions
+//            country = locale.getCountry();
+//            //noinspection ConstantConditions
+//            script = locale.getScript();
+//        } catch (Exception e) {
+//            Log.e("LocaleHelper.setApplicationLocale", Log.getStackTraceString(e));
+//            language = "en";
+//            country = "";
+//            script = "";
+//        }
+
+//        Log.e("LocaleHelper.setApplicationLocale", "language="+language);
+//        Log.e("LocaleHelper.setApplicationLocale", "country="+country);
+//        Log.e("LocaleHelper.setApplicationLocale", "script="+script);
+
+        Resources resources = context.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        config.setLayoutDirection(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+
+        PPPEApplication.collator = PPPEApplication.getCollator();
     }
 
     private static String getPersistedData(Context context, String data, String defaultValue) {
@@ -145,6 +176,8 @@ public class LocaleHelper {
             Configuration configuration = context.getResources().getConfiguration();
             configuration.setLocale(locale);
             configuration.setLayoutDirection(locale);
+
+            PPPEApplication.collator = PPPEApplication.getCollator();
 
             if (forAttach) {
                 // !!! this must be, without this not working detection of night mode

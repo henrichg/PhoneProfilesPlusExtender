@@ -30,8 +30,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.Collator;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import me.drakeet.support.toast.ToastCompat;
 
@@ -132,6 +134,8 @@ public class PPPEApplication extends Application {
     static boolean forceStopStarted = false;
     static boolean applicationForceClosed = false;
     static boolean forceStopPerformed = false;
+
+    static volatile Collator collator = null;
 
     @Override
     public void onCreate() {
@@ -262,6 +266,8 @@ public class PPPEApplication extends Application {
             Log.e("################# PPPEApplication.attachBaseContext", "ACRA.isACRASenderServiceProcess()");
             return;
         }
+
+        collator = getCollator();
 
         String packageVersion = "";
         try {
@@ -655,6 +661,8 @@ public class PPPEApplication extends Application {
         handler.post(() -> {
 //                PPApplication.logE("[IN_THREAD_HANDLER] PPApplication.startHandlerThread", "START run - from=PPApplication.showToast");
             try {
+                LocaleHelper.setApplicationLocale(appContext);
+
                 //ToastCompat msg = ToastCompat.makeText(appContext, text, length);
                 ToastCompat msg = ToastCompat.makeCustom(appContext,
                         R.layout.toast_layout, R.drawable.toast_background,
@@ -666,6 +674,17 @@ public class PPPEApplication extends Application {
                 //PPApplication.recordException(e);
             }
         });
+    }
+
+    static Collator getCollator()
+    {
+        Locale appLocale;
+
+        // application locale
+        appLocale = Locale.getDefault();
+
+        // get collator for application locale
+        return Collator.getInstance(appLocale);
     }
 
 }

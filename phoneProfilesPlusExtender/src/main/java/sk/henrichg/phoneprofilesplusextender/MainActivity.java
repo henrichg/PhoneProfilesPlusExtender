@@ -35,7 +35,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.pm.PackageInfoCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -51,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
     String defaultLanguage = "";
     String defaultCountry = "";
     String defaultScript = "";
-
-    final Collator languagesCollator = getCollator();
 
     private final BroadcastReceiver refreshGUIBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -255,6 +252,8 @@ public class MainActivity extends AppCompatActivity {
 
                         reloadActivity(this, false);
                         dialog.dismiss();
+
+                        LocaleHelper.setApplicationLocale(getApplicationContext());
                     })
                     .create();
 
@@ -658,22 +657,11 @@ public class MainActivity extends AppCompatActivity {
         String name;
     }
 
-    private class LanguagesComparator implements Comparator<Language> {
+    private static class LanguagesComparator implements Comparator<Language> {
 
         public int compare(Language lhs, Language rhs) {
-            return languagesCollator.compare(lhs.name, rhs.name);
+            return PPPEApplication.collator.compare(lhs.name, rhs.name);
         }
-    }
-
-    private static Collator getCollator()
-    {
-        Locale appLocale;
-
-        // application locale
-        appLocale = Locale.getDefault();
-
-        // get collator for application locale
-        return Collator.getInstance(appLocale);
     }
 
 }
