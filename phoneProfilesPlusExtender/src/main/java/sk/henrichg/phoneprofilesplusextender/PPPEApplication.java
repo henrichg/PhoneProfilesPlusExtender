@@ -456,7 +456,7 @@ public class PPPEApplication extends Application {
             String log = "";
             SimpleDateFormat sdf = new SimpleDateFormat("d.MM.yy HH:mm:ss:S");
             String time = sdf.format(Calendar.getInstance().getTimeInMillis());
-            log = log + time + "--" + type + "-----" + tag + "------" + text;
+            log = log + time + " [ " + type + " ] [ " + tag + " ]: " + text;
             buf.append(log);
             buf.newLine();
             buf.flush();
@@ -493,7 +493,8 @@ public class PPPEApplication extends Application {
 
         if (logContainsFilterTag(tag))
         {
-            if (logIntoLogCat) Log.i(tag, text);
+            //if (logIntoLogCat) Log.i(tag, text);
+            if (logIntoLogCat) Log.i(tag, "[ "+tag+" ]" + ": " + text);
             logIntoFile("I", tag, text);
         }
     }
@@ -506,7 +507,8 @@ public class PPPEApplication extends Application {
 
         if (logContainsFilterTag(tag))
         {
-            if (logIntoLogCat) Log.w(tag, text);
+            //if (logIntoLogCat) Log.w(tag, text);
+            if (logIntoLogCat) Log.w(tag, "[ "+tag+" ]" + ": " + text);
             logIntoFile("W", tag, text);
         }
     }
@@ -519,7 +521,8 @@ public class PPPEApplication extends Application {
 
         if (logContainsFilterTag(tag))
         {
-            if (logIntoLogCat) Log.e(tag, text);
+            //if (logIntoLogCat) Log.e(tag, text);
+            if (logIntoLogCat) Log.e(tag, "[ "+tag+" ]" + ": " + text);
             logIntoFile("E", tag, text);
         }
     }
@@ -532,7 +535,8 @@ public class PPPEApplication extends Application {
 
         if (logContainsFilterTag(tag))
         {
-            if (logIntoLogCat) Log.d(tag, text);
+            //if (logIntoLogCat) Log.d(tag, text);
+            if (logIntoLogCat) Log.d(tag, "[ "+tag+" ]" + ": " + text);
             logIntoFile("D", tag, text);
         }
     }
