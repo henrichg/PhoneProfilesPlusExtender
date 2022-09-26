@@ -129,7 +129,27 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        if (Build.VERSION.SDK_INT >= 28) {
+            menu.setGroupDividerEnabled(true);
+        }
+
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        boolean ret = super.onPrepareOptionsMenu(menu);
+
+        MenuItem menuItem;
+
+        menuItem = menu.findItem(R.id.menu_debug);
+        if (menuItem != null) {
+            menuItem.setVisible(DebugVersion.enabled);
+            menuItem.setEnabled(DebugVersion.enabled);
+        }
+
+        return ret;
     }
 
     @Override
@@ -271,9 +291,11 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         }
-        else {
+        else
+        if (DebugVersion.debugMenuItems(itemId, this))
+            return true;
+        else
             return super.onOptionsItemSelected(item);
-        }
     }
 
     @Override

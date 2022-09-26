@@ -19,7 +19,7 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
     private final Context applicationContext;
     private final long actualVersionCode;
 
-    private static final String CRASH_FILENAME = "crash.txt";
+    static final String CRASH_FILENAME = "crash.txt";
 
     TopExceptionHandler(Context applicationContext, long actualVersionCode) {
         this.defaultUEH = Thread.getDefaultUncaughtExceptionHandler();

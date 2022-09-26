@@ -79,7 +79,7 @@ public class PPPEApplication extends Application {
 
     // for new log.txt and crash.txt is in /Android/data/sk.henrichg.phoneprofilesplusextender/files
     //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
-    private static final String LOG_FILENAME = "log.txt";
+    static final String LOG_FILENAME = "log.txt";
 
     static final String GRANT_PERMISSION_NOTIFICATION_CHANNEL = "phoneProfilesPlusExtender_grant_permission";
     static final int GRANT_PERMISSIONS_SMS_NOTIFICATION_ID = 101;
