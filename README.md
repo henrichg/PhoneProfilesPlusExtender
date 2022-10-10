@@ -25,6 +25,7 @@ __[Droid-ify applicaion - F-Droid alternative (download)](https://apt.izzysoft.d
 &nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
 
 ---
+__What is PhoneProfilesPlusExtender:__
 
 Android application - Extender for PhoneProfiles and PhoneProfilesPlus
 - Accessibility service for profile parameter "Force stop applications"
