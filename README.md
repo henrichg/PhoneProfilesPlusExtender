@@ -1,4 +1,4 @@
-<img src="/art/ic_launcher-web.png" width="100" height="100">  
+<img src="art/ic_launcher-web.png" width="100" height="100">  
 
 PhoneProfilesPlusExtender
 =========================
@@ -9,9 +9,9 @@ PhoneProfilesPlusExtender
 [![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AF5QK49DMAL2U&currency_code=EUR)
 
-__[GitHub release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
+### Sources of PhoneProfilesPlusExtender:
 
-__Another sources of PhoneProfilesPlusExtender:__
+__[GitHub release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
 
 Use keyword "PhoneProfilesPlus" for search this application in these stores.
 
@@ -21,8 +21,8 @@ __[F-Droid release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phonepr
 &nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_  
 __[F-Droid application (download)](https://www.f-droid.org/)__
 
-__[Droid-ify - F-Droid alternative](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)__
-&nbsp;&nbsp;&nbsp;IzzyOnDroid repository is included
+__[Droid-ify applicaion - F-Droid alternative (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)__
+&nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
 
 ---
 
