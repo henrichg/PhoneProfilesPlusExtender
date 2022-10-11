@@ -11,7 +11,7 @@ ext.ppVersions = [
     compileSdk: 32,
     buildTools: '33.0.0',
 
-    appcompatXLib: '1.4.2',
+    appcompatXLib: '1.5.1', //'1.4.2',
 
     acra: '5.9.6'
 ]
