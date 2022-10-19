@@ -105,23 +105,27 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         //}
         else
         if (action.equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {
-            long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
-            //Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "profileId="+profileId);
-            //Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "applications="+intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
+            if (!intent.getBooleanExtra(PPPEApplication.EXTRA_BLOCK_PROFILE_EVENT_ACTION, false)) {
+                long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
+                //Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "profileId="+profileId);
+                //Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "applications="+intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
 
-            if (PPPEAccessibilityService.instance != null) {
-                Intent scanServiceIntent = new Intent(PPPEAccessibilityService.instance, ForceCloseIntentService.class);
-                scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_APPLICATIONS, intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
-                scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, profileId);
-                PPPEAccessibilityService.instance.startService(scanServiceIntent);
+                if (PPPEAccessibilityService.instance != null) {
+                    Intent scanServiceIntent = new Intent(PPPEAccessibilityService.instance, ForceCloseIntentService.class);
+                    scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_APPLICATIONS, intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
+                    scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, profileId);
+                    PPPEAccessibilityService.instance.startService(scanServiceIntent);
+                }
             }
         }
         else
         if (action.equals(PPPEAccessibilityService.ACTION_LOCK_DEVICE)) {
-            if (PPPEApplication.registeredLockDeviceFunctionPP ||
-                    PPPEApplication.registeredLockDeviceFunctionPPP) {
-                if ((Build.VERSION.SDK_INT >= 28) && (PPPEAccessibilityService.instance != null))
-                    PPPEAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
+            if (!intent.getBooleanExtra(PPPEApplication.EXTRA_BLOCK_PROFILE_EVENT_ACTION, false)) {
+                if (PPPEApplication.registeredLockDeviceFunctionPP ||
+                        PPPEApplication.registeredLockDeviceFunctionPPP) {
+                    if ((Build.VERSION.SDK_INT >= 28) && (PPPEAccessibilityService.instance != null))
+                        PPPEAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
+                }
             }
         }
     }

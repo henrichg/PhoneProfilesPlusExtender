@@ -105,6 +105,8 @@ public class PPPEApplication extends Application {
     static final int REGISTRATION_TYPE_LOCK_DEVICE_REGISTER = 5;
     static final int REGISTRATION_TYPE_LOCK_DEVICE_UNREGISTER = -5;
 
+    static final String EXTRA_BLOCK_PROFILE_EVENT_ACTION = "extra_block_profile_event_actions";
+
     //@SuppressWarnings("SpellCheckingInspection")
     //static private FirebaseAnalytics mFirebaseAnalytics;
 

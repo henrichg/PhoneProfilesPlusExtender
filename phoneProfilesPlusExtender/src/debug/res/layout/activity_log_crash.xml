@@ -8,7 +8,7 @@
     android:layout_marginEnd="@dimen/activity_margin_end"
     android:fitsSystemWindows="false"
     android:orientation="vertical"
-    tools:context="sk.henrichg.phoneprofilesplus.LogCrashActivity" >
+    tools:context="sk.henrichg.phoneprofilesplusextender.LogCrashActivity" >
 
     <LinearLayout
         android:id="@+id/log_crah_activity_linla_progress"
