@@ -54,20 +54,20 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
         }
         switch (state) {
             case TelephonyManager.CALL_STATE_RINGING:
-                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_RINGING");
+//                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_RINGING");
 //                if (subscriptionInfo != null)
 //                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
 //                else
 //                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
 
-                if (phoneNumber == null)
-                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "phoneNumber=null");
-                else
-                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "phoneNumber="+phoneNumber);
-                if (savedNumber == null)
-                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "savedNumber=null");
-                else
-                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "savedNumber="+savedNumber);
+//                if (phoneNumber == null)
+//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "phoneNumber=null");
+//                else
+//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "phoneNumber="+phoneNumber);
+//                if (savedNumber == null)
+//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "savedNumber=null");
+//                else
+//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "savedNumber="+savedNumber);
                 if ((savedNumber == null) && (phoneNumber == null)) {
                     // CALL_STATE_RINGING is called twice.
                     // When savedNumber and incomingNumber are not filled,
