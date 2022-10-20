@@ -708,10 +708,6 @@ int id icon_group 0x0
 int id image 0x0
 int id info 0x0
 int id italic 0x0
-int id item1 0x0
-int id item2 0x0
-int id item3 0x0
-int id item4 0x0
 int id line1 0x0
 int id line3 0x0
 int id listMode 0x0
@@ -782,6 +778,7 @@ int id unchecked 0x0
 int id uniform 0x0
 int id up 0x0
 int id view_tree_lifecycle_owner 0x0
+int id view_tree_on_back_pressed_dispatcher_owner 0x0
 int id view_tree_saved_state_registry_owner 0x0
 int id view_tree_view_model_store_owner 0x0
 int id visible_removing_fragment_view_tag 0x0
@@ -837,8 +834,6 @@ int layout select_dialog_item_material 0x0
 int layout select_dialog_multichoice_material 0x0
 int layout select_dialog_singlechoice_material 0x0
 int layout support_simple_spinner_dropdown_item 0x0
-int menu example_menu 0x0
-int menu example_menu2 0x0
 int string abc_action_bar_home_description 0x0
 int string abc_action_bar_up_description 0x0
 int string abc_action_menu_overflow_description 0x0
