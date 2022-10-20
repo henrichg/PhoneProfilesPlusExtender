@@ -30,8 +30,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.Collator;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import me.drakeet.support.toast.ToastCompat;
 
@@ -58,7 +60,7 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = ""
-                                                +"|PPPEAccessibilityService"
+                                                //+"|PPPEAccessibilityService"
                                                 //+"|SMSBroadcastReceiver"
 
                                                 //+"|PhoneCallReceiver"
@@ -77,7 +79,7 @@ public class PPPEApplication extends Application {
 
     // for new log.txt and crash.txt is in /Android/data/sk.henrichg.phoneprofilesplusextender/files
     //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
-    private static final String LOG_FILENAME = "log.txt";
+    static final String LOG_FILENAME = "log.txt";
 
     static final String GRANT_PERMISSION_NOTIFICATION_CHANNEL = "phoneProfilesPlusExtender_grant_permission";
     static final int GRANT_PERMISSIONS_SMS_NOTIFICATION_ID = 101;
@@ -102,6 +104,8 @@ public class PPPEApplication extends Application {
     static final int REGISTRATION_TYPE_CALL_UNREGISTER = -4;
     static final int REGISTRATION_TYPE_LOCK_DEVICE_REGISTER = 5;
     static final int REGISTRATION_TYPE_LOCK_DEVICE_UNREGISTER = -5;
+
+    static final String EXTRA_BLOCK_PROFILE_EVENT_ACTION = "extra_block_profile_event_actions";
 
     //@SuppressWarnings("SpellCheckingInspection")
     //static private FirebaseAnalytics mFirebaseAnalytics;
@@ -132,6 +136,8 @@ public class PPPEApplication extends Application {
     static boolean forceStopStarted = false;
     static boolean applicationForceClosed = false;
     static boolean forceStopPerformed = false;
+
+    static volatile Collator collator = null;
 
     @Override
     public void onCreate() {
@@ -262,6 +268,8 @@ public class PPPEApplication extends Application {
             Log.e("################# PPPEApplication.attachBaseContext", "ACRA.isACRASenderServiceProcess()");
             return;
         }
+
+        collator = getCollator();
 
         String packageVersion = "";
         try {
@@ -450,7 +458,7 @@ public class PPPEApplication extends Application {
             String log = "";
             SimpleDateFormat sdf = new SimpleDateFormat("d.MM.yy HH:mm:ss:S");
             String time = sdf.format(Calendar.getInstance().getTimeInMillis());
-            log = log + time + "--" + type + "-----" + tag + "------" + text;
+            log = log + time + " [ " + type + " ] [ " + tag + " ]: " + text;
             buf.append(log);
             buf.newLine();
             buf.flush();
@@ -487,7 +495,8 @@ public class PPPEApplication extends Application {
 
         if (logContainsFilterTag(tag))
         {
-            if (logIntoLogCat) Log.i(tag, text);
+            //if (logIntoLogCat) Log.i(tag, text);
+            if (logIntoLogCat) Log.i(tag, "[ "+tag+" ]" + ": " + text);
             logIntoFile("I", tag, text);
         }
     }
@@ -500,7 +509,8 @@ public class PPPEApplication extends Application {
 
         if (logContainsFilterTag(tag))
         {
-            if (logIntoLogCat) Log.w(tag, text);
+            //if (logIntoLogCat) Log.w(tag, text);
+            if (logIntoLogCat) Log.w(tag, "[ "+tag+" ]" + ": " + text);
             logIntoFile("W", tag, text);
         }
     }
@@ -513,7 +523,8 @@ public class PPPEApplication extends Application {
 
         if (logContainsFilterTag(tag))
         {
-            if (logIntoLogCat) Log.e(tag, text);
+            //if (logIntoLogCat) Log.e(tag, text);
+            if (logIntoLogCat) Log.e(tag, "[ "+tag+" ]" + ": " + text);
             logIntoFile("E", tag, text);
         }
     }
@@ -526,7 +537,8 @@ public class PPPEApplication extends Application {
 
         if (logContainsFilterTag(tag))
         {
-            if (logIntoLogCat) Log.d(tag, text);
+            //if (logIntoLogCat) Log.d(tag, text);
+            if (logIntoLogCat) Log.d(tag, "[ "+tag+" ]" + ": " + text);
             logIntoFile("D", tag, text);
         }
     }
@@ -655,6 +667,8 @@ public class PPPEApplication extends Application {
         handler.post(() -> {
 //                PPApplication.logE("[IN_THREAD_HANDLER] PPApplication.startHandlerThread", "START run - from=PPApplication.showToast");
             try {
+                LocaleHelper.setApplicationLocale(appContext);
+
                 //ToastCompat msg = ToastCompat.makeText(appContext, text, length);
                 ToastCompat msg = ToastCompat.makeCustom(appContext,
                         R.layout.toast_layout, R.drawable.toast_background,
@@ -666,6 +680,17 @@ public class PPPEApplication extends Application {
                 //PPApplication.recordException(e);
             }
         });
+    }
+
+    static Collator getCollator()
+    {
+        Locale appLocale;
+
+        // application locale
+        appLocale = Locale.getDefault();
+
+        // get collator for application locale
+        return Collator.getInstance(appLocale);
     }
 
 }

@@ -83,6 +83,10 @@
                   android:label="@string/empty_string"
                   android:theme="@style/EmptyAppCompatActivity" >
         </activity>
+        <activity
+            android:name=".LogCrashActivity"
+            android:label="@string/empty_string">
+        </activity>
 
         <service
             android:name=".PPPEAccessibilityService"

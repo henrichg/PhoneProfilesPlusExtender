@@ -35,7 +35,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.pm.PackageInfoCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -51,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
     String defaultLanguage = "";
     String defaultCountry = "";
     String defaultScript = "";
-
-    final Collator languagesCollator = getCollator();
 
     private final BroadcastReceiver refreshGUIBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -132,7 +129,27 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        if (Build.VERSION.SDK_INT >= 28) {
+            menu.setGroupDividerEnabled(true);
+        }
+
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        boolean ret = super.onPrepareOptionsMenu(menu);
+
+        MenuItem menuItem;
+
+        menuItem = menu.findItem(R.id.menu_debug);
+        if (menuItem != null) {
+            menuItem.setVisible(DebugVersion.enabled);
+            menuItem.setEnabled(DebugVersion.enabled);
+        }
+
+        return ret;
     }
 
     @Override
@@ -255,6 +272,8 @@ public class MainActivity extends AppCompatActivity {
 
                         reloadActivity(this, false);
                         dialog.dismiss();
+
+                        LocaleHelper.setApplicationLocale(getApplicationContext());
                     })
                     .create();
 
@@ -272,9 +291,11 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         }
-        else {
+        else
+        if (DebugVersion.debugMenuItems(itemId, this))
+            return true;
+        else
             return super.onOptionsItemSelected(item);
-        }
     }
 
     @Override
@@ -658,22 +679,11 @@ public class MainActivity extends AppCompatActivity {
         String name;
     }
 
-    private class LanguagesComparator implements Comparator<Language> {
+    private static class LanguagesComparator implements Comparator<Language> {
 
         public int compare(Language lhs, Language rhs) {
-            return languagesCollator.compare(lhs.name, rhs.name);
+            return PPPEApplication.collator.compare(lhs.name, rhs.name);
         }
-    }
-
-    private static Collator getCollator()
-    {
-        Locale appLocale;
-
-        // application locale
-        appLocale = Locale.getDefault();
-
-        // get collator for application locale
-        return Collator.getInstance(appLocale);
     }
 
 }

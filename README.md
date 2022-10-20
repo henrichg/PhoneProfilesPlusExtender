@@ -1,17 +1,17 @@
-<img src="/art/ic_launcher-web.png" width="100" height="100">  
+<img src="art/ic_launcher-web.png" width="100" height="100">  
 
 PhoneProfilesPlusExtender
 =========================
 
-[![version](https://img.shields.io/badge/version-8.0.1-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.0.1)
+[![version](https://img.shields.io/badge/version-8.0.2-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.0.2)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![License](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/henrichg/PhoneProfilesPlus/blob/master/LICENSE)
 [![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AF5QK49DMAL2U&currency_code=EUR)
 
-__[GitHub release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
+### Sources of PhoneProfilesPlusExtender:
 
-__Another sources of PhoneProfilesPlusExtender:__
+__[GitHub release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
 
 Use keyword "PhoneProfilesPlus" for search this application in these stores.
 
@@ -21,10 +21,11 @@ __[F-Droid release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phonepr
 &nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_  
 __[F-Droid application (download)](https://www.f-droid.org/)__
 
-__[Droid-ify - F-Droid alternative](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)__
-&nbsp;&nbsp;&nbsp;IzzyOnDroid repository is included
+__[Droid-ify applicaion - F-Droid alternative (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)__
+&nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
 
 ---
+__What is PhoneProfilesPlusExtender:__
 
 Android application - Extender for PhoneProfiles and PhoneProfilesPlus
 - Accessibility service for profile parameter "Force stop applications"
@@ -42,9 +43,9 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 
 ##### Screenshots
 - [[1]](art/phoneScreenshots/01.png),
-  [[2]](art/phoneScreenshots/02.png),
-  [[3]](art/phoneScreenshots/03.png),
-  [[4]](art/phoneScreenshots/04.png)
+[[2]](art/phoneScreenshots/02.png),
+[[3]](art/phoneScreenshots/03.png),
+[[4]](art/phoneScreenshots/04.png)
 
 ##### Supported Android versions
 
