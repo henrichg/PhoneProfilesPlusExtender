@@ -57,8 +57,10 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                     String format = (String) extras.get("format");
                     for (Object pdu : pdus) {
                         SmsMessage msg = SmsMessage.createFromPdu((byte[]) pdu, format);
-                        origin = msg.getOriginatingAddress();
-                        //body = msg.getMessageBody();
+                        if (msg != null) {
+                            origin = msg.getOriginatingAddress();
+                            //body = msg.getMessageBody();
+                        }
                     }
                 }
             }

@@ -1,7 +1,7 @@
 <img src="art/ic_launcher-web.png" width="100" height="100">  
 
-PhoneProfilesPlusExtender
-=========================
+PhoneProfilesPlusExtender (aka PPPE)
+====================================
 
 [![version](https://img.shields.io/badge/version-8.0.2-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.0.2)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
