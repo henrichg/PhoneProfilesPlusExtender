@@ -455,6 +455,7 @@ public class MainActivity extends AppCompatActivity {
             text.setVisibility(View.GONE);
         }
 
+        // TODO remove it, not needed for targetSDK 22
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
             str1 = getString(R.string.extender_permissions_event_sensor_sms_mms);
@@ -480,6 +481,7 @@ public class MainActivity extends AppCompatActivity {
             text.setVisibility(View.GONE);
         }
 
+        // TODO remove it, not needed for targetSDK 22
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             text = findViewById(R.id.activity_main_permissions_event_sensor_call);
             if (Build.VERSION.SDK_INT < 28)
@@ -525,6 +527,7 @@ public class MainActivity extends AppCompatActivity {
         else
             text.setText("[ " + getString(R.string.extender_battery_optimization_optimized) + " ]");
 
+        // TODO remove it, not needed for targetSDK 22
         Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             permissionsButton.setOnClickListener(view -> {
@@ -549,6 +552,7 @@ public class MainActivity extends AppCompatActivity {
         else
             permissionsButton.setVisibility(View.GONE);
 
+        // TODO remove it, not needed for targetSDK 22
         permissionsButton = findViewById(R.id.activity_main_call_permissions_button);
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             permissionsButton.setOnClickListener(view -> {

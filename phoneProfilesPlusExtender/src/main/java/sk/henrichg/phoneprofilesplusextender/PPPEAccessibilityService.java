@@ -43,6 +43,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     static final String ACTION_FORCE_STOP_APPLICATIONS_START = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_START";
     static final String ACTION_FORCE_STOP_APPLICATIONS_END = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_END";
     static final String ACTION_LOCK_DEVICE = PPPEApplication.PACKAGE_NAME + ".ACTION_LOCK_DEVICE";
+    static final String ACTION_PUT_SETTINGS_PARAMETER = PPPEApplication.PACKAGE_NAME + ".ACTION_PUT_SETTINGS_PARAMETER";
+
+    static final String EXTRA_PUT_SETTINGS_PARAMETER_TYPE = "extra_put_settings_parameter_type";
+    static final String EXTRA_PUT_SETTINGS_PARAMETER_NAME = "extra_put_settings_parameter_type";
+    static final String EXTRA_PUT_SETTINGS_PARAMETER_VALUE = "extra_put_settings_parameter_type";
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -89,6 +94,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             intentFilter.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
             intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
             intentFilter.addAction(ACTION_LOCK_DEVICE);
+            intentFilter.addAction(ACTION_PUT_SETTINGS_PARAMETER);
             registerReceiver(PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                     PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION, null);
         }
@@ -138,7 +144,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
         sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
 
-        //PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[END]");
+//        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[END]");
 
     }
 
@@ -147,7 +153,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     public void onAccessibilityEvent(AccessibilityEvent event) {
         //final Context context = getApplicationContext();
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-            //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED");
+//            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED");
 
             if (event.getClassName() == null)
                 return;
@@ -163,8 +169,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     ActivityInfo activityInfo = tryGetActivity(componentName);
                     boolean isActivity = activityInfo != null;
                     if (isActivity) {
-                        //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
                         if (PPPEApplication.registeredForegroundApplicationFunctionPPP) {
+//                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
                             Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
                             intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
                             intent.putExtra(EXTRA_CLASS_NAME, event.getClassName().toString());
@@ -181,8 +187,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             //////////////////
 
             try {
-                //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "forceStopStarted="+PPPEApplication.forceStopStarted);
-                //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
+//                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "forceStopStarted="+PPPEApplication.forceStopStarted);
+//                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
                 if (PPPEApplication.forceStopStarted) {
 //                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "in forceStopStarted");
                     // force stop is started in PPP
@@ -223,11 +229,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
                                     } else {
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
-                                        //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/right_button="+list.size());
+//                                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/right_button="+list.size());
                                         if (list.size() == 0) {
                                             // Samsung Galaxy S10
                                             list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button2_negative");
-                                            //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button2_negative="+list.size());
+//                                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button2_negative="+list.size());
                                         }
                                     }
                                 }
@@ -266,7 +272,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             //event.getClassName().equals("android.app.AlertDialog") ||
                             //event.getClassName().equals("androidx.appcompat.app.AlertDialog")
                             ) {
-                            //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Alert opened");
+//                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Alert opened");
                             //forceCloseButtonClicked = false;
                             if ((PPPEApplication.deviceIsSamsung) && (Build.VERSION.SDK_INT >= 30))
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
