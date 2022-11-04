@@ -4,13 +4,9 @@ import android.accessibilityservice.AccessibilityService;
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -96,12 +92,6 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                     case PPPEApplication.REGISTRATION_TYPE_LOCK_DEVICE_UNREGISTER:
                         PPPEApplication.registeredLockDeviceFunctionPPP = false;
                         break;
-                    case PPPEApplication.REGISTRATION_TYPE_PUT_SETTINGS_PARAMETER_REGISTER:
-                        PPPEApplication.registeredPutSettingsParameterFunctionPPP = true;
-                        break;
-                    case PPPEApplication.REGISTRATION_TYPE_PUT_SETTINGS_PARAMETER_UNREGISTER:
-                        PPPEApplication.registeredPutSettingsParameterFunctionPPP = false;
-                        break;
                 }
             }
             //PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
@@ -136,38 +126,6 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                     if ((Build.VERSION.SDK_INT >= 28) && (PPPEAccessibilityService.instance != null)) {
 //                        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "lock device");
                         PPPEAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
-                    }
-                }
-            }
-        }
-        else
-        if (action.equals(PPPEAccessibilityService.ACTION_PUT_SETTINGS_PARAMETER)) {
-            if (!intent.getBooleanExtra(PPPEApplication.EXTRA_BLOCK_PROFILE_EVENT_ACTION, false)) {
-                if (PPPEApplication.registeredPutSettingsParameterFunctionPPP) {
-                    if (PPPEAccessibilityService.instance != null) {
-                        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "put settins parameter");
-
-                        String type = intent.getStringExtra(PPPEAccessibilityService.EXTRA_PUT_SETTINGS_PARAMETER_TYPE);
-                        String name = intent.getStringExtra(PPPEAccessibilityService.EXTRA_PUT_SETTINGS_PARAMETER_NAME);
-                        String value = intent.getStringExtra(PPPEAccessibilityService.EXTRA_PUT_SETTINGS_PARAMETER_VALUE);
-                        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "type="+type);
-                        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "name="+name);
-                        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "value="+value);
-
-                        if (((type != null) && !type.isEmpty()) &&
-                            ((name != null) && !name.isEmpty()) &&
-                            ((value != null) && !value.isEmpty())) {
-                            ContentResolver contentResolver = context.getContentResolver();
-                            try {
-                                ContentValues contentValues = new ContentValues(2);
-                                contentValues.put("name", name);
-                                contentValues.put("value", value);
-                                // type : "system", "secure", "global"
-                                contentResolver.insert(Uri.parse("content://settings/" + type), contentValues);
-                            } catch (Exception e) {
-                                Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", Log.getStackTraceString(e));
-                            }
-                        }
                     }
                 }
             }

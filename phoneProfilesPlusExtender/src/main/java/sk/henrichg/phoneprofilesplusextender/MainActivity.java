@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int RESULT_ACCESSIBILITY_SETTINGS = 1900;
     private static final int RESULT_PERMISSIONS_SETTINGS = 1901;
     private static final int RESULT_BATTERY_OPTIMIZATION_SETTINGS = 1902;
-    private static final int RESULT_WRITE_SETTINGS = 1903;
 
     int selectedLanguage = 0;
     String defaultLanguage = "";
@@ -317,8 +316,6 @@ public class MainActivity extends AppCompatActivity {
             reloadActivity(this, false);
         if (requestCode == RESULT_BATTERY_OPTIMIZATION_SETTINGS)
             reloadActivity(this, false);
-        if (requestCode == RESULT_WRITE_SETTINGS)
-            reloadActivity(this, false);
     }
 
     @Override
@@ -352,19 +349,8 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void displayAccessibilityServiceStatus() {
-        TextView text = findViewById(R.id.activity_main_accessibility_service_put_settings);
-        String str1 = getString(R.string.extender_accessibility_service_put_settings);
-        /*if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
-            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
-        else
-            str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_disabled) + " ]";
-        sbt = new SpannableString(str2);
-        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length()+1, str2.length(), 0);
-        text.setText(sbt);*/
-        text.setText(str1);
-
-        text = findViewById(R.id.activity_main_accessibility_service_profile_force_stop_application);
-        str1 = getString(R.string.extender_accessibility_service_profile_force_stop_applications);
+        TextView text = findViewById(R.id.activity_main_accessibility_service_profile_force_stop_application);
+        String str1 = getString(R.string.extender_accessibility_service_profile_force_stop_applications);
         /*String str2;
         if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
             str2 = str1 + " [ " + getString(R.string.extender_accessibility_service_enabled) + " ]";
@@ -522,23 +508,6 @@ public class MainActivity extends AppCompatActivity {
             text.setVisibility(View.GONE);
         }
 
-        text = findViewById(R.id.activity_main_permissions_put_settings_parameter);
-        str1 = getString(R.string.extender_permissions_put_settings_parameter);
-        /*if (Permissions.checkCallPermissions(activity))
-            str2 = str1 + " [ " + getString(R.string.extender_permissions_granted) + " ]";
-        else
-            str2 = str1 + " [ " + getString(R.string.extender_permissions_not_granted) + " ]";
-        sbt = new SpannableString(str2);
-        sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length() + 1, str2.length(), 0);
-        text.setText(sbt);*/
-        text.setText(str1);
-
-        text = findViewById(R.id.activity_main_write_settings_permissions_status);
-        if (Settings.System.canWrite(activity.getApplicationContext()))
-            text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
-        else
-            text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
-
         text = findViewById(R.id.activity_main_call_permissions_status);
         if (Permissions.checkCallPermissions(activity))
             text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
@@ -609,23 +578,6 @@ public class MainActivity extends AppCompatActivity {
         }
         else
             permissionsButton.setVisibility(View.GONE);
-
-        permissionsButton = findViewById(R.id.activity_main_write_settings_permissions_button);
-        permissionsButton.setOnClickListener(view -> {
-            if (MainActivity.activityActionExists(Settings.ACTION_MANAGE_WRITE_SETTINGS, activity)) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-                intent.setData(Uri.parse("package:" + getPackageName()));
-                //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                //noinspection deprecation
-                startActivityForResult(intent, RESULT_WRITE_SETTINGS);
-            } else {
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
-                dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
-                //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
-                dialogBuilder.setPositiveButton(android.R.string.ok, null);
-                dialogBuilder.show();
-            }
-        });
 
         Button batteryOptimizationButton = findViewById(R.id.activity_main_battery_optimization_button);
         batteryOptimizationButton.setOnClickListener(view -> {

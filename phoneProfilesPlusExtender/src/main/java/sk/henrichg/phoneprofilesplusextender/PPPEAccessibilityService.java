@@ -43,11 +43,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     static final String ACTION_FORCE_STOP_APPLICATIONS_START = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_START";
     static final String ACTION_FORCE_STOP_APPLICATIONS_END = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_END";
     static final String ACTION_LOCK_DEVICE = PPPEApplication.PACKAGE_NAME + ".ACTION_LOCK_DEVICE";
-    static final String ACTION_PUT_SETTINGS_PARAMETER = PPPEApplication.PACKAGE_NAME + ".ACTION_PUT_SETTINGS_PARAMETER";
-
-    static final String EXTRA_PUT_SETTINGS_PARAMETER_TYPE = "extra_put_settings_parameter_type";
-    static final String EXTRA_PUT_SETTINGS_PARAMETER_NAME = "extra_put_settings_parameter_name";
-    static final String EXTRA_PUT_SETTINGS_PARAMETER_VALUE = "extra_put_settings_parameter_value";
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -94,7 +89,6 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             intentFilter.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
             intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
             intentFilter.addAction(ACTION_LOCK_DEVICE);
-            intentFilter.addAction(ACTION_PUT_SETTINGS_PARAMETER);
             registerReceiver(PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
                     PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION, null);
         }
@@ -386,10 +380,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
     }
 
-    private void accessibilityDisabled(@SuppressWarnings("SameParameterValue") boolean forUnbund) {
+    private void accessibilityDisabled(@SuppressWarnings("SameParameterValue") boolean forUnbound) {
         //final Context context = getApplicationContext();
 
-        if (forUnbund) {
+        if (forUnbound) {
             // for event sensors: Applications and Orientation
             Intent _intent = new Intent(ACTION_ACCESSIBILITY_SERVICE_UNBIND);
             sendBroadcast(_intent);//, ACCESSIBILITY_SERVICE_PERMISSION);
@@ -459,7 +453,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     @Override
     public void onInterrupt() {
-//        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
+        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
 
         // !!! do not call this, because will not be working Call, SMS sensor
         //accessibilityDisabled(false);
@@ -469,7 +463,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     @Override
     public boolean onUnbind(Intent intent) {
         //Log.d("PPPEAccessibilityService", "onUnbind");
-//        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
+        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
 
         accessibilityDisabled(true);
 

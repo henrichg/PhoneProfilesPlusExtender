@@ -106,8 +106,6 @@ public class PPPEApplication extends Application {
     static final int REGISTRATION_TYPE_CALL_UNREGISTER = -4;
     static final int REGISTRATION_TYPE_LOCK_DEVICE_REGISTER = 5;
     static final int REGISTRATION_TYPE_LOCK_DEVICE_UNREGISTER = -5;
-    static final int REGISTRATION_TYPE_PUT_SETTINGS_PARAMETER_REGISTER = 6;
-    static final int REGISTRATION_TYPE_PUT_SETTINGS_PARAMETER_UNREGISTER = -6;
 
     static final String EXTRA_BLOCK_PROFILE_EVENT_ACTION = "extra_block_profile_event_actions";
 
@@ -121,7 +119,6 @@ public class PPPEApplication extends Application {
     static boolean registeredCallFunctionPPP = true;
     static boolean registeredLockDeviceFunctionPP = true;
     static boolean registeredLockDeviceFunctionPPP = true;
-    static boolean registeredPutSettingsParameterFunctionPPP = true;
 
     static FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
     static ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
