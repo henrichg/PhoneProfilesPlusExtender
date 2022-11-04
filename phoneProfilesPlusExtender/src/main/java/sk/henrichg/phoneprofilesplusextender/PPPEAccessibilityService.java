@@ -53,7 +53,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     protected void onServiceConnected() {
         super.onServiceConnected();
 
-        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
+//        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
 
         instance = this;
 
@@ -138,7 +138,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
         sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
 
-        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[END]");
+//        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[END]");
 
     }
 
@@ -453,7 +453,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     @Override
     public void onInterrupt() {
-        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
+//        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
 
         // !!! do not call this, because will not be working Call, SMS sensor
         //accessibilityDisabled(false);
@@ -463,7 +463,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     @Override
     public boolean onUnbind(Intent intent) {
         //Log.d("PPPEAccessibilityService", "onUnbind");
-        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
+//        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
 
         accessibilityDisabled(true);
 
