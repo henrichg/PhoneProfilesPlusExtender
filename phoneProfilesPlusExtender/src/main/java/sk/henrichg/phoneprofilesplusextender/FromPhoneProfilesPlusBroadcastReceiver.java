@@ -146,7 +146,6 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                 if (PPPEApplication.registeredPutSettingsParameterFunctionPPP) {
                     if (PPPEAccessibilityService.instance != null) {
                         PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "put settins parameter");
-                        // TODO tu spracuj broadcast z PPP na nastavenie Settings
 
                         String type = intent.getStringExtra(PPPEAccessibilityService.EXTRA_PUT_SETTINGS_PARAMETER_TYPE);
                         String name = intent.getStringExtra(PPPEAccessibilityService.EXTRA_PUT_SETTINGS_PARAMETER_NAME);
@@ -160,7 +159,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                                 ContentValues contentValues = new ContentValues(2);
                                 contentValues.put("name", name);
                                 contentValues.put("value", value);
-                                // settingsType : "system", "secure", "global"
+                                // type : "system", "secure", "global"
                                 contentResolver.insert(Uri.parse("content://settings/" + type), contentValues);
                             } catch (Exception e) {
                                 Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", Log.getStackTraceString(e));
