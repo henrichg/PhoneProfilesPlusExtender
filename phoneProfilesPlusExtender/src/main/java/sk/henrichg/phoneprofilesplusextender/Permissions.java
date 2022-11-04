@@ -69,7 +69,6 @@ class Permissions {
     }
 
     static void grantNotificationsPermission(final Activity activity) {
-        // TODO test this in Pixel 6, maybe is required
         if (Build.VERSION.SDK_INT >= 33) {
             NotificationManager notificationManager = (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
             if (notificationManager != null) {
