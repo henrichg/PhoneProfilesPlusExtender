@@ -5,6 +5,8 @@ ext.ppVersions = [
     minSdk: 22, //24,
 
     targetSdk: 22, //27,
+    // 22 is required for:
+    // - put settings parameter to system db without root ;-)
     // 27 is required for:
     // - android.permission.PROCESS_OUTGOING_CALLS
 
