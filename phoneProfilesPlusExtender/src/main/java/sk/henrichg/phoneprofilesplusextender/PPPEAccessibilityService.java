@@ -46,8 +46,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     static final String ACTION_PUT_SETTINGS_PARAMETER = PPPEApplication.PACKAGE_NAME + ".ACTION_PUT_SETTINGS_PARAMETER";
 
     static final String EXTRA_PUT_SETTINGS_PARAMETER_TYPE = "extra_put_settings_parameter_type";
-    static final String EXTRA_PUT_SETTINGS_PARAMETER_NAME = "extra_put_settings_parameter_type";
-    static final String EXTRA_PUT_SETTINGS_PARAMETER_VALUE = "extra_put_settings_parameter_type";
+    static final String EXTRA_PUT_SETTINGS_PARAMETER_NAME = "extra_put_settings_parameter_name";
+    static final String EXTRA_PUT_SETTINGS_PARAMETER_VALUE = "extra_put_settings_parameter_value";
 
     @Override
     protected void attachBaseContext(Context base) {

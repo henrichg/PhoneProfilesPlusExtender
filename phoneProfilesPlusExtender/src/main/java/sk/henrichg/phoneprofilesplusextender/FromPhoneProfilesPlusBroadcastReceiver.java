@@ -150,6 +150,9 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                         String type = intent.getStringExtra(PPPEAccessibilityService.EXTRA_PUT_SETTINGS_PARAMETER_TYPE);
                         String name = intent.getStringExtra(PPPEAccessibilityService.EXTRA_PUT_SETTINGS_PARAMETER_NAME);
                         String value = intent.getStringExtra(PPPEAccessibilityService.EXTRA_PUT_SETTINGS_PARAMETER_VALUE);
+                        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "type="+type);
+                        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "name="+name);
+                        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "value="+value);
 
                         if (((type != null) && !type.isEmpty()) &&
                             ((name != null) && !name.isEmpty()) &&
