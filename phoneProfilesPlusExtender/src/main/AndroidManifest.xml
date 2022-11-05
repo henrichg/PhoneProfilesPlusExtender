@@ -3,6 +3,13 @@
           xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
 
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true"/>
+
     <permission
         android:name="sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION"
         android:label="@string/extender_accessibility_service_permission"
@@ -53,6 +60,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 <!--        android:roundIcon="@mipmap/ic_launcher_round"-->
+
+        <!-- support for 18.5:9 display (Samsung Galaxy S8, LG G6) -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4"/>
 
 <!--        <meta-data-->
 <!--            android:name="firebase_crashlytics_collection_enabled"-->
