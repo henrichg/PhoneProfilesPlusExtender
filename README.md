@@ -15,14 +15,14 @@ __[GitHub release (direct download)](https://github.com/henrichg/PhoneProfilesPl
 
 Use keyword "PhoneProfilesPlus" for search this application in these stores.
 
-__Galaxy Store (for Samsung devices)__
---[Galaxy Store PPPE release](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)__
+__Galaxy Store (for Samsung devices)__  
+__[Galaxy Store PPPE release](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)__
 
 __[F-Droid release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)__
 &nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_  
 __[F-Droid application (download)](https://www.f-droid.org/)__
 
-__[Droid-ify PPP release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)__
+__[Droid-ify PPP release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)__  
 __[Droid-ify applicaion - F-Droid alternative (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)__
 &nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
 
