@@ -35,10 +35,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.pm.PackageInfoCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -161,6 +158,11 @@ public class MainActivity extends AppCompatActivity {
         }
         else*/
         if (itemId == R.id.menu_choose_language) {
+            ChooseLanguageDialog chooseLanguageDialog = new ChooseLanguageDialog(this);
+            chooseLanguageDialog.show();
+            return true;
+
+            /*
             String storedLanguage = LocaleHelper.getLanguage(getApplicationContext());
             String storedCountry = LocaleHelper.getCountry(getApplicationContext());
             String storedScript = LocaleHelper.getScript(getApplicationContext());
@@ -290,6 +292,7 @@ public class MainActivity extends AppCompatActivity {
             chooseLanguageDialog.show();
 
             return true;
+            */
         }
         else
         if (DebugVersion.debugMenuItems(itemId, this))
@@ -656,7 +659,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static void reloadActivity(Activity activity,
+    static void reloadActivity(Activity activity,
                                        @SuppressWarnings("SameParameterValue") boolean newIntent)
     {
         if (newIntent)
@@ -678,6 +681,7 @@ public class MainActivity extends AppCompatActivity {
             activity.recreate();
     }
 
+    /*
     private static class Language {
         String language;
         String country;
@@ -691,5 +695,6 @@ public class MainActivity extends AppCompatActivity {
             return PPPEApplication.collator.compare(lhs.name, rhs.name);
         }
     }
+    */
 
 }

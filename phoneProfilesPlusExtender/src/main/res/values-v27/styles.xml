@@ -20,6 +20,7 @@
 
         <item name="activityDisabledTextColor">@color/activityDisabledTextColor</item>
 
+        <item name="dialogDivider">@color/dialog_divider</item>
         <item name="alertDialogTheme">@style/AlertDialogStyleDayNight</item>
         <item name="dialogTheme">@style/DialogStyleDayNight</item>
 
@@ -27,6 +28,7 @@
         <item name="actionOverflowMenuStyle">@style/PopupMenu_dayNight</item>
         <item name="android:dropDownListViewStyle">@style/PopupMenuItemStyle</item>
         <item name="dropDownListViewStyle">@style/PopupMenuItemStyle</item>
+        <item name="listViewItemBackground">@drawable/listview_item_background</item>
 
         <item name="android:windowLightNavigationBar">@bool/windowLightStatusBar</item>
     </style>

@@ -52,6 +52,8 @@ public class PPPEApplication extends Application {
 
     static final String APPLICATION_PREFS_NAME = "phone_profiles_plus_extender_preferences";
 
+    static final String CROWDIN_URL = "https://crowdin.com/project/phoneprofilesplus";
+
     //static final int pid = Process.myPid();
     //static final int uid = Process.myUid();
 
