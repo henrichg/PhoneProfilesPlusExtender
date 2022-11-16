@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="activityDisabledTextColor" format="reference" />
-    <attr name="listViewItemBackground" format="reference" />
     <attr name="dialogDivider" format="reference" />
+    <attr name="listViewItemBackground" format="reference" />
+    <attr name="popupMenuItemBackground" format="reference" />
 </resources>

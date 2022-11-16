@@ -28,9 +28,46 @@
         <item name="actionOverflowMenuStyle">@style/PopupMenu_dayNight</item>
         <item name="android:dropDownListViewStyle">@style/PopupMenuItemStyle</item>
         <item name="dropDownListViewStyle">@style/PopupMenuItemStyle</item>
-        <item name="listViewItemBackground">@drawable/listview_item_background</item>
+
+        <item name="listViewItemBackground">@drawable/listview_item_background_selector</item>
+        <item name="popupMenuItemBackground">@drawable/popup_menu_item_background_selector</item>
 
     </style>
+
+    <style name="AppTheme_noRipple" parent="Theme.AppCompat.DayNight">
+        <!-- disable initial empty screen - useful for dark theme -->
+        <item name="android:windowDisablePreview">true</item>
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+
+        <item name="android:windowLightStatusBar">@bool/windowLightStatusBar</item>
+        <item name="android:navigationBarColor">@color/navigationBar</item>
+
+        <item name="android:textViewStyle">@style/TextViewTheme</item>
+        <item name="android:windowBackground">@color/activityBackgroundColor</item>
+
+        <item name="textAllCaps">false</item>
+
+        <item name="activityDisabledTextColor">@color/activityDisabledTextColor</item>
+
+        <item name="dialogDivider">@color/dialog_divider</item>
+        <item name="alertDialogTheme">@style/AlertDialogStyleDayNight</item>
+        <item name="dialogTheme">@style/DialogStyleDayNight</item>
+
+        <item name="android:popupMenuStyle">@style/PopupMenu_dayNight</item>
+        <item name="actionOverflowMenuStyle">@style/PopupMenu_dayNight</item>
+        <item name="android:dropDownListViewStyle">@style/PopupMenuItemStyle</item>
+        <item name="dropDownListViewStyle">@style/PopupMenuItemStyle</item>
+
+        <item name="listViewItemBackground">@drawable/listview_item_background_selector_no_ripple</item>
+        <item name="popupMenuItemBackground">@drawable/popup_menu_item_background_selector_no_ripple</item>
+
+    </style>
+
+
 
     <style name="EmptyAppCompatActivity" parent="Theme.AppCompat.Dialog">
         <item name="android:windowIsTranslucent">true</item>
