@@ -265,13 +265,13 @@ public class PPPEApplication extends Application {
             HiddenApiBypass.addHiddenApiExemptions("L");
         }
 
+        collator = getCollator();
+
         // This is required : https://www.acra.ch/docs/Troubleshooting-Guide#applicationoncreate
         if (ACRA.isACRASenderServiceProcess()) {
             Log.e("################# PPPEApplication.attachBaseContext", "ACRA.isACRASenderServiceProcess()");
             return;
         }
-
-        collator = getCollator();
 
         String packageVersion = "";
         try {
@@ -363,7 +363,7 @@ public class PPPEApplication extends Application {
             actualVersionCode = PackageInfoCompat.getLongVersionCode(pInfo);
         } catch (Exception ignored) {}
 
-        Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
+        Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(base, actualVersionCode));
         //}
 
     }
@@ -545,7 +545,7 @@ public class PPPEApplication extends Application {
         }
     }
 
-    // Firebase Crashlytics -------------------------------------------------------------------------
+    // ACRA -------------------------------------------------------------------------
 
     static void recordException(Throwable ex) {
         try {
