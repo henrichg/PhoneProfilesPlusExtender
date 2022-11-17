@@ -277,8 +277,7 @@ public class PPPEApplication extends Application {
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(PPPEApplication.PACKAGE_NAME, 0);
             packageVersion = " - v" + pInfo.versionName + " (" + PPPEApplication.getVersionCode(pInfo) + ")";
-        } catch (Exception e) {
-            PPPEApplication.recordException(e);
+        } catch (Exception ignored) {
         }
 
         String body;
