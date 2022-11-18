@@ -3,7 +3,7 @@
 PhoneProfilesPlusExtender (aka PPPE)
 ====================================
 
-[![version](https://img.shields.io/badge/version-8.0.2.1-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.0.2.1)
+[![version](https://img.shields.io/badge/version-8.0.3-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.0.3)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![License](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/henrichg/PhoneProfilesPlus/blob/master/LICENSE)
 [![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)
@@ -11,17 +11,20 @@ PhoneProfilesPlusExtender (aka PPPE)
 
 ### Sources of PhoneProfilesPlusExtender:
 
-__[GitHub release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
+__[GitHub PPPE release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
 
 Use keyword "PhoneProfilesPlus" for search this application in these stores.
 
-__Galaxy Store (for Samsung devices)__
+__Galaxy Store (for Samsung devices)__  
+__[Galaxy Store PPPE release](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)__
 
-__[F-Droid release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)__
+__[F-Droid PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)__
 &nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_  
 __[F-Droid application (download)](https://www.f-droid.org/)__
 
-__[Droid-ify applicaion - F-Droid alternative (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)__
+__Droid-ify (F-Droid alternative)__  
+__[Droid-ify PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)__  
+__[Droid-ify applicaion (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)__
 &nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
 
 ---

@@ -5,6 +5,9 @@
     <dimen name="activity_margin_start">0dp</dimen>
     <dimen name="activity_margin_end">0dp</dimen>
 
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="divider_margin">15dp</dimen>
+
     <dimen name="dialog_corner_radius">10dp</dimen>
     <dimen name="dialog_transparent_padding">15dp</dimen>
     <dimen name="dialog_background_padding">3dp</dimen>
@@ -12,5 +15,11 @@
     <dimen name="popup_menu_transparent_padding_width">0dp</dimen>
     <dimen name="popup_menu_transparent_padding_height">0dp</dimen>
     <dimen name="popup_menu_corner_radius">10dp</dimen>
+
+    <dimen name="popup_window_corner_radius">10dp</dimen>
+
+    <dimen name="alert_dialog_top_padding">10dp</dimen>
+
+    <dimen name="chackBox_radioButton_spacing_for_list_items">10dp</dimen>
 
 </resources>

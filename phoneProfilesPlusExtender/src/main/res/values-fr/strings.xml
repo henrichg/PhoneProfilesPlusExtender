@@ -47,4 +47,5 @@
     <string name="extender_enable_notificaitons_button">Activé</string>
     <string name="extender_menu_choose_language">Choisissez la langue</string>
     <string name="extender_menu_choose_language_system_language">[Système]</string>
+    <string name="extender_application_translations">Traductions :</string>
 </resources>

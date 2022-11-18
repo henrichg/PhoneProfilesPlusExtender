@@ -5,8 +5,8 @@
     <!--suppress CheckTagEmptyBody -->
     <string name="extender_accessibility_service_description">Extender для PhoneProfilesPlus. Працює лише у поєднанні з PhoneProfilesPlus.</string>
     <string name="extender_about_application_version">Версія:</string>
-    <string name="extender_accessibility_service_profile_force_stop_applications">• Служба спец. можливостей для параметра профілю \"Примусова зупинка додатків\"</string>
-    <string name="extender_accessibility_service_event_sensor_applications_orientation">• Служба спец. можливостей для датчиків \"Датчик додатків\" і \"Датчик орієнтації екрану\"</string>
+    <string name="extender_accessibility_service_profile_force_stop_applications">• Служба спец. можливостей для параметра профілю \"Примусова зупинка застосунків\"</string>
+    <string name="extender_accessibility_service_event_sensor_applications_orientation">• Служба спец. можливостей для датчиків \"Датчик застосунків\" і \"Датчик орієнтації екрану\"</string>
     <string name="extender_accessibility_service_enabled">Увімкнено</string>
     <string name="extender_accessibility_service_disabled">Вимкнено</string>
     <string name="extender_accessibility_service_button">Увімкнути/Вимкнути\nСлужбу спец. можливостей</string>
@@ -36,7 +36,7 @@
     <string name="extender_battery_optimization_button">Оптимізація батареї</string>
     <string name="extender_acra_email_body_device">Пристрій:</string>
     <string name="extender_acra_email_body_android_version">Версія Android:</string>
-    <string name="extender_permissions_popup_windows_in_background">Будь ласка, увімкніть \"Показувати вікна що виринають під час роботи у фоновому режимі\". Якщо не увімкнути, то \"Примусова зупинка додатків\" не працюватиме.</string>
+    <string name="extender_permissions_popup_windows_in_background">Будь ласка, увімкніть \"Показувати вікна що виринають під час роботи у фоновому режимі\". Якщо не увімкнути, то \"Примусова зупинка застосунків\" не працюватиме.</string>
     <string name="extender_popup_windows_in_background_button">Відкрити\nІнші дозволи\n(MIUI)</string>
     <string name="extender_notification_channel_grant_permission">Надати дозвіл</string>
     <string name="extender_notification_channel_grant_permission_description">Показує дозвіл, який потрібно надати.</string>
@@ -47,4 +47,5 @@
     <string name="extender_enable_notificaitons_button">Увімкнути</string>
     <string name="extender_menu_choose_language">Виберіть мову</string>
     <string name="extender_menu_choose_language_system_language">[System]</string>
+    <string name="extender_application_translations">Переклади:</string>
 </resources>

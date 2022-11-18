@@ -11,7 +11,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.PowerManager;
-import android.os.Process;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -52,6 +51,11 @@ public class PPPEApplication extends Application {
     static final String PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender";
 
     static final String APPLICATION_PREFS_NAME = "phone_profiles_plus_extender_preferences";
+
+    static final String CROWDIN_URL = "https://crowdin.com/project/phoneprofilesplus";
+
+    //static final int pid = Process.myPid();
+    //static final int uid = Process.myUid();
 
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
@@ -184,9 +188,7 @@ public class PPPEApplication extends Application {
         if (checkAppReplacingState())
             return;
 
-        int uid = Process.myUid();
-
-        Log.e("##### PPPEApplication.onCreate", "Start  uid="+uid);
+        //Log.e("##### PPPEApplication.onCreate", "Start  uid="+uid);
 
         PPPEApplication.createGrantPermissionNotificationChannel(this);
 
@@ -263,20 +265,19 @@ public class PPPEApplication extends Application {
             HiddenApiBypass.addHiddenApiExemptions("L");
         }
 
+        collator = getCollator();
+
         // This is required : https://www.acra.ch/docs/Troubleshooting-Guide#applicationoncreate
         if (ACRA.isACRASenderServiceProcess()) {
             Log.e("################# PPPEApplication.attachBaseContext", "ACRA.isACRASenderServiceProcess()");
             return;
         }
 
-        collator = getCollator();
-
         String packageVersion = "";
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(PPPEApplication.PACKAGE_NAME, 0);
             packageVersion = " - v" + pInfo.versionName + " (" + PPPEApplication.getVersionCode(pInfo) + ")";
-        } catch (Exception e) {
-            PPPEApplication.recordException(e);
+        } catch (Exception ignored) {
         }
 
         String body;
@@ -361,7 +362,7 @@ public class PPPEApplication extends Application {
             actualVersionCode = PackageInfoCompat.getLongVersionCode(pInfo);
         } catch (Exception ignored) {}
 
-        Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(getApplicationContext(), actualVersionCode));
+        Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(base, actualVersionCode));
         //}
 
     }
@@ -543,7 +544,7 @@ public class PPPEApplication extends Application {
         }
     }
 
-    // Firebase Crashlytics -------------------------------------------------------------------------
+    // ACRA -------------------------------------------------------------------------
 
     static void recordException(Throwable ex) {
         try {

@@ -12,6 +12,7 @@
     <color name="activityDisabledTextColor">#2F000000</color>
 
     <color name="activityPopupMenuBackgroundColor">#FFF7F7F7</color>
+    <color name="activityPopupMenuClickedItemBackgroundColor">#17000000</color>
     <color name="popupMenuBorderColor">#FFCCCCCC</color>
 
     <color name="buttonBorderColor">#FFAAAAAA</color>
@@ -20,6 +21,7 @@
 
     <color name="notificationDecorationColor">#cc893e</color>
 
+    <color name="dialog_divider">#21000000</color>
     <color name="dialogBorderColor">#FFFFFFFF</color>
 
     <color name="toastBackgroundColor">#FF3a3a3a</color>

@@ -35,10 +35,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.pm.PackageInfoCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (PPPEApplication.deviceIsOnePlus)
+            setTheme(R.style.AppTheme_noRipple);
+        else
+            setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
@@ -161,6 +163,11 @@ public class MainActivity extends AppCompatActivity {
         }
         else*/
         if (itemId == R.id.menu_choose_language) {
+            ChooseLanguageDialog chooseLanguageDialog = new ChooseLanguageDialog(this);
+            chooseLanguageDialog.show();
+            return true;
+
+            /*
             String storedLanguage = LocaleHelper.getLanguage(getApplicationContext());
             String storedCountry = LocaleHelper.getCountry(getApplicationContext());
             String storedScript = LocaleHelper.getScript(getApplicationContext());
@@ -290,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
             chooseLanguageDialog.show();
 
             return true;
+            */
         }
         else
         if (DebugVersion.debugMenuItems(itemId, this))
@@ -508,6 +516,12 @@ public class MainActivity extends AppCompatActivity {
             text.setVisibility(View.GONE);
         }
 
+        text = findViewById(R.id.activity_main_call_permissions_status);
+        if (Permissions.checkCallPermissions(activity))
+            text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
+        else
+            text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
+
         text = findViewById(R.id.activity_main_battery_optimization);
         str1 = getString(R.string.extender_battery_optimization_text);
         /*if (PPPEApplication.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
@@ -650,7 +664,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static void reloadActivity(Activity activity,
+    static void reloadActivity(Activity activity,
                                        @SuppressWarnings("SameParameterValue") boolean newIntent)
     {
         if (newIntent)
@@ -672,6 +686,7 @@ public class MainActivity extends AppCompatActivity {
             activity.recreate();
     }
 
+    /*
     private static class Language {
         String language;
         String country;
@@ -685,5 +700,6 @@ public class MainActivity extends AppCompatActivity {
             return PPPEApplication.collator.compare(lhs.name, rhs.name);
         }
     }
+    */
 
 }

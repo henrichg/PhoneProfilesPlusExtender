@@ -2,6 +2,8 @@ package sk.henrichg.phoneprofilesplusextender;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.DeadSystemException;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -63,17 +65,40 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
             logIntoFile("E", "TopExceptionHandler", report);
         }
 
+        Log.e("TopExceptionHandler.uncaughtException", "defaultUEH="+defaultUEH);
+
         if (defaultUEH != null) {
-            //noinspection StatementWithEmptyBody
+            boolean ignore = false;
             if (t.getName().equals("FinalizerWatchdogDaemon") && (e instanceof TimeoutException)) {
                 // ignore these exceptions
                 // java.util.concurrent.TimeoutException: com.android.internal.os.BinderInternal$GcWatcher.finalize() timed out after 10 seconds
                 // https://stackoverflow.com/a/55999687/2863059
+                ignore = true;
             }
-            else {
+            //if (Build.VERSION.SDK_INT >= 24) {
+            if (e instanceof DeadSystemException) {
+                // ignore these exceptions
+                // these are from dead of system for example:
+                // java.lang.RuntimeException: Unable to create service
+                // androidx.work.impl.background.systemjob.SystemJobService:
+                // java.lang.RuntimeException: android.os.DeadSystemException
+                ignore = true;
+            }
+            //}
+
+            // this is only for debuging, how is handled ignored exceptions
+            //if (e instanceof java.lang.RuntimeException) {
+            //    if ((e.getMessage() != null) && (e.getMessage().equals("Test Crash"))) {
+            //        ignore = true;
+            //    }
+            //}
+
+            if (!ignore) {
                 //Delegates to Android's error handling
                 defaultUEH.uncaughtException(t, e);
-            }
+            } else
+                //Prevents the service/app from freezing
+                System.exit(2);
         }
         else
             //Prevents the service/app from freezing

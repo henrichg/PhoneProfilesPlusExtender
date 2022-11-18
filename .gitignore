@@ -1,9 +1,9 @@
 .gradle
 /local.properties
 /.idea/workspace.xml
-/.idea/libraries
-/.idea/caches
+/.idea/libraries/
+/.idea/caches/
 /.idea/misc.xml
-/PhoneProfilesPlusExtender/build
-/phoneProfilesPlusExtender/build
-/build
+/build/
+
+/phoneProfilesPlusExtender/build/

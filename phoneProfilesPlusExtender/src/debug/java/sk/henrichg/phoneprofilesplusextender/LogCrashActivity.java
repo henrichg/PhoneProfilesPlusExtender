@@ -32,8 +32,10 @@ public class LogCrashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //GlobalGUIRoutines.setTheme(this, false, false/*, false*/, false, false, false); // must by called before super.onCreate()
-        //GlobalGUIRoutines.setLanguage(this);
+        if (PPPEApplication.deviceIsOnePlus)
+            setTheme(R.style.AppTheme_noRipple);
+        else
+            setTheme(R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
 
