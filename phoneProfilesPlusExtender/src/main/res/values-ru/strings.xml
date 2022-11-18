@@ -47,4 +47,5 @@
     <string name="extender_enable_notificaitons_button">Разрешить</string>
     <string name="extender_menu_choose_language">Выбрать язык</string>
     <string name="extender_menu_choose_language_system_language">[System]</string>
+    <string name="extender_application_translations">Переводы:</string>
 </resources>

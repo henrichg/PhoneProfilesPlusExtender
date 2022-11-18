@@ -47,4 +47,5 @@
     <string name="extender_enable_notificaitons_button">Povolit</string>
     <string name="extender_menu_choose_language">Zvolit jazyk</string>
     <string name="extender_menu_choose_language_system_language">[Systémový]</string>
+    <string name="extender_application_translations">Překlady:</string>
 </resources>
