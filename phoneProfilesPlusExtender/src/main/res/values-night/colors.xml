@@ -1,28 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#201a18</color>
-    <color name="primaryDark">#201a18</color>
+    <color name="primary">#1B1B1B</color>
+    <color name="primaryDark">#1B1B1B</color>
     <color name="accent">#f8b367</color>
     <!--<color name="accent_disabled">#70E99B7F</color>-->
     <color name="navigationBar">#000000</color>
 
-    <color name="activityBackgroundColor">#FF201a18</color>
+    <color name="activityBackgroundColor">#FF1B1B1B</color>
     <!--<color name="activityTextColor">#FFFFFFFF</color>-->
     <color name="activitySecondaryTextColor">#CFFFFFFF</color>
     <color name="activityDisabledTextColor">#2FFFFFFF</color>
 
-    <color name="activityPopupMenuBackgroundColor">#FF1a1513</color>
-    <color name="activityPopupMenuClickedItemBackgroundColor">#37ffdad3</color>
-    <color name="popupMenuBorderColor">#FF403430</color>
+    <color name="activityPopupMenuBackgroundColor">#FF151515</color>
+    <color name="activityPopupMenuClickedItemBackgroundColor">#37ffffff</color>
+    <color name="popupMenuBorderColor">#FF3f3f3f</color>
 
-    <color name="buttonBorderColor">#FF735c55</color>
-    <color name="buttonBackgroundColor">#FF1a1513</color>
-    <color name="buttonClickedBackgroundColor">#FF403430</color>
+    <color name="buttonBorderColor">#FF454545</color>
+    <color name="buttonBackgroundColor">#FF151515</color>
+    <color name="buttonClickedBackgroundColor">#FF303030</color>
 
     <color name="notificationDecorationColor">#cc893e</color>
 
     <color name="dialog_divider">#25ffffff</color>
-    <color name="dialogBorderColor">#FF403430</color>
+    <color name="dialogBorderColor">#FF3f3f3f</color>
+
+    <color name="scrollbar_color">#25ffffff</color>
+
+<!--    <color name="primary">#201a18</color>-->
+<!--    <color name="primaryDark">#201a18</color>-->
+<!--    <color name="accent">#f8b367</color>-->
+<!--    &lt;!&ndash;<color name="accent_disabled">#70E99B7F</color>&ndash;&gt;-->
+<!--    <color name="navigationBar">#000000</color>-->
+
+<!--    <color name="activityBackgroundColor">#FF201a18</color>-->
+<!--    &lt;!&ndash;<color name="activityTextColor">#FFFFFFFF</color>&ndash;&gt;-->
+<!--    <color name="activitySecondaryTextColor">#CFFFFFFF</color>-->
+<!--    <color name="activityDisabledTextColor">#2FFFFFFF</color>-->
+
+<!--    <color name="activityPopupMenuBackgroundColor">#FF1a1513</color>-->
+<!--    <color name="activityPopupMenuClickedItemBackgroundColor">#37ffdad3</color>-->
+<!--    <color name="popupMenuBorderColor">#FF403430</color>-->
+
+<!--    <color name="buttonBorderColor">#FF735c55</color>-->
+<!--    <color name="buttonBackgroundColor">#FF1a1513</color>-->
+<!--    <color name="buttonClickedBackgroundColor">#FF403430</color>-->
+
+<!--    <color name="notificationDecorationColor">#cc893e</color>-->
+
+<!--    <color name="dialog_divider">#25ffffff</color>-->
+<!--    <color name="dialogBorderColor">#FF403430</color>-->
 
     <color name="toastBackgroundColor">#FF3a3a3a</color>
     <color name="toastTextColor">#FFFFFFFF</color>
