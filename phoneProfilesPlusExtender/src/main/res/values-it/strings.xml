@@ -16,7 +16,7 @@
     <string name="extender_permissions_event_sensor_sms_mms">• Permessi per il parametro dell\'evento \"sensore SMS/MMS\" - permesso SMS</string>
     <string name="extender_permissions_not_granted">Non garantito</string>
     <string name="extender_permissions_granted">Garantito</string>
-    <string name="extender_permissions_button">Permessi\n garantiti/negati</string>
+    <string name="extender_permissions_button">Permessi\ngarantiti/negati</string>
     <string name="extender_accessibility_service_event_sensor_call">• Servizio di accessibilità per il parametro dell\'evento \"Sensore di chiamata\". La funzione di accessibilità non è usata, il servizio è necessario per ricevere le chiamate.</string>
     <string name="extender_permissions_event_sensor_call">• Permessi per il parametro dell\'evento \"Sensore di chiamata\" - permesso Telefono</string>
     <string name="extender_permissions_event_sensor_call_28">• Permessi per il parametro dell\'evento \"Sensore di chiamata\" - permesso Telefono, registri Chiamata</string>

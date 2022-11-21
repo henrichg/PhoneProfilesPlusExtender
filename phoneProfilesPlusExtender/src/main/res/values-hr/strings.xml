@@ -33,7 +33,7 @@
     <string name="extender_battery_optimization_text">• Optimizacija baterije za PhoneProfilesPlusExtender - molimo dodajte aplikaciju u grupu \"Ne optimizirano\"</string>
     <string name="extender_battery_optimization_optimized">Optimizirano</string>
     <string name="extender_battery_optimization_not_optimized">Ne optimizirano</string>
-    <string name="extender_battery_optimization_button">Otvori\n Optimizacija baterije</string>
+    <string name="extender_battery_optimization_button">Otvori\nOptimizacija baterije</string>
     <string name="extender_acra_email_body_device">Uređaj:</string>
     <string name="extender_acra_email_body_android_version">Verzija Androida:</string>
     <string name="extender_permissions_popup_windows_in_background">Please enable \"Display pop-up windows while running in the background\". Without this enabled, \"Force stop applications\" will not be working.</string>
