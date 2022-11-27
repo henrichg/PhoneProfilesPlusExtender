@@ -15,7 +15,7 @@
     <color name="activityPopupMenuClickedItemBackgroundColor">#37ffffff</color>
     <color name="popupMenuBorderColor">#FF3f3f3f</color>
 
-    <color name="buttonBorderColor">#FF454545</color>
+    <color name="buttonBorderColor">#FF656565</color>
     <color name="buttonBackgroundColor">#FF151515</color>
     <color name="buttonClickedBackgroundColor">#FF303030</color>
 
