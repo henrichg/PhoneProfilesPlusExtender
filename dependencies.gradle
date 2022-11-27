@@ -1,6 +1,6 @@
 ext.ppVersions = [
-    publishVersion: '8.0.4',
-    publishVersionCode: 845,
+    publishVersion: '8.0.4.1b',
+    publishVersionCode: 846,
 
     minSdk: 24,
 
@@ -11,10 +11,10 @@ ext.ppVersions = [
     // 27 is required for:
     // - android.permission.PROCESS_OUTGOING_CALLS
 
-    compileSdk: 32,
+    compileSdk: 33,
     buildTools: '33.0.0',
 
     appcompatXLib: '1.5.1', //'1.4.2',
 
-    acra: '5.9.6'
+    acra: '5.9.7'
 ]
