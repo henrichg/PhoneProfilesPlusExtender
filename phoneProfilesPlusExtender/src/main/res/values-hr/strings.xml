@@ -12,12 +12,12 @@
     <string name="extender_accessibility_service_button">Uklj./Isklj.\nServis pristupačnosti</string>
     <string name="extender_setting_screen_not_found_alert">Postavke zaslona nisu pronađene.</string>
     <string name="extender_accessibility_service_permission">PhoneProfilesPlusExtender servis pristupačnosti</string>
-    <string name="extender_accessibility_service_event_sensor_sms_mms">•Servis pristupačnosti za parametar događaja \"SMS/MMS senzor\". Funkcija pristupačnosti se ne koristi, servis je potreban za prijem SMS i MMS.</string>
-    <string name="extender_permissions_event_sensor_sms_mms">• Dozvole za parametar događaja \"SMS/MMS senzor\" - dozvola SMS</string>
+    <string name="extender_accessibility_service_event_sensor_sms_mms">Servis pristupačnosti za parametar događaja \"SMS/MMS senzor\". Funkcija pristupačnosti se ne koristi, servis je potreban za prijem SMS i MMS.</string>
+    <string name="extender_permissions_event_sensor_sms_mms">Dozvole za parametar događaja \"SMS/MMS senzor\" - dozvola SMS</string>
     <string name="extender_permissions_not_granted">Nije odobreno</string>
     <string name="extender_permissions_granted">Odobreno</string>
     <string name="extender_permissions_button">Dozvoli/Odbi\ndozvole</string>
-    <string name="extender_accessibility_service_event_sensor_call">• Servis pristupačnosti za parametar događaja \"Senzor poziva\". Funkcija pristupačnosti se ne koristi, servis je potreban za prijem poziva.</string>
+    <string name="extender_accessibility_service_event_sensor_call">Servis pristupačnosti za parametar događaja \"Senzor poziva\". Funkcija pristupačnosti se ne koristi, servis je potreban za prijem poziva.</string>
     <string name="extender_permissions_event_sensor_call">Dozvole za parametar događaja \"Senzor poziva\" - dozvola za telefon</string>
     <string name="extender_permissions_event_sensor_call_28">Dozvole za parametar događaja \"Senzor poziva\" - Dozvola za telefon, Dnevnici poziva</string>
     <string name="extender_toast_permissions_not_granted">Dozvole nisu odobrene</string>
@@ -30,7 +30,7 @@
     <string name="extender_acra_notification_text">Molimo da kliknete ovdje, da biste poslali izvešće o pogrešci autoru. Hvala Vam.</string>
     <string name="extender_notification_channel_crash_report">Izvješće o pogreškama</string>
     <string name="extender_scroll_info">Napomena: Prevucite na dole na ovome zaslonu za prikaz svih parametara.</string>
-    <string name="extender_battery_optimization_text">• Optimizacija baterije za PhoneProfilesPlusExtender - molimo dodajte aplikaciju u grupu \"Ne optimizirano\"</string>
+    <string name="extender_battery_optimization_text">Optimizacija baterije za PhoneProfilesPlusExtender - molimo dodajte aplikaciju u grupu \"Ne optimizirano\"</string>
     <string name="extender_battery_optimization_optimized">Optimizirano</string>
     <string name="extender_battery_optimization_not_optimized">Ne optimizirano</string>
     <string name="extender_battery_optimization_button">Otvori\nOptimizacija baterije</string>
