@@ -5,7 +5,7 @@
     <!--suppress CheckTagEmptyBody -->
     <string name="extender_accessibility_service_description">Extender pre PhoneProfilesPlus. Funguje iba v spojení s PhoneProfilesPlus.</string>
     <string name="extender_about_application_version">Verzia:</string>
-    <string name="extender_accessibility_service_profile_force_stop_applications">• Služba Dostupnosť pre parameter profilu \"Vynútiť zastavenie aplikácií\"</string>
+    <string name="extender_accessibility_service_profile_force_stop_applications">Služba Dostupnosť pre parameter profilu \"Vynútiť zastavenie aplikácií\"</string>
     <string name="extender_accessibility_service_event_sensor_applications_orientation">Služba Dostupnosť pre parametre udalosti \"Senzor aplikácií\" a \"Senzor orientácie\"</string>
     <string name="extender_accessibility_service_enabled">Povolené</string>
     <string name="extender_accessibility_service_disabled">Zakázané</string>
