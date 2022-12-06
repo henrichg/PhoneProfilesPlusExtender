@@ -18,6 +18,7 @@ import org.xml.sax.XMLReader;
 
 public class StringFormatUtils {
 
+    @SuppressWarnings("SameParameterValue")
     static Spanned fromHtml(String source, boolean forBullets, boolean boldBullet, boolean forNumbers, int numberFrom, int sp, boolean trimTrailingWhiteSpaces) {
         Spanned htmlSpanned;
 
