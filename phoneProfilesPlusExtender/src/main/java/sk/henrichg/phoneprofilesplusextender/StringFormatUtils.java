@@ -18,7 +18,7 @@ import org.xml.sax.XMLReader;
 
 public class StringFormatUtils {
 
-    static Spanned fromHtml(String source, boolean forBullets, boolean forNumbers, int numberFrom, int sp, boolean trimTrailingWhiteSpaces) {
+    static Spanned fromHtml(String source, boolean forBullets, boolean boldBullet, boolean forNumbers, int numberFrom, int sp, boolean trimTrailingWhiteSpaces) {
         Spanned htmlSpanned;
 
         //if (Build.VERSION.SDK_INT >= 24) {
@@ -40,7 +40,7 @@ public class StringFormatUtils {
         SpannableStringBuilder result;
 
         if (forBullets)
-            result = addBullets(htmlSpanned);
+            result = addBullets(htmlSpanned, boldBullet);
         else if (forNumbers)
             result = addNumbers(htmlSpanned, numberFrom, sp);
         else
@@ -76,15 +76,18 @@ public class StringFormatUtils {
         return spannableBuilder;
     }
 
-    private static SpannableStringBuilder addBullets(Spanned htmlSpanned) {
+    private static SpannableStringBuilder addBullets(Spanned htmlSpanned, boolean boldBullet) {
         SpannableStringBuilder spannableBuilder = new SpannableStringBuilder(htmlSpanned);
         BulletSpan[] spans = spannableBuilder.getSpans(0, spannableBuilder.length(), BulletSpan.class);
         if (spans != null) {
             for (BulletSpan span : spans) {
                 int start = spannableBuilder.getSpanStart(span);
-                int end  = spannableBuilder.getSpanEnd(span);
+                int end = spannableBuilder.getSpanEnd(span);
                 spannableBuilder.removeSpan(span);
-                spannableBuilder.setSpan(new ImprovedBulletSpan(dip(2), dip(8), 0), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                int radius = dip(2);
+                if (boldBullet)
+                    radius += 1;
+                spannableBuilder.setSpan(new ImprovedBulletSpan(radius, dip(8), 0), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
             }
         }
         return spannableBuilder;
@@ -135,7 +138,8 @@ public class StringFormatUtils {
         @Override
         public void handleTag(boolean opening, String tag, Editable output, XMLReader xmlReader) {
 
-            class Bullet {}
+            class Bullet {
+            }
 
             if (tag.equals("li") && opening) {
                 output.setSpan(new Bullet(), output.length(), output.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -145,7 +149,7 @@ public class StringFormatUtils {
                 output.append("\n");
                 Bullet[] spans = output.getSpans(0, output.length(), Bullet.class);
                 if (spans != null) {
-                    Bullet lastMark = spans[spans.length-1];
+                    Bullet lastMark = spans[spans.length - 1];
                     int start = output.getSpanStart(lastMark);
                     output.removeSpan(lastMark);
                     if (start != output.length()) {

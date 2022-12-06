@@ -359,27 +359,27 @@ public class MainActivity extends AppCompatActivity {
     private void displayAccessibilityServiceStatus() {
         TextView text = findViewById(R.id.activity_main_accessibility_service_profile_force_stop_application);
         String str1 = "<ul><li>" + getString(R.string.extender_accessibility_service_profile_force_stop_applications) + "</li></ul>";
-        text.setText(StringFormatUtils.fromHtml(str1, true, false, 0, 0, true));
+        text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_accessibility_service_profile_lock_device);
         str1 = "<ul><li>" +getString(R.string.extender_accessibility_service_profile_lock_device) + "</li></ul>";
-        text.setText(StringFormatUtils.fromHtml(str1, true, false, 0, 0, true));
+        text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_applications_orientation);
         str1 = "<ul><li>" +getString(R.string.extender_accessibility_service_event_sensor_applications_orientation) + "</li></ul>";
-        text.setText(StringFormatUtils.fromHtml(str1, true, false, 0, 0, true));
+        text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_sms_mms);
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             str1 = "<ul><li>" +getString(R.string.extender_accessibility_service_event_sensor_sms_mms) + "</li></ul>";
-            text.setText(StringFormatUtils.fromHtml(str1, true, false, 0, 0, true));
+            text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
         } else
             text.setVisibility(View.GONE);
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_call);
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             str1 = "<ul><li>" +getString(R.string.extender_accessibility_service_event_sensor_call) + "</li></ul>";
-            text.setText(StringFormatUtils.fromHtml(str1, true, false, 0, 0, true));
+            text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
         } else
             text.setVisibility(View.GONE);
 
@@ -430,7 +430,7 @@ public class MainActivity extends AppCompatActivity {
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
             str1 = "<ul><li>" +getString(R.string.extender_permissions_event_sensor_sms_mms) + "</li></ul>";
-            text.setText(StringFormatUtils.fromHtml(str1, true, false, 0, 0, true));
+            text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
             text = findViewById(R.id.activity_main_sms_permissions_status);
             if (Permissions.checkSMSMMSPermissions(activity))
@@ -451,7 +451,7 @@ public class MainActivity extends AppCompatActivity {
                 str1 = "<ul><li>" +getString(R.string.extender_permissions_event_sensor_call) + "</li></ul>";
             else
                 str1 = "<ul><li>" +getString(R.string.extender_permissions_event_sensor_call_28) + "</li></ul>";
-            text.setText(StringFormatUtils.fromHtml(str1, true, false, 0, 0, true));
+            text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
             text = findViewById(R.id.activity_main_call_permissions_status);
             if (Permissions.checkCallPermissions(activity))
@@ -474,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
 
         text = findViewById(R.id.activity_main_battery_optimization);
         str1 = "<ul><li>" +getString(R.string.extender_battery_optimization_text) + "</li></ul>";
-        text.setText(StringFormatUtils.fromHtml(str1, true, false, 0, 0, true));
+        text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_battery_optimization_status);
         if (PPPEApplication.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
