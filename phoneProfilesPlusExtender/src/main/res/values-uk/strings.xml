@@ -33,7 +33,7 @@
     <string name="extender_battery_optimization_text">Оптимізація батареї для PhoneProfilesPlusExtender - будь ласка, додайте до групи «Не економити заряд»</string>
     <string name="extender_battery_optimization_optimized">Оптимізовано</string>
     <string name="extender_battery_optimization_not_optimized">Не оптимізовано</string>
-    <string name="extender_battery_optimization_button">Open\nBattery optimization</string>
+    <string name="extender_battery_optimization_button">Відкрити\nОптимізація батареї</string>
     <string name="extender_acra_email_body_device">Пристрій:</string>
     <string name="extender_acra_email_body_android_version">Версія Android:</string>
     <string name="extender_permissions_popup_windows_in_background">Будь ласка, увімкніть \"Показувати вікна що виринають під час роботи у фоновому режимі\". Якщо не увімкнути, то \"Примусова зупинка застосунків\" не працюватиме.</string>
