@@ -46,6 +46,6 @@
     <string name="extender_notifications_permission_text">Bildirim izni verilmedi.\n\nLütfen PhoneProfilesPlusExtender için bildirimlere izin verin. Bu izin olmadan PhoneProfilesPlusExtender\'dan gelen bildirimler görüntülenmeyecektir.</string>
     <string name="extender_enable_notificaitons_button">İzin ver</string>
     <string name="extender_menu_choose_language">Lisan seç</string>
-    <string name="extender_menu_choose_language_system_language">[System]</string>
+    <string name="extender_menu_choose_language_system_language">[ System ]</string>
     <string name="extender_application_translations">Tercümeler:</string>
 </resources>

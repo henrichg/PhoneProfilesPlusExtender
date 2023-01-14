@@ -125,6 +125,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
     }
 
     public int getActions() {
+        //noinspection deprecation
         return mNodeInfo.getActions();
     }
 

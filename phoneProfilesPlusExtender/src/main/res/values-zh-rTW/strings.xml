@@ -46,6 +46,6 @@
     <string name="extender_notifications_permission_text">未授予通知權限。\n\n請為 PhoneProfilesPlusExtender 啟用通知。若無此權限，將不會顯示來自 PhoneProfilesPlusExtender 的通知。</string>
     <string name="extender_enable_notificaitons_button">啟用</string>
     <string name="extender_menu_choose_language">選擇語言</string>
-    <string name="extender_menu_choose_language_system_language">[System]</string>
+    <string name="extender_menu_choose_language_system_language">[ System ]</string>
     <string name="extender_application_translations">Translations:</string>
 </resources>

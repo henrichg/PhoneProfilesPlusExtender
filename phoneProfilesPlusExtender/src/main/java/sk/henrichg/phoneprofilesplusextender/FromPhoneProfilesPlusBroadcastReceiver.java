@@ -160,6 +160,8 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         NotificationManagerCompat mNotificationManager = NotificationManagerCompat.from(context);
         try {
             mNotificationManager.notify(notificationTag, notificationID, mBuilder.build());
+        } catch (SecurityException e) {
+            // todo show dialog about grant notificication permission
         } catch (Exception e) {
             //Log.e("IgnoreBatteryOptimizationNotification.showNotification", Log.getStackTraceString(e));
             PPPEApplication.recordException(e);

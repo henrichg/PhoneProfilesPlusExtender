@@ -10,7 +10,7 @@
     <string name="extender_accessibility_service_enabled">Увімкнено</string>
     <string name="extender_accessibility_service_disabled">Вимкнено</string>
     <string name="extender_accessibility_service_button">Увімкнути/Вимкнути\nСлужбу спец. можливостей</string>
-    <string name="extender_setting_screen_not_found_alert">Налаштування екрану не знайдено.</string>
+    <string name="extender_setting_screen_not_found_alert">Екран з налаштуванням не знайдено.</string>
     <string name="extender_accessibility_service_permission">Служба спец. можливостей PhoneProfilesPlusExtender</string>
     <string name="extender_accessibility_service_event_sensor_sms_mms">Служба спец. можливостей для параметра подій \"SMS/MMS датчик\". Служба спец. можливостей не використовується, служба потрібна для отримання SMS та MMS.</string>
     <string name="extender_permissions_event_sensor_sms_mms">Дозволи до параметра подій \"SMS/MMS датчик\" - дозвіл SMS</string>
@@ -23,14 +23,14 @@
     <string name="extender_toast_permissions_not_granted">Дозволи не надані</string>
     <string name="extender_accessibility_service_profile_lock_device">Служба спец. можливостей для параметра профілю \"Блокування телефону\"</string>
     <string name="extender_application_releases">Версії:</string>
-    <string name="extender_web_browser_chooser">Перегляд вебпосилання за допомогою</string>
+    <string name="extender_web_browser_chooser">Переглянути вебпосилання за допомогою</string>
     <string name="extender_acra_email_subject_text">звіт про аварію</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlusExtender аварійно завершив роботу. Прикріплений звіт про аварію.</string>
     <string name="extender_acra_notification_title">На жаль, PhoneProfilesPlusExtender зазнав аварії</string>
     <string name="extender_acra_notification_text">Будь ласка, натисніть тут, щоб надіслати звіт про аварію автору. Дуже дякую.</string>
     <string name="extender_notification_channel_crash_report">Звіт про аварію</string>
     <string name="extender_scroll_info">Примітка: Треба прокрутити вниз, щоб побачити всі параметри.</string>
-    <string name="extender_battery_optimization_text">Оптимізація батареї для PhoneProfilesPlusExtender - будь ласка, додайте до групи «Не економити заряд»</string>
+    <string name="extender_battery_optimization_text">Оптимізація батареї для PhoneProfilesPlusExtender - будь ласка, додайте до групи «Не заощаджувати заряд»</string>
     <string name="extender_battery_optimization_optimized">Оптимізовано</string>
     <string name="extender_battery_optimization_not_optimized">Не оптимізовано</string>
     <string name="extender_battery_optimization_button">Відкрити\nОптимізація батареї</string>
@@ -46,6 +46,6 @@
     <string name="extender_notifications_permission_text">Немає дозволу на сповіщення.\n\nЩоб їх отримувати, надайте дозвіл для PhoneProfilesPlusExtender.</string>
     <string name="extender_enable_notificaitons_button">Увімкнути</string>
     <string name="extender_menu_choose_language">Виберіть мову</string>
-    <string name="extender_menu_choose_language_system_language">[System]</string>
+    <string name="extender_menu_choose_language_system_language">[ Системна ]</string>
     <string name="extender_application_translations">Переклади:</string>
 </resources>
