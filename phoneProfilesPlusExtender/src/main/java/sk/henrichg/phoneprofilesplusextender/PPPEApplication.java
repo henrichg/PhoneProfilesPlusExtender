@@ -213,7 +213,7 @@ public class PPPEApplication extends Application {
                         setHiddenApiExemptions.invoke(vmRuntime, new Object[]{new String[]{"L"}});
                 }
             } catch (Exception e) {
-                //Log.e("PPApplication.onCreate", Log.getStackTraceString(e));
+                //Log.e("PPPEApplication.onCreate", Log.getStackTraceString(e));
                 PPPEApplication.recordException(e);
             }
         }*/
