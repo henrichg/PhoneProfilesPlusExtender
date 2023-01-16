@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -160,10 +161,10 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         NotificationManagerCompat mNotificationManager = NotificationManagerCompat.from(context);
         try {
             mNotificationManager.notify(notificationTag, notificationID, mBuilder.build());
-        } catch (SecurityException e) {
-            // todo show dialog about grant notificication permission
+        } catch (SecurityException en) {
+            Log.e("FromPhoneProfilesPlusBroadcastReceiver.showPermissionNotification", Log.getStackTraceString(en));
         } catch (Exception e) {
-            //Log.e("IgnoreBatteryOptimizationNotification.showNotification", Log.getStackTraceString(e));
+            //Log.e("FromPhoneProfilesPlusBroadcastReceiver.showPermissionNotification", Log.getStackTraceString(e));
             PPPEApplication.recordException(e);
         }
     }
