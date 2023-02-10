@@ -2,13 +2,13 @@
 <resources>
     <color name="primary">#FFFFFF</color>
     <color name="primaryDark">#FFFFFF</color>
-    <color name="accent">#cc893e</color>
+    <color name="accent">#A35E19</color>
     <!--<color name="accent_disabled">#70DC8160</color>-->
     <color name="navigationBar">#000000</color>
 
     <color name="activityBackgroundColor">#FFFFFFFF</color>
-    <!--<color name="activityTextColor">#FF000000</color>-->
-    <color name="activitySecondaryTextColor">#BF000000</color>
+    <color name="activityNormalTextColor">#FF000000</color>
+    <color name="activitySecondaryTextColor">#CF000000</color>
     <color name="activityDisabledTextColor">#2F000000</color>
 
     <color name="activityPopupMenuBackgroundColor">#FFF7F7F7</color>
@@ -19,7 +19,7 @@
     <color name="buttonBackgroundColor">#FFFAFAFA</color>
     <color name="buttonClickedBackgroundColor">#FFDADADA</color>
 
-    <color name="notificationDecorationColor">#cc893e</color>
+    <color name="notificationDecorationColor">#A35E19</color>
 
     <color name="dialog_divider">#21000000</color>
     <color name="dialogBorderColor">#FFFFFFFF</color>

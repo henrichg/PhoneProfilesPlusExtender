@@ -7,7 +7,7 @@
     <color name="navigationBar">#000000</color>
 
     <color name="activityBackgroundColor">#FF1B1B1B</color>
-    <!--<color name="activityTextColor">#FFFFFFFF</color>-->
+    <color name="activityNormalTextColor">#FFd4d4d4</color>
     <color name="activitySecondaryTextColor">#CFFFFFFF</color>
     <color name="activityDisabledTextColor">#2FFFFFFF</color>
 
