@@ -14,6 +14,9 @@
         <item name="android:textColorSecondary">@color/text_view_color_secondary</item>
         <!--        <item name="android:textColorTertiary">@color/text_color_tertiary</item>-->
 
+        <item name="actionBarStyle">@style/PPPEActionbar</item>
+        <item name="android:actionBarStyle">@style/PPPEActionbar</item>
+
         <item name="android:windowLightStatusBar">@bool/windowLightStatusBar</item>
         <item name="android:navigationBarColor">@color/primaryDark</item>
 
