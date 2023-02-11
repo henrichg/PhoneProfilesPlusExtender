@@ -64,7 +64,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                     case PPPEApplication.REGISTRATION_TYPE_SMS_REGISTER:
                         PPPEApplication.registeredSMSFunctionPPP = true;
                         if (!Permissions.checkSMSMMSPermissions(context)) {
-                            showPermissionNotification(context,
+                            showPermissionNotification(context.getApplicationContext(),
                                     context.getString(R.string.extender_notification_permission_title),
                                     context.getString(R.string.extender_notification_sms_mms_permission_text),
                                     PPPEApplication.GRANT_PERMISSIONS_SMS_NOTIFICATION_ID,
@@ -77,7 +77,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                     case PPPEApplication.REGISTRATION_TYPE_CALL_REGISTER:
                         PPPEApplication.registeredCallFunctionPPP = true;
                         if (!Permissions.checkCallPermissions(context)) {
-                            showPermissionNotification(context,
+                            showPermissionNotification(context.getApplicationContext(),
                                     context.getString(R.string.extender_notification_permission_title),
                                     context.getString(R.string.extender_notification_call_permission_text),
                                     PPPEApplication.GRANT_PERMISSIONS_CALL_NOTIFICATION_ID,
