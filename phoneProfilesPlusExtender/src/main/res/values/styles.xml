@@ -41,6 +41,7 @@
 
         <item name="android:scrollbarThumbVertical">@color/scrollbar_color</item>
 
+        <item name="android:lineSpacingExtra">@dimen/line_spacing_extra</item>
     </style>
 
     <style name="AppTheme_noRipple" parent="Theme.AppCompat.DayNight">
@@ -76,6 +77,7 @@
 
         <item name="android:scrollbarThumbVertical">@color/scrollbar_color</item>
 
+        <item name="android:lineSpacingExtra">@dimen/line_spacing_extra</item>
     </style>
 
 
