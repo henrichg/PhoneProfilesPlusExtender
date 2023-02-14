@@ -19,8 +19,6 @@
     <color name="buttonBackgroundColor">#FFFAFAFA</color>
     <color name="buttonClickedBackgroundColor">#FFDADADA</color>
 
-<!--    <color name="notificationDecorationColor">#A35E19</color>-->
-
     <color name="dialog_divider">#21000000</color>
     <color name="dialogBorderColor">#FFFFFFFF</color>
 
