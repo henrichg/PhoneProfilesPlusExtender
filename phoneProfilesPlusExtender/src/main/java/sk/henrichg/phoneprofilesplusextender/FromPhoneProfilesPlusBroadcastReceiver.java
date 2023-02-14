@@ -140,8 +140,8 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         //noinspection UnnecessaryLocalVariable
         String nText = text;
         PPPEApplication.createGrantPermissionNotificationChannel(context);
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL)
-                .setColor(ContextCompat.getColor(context, R.color.accent))
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context.getApplicationContext(), PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL)
+                .setColor(ContextCompat.getColor(context.getApplicationContext(), R.color.notification_color))
                 .setSmallIcon(R.drawable.ic_exclamation_notify) // notification icon
                 .setContentTitle(nTitle) // title for notification
                 .setContentText(nText)

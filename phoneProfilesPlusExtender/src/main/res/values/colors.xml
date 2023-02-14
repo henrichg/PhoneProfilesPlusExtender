@@ -30,4 +30,6 @@
 
     <color name="scrollbar_color">#37000000</color>
 
+    <color name="notification_color">#2B7E97</color>
+
 </resources>

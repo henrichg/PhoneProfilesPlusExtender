@@ -54,4 +54,6 @@
     <color name="toastTextColor">#FFFFFFFF</color>
     <color name="toastBorderColor">#FF707070</color>
 
+    <color name="notification_color">#50B0CE</color>
+
 </resources>
