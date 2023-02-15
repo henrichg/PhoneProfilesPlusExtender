@@ -463,6 +463,8 @@ public class MainActivity extends AppCompatActivity {
             else {
                 if (scrollTo == R.id.activity_main_permissions_event_sensor_sms_mms)
                     text.setTextColor(ContextCompat.getColor(this, R.color.error_color));
+                else
+                    text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
             }
         }
@@ -489,6 +491,8 @@ public class MainActivity extends AppCompatActivity {
             else {
                 if (scrollTo == R.id.activity_main_permissions_event_sensor_call)
                     text.setTextColor(ContextCompat.getColor(this, R.color.error_color));
+                else
+                    text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
             }
         }
