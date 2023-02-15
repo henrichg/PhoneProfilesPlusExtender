@@ -456,8 +456,10 @@ public class MainActivity extends AppCompatActivity {
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
             text = findViewById(R.id.activity_main_sms_permissions_status);
-            if (Permissions.checkSMSMMSPermissions(activity))
+            if (Permissions.checkSMSMMSPermissions(activity)) {
+                text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
+            }
             else {
                 if (scrollTo == R.id.activity_main_permissions_event_sensor_sms_mms)
                     text.setTextColor(ContextCompat.getColor(this, R.color.error_color));
@@ -480,8 +482,10 @@ public class MainActivity extends AppCompatActivity {
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
             text = findViewById(R.id.activity_main_call_permissions_status);
-            if (Permissions.checkCallPermissions(activity))
+            if (Permissions.checkCallPermissions(activity)) {
+                text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
+            }
             else {
                 if (scrollTo == R.id.activity_main_permissions_event_sensor_call)
                     text.setTextColor(ContextCompat.getColor(this, R.color.error_color));
