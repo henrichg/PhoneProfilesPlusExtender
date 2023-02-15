@@ -68,7 +68,8 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                                     context.getString(R.string.extender_notification_permission_title),
                                     context.getString(R.string.extender_notification_sms_mms_permission_text),
                                     PPPEApplication.GRANT_PERMISSIONS_SMS_NOTIFICATION_ID,
-                                    PPPEApplication.GRANT_PERMISSIONS_SMS_NOTIFICATION_TAG);
+                                    PPPEApplication.GRANT_PERMISSIONS_SMS_NOTIFICATION_TAG,
+                                    R.id.activity_main_permissions_event_sensor_sms_mms);
                         }
                         break;
                     case PPPEApplication.REGISTRATION_TYPE_SMS_UNREGISTER:
@@ -81,7 +82,8 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                                     context.getString(R.string.extender_notification_permission_title),
                                     context.getString(R.string.extender_notification_call_permission_text),
                                     PPPEApplication.GRANT_PERMISSIONS_CALL_NOTIFICATION_ID,
-                                    PPPEApplication.GRANT_PERMISSIONS_CALL_NOTIFICATION_TAG);
+                                    PPPEApplication.GRANT_PERMISSIONS_CALL_NOTIFICATION_TAG,
+                                    R.id.activity_main_permissions_event_sensor_call);
                         }
                         break;
                     case PPPEApplication.REGISTRATION_TYPE_CALL_UNREGISTER:
@@ -134,7 +136,8 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
     }
 
     static private void showPermissionNotification(Context context, String title, String text,
-                                                    int notificationID, String notificationTag) {
+                                                    int notificationID, String notificationTag,
+                                                    int scrollTo) {
         //noinspection UnnecessaryLocalVariable
         String nTitle = title;
         //noinspection UnnecessaryLocalVariable
@@ -150,6 +153,9 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
 
         Intent intent = new Intent(context, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        intent.putExtra(MainActivity.EXTRA_SCROLL_TO, scrollTo);
+
         @SuppressLint("UnspecifiedImmutableFlag")
         PendingIntent pi = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(pi);
