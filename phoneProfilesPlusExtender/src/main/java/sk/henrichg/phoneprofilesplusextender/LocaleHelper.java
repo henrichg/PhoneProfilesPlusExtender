@@ -164,6 +164,7 @@ public class LocaleHelper {
         Configuration config = resources.getConfiguration();
         config.setLocale(locale);
         config.setLayoutDirection(locale);
+        //noinspection deprecation
         resources.updateConfiguration(config, resources.getDisplayMetrics());
 
         PPPEApplication.collator = PPPEApplication.getCollator();
