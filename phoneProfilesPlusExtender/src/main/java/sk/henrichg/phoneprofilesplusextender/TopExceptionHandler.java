@@ -93,11 +93,11 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
             }
 
             // this is only for debuging, how is handled ignored exceptions
-            if (_exception instanceof java.lang.RuntimeException) {
-                if ((_exception.getMessage() != null) && (_exception.getMessage().equals("Test Crash"))) {
-                    ignore = true;
-                }
-            }
+            //if (_exception instanceof java.lang.RuntimeException) {
+            //    if ((_exception.getMessage() != null) && (_exception.getMessage().equals("Test Crash"))) {
+            //        ignore = true;
+            //    }
+            //}
 
             if (!ignore) {
                 //Delegates to Android's error handling
