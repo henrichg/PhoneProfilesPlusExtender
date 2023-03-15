@@ -8,28 +8,4 @@
         app:showAsAction="never"
         tools:ignore="AlwaysShowAction"/>
 
-    <item android:id="@+id/menu_debug"
-        android:title="Debug"
-        android:orderInCategory="260"
-        app:showAsAction="never"
-        tools:ignore="HardcodedText">
-        <menu>
-            <item android:id="@+id/menu_test_crash"
-                android:title="Test fatal exception"
-                android:orderInCategory="100"
-                app:showAsAction="never"
-                tools:ignore="HardcodedText" />
-            <item android:id="@+id/menu_test_nonFatal"
-                android:title="Test non-fatal exception"
-                android:orderInCategory="101"
-                app:showAsAction="never"
-                tools:ignore="HardcodedText" />
-            <item android:id="@+id/menu_show_log_file"
-                android:title="Show log/crash file"
-                android:orderInCategory="103"
-                app:showAsAction="never"
-                tools:ignore="HardcodedText" />
-        </menu>
-    </item>
-
 </menu>

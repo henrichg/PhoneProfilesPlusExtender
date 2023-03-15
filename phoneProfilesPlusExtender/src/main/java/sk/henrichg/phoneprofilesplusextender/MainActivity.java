@@ -142,12 +142,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        if (DebugVersion.enabled)
+            getMenuInflater().inflate(R.menu.main_menu_debug, menu);
 
         MenuCompat.setGroupDividerEnabled(menu, true);
 
         return true;
     }
 
+    /*
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         boolean ret = super.onPrepareOptionsMenu(menu);
@@ -162,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
         return ret;
     }
+    */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
