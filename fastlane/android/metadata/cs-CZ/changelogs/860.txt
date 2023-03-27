@@ -1,0 +1,2 @@
+8.1
+- Seznam změn: https://henrichg.github.io/PhoneProfilesPlusExtender/FDroid_ChangeLog_CS
