@@ -46,6 +46,6 @@
     <string name="extender_notifications_permission_text">La permission pour les notifications n\'est pas accordée.\n\nValidez cette permission pour PhoneProfilesPlus. Sans cela les notifications de PhoneProfilesPlus ne seront pas affichées.</string>
     <string name="extender_enable_notificaitons_button">Activé</string>
     <string name="extender_menu_choose_language">Choisissez la langue</string>
-    <string name="extender_menu_choose_language_system_language">[Système]</string>
+    <string name="extender_menu_choose_language_system_language">[ Système ]</string>
     <string name="extender_application_translations">Traductions :</string>
 </resources>

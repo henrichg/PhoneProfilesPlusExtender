@@ -46,6 +46,6 @@
     <string name="extender_notifications_permission_text">Povolenie na notifikácie nie je udelené.\n\nPovoľte upozornenia pre PhoneProfilesPlusExtender. Bez tohto povolenia sa upozornenia z PhoneProfilesPlusExtender nebudú zobrazovať.</string>
     <string name="extender_enable_notificaitons_button">Povoliť</string>
     <string name="extender_menu_choose_language">Vybrať jazyk</string>
-    <string name="extender_menu_choose_language_system_language">[Systémový]</string>
+    <string name="extender_menu_choose_language_system_language">[ Systémový ]</string>
     <string name="extender_application_translations">Preklady:</string>
 </resources>

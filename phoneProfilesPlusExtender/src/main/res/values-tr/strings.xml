@@ -26,14 +26,14 @@
     <string name="extender_web_browser_chooser">Şununla internet adresine bak</string>
     <string name="extender_acra_email_subject_text">çökme raporu</string>
     <string name="extender_acra_email_body_text">PhoneProfilesPlus çöktü. Çökme raporu eklendi.</string>
-    <string name="extender_acra_notification_title">Maalesef PhoneProfilesPlus çöktü</string>
+    <string name="extender_acra_notification_title">Maalesef, PhoneProfilesPlus çöktü</string>
     <string name="extender_acra_notification_text">Lutfen, çökme raporunu yazara göndermek için buraya dokunun. Çok teşekkür ederiz.</string>
     <string name="extender_notification_channel_crash_report">Çökme raporu</string>
-    <string name="extender_scroll_info">Not: Tüm değerleri göstermek için bu ekranda aşağı kaydırın.</string>
+    <string name="extender_scroll_info">Dikkat: Tüm değerleri göstermek için bu ekranda aşağı kaydırın.</string>
     <string name="extender_battery_optimization_text">PhoneProfilesPlusExtender için pilin en iyi duruma getirilmesi - lütfen \"En iyi duruma getirilmedi\" grubuna ekleyin</string>
     <string name="extender_battery_optimization_optimized">En iyi duruma getirildi</string>
     <string name="extender_battery_optimization_not_optimized">En iyi duruma getirilmedi</string>
-    <string name="extender_battery_optimization_button">Open\nBattery optimization</string>
+    <string name="extender_battery_optimization_button">Aç\n\"Pilin en iyi duruma getirilmesi\"</string>
     <string name="extender_acra_email_body_device">Cihaz:</string>
     <string name="extender_acra_email_body_android_version">Android sürümü:</string>
     <string name="extender_permissions_popup_windows_in_background">Lütfen \"Arka planda çalışırken açılır pencereleri görüntüle\"yi faal hale getirin. Bu yapılmadan, \"Uygulamaları durdurmaya zorla\" çalışmayacaktır.</string>
@@ -46,6 +46,6 @@
     <string name="extender_notifications_permission_text">Bildirim izni verilmedi.\n\nLütfen PhoneProfilesPlusExtender için bildirimlere izin verin. Bu izin olmadan PhoneProfilesPlusExtender\'dan gelen bildirimler görüntülenmeyecektir.</string>
     <string name="extender_enable_notificaitons_button">İzin ver</string>
     <string name="extender_menu_choose_language">Lisan seç</string>
-    <string name="extender_menu_choose_language_system_language">[System]</string>
-    <string name="extender_application_translations">Translations:</string>
+    <string name="extender_menu_choose_language_system_language">[ System ]</string>
+    <string name="extender_application_translations">Tercümeler:</string>
 </resources>

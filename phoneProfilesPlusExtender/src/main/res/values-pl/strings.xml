@@ -43,9 +43,9 @@
     <string name="extender_notification_permission_title">Nie przyznano uprawnień</string>
     <string name="extender_notification_sms_mms_permission_text">Nie przyznano uprawnień dla parametru zdarzenia \"Czujnik SMS/MMS\". Kliknij to powiadomienie, aby otworzyć Extender. Po uruchomieniu użyj przycisku przyznawania uprawnień.</string>
     <string name="extender_notification_call_permission_text">Nie przyznano uprawnień dla parametru zdarzenia \"Czujnik rozmowy tel\". Kliknij to powiadomienie, aby otworzyć Extender. Po uruchomieniu użyj przycisku przyznawania uprawnień.</string>
-    <string name="extender_notifications_permission_text">Notifications permission is not granted.\n\nPlease enable notifications for PhoneProfilesPlusExtender. Without this enabled, notifications from PhoneProfilesPlusExtender will not be displayed.</string>
-    <string name="extender_enable_notificaitons_button">Enable</string>
-    <string name="extender_menu_choose_language">Choose language</string>
-    <string name="extender_menu_choose_language_system_language">[System]</string>
-    <string name="extender_application_translations">Translations:</string>
+    <string name="extender_notifications_permission_text">Nie przyznano uprawnień dla powiadomień.\n\nProszę włączyć powiadomienia dla PhoneProfilesPlusExtender. W przeciwnym razie powiadomienia z PhoneProfilesPlusExtender nie będą wyświetlane.</string>
+    <string name="extender_enable_notificaitons_button">Włącz</string>
+    <string name="extender_menu_choose_language">Wybierz język</string>
+    <string name="extender_menu_choose_language_system_language">[ Systemowy ]</string>
+    <string name="extender_application_translations">Tłumaczenia:</string>
 </resources>

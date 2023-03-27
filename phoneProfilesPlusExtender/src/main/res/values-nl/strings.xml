@@ -46,6 +46,6 @@
     <string name="extender_notifications_permission_text">Toegang tot meldingen is niet verleend.\n\nSchakel meldingen voor PhoneProfilesPlus in. Zonder dit aan te zetten worden meldingen van PhoneProfilesPlus niet weergegeven.</string>
     <string name="extender_enable_notificaitons_button">Inschakelen</string>
     <string name="extender_menu_choose_language">Taal kiezen</string>
-    <string name="extender_menu_choose_language_system_language">[System]</string>
+    <string name="extender_menu_choose_language_system_language">[ System ]</string>
     <string name="extender_application_translations">Vertalingen:</string>
 </resources>

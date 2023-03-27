@@ -3,7 +3,7 @@
 PhoneProfilesPlusExtender (aka PPPE)
 ====================================
 
-[![version](https://img.shields.io/badge/version-8.0.4.1-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.0.4.1)
+[![version](https://img.shields.io/badge/version-8.1-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.1)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![License](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/henrichg/PhoneProfilesPlus/blob/master/LICENSE)
 [![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)
@@ -51,8 +51,8 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 
 ##### Supported Android versions
 
-- From Android 7.0
-- minSdkVersion = 24
+- From Android 8.0
+- minSdkVersion = 26
 - targetSdkVersion = 27
 - compiledSdkVersion = 33
 
@@ -64,5 +64,6 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 - guava - https://github.com/google/guava
 - Multi-language_App (only modified class LocaleHelper.java) https://github.com/anurajr1/Multi-language_App
 - AndroidHiddenApiBypass - https://github.com/LSPosed/AndroidHiddenApiBypass
+- ToastCompat (as module, code modified) - https://github.com/PureWriter/ToastCompat
 - Android-Accessibility-Utilities(only modified class A11NodeInfo - for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities
 - Android-Accessibility-Utilities(only modified class A11NodeInfoMatcher - for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities

@@ -1,14 +1,14 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml:2:1-47
-INJECTED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml:2:1-47
-INJECTED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml:2:1-47
+ADDED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml:2:1-13
+INJECTED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml:2:1-13
+INJECTED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml:2:1-13
 	package
-		ADDED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml:2:11-45
 		INJECTED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml
+		ADDED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml:2:1-13
 		INJECTED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml:2:1-47
+		ADDED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml:2:1-13
 uses-sdk
 INJECTED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml

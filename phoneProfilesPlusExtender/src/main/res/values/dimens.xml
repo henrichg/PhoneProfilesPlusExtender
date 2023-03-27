@@ -22,4 +22,5 @@
 
     <dimen name="chackBox_radioButton_spacing_for_list_items">10dp</dimen>
 
+    <dimen name="line_spacing_extra">2dp</dimen>
 </resources>

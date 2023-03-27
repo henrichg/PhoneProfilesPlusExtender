@@ -10,6 +10,13 @@
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/accent</item>
 
+        <item name="android:textColorPrimary">@color/text_view_color_primary</item>
+        <item name="android:textColorSecondary">@color/text_view_color_secondary</item>
+        <!--        <item name="android:textColorTertiary">@color/text_color_tertiary</item>-->
+
+        <item name="actionBarStyle">@style/PPPEActionbar</item>
+        <item name="android:actionBarStyle">@style/PPPEActionbar</item>
+
         <item name="android:windowLightStatusBar">@bool/windowLightStatusBar</item>
         <item name="android:navigationBarColor">@color/primaryDark</item>
 
@@ -35,6 +42,8 @@
         <item name="android:windowLightNavigationBar">@bool/windowLightStatusBar</item>
 
         <item name="android:scrollbarThumbVertical">@color/scrollbar_color</item>
+
+        <item name="android:lineSpacingExtra">@dimen/line_spacing_extra</item>
     </style>
 
     <style name="AppTheme_noRipple" parent="Theme.AppCompat.DayNight">
@@ -71,6 +80,8 @@
         <item name="android:windowLightNavigationBar">@bool/windowLightStatusBar</item>
 
         <item name="android:scrollbarThumbVertical">@color/scrollbar_color</item>
+
+        <item name="android:lineSpacingExtra">@dimen/line_spacing_extra</item>
     </style>
 
 </resources>

@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.text.Spannable;
@@ -25,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +34,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.PackageInfoCompat;
+import androidx.core.view.MenuCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.List;
@@ -47,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
     String defaultLanguage = "";
     String defaultCountry = "";
     String defaultScript = "";
+
+    static final String EXTRA_SCROLL_TO = "extra_main_activity_scroll_to";
+
+    int scrollTo = 0;
 
     private final BroadcastReceiver refreshGUIBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -78,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(R.string.extender_app_name);
             getSupportActionBar().setElevation(0);
         }
+
+        Intent intent = getIntent();
+        scrollTo = intent.getIntExtra(EXTRA_SCROLL_TO, 0);
 
         TextView text = findViewById(R.id.activity_main_application_version);
         try {
@@ -131,14 +142,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        if (DebugVersion.enabled)
+            getMenuInflater().inflate(R.menu.main_menu_debug, menu);
 
-        if (Build.VERSION.SDK_INT >= 28) {
-            menu.setGroupDividerEnabled(true);
-        }
+        MenuCompat.setGroupDividerEnabled(menu, true);
 
         return true;
     }
 
+    /*
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         boolean ret = super.onPrepareOptionsMenu(menu);
@@ -153,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
         return ret;
     }
+    */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -312,6 +325,20 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         Permissions.grantNotificationsPermission(this);
+
+        if (scrollTo != 0) {
+            final ScrollView scrollView = findViewById(R.id.activity_main_scroll_view);
+            final View viewToScroll = findViewById(scrollTo);
+            if (viewToScroll != null) {
+                new Handler(Looper.getMainLooper()).postDelayed(() -> {
+//                        PPApplication.logE("[IN_THREAD_HANDLER] PPApplication.startHandlerThread", "START run - from=ImportantInfoHelpFragment.onViewCreated (2)");
+                    scrollView.scrollTo(0, viewToScroll.getTop());
+                }, 200);
+
+                scrollTo = 0;
+            }
+        }
+
     }
 
     @Override
@@ -433,10 +460,17 @@ public class MainActivity extends AppCompatActivity {
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
             text = findViewById(R.id.activity_main_sms_permissions_status);
-            if (Permissions.checkSMSMMSPermissions(activity))
+            if (Permissions.checkSMSMMSPermissions(activity)) {
+                text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
-            else
+            }
+            else {
+                if (scrollTo == R.id.activity_main_permissions_event_sensor_sms_mms)
+                    text.setTextColor(ContextCompat.getColor(this, R.color.error_color));
+                else
+                    text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
+            }
         }
         else {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
@@ -454,10 +488,17 @@ public class MainActivity extends AppCompatActivity {
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
             text = findViewById(R.id.activity_main_call_permissions_status);
-            if (Permissions.checkCallPermissions(activity))
+            if (Permissions.checkCallPermissions(activity)) {
+                text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
-            else
+            }
+            else {
+                if (scrollTo == R.id.activity_main_permissions_event_sensor_call)
+                    text.setTextColor(ContextCompat.getColor(this, R.color.error_color));
+                else
+                    text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
+            }
         }
         else {
             text = findViewById(R.id.activity_main_permissions_event_sensor_call);

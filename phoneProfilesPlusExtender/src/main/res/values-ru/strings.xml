@@ -46,6 +46,6 @@
     <string name="extender_notifications_permission_text">Разрешение на показ уведомлений не предоставлено.\n\nРазрешите, пожалуйста, уведомления от PhoneProfilesPlusExtender, иначе они не будут отображаться.</string>
     <string name="extender_enable_notificaitons_button">Разрешить</string>
     <string name="extender_menu_choose_language">Выбрать язык</string>
-    <string name="extender_menu_choose_language_system_language">[System]</string>
+    <string name="extender_menu_choose_language_system_language">[ Системный ]</string>
     <string name="extender_application_translations">Переводы:</string>
 </resources>

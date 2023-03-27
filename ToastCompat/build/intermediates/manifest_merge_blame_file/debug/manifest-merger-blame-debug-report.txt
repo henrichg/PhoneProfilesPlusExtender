@@ -2,10 +2,7 @@
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="me.drakeet.support.toast" >
 4
-5    <uses-sdk
-6        android:minSdkVersion="24"
-6-->/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml
-7        android:targetSdkVersion="27" />
-7-->/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml
-8
-9</manifest>
+5    <uses-sdk android:minSdkVersion="26" />
+5-->/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml
+6
+7</manifest>

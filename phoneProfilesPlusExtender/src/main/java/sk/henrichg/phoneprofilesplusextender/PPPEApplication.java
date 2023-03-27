@@ -213,7 +213,7 @@ public class PPPEApplication extends Application {
                         setHiddenApiExemptions.invoke(vmRuntime, new Object[]{new String[]{"L"}});
                 }
             } catch (Exception e) {
-                //Log.e("PPApplication.onCreate", Log.getStackTraceString(e));
+                //Log.e("PPPEApplication.onCreate", Log.getStackTraceString(e));
                 PPPEApplication.recordException(e);
             }
         }*/
@@ -281,18 +281,18 @@ public class PPPEApplication extends Application {
         }
 
         String body;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1)
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1)
             body = getString(R.string.extender_acra_email_body_device) + " " +
                     Settings.Global.getString(getContentResolver(), Settings.Global.DEVICE_NAME) +
                     " (" + Build.MODEL + ")" + " \n";
-        else {
+        /*else {
             String manufacturer = Build.MANUFACTURER;
             String model = Build.MODEL;
             if (model.startsWith(manufacturer))
                 body = getString(R.string.extender_acra_email_body_device) + " " + model + " \n";
             else
                 body = getString(R.string.extender_acra_email_body_device) + " " + manufacturer + " " + model + " \n";
-        }
+        }*/
         body = body + getString(R.string.extender_acra_email_body_android_version) + " " + Build.VERSION.RELEASE + " \n\n";
         body = body + getString(R.string.extender_acra_email_body_text);
 
@@ -630,7 +630,7 @@ public class PPPEApplication extends Application {
     }
 
     static void createGrantPermissionNotificationChannel(Context context) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        //if (Build.VERSION.SDK_INT >= 26) {
             try {
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context.getApplicationContext());
                 if (notificationManager.getNotificationChannel(PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL) != null)
@@ -658,7 +658,7 @@ public class PPPEApplication extends Application {
             } catch (Exception e) {
                 PPPEApplication.recordException(e);
             }
-        }
+        //}
     }
 
     static void showToast(final Context context, final String text,

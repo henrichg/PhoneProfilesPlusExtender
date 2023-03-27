@@ -1,20 +1,17 @@
 ext.ppVersions = [
-    publishVersion: '8.0.4.1',
-    publishVersionCode: 850,
+    publishVersion: '8.1',  // this must be >= as in PPP in PPApplication. VERSION_NAME_EXTENDER_LATEST
+    publishVersionCode: 860, // this must be >= as in PPP in PPApplication. VERSION_CODE_EXTENDER_LATEST
 
-    minSdk: 24,
+    minSdk: 26,
 
     targetSdk: 27,
-    // 22 is required for:
-    // - put settings parameter to system db without root ;-)
-    // - BUT in registerPhoneStateListener is dual sim support and this requires API 24 :-(
     // 27 is required for:
     // - android.permission.PROCESS_OUTGOING_CALLS
 
     compileSdk: 33,
     buildTools: '33.0.0',
 
-    appcompatXLib: '1.5.1', //'1.4.2',
+    appcompatXLib: '1.6.1', //''1.5.1',
 
     acra: '5.9.7'
 ]
