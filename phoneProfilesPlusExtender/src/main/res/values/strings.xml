@@ -53,5 +53,6 @@
     <string name="extender_menu_choose_language">Choose language</string>
     <string name="extender_menu_choose_language_system_language">[System]</string>
     <string name="extender_application_translations">Translations:</string>
+    <string name="extender_email_chooser">Send e-mail using</string>
 </resources>
 

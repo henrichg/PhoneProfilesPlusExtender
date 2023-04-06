@@ -55,6 +55,11 @@ dependencies {
     implementation "ch.acra:acra-mail:$ppVersions.acra"
     implementation "ch.acra:acra-notification:$ppVersions.acra"
 
+    // for custom e-mail sender used in Pixel devices with Android 13
+    // https://github.com/ACRA/acra/tree/master/examples/acra-basic-java-example
+    annotationProcessor("com.google.auto.service:auto-service:1.0.1")
+    compileOnly("com.google.auto.service:auto-service-annotations:1.0.1")
+
 //    //noinspection GradleDependency
 //    implementation 'ch.acra:acra-mail:5.8.4'
 //    //noinspection GradleDependency
