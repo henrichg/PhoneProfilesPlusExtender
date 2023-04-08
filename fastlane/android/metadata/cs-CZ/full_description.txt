@@ -11,3 +11,6 @@
 
 - Je to "plugin", takže NEFUNGUJE samostatně!
 - Navrženo pro spolupráci s aplikací "PhoneProfilesPlus". Bez ní tato aplikace nedělá nic.
+
+
+[Zásady ochrany osobních údajů](https://henrichg.github.io/PhoneProfilesPlusExtender/privacy_policy.html)

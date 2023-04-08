@@ -1,13 +1,13 @@
 Privacy policy
 ======================
 
-Henrich Gron built the PhoneProfilesPlus app as a open source app. This SERVICE is provided by Henrich Gron at no cost and is intended for use as is.
+Henrich Gron built the PhoneProfilesPlusExtender app as a open source app. This SERVICE is provided by Henrich Gron at no cost and is intended for use as is.
 
 This page is used to inform website visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
 
 If you choose to use my Service, then you agree to the collection and use of information in relation with this policy. The Personal Information that I collect are used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy.
 
-The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at PhoneProfilesPlus, unless otherwise defined in this Privacy Policy.
+The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at PhoneProfilesPlusExtender, unless otherwise defined in this Privacy Policy.
 
 __Information Collection and Use__
 
