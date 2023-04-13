@@ -59,7 +59,6 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 ##### Required external libs - open-source
 
 - AndroidX library: appcompat, localbroadcastmanager - https://developer.android.com/jetpack/androidx/versions
-- Google Material components - https://github.com/material-components/material-components-android
 - ACRA - https://github.com/ACRA/acra
 - guava - https://github.com/google/guava
 - Multi-language_App (only modified class LocaleHelper.java) https://github.com/anurajr1/Multi-language_App
