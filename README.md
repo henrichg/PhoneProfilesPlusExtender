@@ -26,6 +26,9 @@ __[Droid-ify PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.
 __[Droid-ify applicaion (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)__
 &nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
 
+__If it is not possible to install PhoneProfilesPlusExtender from GitHub or other sources directly on the device, then it can be installed from PC.__
+- [Show how](docs/install_apk_from_pc.md)
+
 ---
 __What is PhoneProfilesPlusExtender:__
 
