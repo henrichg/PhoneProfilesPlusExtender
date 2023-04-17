@@ -16,6 +16,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.PackageInfoCompat;
 
 import org.acra.ACRA;
@@ -338,7 +339,7 @@ public class PPPEApplication extends Application {
                         .withResSendButtonIcon(0)
                         .withResDiscardButtonIcon(0)
                         .withSendOnClick(true)
-                        //.withColor(ContextCompat.getColor(base, R.color.notification_color))
+                        .withColor(ContextCompat.getColor(base, R.color.notification_color))
                         .withEnabled(true)
                         .build(),
                 new MailSenderConfigurationBuilder()

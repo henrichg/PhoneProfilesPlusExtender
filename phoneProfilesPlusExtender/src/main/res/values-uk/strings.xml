@@ -48,4 +48,10 @@
     <string name="extender_menu_choose_language">Виберіть мову</string>
     <string name="extender_menu_choose_language_system_language">[ Системна ]</string>
     <string name="extender_application_translations">Переклади:</string>
+    <string name="extender_email_chooser">Надсилати пошту за допомогою</string>
+    <string name="extender_accessibility_service_disabled_app_info_1">If is not possible to enable Accessibility service, maybe are not allowed restricted settings for PhoneProfilesPlusExtender.</string>
+    <string name="extender_accessibility_service_disabled_app_info_2">Натисніть\"Про застосунок\", щоб дозволити.</string>
+    <string name="extender_accessibility_service_disabled_app_info_3">In \"App info\" screen, click menu at top and in it \"Allow restricted settings\".</string>
+    <string name="extender_accessibility_service_disabled_app_info_4">\"Allow restricted settings\" is not displayed, when restricted settings are allowed.</string>
+    <string name="extender_accessibility_service_app_info_button">Про застосунок</string>
 </resources>

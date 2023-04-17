@@ -48,4 +48,10 @@
     <string name="extender_menu_choose_language">Elegir idioma</string>
     <string name="extender_menu_choose_language_system_language">[ System ]</string>
     <string name="extender_application_translations">Traducciones:</string>
+    <string name="extender_email_chooser">Enviar email usando</string>
+    <string name="extender_accessibility_service_disabled_app_info_1">Si no es posible habilitar el servicio de Accesibilidad, tal vez PhoneProfilesPlusExtender no disponga de los permisos restringidos necesarios.</string>
+    <string name="extender_accessibility_service_disabled_app_info_2">Haz clic en el botón \"Información de aplicación\" para permitirlo.</string>
+    <string name="extender_accessibility_service_disabled_app_info_3">En la pantalla de \"Información de aplicación\", haz clic en el menú superior y en él \"Permitir ajustes restringidos\".</string>
+    <string name="extender_accessibility_service_disabled_app_info_4">No se muestra \"Permitir ajustes restringidos\", cuando los ajustes restringidos están permitidos.</string>
+    <string name="extender_accessibility_service_app_info_button">Información de la aplicación</string>
 </resources>
