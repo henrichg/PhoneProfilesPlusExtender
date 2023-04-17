@@ -10,7 +10,7 @@ If you do not have adb installed on your PC:
 
 2. Extract zip contents.
 
-##### How to istall PhoneProfilesPlus:
+##### How to istall PhoneProfilesPlusExtender:
 
 1. Download PhoneProfilesPlusExtender.apk from GitHub:
 
