@@ -40,7 +40,7 @@ Android application - Extender for [PhoneProfilesPlus](https://github.com/henric
 - Accessibility service for event parameters "Orientation sensor"
 - Accessibility service for event parameters "SMS/MMS sensor"
 - Accessibility service for event parameters "Call sensor"
-\
+  
 - [Privacy Policy](https://henrichg.github.io/PhoneProfilesPlus/privacy_policy.html)
 
 _**** Please report me bugs, comments and suggestions to my e-mail: <henrich.gron@gmail.com>. Speed up the especially bug fixes. Thank you very much. ****_
