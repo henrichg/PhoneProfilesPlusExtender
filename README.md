@@ -33,7 +33,7 @@ __If it is not possible to install PhoneProfilesPlusExtender from GitHub or othe
 
 __What is PhoneProfilesPlusExtender:__
 
-Android application - Extender for PhoneProfiles and PhoneProfilesPlus
+Android application - Extender for [PhoneProfilesPlus](https://github.com/henrichg/PhoneProfilesPlusExtender)
 - Accessibility service for profile parameter "Force stop applications"
 - Accessibility service for profile parameter "Lock device"
 - Accessibility service for event parameters "Application sensor"
