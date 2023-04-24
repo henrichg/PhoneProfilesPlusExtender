@@ -14,7 +14,7 @@
     <color name="rippleRectangeleItemBackgroundColor">#FF606060</color>
 
     <color name="activityPopupMenuBackgroundColor">#FF151515</color>
-    <color name="activityPopupMenuClickedItemBackgroundColor">#37ffffff</color>
+<!--    <color name="activityPopupMenuClickedItemBackgroundColor">#37ffffff</color>-->
     <color name="popupMenuBorderColor">#FF3f3f3f</color>
 
     <color name="buttonBorderColor">#FF656565</color>

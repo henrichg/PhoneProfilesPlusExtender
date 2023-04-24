@@ -271,6 +271,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             if ((PPPEApplication.deviceIsSamsung) && (Build.VERSION.SDK_INT >= 30))
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
                             else
+                            //noinspection NonStrictComparisonCanBeEquality
                             if ((PPPEApplication.deviceIsSamsung) && (Build.VERSION.SDK_INT >= 29))
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button1");
                             else
@@ -534,6 +535,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                             PPPEApplication.telephonyManagerSIM1 = PPPEApplication.telephonyManagerDefault.createForSubscriptionId(subscriptionId);
                                             //if (PPPEApplication.phoneStateListenerSIM1 == null)
                                                 PPPEApplication.phoneStateListenerSIM1 = new PPPEPhoneStateListener(subscriptionInfo, context);
+                                            //noinspection deprecation
                                             PPPEApplication.telephonyManagerSIM1.listen(PPPEApplication.phoneStateListenerSIM1, PhoneStateListener.LISTEN_CALL_STATE);
                                         }
                                     }
@@ -544,6 +546,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                             PPPEApplication.telephonyManagerSIM2 = PPPEApplication.telephonyManagerDefault.createForSubscriptionId(subscriptionId);
                                             //if (PPPEApplication.phoneStateListenerSIM2 == null)
                                                 PPPEApplication.phoneStateListenerSIM2 = new PPPEPhoneStateListener(subscriptionInfo, context);
+                                            //noinspection deprecation
                                             PPPEApplication.telephonyManagerSIM2.listen(PPPEApplication.phoneStateListenerSIM2, PhoneStateListener.LISTEN_CALL_STATE);
                                         }
                                     }
@@ -561,6 +564,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 else {
                     //if (PPPEApplication.phoneStateListenerDefault == null)
                         PPPEApplication.phoneStateListenerDefault = new PPPEPhoneStateListener(null, context);
+                    //noinspection deprecation
                     PPPEApplication.telephonyManagerDefault.listen(PPPEApplication.phoneStateListenerDefault, PhoneStateListener.LISTEN_CALL_STATE);
                 }
             }

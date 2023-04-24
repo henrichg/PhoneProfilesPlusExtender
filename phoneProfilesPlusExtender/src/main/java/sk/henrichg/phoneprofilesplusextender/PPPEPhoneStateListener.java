@@ -46,6 +46,7 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
         this.savedContext = context.getApplicationContext();
     }
 
+    @SuppressWarnings("deprecation")
     public void onCallStateChanged (int state, String phoneNumber) {
 
         if(lastState == state){
