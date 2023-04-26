@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.RemoteServiceException;
 import android.content.Context;
 import android.os.DeadSystemException;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -66,7 +65,7 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
             logIntoFile("E", "TopExceptionHandler", report);
         }
 
-        Log.e("TopExceptionHandler.uncaughtException", "defaultUEH="+defaultUEH);
+//        Log.e("TopExceptionHandler.uncaughtException", "defaultUEH="+defaultUEH);
 
         if (defaultUEH != null) {
             boolean ignore = false;

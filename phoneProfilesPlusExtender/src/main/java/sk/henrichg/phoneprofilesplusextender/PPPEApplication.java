@@ -352,7 +352,7 @@ public class PPPEApplication extends Application {
                         .build()
         );
 
-        //ACRA.DEV_LOGGING = true;
+        ACRA.DEV_LOGGING = false;
 
         ACRA.init(this, builder);
 
