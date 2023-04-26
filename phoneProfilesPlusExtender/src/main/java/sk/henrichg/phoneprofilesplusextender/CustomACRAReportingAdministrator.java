@@ -99,7 +99,7 @@ public class CustomACRAReportingAdministrator implements ReportingAdministrator 
                 PPPEApplication.basicExecutorPool.submit(runnable);
             }
         } catch (Exception ee) {
-            //Log.e("TopExceptionHandler.uncaughtException", Log.getStackTraceString(ee));
+            //Log.e("CustomACRAReportingAdministrator.uncaughtException", Log.getStackTraceString(ee));
         }
 
         if (_exception instanceof TimeoutException) {
@@ -175,7 +175,7 @@ public class CustomACRAReportingAdministrator implements ReportingAdministrator 
             buf.flush();
             buf.close();
         } catch (IOException ee) {
-            //Log.e("TopExceptionHandler.logIntoFile", Log.getStackTraceString(ee));
+            //Log.e("CustomACRAReportingAdministrator.logIntoFile", Log.getStackTraceString(ee));
         }
     }
 

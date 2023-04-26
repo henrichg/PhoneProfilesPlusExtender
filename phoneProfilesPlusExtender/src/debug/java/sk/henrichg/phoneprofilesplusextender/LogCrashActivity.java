@@ -200,7 +200,6 @@ public class LogCrashActivity extends AppCompatActivity {
                 if (_showLog)
                     logFile = new File(sd, PPPEApplication.LOG_FILENAME);
                 else
-                    //logFile = new File(sd, TopExceptionHandler.CRASH_FILENAME);
                     logFile = new File(sd, CustomACRAReportingAdministrator.CRASH_FILENAME);
                 if (logFile.exists()) {
                     try {
