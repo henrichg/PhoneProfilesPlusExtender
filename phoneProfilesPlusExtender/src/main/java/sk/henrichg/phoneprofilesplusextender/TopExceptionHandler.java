@@ -68,6 +68,8 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
 //        Log.e("TopExceptionHandler.uncaughtException", "defaultUEH="+defaultUEH);
 
         if (defaultUEH != null) {
+//            Log.e("TopExceptionHandler.uncaughtException", "(2)");
+
             boolean ignore = false;
             if (_thread.getName().equals("FinalizerWatchdogDaemon") && (_exception instanceof TimeoutException)) {
                 // ignore these exceptions
@@ -75,6 +77,7 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
                 // https://stackoverflow.com/a/55999687/2863059
                 ignore = true;
             }
+//            Log.e("TopExceptionHandler.uncaughtException", "(2x)");
             if (_exception instanceof DeadSystemException) {
                 // ignore these exceptions
                 // these are from dead of system for example:
@@ -83,6 +86,7 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
                 // java.lang.RuntimeException: android.os.DeadSystemException
                 ignore = true;
             }
+//            Log.e("TopExceptionHandler.uncaughtException", "(2y)");
             if (_exception.getClass().getSimpleName().equals("CannotDeliverBroadcastException") &&
                     (_exception instanceof RemoteServiceException)) {
                 // ignore but not exist exception
@@ -90,17 +94,26 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
                 // https://stackoverflow.com/questions/72902856/cannotdeliverbroadcastexception-only-on-pixel-devices-running-android-12
                 ignore = true;
             }
+//            Log.e("TopExceptionHandler.uncaughtException", "(2z)");
 
             // this is only for debuging, how is handled ignored exceptions
-            //if (_exception instanceof java.lang.RuntimeException) {
-            //    if ((_exception.getMessage() != null) && (_exception.getMessage().equals("Test Crash"))) {
-            //        ignore = true;
-            //    }
-            //}
+//            if (_exception instanceof java.lang.RuntimeException) {
+//                if (_exception.getMessage() != null) {
+//                    if (_exception.getMessage().equals("Test Crash"))
+//                        ignore = true;
+//                    else
+//                    if (_exception.getMessage().equals("Test non-fatal exception"))
+//                        ignore = true;
+//                }
+//            }
+
+//            Log.e("TopExceptionHandler.uncaughtException", "ignore="+ignore);
 
             if (!ignore) {
                 //Delegates to Android's error handling
+//                Log.e("TopExceptionHandler.uncaughtException", "(3)");
                 defaultUEH.uncaughtException(_thread, _exception);
+//                Log.e("TopExceptionHandler.uncaughtException", "(4)");
             } else
                 //Prevents the service/app from freezing
                 System.exit(2);
@@ -108,6 +121,8 @@ class TopExceptionHandler implements Thread.UncaughtExceptionHandler {
         else
             //Prevents the service/app from freezing
             System.exit(2);
+
+//        Log.e("TopExceptionHandler.uncaughtException", "end");
     }
 
     @SuppressWarnings("SameParameterValue")
