@@ -34,6 +34,8 @@ import java.text.Collator;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import me.drakeet.support.toast.ToastCompat;
 
@@ -122,6 +124,8 @@ public class PPPEApplication extends Application {
     static boolean registeredCallFunctionPPP = true;
     static boolean registeredLockDeviceFunctionPP = true;
     static boolean registeredLockDeviceFunctionPPP = true;
+
+    public volatile static ExecutorService basicExecutorPool = null;
 
     static FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
     static ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
@@ -235,6 +239,8 @@ public class PPPEApplication extends Application {
         });
         anrWatchDog.start();
         */
+
+        PPPEApplication.createBasicExecutorPool();
 
         try {
             PPPEApplication.setCustomKey("DEBUG", BuildConfig.DEBUG);
@@ -356,6 +362,7 @@ public class PPPEApplication extends Application {
 
         ACRA.init(this, builder);
 
+        /*
         //if (BuildConfig.DEBUG) {
         long actualVersionCode = 0;
         try {
@@ -366,6 +373,7 @@ public class PPPEApplication extends Application {
 
         Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(base, actualVersionCode));
         //}
+        */
 
     }
 
@@ -405,6 +413,11 @@ public class PPPEApplication extends Application {
         return Build.BRAND.equalsIgnoreCase("oneplus") ||
                 Build.MANUFACTURER.equalsIgnoreCase("oneplus") ||
                 Build.FINGERPRINT.toLowerCase().contains("oneplus");
+    }
+
+    static void createBasicExecutorPool() {
+        if (PPPEApplication.basicExecutorPool == null)
+            PPPEApplication.basicExecutorPool = Executors.newCachedThreadPool();
     }
 
     //--------------------------------------------------------------
