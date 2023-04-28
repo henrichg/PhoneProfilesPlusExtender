@@ -49,9 +49,9 @@
     <string name="extender_menu_choose_language_system_language">[ System ]</string>
     <string name="extender_application_translations">Tercümeler:</string>
     <string name="extender_email_chooser">Şununla e-posta gönder</string>
-    <string name="extender_accessibility_service_disabled_app_info_1">If is not possible to enable Accessibility service, maybe are not allowed restricted settings for PhoneProfilesPlusExtender.</string>
-    <string name="extender_accessibility_service_disabled_app_info_2">Click \"App info\" button to allow it.</string>
-    <string name="extender_accessibility_service_disabled_app_info_3">In \"App info\" screen, click menu at top and in it \"Allow restricted settings\".</string>
-    <string name="extender_accessibility_service_disabled_app_info_4">\"Allow restricted settings\" is not displayed, when restricted settings are allowed.</string>
-    <string name="extender_accessibility_service_app_info_button">App info</string>
+    <string name="extender_accessibility_service_disabled_app_info_1">Erişilebilirlik hizmetini faaliyete geçirmek mümkün değilse, PhoneProfilesPlusExtender için kısıtlı ayarlara izin verilmemiş olabilir.</string>
+    <string name="extender_accessibility_service_disabled_app_info_2">İzin vermek için \"Uygulama bilgisi\"ne dokunun.</string>
+    <string name="extender_accessibility_service_disabled_app_info_3">\"Uygulama bilgisi\" ekranında, üstteki menüye ve içindeki \"Kısıtlanmış ayarlara izin ver\" seçeneğine dokunun.</string>
+    <string name="extender_accessibility_service_disabled_app_info_4">Kısıtlanmış ayarlara izin verildiğinde \"Kısıtlı ayarlara izin ver\" gösterilmez.</string>
+    <string name="extender_accessibility_service_app_info_button">Uygulama bilgisi</string>
 </resources>
