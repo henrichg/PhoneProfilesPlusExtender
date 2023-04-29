@@ -13,17 +13,19 @@ PhoneProfilesPlusExtender (aka PPPE)
 
 - __[GitHub PPPE release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
 
-Use keyword "PhoneProfilesPlus" for search this application in these stores.
+Use keyword "PhoneProfilesPlus" for search this application in these stores:
 
-- __[Galaxy Store PPPE release (for Samsung devices only)](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)__
+__Galaxy Store:__
+- [PPPE release (for Samsung devices only)](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)
 
-- __[F-Droid PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)__
+__F-Droid:__
+- [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)
 &nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_  
-- __[F-Droid application (download)](https://www.f-droid.org/)__
+- [Store application (download)](https://www.f-droid.org/)
 
-__Droid-ify (F-Droid alternative)__  
-- __[Droid-ify PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)__  
-- __[Droid-ify applicaion (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)__
+__Droid-ify (F-Droid alternative):__  
+- [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)  
+- [Store applicaion (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)
 &nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
 
 __If it is not possible to install PhoneProfilesPlusExtender from GitHub or other sources directly on the device, then it can be installed from PC.__
