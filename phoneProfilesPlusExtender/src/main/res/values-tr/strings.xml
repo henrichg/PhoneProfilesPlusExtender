@@ -48,4 +48,10 @@
     <string name="extender_menu_choose_language">Lisan seç</string>
     <string name="extender_menu_choose_language_system_language">[ System ]</string>
     <string name="extender_application_translations">Tercümeler:</string>
+    <string name="extender_email_chooser">Şununla e-posta gönder</string>
+    <string name="extender_accessibility_service_disabled_app_info_1">Erişilebilirlik hizmetini faaliyete geçirmek mümkün değilse, PhoneProfilesPlusExtender için kısıtlı ayarlara izin verilmemiş olabilir.</string>
+    <string name="extender_accessibility_service_disabled_app_info_2">İzin vermek için \"Uygulama bilgisi\"ne dokunun.</string>
+    <string name="extender_accessibility_service_disabled_app_info_3">\"Uygulama bilgisi\" ekranında, üstteki menüye ve içindeki \"Kısıtlanmış ayarlara izin ver\" seçeneğine dokunun.</string>
+    <string name="extender_accessibility_service_disabled_app_info_4">Kısıtlanmış ayarlara izin verildiğinde \"Kısıtlı ayarlara izin ver\" gösterilmez.</string>
+    <string name="extender_accessibility_service_app_info_button">Uygulama bilgisi</string>
 </resources>

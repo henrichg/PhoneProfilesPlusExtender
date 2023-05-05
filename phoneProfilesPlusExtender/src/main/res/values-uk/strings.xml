@@ -48,4 +48,10 @@
     <string name="extender_menu_choose_language">Виберіть мову</string>
     <string name="extender_menu_choose_language_system_language">[ Системна ]</string>
     <string name="extender_application_translations">Переклади:</string>
+    <string name="extender_email_chooser">Надсилати пошту за допомогою</string>
+    <string name="extender_accessibility_service_disabled_app_info_1">Якщо неможливо увімкнути службу спеціальних можливостей, можливо, не дозволені обмежені налаштування для PhoneProfilesPlusExtender.</string>
+    <string name="extender_accessibility_service_disabled_app_info_2">Натисніть\"Про застосунок\", щоб дозволити.</string>
+    <string name="extender_accessibility_service_disabled_app_info_3">У вікні \"Про додаток\" натисніть меню вгорі, та в ньому \"Дозволити обмежені налаштування\".</string>
+    <string name="extender_accessibility_service_disabled_app_info_4">\"Дозволити обмежені налаштування\" не показуються, якщо такі налаштування дозволені.</string>
+    <string name="extender_accessibility_service_app_info_button">Про застосунок</string>
 </resources>

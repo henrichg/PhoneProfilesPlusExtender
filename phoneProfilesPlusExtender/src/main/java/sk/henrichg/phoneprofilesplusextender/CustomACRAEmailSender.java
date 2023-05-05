@@ -76,6 +76,7 @@ public class CustomACRAEmailSender implements ReportSender {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
     }
 
+    @SuppressWarnings("RedundantThrows")
     @Override
     public void send(@NotNull Context context, @NotNull CrashReportData errorContent)
             throws ReportSenderException {
@@ -114,6 +115,7 @@ public class CustomACRAEmailSender implements ReportSender {
                     }
 
                     List<ResolveInfo> resolveInfo = context.getPackageManager().queryIntentActivities(emailIntent, 0);
+//                    Log.e("CustomACRAEmailSender.send", "resolveInfo.size()=" + resolveInfo.size());
                     List<LabeledIntent> intents = new ArrayList<>();
                     for (ResolveInfo info : resolveInfo) {
                         Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
@@ -122,16 +124,20 @@ public class CustomACRAEmailSender implements ReportSender {
                         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailAddress});
                         intent.putExtra(Intent.EXTRA_SUBJECT, mailConfig.getSubject());
                         intent.putExtra(Intent.EXTRA_TEXT, mailConfig.getBody());
+                        intent.setType("*/*"); // gmail will only match with type set
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, attachments); //ArrayList<Uri> of attachment Uri's
                         intents.add(new LabeledIntent(intent, info.activityInfo.packageName, info.loadLabel(context.getPackageManager()), info.icon));
                     }
-//                Log.e("CustomACRAEmailSender.send", "intents.size()="+intents.size());
+//                    Log.e("CustomACRAEmailSender.send", "intents.size()="+intents.size());
                     if (intents.size() > 0) {
                         try {
-                            Intent chooser = Intent.createChooser(intents.get(0), context.getString(R.string.extender_email_chooser));
-                            //noinspection ToArrayCallWithZeroLengthArrayArgument
-                            chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, intents.toArray(new LabeledIntent[intents.size()]));
+//                            for (Intent _intent : intents) {
+//                                Log.e("CustomACRAEmailSender.send", "intents.size()=" + _intent.getAction());
+//                            }
+                            Intent chooser = Intent.createChooser(new Intent(Intent.ACTION_CHOOSER), context.getString(R.string.extender_email_chooser));
+                            chooser.putExtra(Intent.EXTRA_INTENT, intents.get(0));
+                            chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, intents.toArray(new LabeledIntent[0]));
                             chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(chooser);
                         } catch (Exception e) {
@@ -142,8 +148,8 @@ public class CustomACRAEmailSender implements ReportSender {
                     break;
                 }
             }
-        } catch (Exception e) {
-            Log.e("CustomACRAEmailSender.send", Log.getStackTraceString(e));
+        } catch (Exception ee) {
+            Log.e("CustomACRAEmailSender.send", Log.getStackTraceString(ee));
         }
     }
 

@@ -48,4 +48,10 @@
     <string name="extender_menu_choose_language">Taal kiezen</string>
     <string name="extender_menu_choose_language_system_language">[ System ]</string>
     <string name="extender_application_translations">Vertalingen:</string>
+    <string name="extender_email_chooser">Verstuur e-mail met</string>
+    <string name="extender_accessibility_service_disabled_app_info_1">Als het niet mogelijk is om Toegankelijkheidsinstellingen in te schakelen zijn er mogelijk uitgeschakelde instellingen voor PhoneProfilesPlusExtender.</string>
+    <string name="extender_accessibility_service_disabled_app_info_2">Klik op de \"App info\" knop om het toe te staan.</string>
+    <string name="extender_accessibility_service_disabled_app_info_3">Op het \"App info\" scherm klik je op het menu bovenaan en daar \"Sta beperkte instellingen toe\".</string>
+    <string name="extender_accessibility_service_disabled_app_info_4">\"Beperkte instellingen toestaan\" zie je niet wanneer er uitgeschakelde instellingen voor PhoneProfilesPlusExtender zijn.</string>
+    <string name="extender_accessibility_service_app_info_button">App informatie</string>
 </resources>

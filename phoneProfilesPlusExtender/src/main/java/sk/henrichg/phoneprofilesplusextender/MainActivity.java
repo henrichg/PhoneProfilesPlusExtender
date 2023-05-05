@@ -67,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+
         if (PPPEApplication.deviceIsOnePlus)
             setTheme(R.style.AppTheme_noRipple);
         else
             setTheme(R.style.AppTheme);
-
-        super.onCreate(savedInstanceState);
-
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
         setContentView(R.layout.activity_main);
 
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         text = findViewById(R.id.activity_main_application_releases);
         String str1 = getString(R.string.extender_application_releases);
-        String str2 = str1 + " https://github.com/henrichg/PhoneProfilesPlusExtender/releases" + " \u21D2";
+        String str2 = str1 + " https://github.com/henrichg/PhoneProfilesPlusExtender/releases" + "\u00A0»»";
         Spannable sbt = new SpannableString(str2);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         ClickableSpan clickableSpan = new ClickableSpan() {
@@ -431,6 +431,40 @@ public class MainActivity extends AppCompatActivity {
                 dialogBuilder.show();
             }
         });
+
+        if (Build.VERSION.SDK_INT >= 33) {
+            text = findViewById(R.id.activity_main_accessibility_service_app_info);
+            Button appInfoButton = findViewById(R.id.activity_main_accessibility_service_app_info_button);
+            if (!PPPEAccessibilityService.isEnabled(getApplicationContext())) {
+                str1 = "<ul><li>" + getString(R.string.extender_accessibility_service_disabled_app_info_1) + "<br><br>";
+                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_2) + "<br>";
+                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_3) + "<br>";
+                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_4);
+                str1 = str1 + "</li></ul>";
+                text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
+                text.setVisibility(View.VISIBLE);
+                appInfoButton.setVisibility(View.VISIBLE);
+                appInfoButton.setOnClickListener(view -> {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    //intent.addCategory(Intent.CATEGORY_DEFAULT);
+                    intent.setData(Uri.parse("package:"+PPPEApplication.PACKAGE_NAME));
+                    if (MainActivity.activityIntentExists(intent, activity)) {
+                        //noinspection deprecation
+                        startActivity(intent);
+                    } else {
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+                        dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
+                        //dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
+                        dialogBuilder.setPositiveButton(android.R.string.ok, null);
+                        dialogBuilder.show();
+                    }
+                });
+            }
+            else {
+                text.setVisibility(View.GONE);
+                appInfoButton.setVisibility(View.GONE);
+            }
+        }
     }
 
     @SuppressLint({"SetTextI18n", "BatteryLife"})

@@ -48,4 +48,10 @@
     <string name="extender_menu_choose_language">Выбрать язык</string>
     <string name="extender_menu_choose_language_system_language">[ Системный ]</string>
     <string name="extender_application_translations">Переводы:</string>
+    <string name="extender_email_chooser">Отправить e-mail с помощью</string>
+    <string name="extender_accessibility_service_disabled_app_info_1">Если вы не можете включить службу спец. возможностей, возможно, приложению PhoneProfilesPlusExtender не разрешён доступ к настройкам.</string>
+    <string name="extender_accessibility_service_disabled_app_info_2">Чтобы разрешить его, нажмите на кнопку \"Сведения о приложении\".</string>
+    <string name="extender_accessibility_service_disabled_app_info_3">На экране сведений о приложении нажмите на значок \"Ещё\" вверху экрана и выберите \"Разрешить доступ к настройкам\".</string>
+    <string name="extender_accessibility_service_disabled_app_info_4">Если доступ уже разрешён, пункт \"Разрешить доступ к настройкам\" не отображается.</string>
+    <string name="extender_accessibility_service_app_info_button">Сведения о приложении</string>
 </resources>

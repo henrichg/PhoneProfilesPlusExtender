@@ -48,4 +48,10 @@
     <string name="extender_menu_choose_language">Choose language</string>
     <string name="extender_menu_choose_language_system_language">[ System ]</string>
     <string name="extender_application_translations">Übersetzungen:</string>
+    <string name="extender_email_chooser">E-Mail senden mit</string>
+    <string name="extender_accessibility_service_disabled_app_info_1">Wenn es nicht möglich ist, den Dienst Barrierefreiheit zu aktivieren, sind möglicherweise keine eingeschränkten Einstellungen für PhoneProfilesPlusExtender erlaubt.</string>
+    <string name="extender_accessibility_service_disabled_app_info_2">Klicken Sie auf die Schaltfläche „App-Info”, um es zuzulassen.</string>
+    <string name="extender_accessibility_service_disabled_app_info_3">Klicken Sie im Bildschirm „App-Info” oben auf das Menü und dort auf „Eingeschränkte Einstellungen zulassen”.</string>
+    <string name="extender_accessibility_service_disabled_app_info_4">„Eingeschränkte Einstellungen zulassen” wird nicht angezeigt, wenn eingeschränkte Einstellungen erlaubt sind.</string>
+    <string name="extender_accessibility_service_app_info_button">App-Info</string>
 </resources>

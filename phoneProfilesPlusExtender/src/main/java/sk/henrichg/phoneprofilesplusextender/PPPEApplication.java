@@ -16,6 +16,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.PackageInfoCompat;
 
 import org.acra.ACRA;
@@ -33,6 +34,8 @@ import java.text.Collator;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import me.drakeet.support.toast.ToastCompat;
 
@@ -121,6 +124,8 @@ public class PPPEApplication extends Application {
     static boolean registeredCallFunctionPPP = true;
     static boolean registeredLockDeviceFunctionPP = true;
     static boolean registeredLockDeviceFunctionPPP = true;
+
+    public volatile static ExecutorService basicExecutorPool = null;
 
     static FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
     static ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
@@ -235,6 +240,8 @@ public class PPPEApplication extends Application {
         anrWatchDog.start();
         */
 
+        PPPEApplication.createBasicExecutorPool();
+
         try {
             PPPEApplication.setCustomKey("DEBUG", BuildConfig.DEBUG);
         } catch (Exception ignored) {}
@@ -338,6 +345,7 @@ public class PPPEApplication extends Application {
                         .withResSendButtonIcon(0)
                         .withResDiscardButtonIcon(0)
                         .withSendOnClick(true)
+                        .withColor(ContextCompat.getColor(base, R.color.notification_color))
                         .withEnabled(true)
                         .build(),
                 new MailSenderConfigurationBuilder()
@@ -350,10 +358,11 @@ public class PPPEApplication extends Application {
                         .build()
         );
 
-        //ACRA.DEV_LOGGING = true;
+        ACRA.DEV_LOGGING = false;
 
         ACRA.init(this, builder);
 
+        /*
         //if (BuildConfig.DEBUG) {
         long actualVersionCode = 0;
         try {
@@ -364,6 +373,7 @@ public class PPPEApplication extends Application {
 
         Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(base, actualVersionCode));
         //}
+        */
 
     }
 
@@ -403,6 +413,11 @@ public class PPPEApplication extends Application {
         return Build.BRAND.equalsIgnoreCase("oneplus") ||
                 Build.MANUFACTURER.equalsIgnoreCase("oneplus") ||
                 Build.FINGERPRINT.toLowerCase().contains("oneplus");
+    }
+
+    static void createBasicExecutorPool() {
+        if (PPPEApplication.basicExecutorPool == null)
+            PPPEApplication.basicExecutorPool = Executors.newCachedThreadPool();
     }
 
     //--------------------------------------------------------------

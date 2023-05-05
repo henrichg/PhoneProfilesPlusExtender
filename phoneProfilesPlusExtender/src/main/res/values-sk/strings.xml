@@ -48,4 +48,10 @@
     <string name="extender_menu_choose_language">Vybrať jazyk</string>
     <string name="extender_menu_choose_language_system_language">[ Systémový ]</string>
     <string name="extender_application_translations">Preklady:</string>
+    <string name="extender_email_chooser">Odoslať e-mail pomocou</string>
+    <string name="extender_accessibility_service_disabled_app_info_1">Ak nie je možné povoliť službu Dostupnosť, možno nie sú povolené obmedzené nastavenia pre PhoneProfilesPlusExtender.</string>
+    <string name="extender_accessibility_service_disabled_app_info_2">Kliknite na tlačidlo \"Informácie o aplikácii\" pre ich povolenie.</string>
+    <string name="extender_accessibility_service_disabled_app_info_3">Na obrazovke \"Informácie o aplikácii\" kliknite na ponuku v hornej časti a v nej \"Povoliť obmedzené nastavenia\".</string>
+    <string name="extender_accessibility_service_disabled_app_info_4">\"Povoliť obmedzené nastavenia\" sa nezobrazí, keď sú obmedzené nastavenia povolené.</string>
+    <string name="extender_accessibility_service_app_info_button">Informácie o aplikácii</string>
 </resources>

@@ -36,6 +36,7 @@
 
     <style name="PopupMenuItemStyle" parent="@android:style/Widget.ListView">
         <item name="android:listSelector">?attr/popupMenuItemBackground</item>
+        <item name="android:divider">@android:color/transparent</item>
     </style>
     <!--    <item name="android:divider">@color/text_color_white</item>-->
     <!--    <item name="android:dividerHeight">1dp</item>-->
