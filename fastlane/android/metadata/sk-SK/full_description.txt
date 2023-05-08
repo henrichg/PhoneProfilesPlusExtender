@@ -1,4 +1,4 @@
-**Aplikácia pre Android – Extender for PhoneProfilesPlus**
+**Extender for PhoneProfilesPlus**
 
 - Služba dostupnosti pre parameter profilu "Vynútiť zastavenie aplikácií"
 - Služba dostupnosti pre parameter profilu "Zamknúť zariadenie"
