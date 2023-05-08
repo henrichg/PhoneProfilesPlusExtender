@@ -1,4 +1,4 @@
-**Android application - Extender for PhoneProfilesPlus**
+**Extender for PhoneProfilesPlus**
 
 - Accessibility service for profile parameter "Force stop applications"
 - Accessibility service for profile parameter "Lock device"

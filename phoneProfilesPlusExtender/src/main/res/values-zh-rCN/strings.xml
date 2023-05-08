@@ -48,10 +48,10 @@
     <string name="extender_menu_choose_language">选择语言</string>
     <string name="extender_menu_choose_language_system_language">[ 系统 ]</string>
     <string name="extender_application_translations">翻译：</string>
-    <string name="extender_email_chooser">Send e-mail using</string>
-    <string name="extender_accessibility_service_disabled_app_info_1">If is not possible to enable Accessibility service, maybe are not allowed restricted settings for PhoneProfilesPlusExtender.</string>
-    <string name="extender_accessibility_service_disabled_app_info_2">Click \"App info\" button to allow it.</string>
-    <string name="extender_accessibility_service_disabled_app_info_3">In \"App info\" screen, click menu at top and in it \"Allow restricted settings\".</string>
-    <string name="extender_accessibility_service_disabled_app_info_4">\"Allow restricted settings\" is not displayed, when restricted settings are allowed.</string>
-    <string name="extender_accessibility_service_app_info_button">App info</string>
+    <string name="extender_email_chooser">发送电子邮件使用</string>
+    <string name="extender_accessibility_service_disabled_app_info_1">如果无法启用辅助功能服务，可能是未允许 PhoneProfilesPlusExtender 设置。</string>
+    <string name="extender_accessibility_service_disabled_app_info_2">单击“应用信息”按钮允许它。</string>
+    <string name="extender_accessibility_service_disabled_app_info_3">在“应用信息”屏幕中，点击顶部菜单，然后在菜单中“允许限制设置”。</string>
+    <string name="extender_accessibility_service_disabled_app_info_4">“允许受限设置”不会在允许受限设置时显示。</string>
+    <string name="extender_accessibility_service_app_info_button">应用信息</string>
 </resources>
