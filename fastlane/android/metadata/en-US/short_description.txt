@@ -1,1 +1,1 @@
-Android application - Extender for PhoneProfilesPlus
+Extender for PhoneProfilesPlus
