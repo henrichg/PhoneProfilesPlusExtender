@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+<!--        <item name="windowSplashScreenBackground">@color/primary</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/transparent</item>-->
+        <item name="postSplashScreenTheme">@style/AppTheme</item>
+        <item name="windowSplashScreenAnimationDuration">200</item>
+    </style>
+
     <style name="AppTheme" parent="Theme.AppCompat.DayNight">
         <!-- disable initial empty screen - useful for dark theme -->
         <item name="android:windowDisablePreview">true</item>
