@@ -340,7 +340,7 @@ public class PPPEApplication extends Application {
                         .withChannelName(getString(R.string.extender_notification_channel_crash_report))
                         .withChannelImportance(NotificationManager.IMPORTANCE_HIGH)
                         .withResIcon(R.drawable.ic_pppe_notification)
-                        .withTitle(getString(R.string.extender_acra_notification_title))
+                        .withTitle("!!! " + getString(R.string.extender_acra_notification_title))
                         .withText(getString(R.string.extender_acra_notification_text))
                         .withResSendButtonIcon(0)
                         .withResDiscardButtonIcon(0)
