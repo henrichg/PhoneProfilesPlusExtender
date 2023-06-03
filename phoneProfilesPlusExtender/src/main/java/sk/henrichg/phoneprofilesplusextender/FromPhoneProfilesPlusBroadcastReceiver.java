@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.util.Log;
 
@@ -145,7 +146,8 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         PPPEApplication.createGrantPermissionNotificationChannel(context);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context.getApplicationContext(), PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL)
                 .setColor(ContextCompat.getColor(context.getApplicationContext(), R.color.notification_color))
-                .setSmallIcon(R.drawable.ic_exclamation_notify) // notification icon
+                .setSmallIcon(R.drawable.ic_pppe_notification/*icic_exclamation_notify*/) // notification icon
+                .setLargeIcon(BitmapFactory.decodeResource(context.getApplicationContext().getResources(), R.drawable.ic_exclamation_notification))
                 .setContentTitle(nTitle) // title for notification
                 .setContentText(nText)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(nText))
