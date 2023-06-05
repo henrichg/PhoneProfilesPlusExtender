@@ -56,8 +56,8 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
+        android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-<!--        android:theme="@style/Theme.App.Starting"-->
 <!--        android:roundIcon="@mipmap/ic_launcher_round"-->
 
         <!-- support for 18.5:9 display (Samsung Galaxy S8, LG G6) -->
