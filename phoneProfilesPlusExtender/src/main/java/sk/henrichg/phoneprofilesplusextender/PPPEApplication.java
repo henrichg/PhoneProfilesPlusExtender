@@ -26,10 +26,12 @@ import org.acra.config.NotificationConfigurationBuilder;
 import org.acra.data.StringFormat;
 import org.lsposed.hiddenapibypass.HiddenApiBypass;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.Collator;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -83,6 +85,7 @@ public class PPPEApplication extends Application {
     static final boolean deviceIsSamsung = isSamsung();
     static final boolean deviceIsXiaomi = isXiaomi();
     static final boolean deviceIsOnePlus = isOnePlus();
+    static final boolean romIsMIUI = isMIUIROM();
 
     // for new log.txt and crash.txt is in /Android/data/sk.henrichg.phoneprofilesplusextender/files
     //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
@@ -413,6 +416,44 @@ public class PPPEApplication extends Application {
         return Build.BRAND.equalsIgnoreCase("oneplus") ||
                 Build.MANUFACTURER.equalsIgnoreCase("oneplus") ||
                 Build.FINGERPRINT.toLowerCase().contains("oneplus");
+    }
+
+    private static boolean isMIUIROM() {
+        boolean miuiRom1 = false;
+        boolean miuiRom2 = false;
+        boolean miuiRom3 = false;
+
+        String line;
+        BufferedReader input;
+        try {
+            java.lang.Process p = Runtime.getRuntime().exec("getprop ro.miui.ui.version.code");
+            input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
+            line = input.readLine();
+            miuiRom1 = line.length() != 0;
+            input.close();
+
+            if (!miuiRom1) {
+                p = Runtime.getRuntime().exec("getprop ro.miui.ui.version.name");
+                input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
+                line = input.readLine();
+                miuiRom2 = line.length() != 0;
+                input.close();
+            }
+
+            if (!miuiRom1 && !miuiRom2) {
+                p = Runtime.getRuntime().exec("getprop ro.miui.internal.storage");
+                input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
+                line = input.readLine();
+                miuiRom3 = line.length() != 0;
+                input.close();
+            }
+
+        } catch (Exception ex) {
+            //Log.e("PPPEApplication.isMIUIROM", Log.getStackTraceString(ex));
+            PPPEApplication.recordException(ex);
+        }
+
+        return miuiRom1 || miuiRom2 || miuiRom3;
     }
 
     static void createBasicExecutorPool() {

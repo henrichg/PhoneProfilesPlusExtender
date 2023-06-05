@@ -74,7 +74,16 @@ public class MainActivity extends AppCompatActivity {
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
+        int miuiVersion = -1;
+        if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI) {
+            String[] splits = Build.VERSION.INCREMENTAL.split("\\.");
+            miuiVersion = Integer.parseInt(splits[0].substring(1));
+        }
+
         if (PPPEApplication.deviceIsOnePlus)
+            setTheme(R.style.AppTheme_noRipple);
+        else
+        if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI && miuiVersion >= 14)
             setTheme(R.style.AppTheme_noRipple);
         else
             setTheme(R.style.AppTheme);
