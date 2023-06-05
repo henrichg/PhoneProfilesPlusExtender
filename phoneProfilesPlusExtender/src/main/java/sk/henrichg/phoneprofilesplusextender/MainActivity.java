@@ -68,12 +68,6 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen.installSplashScreen(this);
-
-        super.onCreate(savedInstanceState);
-
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-
         int miuiVersion = -1;
         if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI) {
             String[] splits = Build.VERSION.INCREMENTAL.split("\\.");
@@ -81,12 +75,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (PPPEApplication.deviceIsOnePlus)
-            setTheme(R.style.AppTheme_noRipple);
+            setTheme(R.style.Theme_App_Starting_noRipple);
         else
         if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI && miuiVersion >= 14)
-            setTheme(R.style.AppTheme_noRipple);
+            setTheme(R.style.Theme_App_Starting_noRipple);
         else
-            setTheme(R.style.AppTheme);
+            setTheme(R.style.Theme_App_Starting);
+
+        SplashScreen.installSplashScreen(this);
+
+        super.onCreate(savedInstanceState);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
         setContentView(R.layout.activity_main);
 
