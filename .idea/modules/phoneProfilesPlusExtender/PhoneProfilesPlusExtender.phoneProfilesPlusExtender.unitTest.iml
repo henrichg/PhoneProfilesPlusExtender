@@ -46,7 +46,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: ch.acra:acra-mail:5.10.0-beta03@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: ch.acra:acra-core:5.10.0-beta03@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: ch.acra:acra-notification:5.10.0-beta03@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: androidx.core:core-splashscreen:1.0.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.appcompat:appcompat:1.6.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.activity:activity:1.6.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.core:core:1.10.0@aar" level="project" />

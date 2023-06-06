@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.App.Starting" parent="Theme.SplashScreen.IconBackground">
-        <item name="windowSplashScreenBackground">@color/primary</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        <item name="windowSplashScreenIconBackgroundColor">#FF484848</item>
-        <item name="postSplashScreenTheme">@style/AppTheme</item>
-        <item name="windowSplashScreenAnimationDuration">200</item>
-    </style>
-
     <style name="AppTheme" parent="Theme.AppCompat.DayNight">
         <!-- disable initial empty screen - useful for dark theme -->
         <item name="android:windowDisablePreview">true</item>
@@ -50,14 +42,6 @@
         <item name="android:scrollbarThumbVertical">@color/scrollbar_color</item>
 
         <item name="android:lineSpacingExtra">@dimen/line_spacing_extra</item>
-    </style>
-
-    <style name="Theme.App.Starting_noRipple" parent="Theme.SplashScreen.IconBackground">
-        <item name="windowSplashScreenBackground">@color/primary</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        <item name="windowSplashScreenIconBackgroundColor">#FF484848</item>
-        <item name="postSplashScreenTheme">@style/AppTheme_noRipple</item>
-        <item name="windowSplashScreenAnimationDuration">200</item>
     </style>
 
     <style name="AppTheme_noRipple" parent="Theme.AppCompat.DayNight">
