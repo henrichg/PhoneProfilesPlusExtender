@@ -99,6 +99,17 @@
             android:label="@string/empty_string">
         </activity>
 
+        <receiver
+            android:name=".LocaleChangedReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".PPPEAccessibilityService"
             android:label="@string/extender_accessibility_service_name"

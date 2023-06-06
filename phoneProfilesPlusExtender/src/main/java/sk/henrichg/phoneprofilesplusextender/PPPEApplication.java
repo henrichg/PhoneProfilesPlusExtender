@@ -198,7 +198,7 @@ public class PPPEApplication extends Application {
 
         //Log.e("##### PPPEApplication.onCreate", "Start  uid="+uid);
 
-        PPPEApplication.createGrantPermissionNotificationChannel(this);
+        PPPEApplication.createGrantPermissionNotificationChannel(this, true);
 
         Log.e("##### PPPEApplication.onCreate", "after cerate notification channel");
 
@@ -685,11 +685,11 @@ public class PPPEApplication extends Application {
         return (int) PackageInfoCompat.getLongVersionCode(pInfo);
     }
 
-    static void createGrantPermissionNotificationChannel(Context context) {
+    static void createGrantPermissionNotificationChannel(Context context, boolean forceChange) {
         //if (Build.VERSION.SDK_INT >= 26) {
             try {
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context.getApplicationContext());
-                if (notificationManager.getNotificationChannel(PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL) != null)
+                if ((!forceChange) && (notificationManager.getNotificationChannel(PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL) != null))
                     return;
 
                 // The user-visible name of the channel.
