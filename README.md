@@ -12,6 +12,7 @@ PhoneProfilesPlusExtender (aka PPPE)
 ### Sources of PhoneProfilesPlusExtender:
 
 - __[GitHub PPPE release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
+&nbsp;&nbsp;&nbsp;_[Number of downloads by version](https://hanadigital.github.io/grev/?user=henrichg&repo=phoneprofilesplusextender)_
 
 Use keyword "PhoneProfilesPlus" for search this application in these stores:
 
