@@ -91,12 +91,12 @@
         </activity>
         <activity android:name=".ForceStopActivity"
                   android:excludeFromRecents="true"
-                  android:label="@string/empty_string"
+                  android:label=""
                   android:theme="@style/EmptyAppCompatActivity" >
         </activity>
         <activity
             android:name=".LogCrashActivity"
-            android:label="@string/empty_string">
+            android:label="">
         </activity>
 
         <receiver
