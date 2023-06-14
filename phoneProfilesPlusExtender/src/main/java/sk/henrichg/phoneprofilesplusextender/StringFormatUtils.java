@@ -134,7 +134,7 @@ public class StringFormatUtils {
         return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, Resources.getSystem().getDisplayMetrics()));
     }
 
-    static class LiTagHandler implements Html.TagHandler {
+    private static class LiTagHandler implements Html.TagHandler {
 
         @Override
         public void handleTag(boolean opening, String tag, Editable output, XMLReader xmlReader) {
