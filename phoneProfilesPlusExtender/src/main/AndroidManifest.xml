@@ -114,6 +114,7 @@
             android:name=".PPPEAccessibilityService"
             android:label="@string/extender_accessibility_service_name"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService"/>
