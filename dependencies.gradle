@@ -13,6 +13,5 @@ ext.ppVersions = [
 
     appcompatXLib: '1.6.1', //''1.5.1',
 
-    //acra: '5.9.7'
-    acra: '5.10.0-beta03' //'5.9.8-beta02' // in this beta is withColor() added in notification configuration ;-)
+    acra: '5.10.0'
 ]
