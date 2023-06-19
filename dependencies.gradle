@@ -13,5 +13,6 @@ ext.ppVersions = [
 
     appcompatXLib: '1.6.1', //''1.5.1',
 
-    acra: '5.10.0'
+    autoservice       : '1.1.1',
+    acra              : '5.10.1'
 ]
