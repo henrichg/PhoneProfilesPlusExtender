@@ -237,7 +237,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     if (node.isEnabled()) {
                                         if ((Build.VERSION.SDK_INT >= 30) && PPPEApplication.deviceIsXiaomi) {
                                             AccessibilityNodeInfo _node = node.getParent();
-                                            if (_node.isEnabled()) {
+                                            if ((_node != null) && _node.isEnabled()) {
                                                 _node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                                                 PPPEApplication.forceStopPerformed = true;
 //                                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Force stop clicked");
