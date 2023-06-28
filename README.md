@@ -11,7 +11,7 @@ PhoneProfilesPlusExtender (aka PPPE)
 
 ### Sources of PhoneProfilesPlusExtender:
 
-Use keyword "PhoneProfilesPlus" for search this application in these stores:
+Use keyword "PhoneProfilesPlusExtender" for search this application in these stores:
 
 __Galaxy Store:__
 - [PPPE release (for Samsung devices only)](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)
