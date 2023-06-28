@@ -11,9 +11,6 @@ PhoneProfilesPlusExtender (aka PPPE)
 
 ### Sources of PhoneProfilesPlusExtender:
 
-- __[GitHub PPPE release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
-&nbsp;&nbsp;&nbsp;_[Number of downloads by version](https://hanadigital.github.io/grev/?user=henrichg&repo=phoneprofilesplusextender)_
-
 Use keyword "PhoneProfilesPlus" for search this application in these stores:
 
 __Galaxy Store:__
@@ -29,7 +26,12 @@ __Droid-ify (F-Droid alternative):__
 - [Store applicaion (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)
 &nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
 
-__If it is not possible to install PhoneProfilesPlusExtender from GitHub or other sources directly on the device, then it can be installed from PC.__
+__NOTE: Installation from downloaded apk is not recommended for Android 13+ for security reason. Use instead Droid-ify, if in your device is not any application store, and install PhoneProfilesPlusExtender from it.__
+
+- __[GitHub PPPE release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
+  &nbsp;&nbsp;&nbsp;_[Number of downloads by version](https://hanadigital.github.io/grev/?user=henrichg&repo=phoneprofilesplusextender)_
+
+__If it is not possible to install PhoneProfilesPlusExtender from the downloaded apk file directly on your device, you can install it from your computer.__
 - [Show how](docs/install_apk_from_pc.md)
 
 ---
