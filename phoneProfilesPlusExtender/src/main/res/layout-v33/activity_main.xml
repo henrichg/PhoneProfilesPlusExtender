@@ -141,11 +141,21 @@
             android:text="@string/extender_accessibility_service_disabled_app_info_1"
             android:textSize="14sp"
             tools:ignore="InconsistentLayout" />
+
+        <TextView
+            android:id="@+id/activity_main_accessibility_service_app_info_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/extender_accessibility_service_disabled_app_info_7"
+            android:textSize="14sp"/>
+
         <Button
             android:id="@+id/activity_main_accessibility_service_app_info_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_accessibility_service_app_info_button"
             android:textColor="?attr/colorAccent"

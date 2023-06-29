@@ -440,18 +440,49 @@ public class MainActivity extends AppCompatActivity {
                 dialogBuilder.show();
             }
         });
-
+//TODO
         if (Build.VERSION.SDK_INT >= 33) {
             text = findViewById(R.id.activity_main_accessibility_service_app_info);
+            TextView text2 = findViewById(R.id.activity_main_accessibility_service_app_info_2);
             Button appInfoButton = findViewById(R.id.activity_main_accessibility_service_app_info_button);
             if (!PPPEAccessibilityService.isEnabled(getApplicationContext())) {
                 str1 = "<ul><li>" + getString(R.string.extender_accessibility_service_disabled_app_info_1) + "<br><br>";
                 str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_2) + "<br>";
                 str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_3) + "<br>";
-                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_4);
+                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_4) + "<br><br>";
+                str1 = str1 + "<b>" + getString(R.string.extender_accessibility_service_disabled_app_info_5) + "<br>";
+                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_6) + "</b>";
                 str1 = str1 + "</li></ul>";
                 text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
                 text.setVisibility(View.VISIBLE);
+
+                str1 = getString(R.string.extender_accessibility_service_disabled_app_info_7);
+                String str2 = str1 + " https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify" + "\u00A0»»";
+                Spannable sbt = new SpannableString(str2);
+                sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ClickableSpan clickableSpan = new ClickableSpan() {
+                    @Override
+                    public void updateDrawState(@NonNull TextPaint ds) {
+                        ds.setColor(ds.linkColor);    // you can use custom color
+                        ds.setUnderlineText(false);    // this remove the underline
+                    }
+
+                    @Override
+                    public void onClick(@NonNull View textView) {
+                        String url = "https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify";
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        try {
+                            startActivity(Intent.createChooser(i, getString(R.string.extender_web_browser_chooser)));
+                        } catch (Exception ignored) {}
+                    }
+                };
+                sbt.setSpan(clickableSpan, str1.length()+1, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                //sbt.setSpan(new UnderlineSpan(), str1.length()+1, str2.length(), 0);
+                text2.setText(sbt);
+                text2.setMovementMethod(LinkMovementMethod.getInstance());
+                text2.setVisibility(View.VISIBLE);
+
                 appInfoButton.setVisibility(View.VISIBLE);
                 appInfoButton.setOnClickListener(view -> {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -471,6 +502,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 text.setVisibility(View.GONE);
+                text2.setVisibility(View.GONE);
                 appInfoButton.setVisibility(View.GONE);
             }
         }
