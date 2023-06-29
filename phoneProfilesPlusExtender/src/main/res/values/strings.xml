@@ -49,7 +49,6 @@
     <string name="extender_menu_choose_language">Choose language</string>
     <string name="extender_menu_choose_language_system_language">[System]</string>
     <string name="extender_application_translations">Translations:</string>
-
     <string name="extender_email_chooser">Send e-mail using</string>
     <string name="extender_accessibility_service_disabled_app_info_1">If is not possible to enable Accessibility service, maybe are not allowed restricted settings for PhoneProfilesPlusExtender.</string>
     <string name="extender_accessibility_service_disabled_app_info_2">Click \"App info\" button to allow it.</string>
@@ -58,8 +57,6 @@
     <string name="extender_accessibility_service_disabled_app_info_5">However, if PhoneProfilesPlusExtender is installed from a downloaded apk file, \"Allow restricted settings\" may not appear at all.</string>
     <string name="extender_accessibility_service_disabled_app_info_6">Then you must uninstall it, and install it from supported store, for example Droid-ify.</string>
     <string name="extender_accessibility_service_disabled_app_info_7">Click here to open Droid-ify installation site:</string>
-
-
     <string name="extender_accessibility_service_app_info_button">App info</string>
 </resources>
 

@@ -440,7 +440,7 @@ public class MainActivity extends AppCompatActivity {
                 dialogBuilder.show();
             }
         });
-//TODO
+
         if (Build.VERSION.SDK_INT >= 33) {
             text = findViewById(R.id.activity_main_accessibility_service_app_info);
             TextView text2 = findViewById(R.id.activity_main_accessibility_service_app_info_2);
