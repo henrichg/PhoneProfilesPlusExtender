@@ -16,7 +16,7 @@ Use keyword "PhoneProfilesPlusExtender" for search this application in these sto
 __Galaxy Store:__
 - [PPPE release (for Samsung devices only)](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)
 
-__Droid-ify (F-Droid alternative):__
+__Droid-ify (F-Droid alternative, preferred over GitHub):__
 - [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)
 - [Store applicaion (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)
   &nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
