@@ -24,10 +24,10 @@
 
 <!--    <color name="notificationDecorationColor">#cc893e</color>-->
 
-    <color name="dialog_divider">#525252</color>
+    <color name="dialog_divider">#3f3f3f</color>
     <color name="dialogBorderColor">#3f3f3f</color>
 
-    <color name="scrollbar_color">#555555</color>
+    <color name="scrollbar_color">#404040</color>
 
 <!--    <color name="primary">#201a18</color>-->
 <!--    <color name="primaryDark">#201a18</color>-->
