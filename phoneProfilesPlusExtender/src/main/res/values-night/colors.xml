@@ -7,27 +7,27 @@
     <color name="navigationBar">#000000</color>
 
     <color name="activityBackgroundColor">#FF1B1B1B</color>
-    <color name="activityNormalTextColor">#FFd4d4d4</color>
-    <color name="activitySecondaryTextColor">#CFFFFFFF</color>
-    <color name="activityDisabledTextColor">#2FFFFFFF</color>
+    <color name="activityNormalTextColor">#efefef</color>
+    <color name="activitySecondaryTextColor">#C9C9C9</color>
+    <color name="activityDisabledTextColor">#707070</color>
 
-    <color name="rippleRectangeleItemBackgroundColor">#FF606060</color>
-    <color name="noRippleRectangeleItemBackgroundColor">#FF404040</color>
+    <color name="rippleRectangeleItemBackgroundColor">#606060</color>
+    <color name="noRippleRectangeleItemBackgroundColor">#404040</color>
 
-    <color name="activityPopupMenuBackgroundColor">#FF151515</color>
+    <color name="activityPopupMenuBackgroundColor">#151515</color>
 <!--    <color name="activityPopupMenuClickedItemBackgroundColor">#37ffffff</color>-->
-    <color name="popupMenuBorderColor">#FF3f3f3f</color>
+    <color name="popupMenuBorderColor">#3f3f3f</color>
 
-    <color name="buttonBorderColor">#FF656565</color>
-    <color name="buttonBackgroundColor">#FF151515</color>
-    <color name="buttonClickedBackgroundColor">#FF303030</color>
+    <color name="buttonBorderColor">#656565</color>
+    <color name="buttonBackgroundColor">#151515</color>
+    <color name="buttonClickedBackgroundColor">#303030</color>
 
 <!--    <color name="notificationDecorationColor">#cc893e</color>-->
 
-    <color name="dialog_divider">#30ffffff</color>
-    <color name="dialogBorderColor">#FF3f3f3f</color>
+    <color name="dialog_divider">#525252</color>
+    <color name="dialogBorderColor">#3f3f3f</color>
 
-    <color name="scrollbar_color">#30ffffff</color>
+    <color name="scrollbar_color">#555555</color>
 
 <!--    <color name="primary">#201a18</color>-->
 <!--    <color name="primaryDark">#201a18</color>-->
@@ -51,11 +51,11 @@
 <!--    <color name="dialog_divider">#25ffffff</color>-->
 <!--    <color name="dialogBorderColor">#FF403430</color>-->
 
-    <color name="toastBackgroundColor">#FF3a3a3a</color>
-    <color name="toastTextColor">#FFFFFFFF</color>
-    <color name="toastBorderColor">#FF707070</color>
+    <color name="toastBackgroundColor">#3a3a3a</color>
+    <color name="toastTextColor">#FFFFFF</color>
+    <color name="toastBorderColor">#707070</color>
 
     <color name="notification_color">#50B0CE</color>
-    <color name="error_color">#FFFF2424</color>
+    <color name="error_color">#FF2424</color>
 
 </resources>
