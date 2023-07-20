@@ -55,7 +55,7 @@
     <color name="toastTextColor">#FFFFFF</color>
     <color name="toastBorderColor">#707070</color>
 
-    <color name="notification_color">#50B0CE</color>
+<!--    <color name="notification_color">#50B0CE</color>-->
     <color name="error_color">#FF2424</color>
 
 </resources>

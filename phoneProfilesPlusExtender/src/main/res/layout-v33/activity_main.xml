@@ -149,7 +149,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:text="@string/extender_accessibility_service_disabled_app_info_7"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            tools:ignore="InconsistentLayout"/>
 
         <Button
             android:id="@+id/activity_main_accessibility_service_app_info_button"

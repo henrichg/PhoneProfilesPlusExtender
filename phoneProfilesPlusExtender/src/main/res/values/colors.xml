@@ -31,7 +31,7 @@
 
     <color name="scrollbar_color">#C8C8C8</color>
 
-    <color name="notification_color">#2B7E97</color>
+<!--    <color name="notification_color">#2B7E97</color>-->
     <color name="error_color">#EB0000</color>
 
 </resources>
