@@ -89,8 +89,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             intentFilter.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
             intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
             intentFilter.addAction(ACTION_LOCK_DEVICE);
+            int receiverFlags = 0;
+            if (Build.VERSION.SDK_INT >= 34)
+                receiverFlags = RECEIVER_EXPORTED;
             registerReceiver(PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
-                    PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION, null);
+                    PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION, null, receiverFlags);
         }
 
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {

@@ -731,6 +731,7 @@ public class MainActivity extends AppCompatActivity {
             final Activity _activity = activity;
             new Handler(activity.getMainLooper()).post(() -> {
                 try {
+                    @SuppressLint("UnsafeIntentLaunch")
                     Intent intent = _activity.getIntent();
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     _activity.finish();
