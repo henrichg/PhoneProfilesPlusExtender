@@ -46,6 +46,12 @@ android {
         abortOnError false
         disable 'ManifestResource', 'LongLogTag', 'AppBundleLocaleChanges'
     }
+    bundle {
+        language {
+            // this keeps all language strings
+            enableSplit = false
+        }
+    }
 }
 
 dependencies {
