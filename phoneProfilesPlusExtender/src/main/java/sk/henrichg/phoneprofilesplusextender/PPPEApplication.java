@@ -59,6 +59,9 @@ public class PPPEApplication extends Application {
 
     static final String CROWDIN_URL = "https://crowdin.com/project/phoneprofilesplus";
 
+    static final String INTENT_DATA_PACKAGE = "package:";
+    static final String EXTRA_PKG_NAME = "extra_pkgname";
+
     //static final int pid = Process.myPid();
     //static final int uid = Process.myUid();
 
@@ -294,7 +297,7 @@ public class PPPEApplication extends Application {
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1)
             body = getString(R.string.extender_acra_email_body_device) + " " +
                     Settings.Global.getString(getContentResolver(), Settings.Global.DEVICE_NAME) +
-                    " (" + Build.MODEL + ")" + " \n";
+                    " (" + Build.MODEL + ")" + StringConstants.STR_NEWLINE_WITH_SPACE;
         /*else {
             String manufacturer = Build.MANUFACTURER;
             String model = Build.MODEL;
@@ -303,7 +306,7 @@ public class PPPEApplication extends Application {
             else
                 body = getString(R.string.extender_acra_email_body_device) + " " + manufacturer + " " + model + " \n";
         }*/
-        body = body + getString(R.string.extender_acra_email_body_android_version) + " " + Build.VERSION.RELEASE + " \n\n";
+        body = body + getString(R.string.extender_acra_email_body_android_version) + " " + Build.VERSION.RELEASE + StringConstants.STR_DOUBLE_NEWLINE_WITH_SPACE;
         body = body + getString(R.string.extender_acra_email_body_text);
 
         Log.e("##### PPPEApplication.attachBaseContext", "ACRA inittialization");
@@ -352,8 +355,8 @@ public class PPPEApplication extends Application {
                         .withEnabled(true)
                         .build(),
                 new MailSenderConfigurationBuilder()
-                        .withMailTo("henrich.gron@gmail.com")
-                        .withSubject("PhoneProfilesPlusExtender" + packageVersion + " - " + getString(R.string.extender_acra_email_subject_text))
+                        .withMailTo(StringConstants.AUTHOR_EMAIL)
+                        .withSubject(StringConstants.PHONE_PROFILES_PLUS_EXTENDER + packageVersion + " - " + getString(R.string.extender_acra_email_subject_text))
                         .withBody(body)
                         .withReportAsFile(true)
                         .withReportFileName("crash_report.txt")
@@ -383,39 +386,45 @@ public class PPPEApplication extends Application {
     //--------------------------------------------------------------
 
     private static boolean isOppo() {
-        return Build.BRAND.equalsIgnoreCase("oppo") ||
-                Build.MANUFACTURER.equalsIgnoreCase("oppo") ||
-                Build.FINGERPRINT.toLowerCase().contains("oppo");
+        final String OPPO = "oppo";
+        return Build.BRAND.equalsIgnoreCase(OPPO) ||
+                Build.MANUFACTURER.equalsIgnoreCase(OPPO) ||
+                Build.FINGERPRINT.toLowerCase().contains(OPPO);
     }
 
     private static boolean isRealme() {
-        return Build.BRAND.equalsIgnoreCase("realme") ||
-                Build.MANUFACTURER.equalsIgnoreCase("realme") ||
-                Build.FINGERPRINT.toLowerCase().contains("realme");
+        final String REALME = "realme";
+        return Build.BRAND.equalsIgnoreCase(REALME) ||
+                Build.MANUFACTURER.equalsIgnoreCase(REALME) ||
+                Build.FINGERPRINT.toLowerCase().contains(REALME);
     }
 
     private static boolean isHuawei() {
-        return Build.BRAND.equalsIgnoreCase("huawei") ||
-                Build.MANUFACTURER.equalsIgnoreCase("huawei") ||
-                Build.FINGERPRINT.toLowerCase().contains("huawei");
+        final String HUAWEI = "huawei";
+        return Build.BRAND.equalsIgnoreCase(HUAWEI) ||
+                Build.MANUFACTURER.equalsIgnoreCase(HUAWEI) ||
+                Build.FINGERPRINT.toLowerCase().contains(HUAWEI);
     }
 
     private static boolean isSamsung() {
-        return Build.BRAND.equalsIgnoreCase("samsung") ||
-                Build.MANUFACTURER.equalsIgnoreCase("samsung") ||
-                Build.FINGERPRINT.toLowerCase().contains("samsung");
+        final String SAMSUNG = "samsung";
+        return Build.BRAND.equalsIgnoreCase(SAMSUNG) ||
+                Build.MANUFACTURER.equalsIgnoreCase(SAMSUNG) ||
+                Build.FINGERPRINT.toLowerCase().contains(SAMSUNG);
     }
 
     private static boolean isXiaomi() {
-        return Build.BRAND.equalsIgnoreCase("xiaomi") ||
-                Build.MANUFACTURER.equalsIgnoreCase("xiaomi") ||
-                Build.FINGERPRINT.toLowerCase().contains("xiaomi");
+        final String XIOMI = "xiaomi";
+        return Build.BRAND.equalsIgnoreCase(XIOMI) ||
+                Build.MANUFACTURER.equalsIgnoreCase(XIOMI) ||
+                Build.FINGERPRINT.toLowerCase().contains(XIOMI);
     }
 
     private static boolean isOnePlus() {
-        return Build.BRAND.equalsIgnoreCase("oneplus") ||
-                Build.MANUFACTURER.equalsIgnoreCase("oneplus") ||
-                Build.FINGERPRINT.toLowerCase().contains("oneplus");
+        final String ONEPLUS = "oneplus";
+        return Build.BRAND.equalsIgnoreCase(ONEPLUS) ||
+                Build.MANUFACTURER.equalsIgnoreCase(ONEPLUS) ||
+                Build.FINGERPRINT.toLowerCase().contains(ONEPLUS);
     }
 
     private static boolean isMIUIROM() {
@@ -515,7 +524,7 @@ public class PPPEApplication extends Application {
             String log = "";
             SimpleDateFormat sdf = new SimpleDateFormat("d.MM.yy HH:mm:ss:S");
             String time = sdf.format(Calendar.getInstance().getTimeInMillis());
-            log = log + time + " [ " + type + " ] [ " + tag + " ]: " + text;
+            log = log + time + " [ " + type + " ] [ " + tag + " ]"+StringConstants.STR_COLON_WITH_SPACE + text;
             buf.append(log);
             buf.newLine();
             buf.flush();
@@ -529,7 +538,7 @@ public class PPPEApplication extends Application {
     private static boolean logContainsFilterTag(String tag)
     {
         boolean contains = false;
-        String[] splits = logFilterTags.split("\\|");
+        String[] splits = logFilterTags.split(StringConstants.STR_SPLIT_REGEX);
         for (String split : splits) {
             if (tag.contains(split)) {
                 contains = true;
@@ -553,7 +562,7 @@ public class PPPEApplication extends Application {
         if (logContainsFilterTag(tag))
         {
             //if (logIntoLogCat) Log.i(tag, text);
-            if (logIntoLogCat) Log.i(tag, "[ "+tag+" ]" + ": " + text);
+            if (logIntoLogCat) Log.i(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
             logIntoFile("I", tag, text);
         }
     }
@@ -567,7 +576,7 @@ public class PPPEApplication extends Application {
         if (logContainsFilterTag(tag))
         {
             //if (logIntoLogCat) Log.w(tag, text);
-            if (logIntoLogCat) Log.w(tag, "[ "+tag+" ]" + ": " + text);
+            if (logIntoLogCat) Log.w(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
             logIntoFile("W", tag, text);
         }
     }
@@ -581,7 +590,7 @@ public class PPPEApplication extends Application {
         if (logContainsFilterTag(tag))
         {
             //if (logIntoLogCat) Log.e(tag, text);
-            if (logIntoLogCat) Log.e(tag, "[ "+tag+" ]" + ": " + text);
+            if (logIntoLogCat) Log.e(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
             logIntoFile("E", tag, text);
         }
     }
@@ -595,7 +604,7 @@ public class PPPEApplication extends Application {
         if (logContainsFilterTag(tag))
         {
             //if (logIntoLogCat) Log.d(tag, text);
-            if (logIntoLogCat) Log.d(tag, "[ "+tag+" ]" + ": " + text);
+            if (logIntoLogCat) Log.d(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
             logIntoFile("D", tag, text);
         }
     }

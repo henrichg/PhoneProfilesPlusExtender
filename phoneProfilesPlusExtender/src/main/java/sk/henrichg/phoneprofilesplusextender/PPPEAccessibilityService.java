@@ -40,6 +40,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     private static final String EXTRA_PACKAGE_NAME = PPPEApplication.PACKAGE_NAME + ".package_name";
     private static final String EXTRA_CLASS_NAME = PPPEApplication.PACKAGE_NAME + ".class_name";
 
+    static final String ACTION_REFRESH_GUI_BROADCAST_RECEIVER = PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver";
+
     static final String ACTION_FORCE_STOP_APPLICATIONS_START = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_START";
     static final String ACTION_FORCE_STOP_APPLICATIONS_END = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_END";
     static final String ACTION_LOCK_DEVICE = PPPEApplication.PACKAGE_NAME + ".ACTION_LOCK_DEVICE";
@@ -135,7 +137,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         }
 
-        Intent refreshIntent = new Intent(PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver");
+        Intent refreshIntent = new Intent(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER);
         LocalBroadcastManager.getInstance(this).sendBroadcast(refreshIntent);
 
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);

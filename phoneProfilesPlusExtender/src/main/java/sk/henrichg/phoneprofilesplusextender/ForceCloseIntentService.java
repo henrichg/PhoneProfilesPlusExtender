@@ -66,7 +66,7 @@ public class ForceCloseIntentService extends IntentService {
 
             startForceStopActivity();
 
-            String[] splits = applications.split("\\|");
+            String[] splits = applications.split(StringConstants.STR_SPLIT_REGEX);
             for (String split : splits) {
                 if (screenOffReceived)
                     break;
@@ -88,7 +88,7 @@ public class ForceCloseIntentService extends IntentService {
                         Intent appInfoIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         //appInfoIntent.addCategory(Intent.CATEGORY_DEFAULT);
                         appInfoIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        appInfoIntent.setData(Uri.parse("package:" + packageName));
+                        appInfoIntent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE + packageName));
                         if (activityIntentExists(appInfoIntent, this)) {
                             //Log.e("ForceCloseIntentService.onHandleIntent", "activity intent exists");
                             startForceStopActivity();
@@ -163,10 +163,10 @@ public class ForceCloseIntentService extends IntentService {
                 shortcut = value.substring(0, 3);
                 packageName = value;
             }
-            if (shortcut.equals("(s)")) {
+            if (shortcut.equals(StringConstants.SHORTCUT_ID)) {
                 return packageName.substring(3);
             }
-            if (shortcut.equals("(i)"))
+            if (shortcut.equals(StringConstants.INTENT_ID))
                 return "";
             return packageName;
         }

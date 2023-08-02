@@ -18,6 +18,11 @@ public class LocaleHelper {
 
     private static final String IS_SET_SYSTEM_LANGUAGE = "Locale.Helper.IsSetSystemLanguage";
 
+    static final String LANG_SYS = "[sys]";
+    private static final String LANG_EN = "en";
+    private static final String LANG_LATN = "Latn";
+    private static final String LANG_SR = "sr";
+
     public static Context onAttach(Context context) {
         String language;
         String country;
@@ -32,7 +37,7 @@ public class LocaleHelper {
                 //noinspection ConstantConditions
                 script = systemLocales.get(0).getScript();
             } catch (Exception e) {
-                language = "en";
+                language = LANG_EN;
                 country = "";
                 script = "";
             }
@@ -45,7 +50,7 @@ public class LocaleHelper {
                 //noinspection ConstantConditions
                 script = getPersistedData(context, SELECTED_SCRIPT, systemLocales.get(0).getScript());
             } catch (Exception e) {
-                language = "en";
+                language = LANG_EN;
                 country = "";
                 script = "";
             }
@@ -103,7 +108,7 @@ public class LocaleHelper {
         String countryToStore = country;
         String scriptToStore = script;
 
-        if (language.equals("[sys]")) {
+        if (language.equals(LANG_SYS)) {
             LocaleListCompat systemLocales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
             try {
                 //noinspection ConstantConditions
@@ -114,7 +119,7 @@ public class LocaleHelper {
                 scriptToStore = systemLocales.get(0).getScript();
             } catch (Exception e) {
 //                Log.e("LocaleHelper.setLocale", Log.getStackTraceString(e));
-                languageToStore = "en";
+                languageToStore = LANG_EN;
                 countryToStore = "";
                 scriptToStore = "";
             }
@@ -197,8 +202,8 @@ public class LocaleHelper {
             locale = new Locale(language);
         if (!country.isEmpty())
             locale = new Locale(language, country);
-        if (script.equals("Latn"))
-            locale = new Locale.Builder().setLanguage("sr").setScript("Latn").build();
+        if (script.equals(LANG_LATN))
+            locale = new Locale.Builder().setLanguage(LANG_SR).setScript(LANG_LATN).build();
 
         if (locale != null) {
             Locale.setDefault(locale);

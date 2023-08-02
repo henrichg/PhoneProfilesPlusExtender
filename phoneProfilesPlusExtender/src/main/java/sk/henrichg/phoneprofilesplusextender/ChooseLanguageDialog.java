@@ -66,7 +66,7 @@ class ChooseLanguageDialog
         });
 
         String str1 = activity.getString(R.string.extender_application_translations);
-        String str2 = str1 + " " + PPPEApplication.CROWDIN_URL + "\u00A0»»";
+        String str2 = str1 + " " + PPPEApplication.CROWDIN_URL + StringConstants.STR_HARD_SPACE_DOUBLE_ARROW;
         Spannable sbt = new SpannableString(str2);
         //sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         ClickableSpan clickableSpan = new ClickableSpan() {
@@ -105,7 +105,7 @@ class ChooseLanguageDialog
 
         for (String languageValue : languageValues) {
             Language language = new Language();
-            if (languageValue.equals("[sys]")) {
+            if (languageValue.equals(LocaleHelper.LANG_SYS)) {
                 language.language = languageValue;
                 language.country = "";
                 language.script = "";

@@ -32,7 +32,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
             //PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationApplication="+registrationApplication);
             //PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationType="+registrationType);
 
-            if (registrationApplication.equals("PhoneProfiles")) {
+            if (registrationApplication.equals(StringConstants.PHONE_PROFILES)) {
                 switch (registrationType) {
                     case PPPEApplication.REGISTRATION_TYPE_FORCE_STOP_APPLICATIONS_REGISTER:
                         PPPEApplication.registeredForceStopApplicationsFunctionPP = true;
@@ -48,7 +48,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                         break;
                 }
             }
-            if (registrationApplication.equals("PhoneProfilesPlus")) {
+            if (registrationApplication.equals(StringConstants.PHONE_PROFILES_PLUS)) {
                 switch (registrationType) {
                     case PPPEApplication.REGISTRATION_TYPE_FORCE_STOP_APPLICATIONS_REGISTER:
                         PPPEApplication.registeredForceStopApplicationsFunctionPPP = true;

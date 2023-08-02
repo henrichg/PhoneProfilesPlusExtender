@@ -93,7 +93,7 @@ public class CustomACRAEmailSender implements ReportSender {
 
                     String emailAddress = mailConfig.getMailTo();
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                            "mailto", emailAddress, null));
+                            StringConstants.INTENT_DATA_MAIL_TO, emailAddress, null));
 
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, mailConfig.getSubject());
 
@@ -104,7 +104,7 @@ public class CustomACRAEmailSender implements ReportSender {
 
                     String reportText;
                     try {
-                        reportText = coreConfiguration.getReportFormat().toFormattedString(errorContent, coreConfiguration.getReportContent(), "\n", "\n\t", false);
+                        reportText = coreConfiguration.getReportFormat().toFormattedString(errorContent, coreConfiguration.getReportContent(), StringConstants.CHAR_NEW_LINE, "\n\t", false);
                     } catch (Exception e) {
                         throw new ReportSenderException("Failed to convert Report to text", e);
                     }
@@ -124,7 +124,7 @@ public class CustomACRAEmailSender implements ReportSender {
                         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailAddress});
                         intent.putExtra(Intent.EXTRA_SUBJECT, mailConfig.getSubject());
                         intent.putExtra(Intent.EXTRA_TEXT, mailConfig.getBody());
-                        intent.setType("*/*"); // gmail will only match with type set
+                        intent.setType(StringConstants.MINE_TYPE_ALL); // gmail will only match with type set
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, attachments); //ArrayList<Uri> of attachment Uri's
                         intents.add(new LabeledIntent(intent, info.activityInfo.packageName, info.loadLabel(context.getPackageManager()), info.icon));
