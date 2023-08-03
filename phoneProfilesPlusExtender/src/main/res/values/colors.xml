@@ -23,7 +23,7 @@
     <color name="buttonClickedBackgroundColor">#DADADA</color>
 
     <color name="dialog_divider">#CCCCCC</color>
-    <color name="dialogBorderColor">#FFFFFF</color>
+    <color name="dialogBorderColor">#CCCCCC</color>
 
     <color name="toastBackgroundColor">#3a3a3a</color>
     <color name="toastTextColor">#FFFFFF</color>
