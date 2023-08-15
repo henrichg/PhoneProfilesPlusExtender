@@ -303,7 +303,8 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
 
         visitNodes(nodeInfo -> {
 
-            for (int i = 0; i < nodeInfo.getDepthInTree(); i++) {
+            int size = nodeInfo.getDepthInTree();
+            for (int i = 0; i < size; i++) {
                 result.append('-');
             }
 
