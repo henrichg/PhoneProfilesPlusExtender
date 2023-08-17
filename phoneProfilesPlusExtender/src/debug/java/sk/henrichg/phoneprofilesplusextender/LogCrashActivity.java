@@ -30,6 +30,8 @@ public class LogCrashActivity extends AppCompatActivity {
 
     private ArrayAdapter<String> logCrashAdapter;
 
+    private RefreshListViewAsyncTask refreshAsyncTask = null;
+
     private static final String LOG_CRASH_TITLE = "Log/crash file";
 
     @Override
@@ -157,6 +159,13 @@ public class LogCrashActivity extends AppCompatActivity {
     protected void onDestroy()
     {
         super.onDestroy();
+
+        if ((refreshAsyncTask != null) &&
+                refreshAsyncTask.getStatus().equals(AsyncTask.Status.RUNNING)) {
+            refreshAsyncTask.cancel(true);
+        }
+        refreshAsyncTask = null;
+
         //Cursor cursor = activityLogAdapter.getCursor();
         //if (cursor != null)
         //    cursor.close();
@@ -164,7 +173,7 @@ public class LogCrashActivity extends AppCompatActivity {
 
     void refreshListView(boolean showLog)
     {
-        RefreshListViewAsyncTask refreshAsyncTask = new RefreshListViewAsyncTask(this, showLog);
+        refreshAsyncTask = new RefreshListViewAsyncTask(this, showLog);
         refreshAsyncTask.execute();
     }
 
