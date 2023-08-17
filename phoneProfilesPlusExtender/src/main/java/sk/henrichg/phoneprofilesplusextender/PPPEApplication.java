@@ -131,7 +131,7 @@ public class PPPEApplication extends Application {
     static boolean registeredLockDeviceFunctionPP = true;
     static boolean registeredLockDeviceFunctionPPP = true;
 
-    public volatile static ExecutorService basicExecutorPool = null;
+    static volatile ExecutorService basicExecutorPool = null;
 
     static FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
     static ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
