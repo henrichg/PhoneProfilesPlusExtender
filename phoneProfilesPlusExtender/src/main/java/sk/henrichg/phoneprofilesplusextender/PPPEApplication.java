@@ -152,6 +152,9 @@ public class PPPEApplication extends Application {
     static boolean applicationForceClosed = false;
     static boolean forceStopPerformed = false;
 
+    static volatile String latestApplicationPackageName;
+    static volatile String getLatestApplicationClassName;
+
     static volatile Collator collator = null;
 
     @Override

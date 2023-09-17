@@ -59,6 +59,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         instance = this;
 
+        PPPEApplication.latestApplicationPackageName = "";
+        PPPEApplication.getLatestApplicationClassName = "";
+
         /*
         //Configure these here for compatibility with API 13 and below.
         AccessibilityServiceInfo config = new AccessibilityServiceInfo();
@@ -169,11 +172,18 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     boolean isActivity = activityInfo != null;
                     if (isActivity) {
                         if (PPPEApplication.registeredForegroundApplicationFunctionPPP) {
-//                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
-                            Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
-                            intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
-                            intent.putExtra(EXTRA_CLASS_NAME, event.getClassName().toString());
-                            sendBroadcast(intent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
+                            String packageName = event.getPackageName().toString();
+                            String className = event.getClassName().toString();
+                            if (!(PPPEApplication.latestApplicationPackageName.equals(packageName) ||
+                                 (PPPEApplication.getLatestApplicationClassName.equals(className)))) {
+                                //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
+                                PPPEApplication.latestApplicationPackageName = packageName;
+                                PPPEApplication.getLatestApplicationClassName = className;
+                                Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
+                                intent.putExtra(EXTRA_PACKAGE_NAME, packageName);
+                                intent.putExtra(EXTRA_CLASS_NAME, className);
+                                sendBroadcast(intent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
+                            }
                         }
                     }
                 }
