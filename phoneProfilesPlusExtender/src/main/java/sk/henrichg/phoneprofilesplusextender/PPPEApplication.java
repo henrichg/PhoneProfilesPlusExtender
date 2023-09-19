@@ -26,10 +26,12 @@ import org.acra.config.NotificationConfigurationBuilder;
 import org.acra.data.StringFormat;
 import org.lsposed.hiddenapibypass.HiddenApiBypass;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.Collator;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -57,12 +59,15 @@ public class PPPEApplication extends Application {
 
     static final String CROWDIN_URL = "https://crowdin.com/project/phoneprofilesplus";
 
+    static final String INTENT_DATA_PACKAGE = "package:";
+    static final String EXTRA_PKG_NAME = "extra_pkgname";
+
     //static final int pid = Process.myPid();
     //static final int uid = Process.myUid();
 
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
-    // TODO: DISABLE IT FOR RELEASE VERSION!!!
+    // TODO: SET IT TO FALSE FOR RELEASE VERSION!!!
     static final boolean logIntoFile = false;
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
@@ -83,6 +88,7 @@ public class PPPEApplication extends Application {
     static final boolean deviceIsSamsung = isSamsung();
     static final boolean deviceIsXiaomi = isXiaomi();
     static final boolean deviceIsOnePlus = isOnePlus();
+    static final boolean romIsMIUI = isMIUIROM();
 
     // for new log.txt and crash.txt is in /Android/data/sk.henrichg.phoneprofilesplusextender/files
     //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
@@ -125,7 +131,7 @@ public class PPPEApplication extends Application {
     static boolean registeredLockDeviceFunctionPP = true;
     static boolean registeredLockDeviceFunctionPPP = true;
 
-    public volatile static ExecutorService basicExecutorPool = null;
+    static volatile ExecutorService basicExecutorPool = null;
 
     static FromPhoneProfilesPlusBroadcastReceiver fromPhoneProfilesPlusBroadcastReceiver = null;
     static ScreenOnOffBroadcastReceiver screenOnOffReceiver = null;
@@ -145,6 +151,9 @@ public class PPPEApplication extends Application {
     static boolean forceStopStarted = false;
     static boolean applicationForceClosed = false;
     static boolean forceStopPerformed = false;
+
+    static volatile String latestApplicationPackageName;
+    static volatile String getLatestApplicationClassName;
 
     static volatile Collator collator = null;
 
@@ -195,7 +204,7 @@ public class PPPEApplication extends Application {
 
         //Log.e("##### PPPEApplication.onCreate", "Start  uid="+uid);
 
-        PPPEApplication.createGrantPermissionNotificationChannel(this);
+        PPPEApplication.createGrantPermissionNotificationChannel(this, true);
 
         Log.e("##### PPPEApplication.onCreate", "after cerate notification channel");
 
@@ -291,7 +300,7 @@ public class PPPEApplication extends Application {
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1)
             body = getString(R.string.extender_acra_email_body_device) + " " +
                     Settings.Global.getString(getContentResolver(), Settings.Global.DEVICE_NAME) +
-                    " (" + Build.MODEL + ")" + " \n";
+                    " (" + Build.MODEL + ")" + StringConstants.STR_NEWLINE_WITH_SPACE;
         /*else {
             String manufacturer = Build.MANUFACTURER;
             String model = Build.MODEL;
@@ -300,7 +309,7 @@ public class PPPEApplication extends Application {
             else
                 body = getString(R.string.extender_acra_email_body_device) + " " + manufacturer + " " + model + " \n";
         }*/
-        body = body + getString(R.string.extender_acra_email_body_android_version) + " " + Build.VERSION.RELEASE + " \n\n";
+        body = body + getString(R.string.extender_acra_email_body_android_version) + " " + Build.VERSION.RELEASE + StringConstants.STR_DOUBLE_NEWLINE_WITH_SPACE;
         body = body + getString(R.string.extender_acra_email_body_text);
 
         Log.e("##### PPPEApplication.attachBaseContext", "ACRA inittialization");
@@ -339,18 +348,18 @@ public class PPPEApplication extends Application {
                 new NotificationConfigurationBuilder()
                         .withChannelName(getString(R.string.extender_notification_channel_crash_report))
                         .withChannelImportance(NotificationManager.IMPORTANCE_HIGH)
-                        .withResIcon(R.drawable.ic_exclamation_notify)
-                        .withTitle(getString(R.string.extender_acra_notification_title))
+                        .withResIcon(R.drawable.ic_pppe_notification)
+                        .withTitle(/*"!!! " +*/ getString(R.string.extender_acra_notification_title))
                         .withText(getString(R.string.extender_acra_notification_text))
                         .withResSendButtonIcon(0)
                         .withResDiscardButtonIcon(0)
                         .withSendOnClick(true)
-                        .withColor(ContextCompat.getColor(base, R.color.notification_color))
+                        .withColor(ContextCompat.getColor(base, R.color.error_color))
                         .withEnabled(true)
                         .build(),
                 new MailSenderConfigurationBuilder()
-                        .withMailTo("henrich.gron@gmail.com")
-                        .withSubject("PhoneProfilesPlusExtender" + packageVersion + " - " + getString(R.string.extender_acra_email_subject_text))
+                        .withMailTo(StringConstants.AUTHOR_EMAIL)
+                        .withSubject(StringConstants.PHONE_PROFILES_PLUS_EXTENDER + packageVersion + " - " + getString(R.string.extender_acra_email_subject_text))
                         .withBody(body)
                         .withReportAsFile(true)
                         .withReportFileName("crash_report.txt")
@@ -380,39 +389,83 @@ public class PPPEApplication extends Application {
     //--------------------------------------------------------------
 
     private static boolean isOppo() {
-        return Build.BRAND.equalsIgnoreCase("oppo") ||
-                Build.MANUFACTURER.equalsIgnoreCase("oppo") ||
-                Build.FINGERPRINT.toLowerCase().contains("oppo");
+        final String OPPO = "oppo";
+        return Build.BRAND.equalsIgnoreCase(OPPO) ||
+                Build.MANUFACTURER.equalsIgnoreCase(OPPO) ||
+                Build.FINGERPRINT.toLowerCase().contains(OPPO);
     }
 
     private static boolean isRealme() {
-        return Build.BRAND.equalsIgnoreCase("realme") ||
-                Build.MANUFACTURER.equalsIgnoreCase("realme") ||
-                Build.FINGERPRINT.toLowerCase().contains("realme");
+        final String REALME = "realme";
+        return Build.BRAND.equalsIgnoreCase(REALME) ||
+                Build.MANUFACTURER.equalsIgnoreCase(REALME) ||
+                Build.FINGERPRINT.toLowerCase().contains(REALME);
     }
 
     private static boolean isHuawei() {
-        return Build.BRAND.equalsIgnoreCase("huawei") ||
-                Build.MANUFACTURER.equalsIgnoreCase("huawei") ||
-                Build.FINGERPRINT.toLowerCase().contains("huawei");
+        final String HUAWEI = "huawei";
+        return Build.BRAND.equalsIgnoreCase(HUAWEI) ||
+                Build.MANUFACTURER.equalsIgnoreCase(HUAWEI) ||
+                Build.FINGERPRINT.toLowerCase().contains(HUAWEI);
     }
 
     private static boolean isSamsung() {
-        return Build.BRAND.equalsIgnoreCase("samsung") ||
-                Build.MANUFACTURER.equalsIgnoreCase("samsung") ||
-                Build.FINGERPRINT.toLowerCase().contains("samsung");
+        final String SAMSUNG = "samsung";
+        return Build.BRAND.equalsIgnoreCase(SAMSUNG) ||
+                Build.MANUFACTURER.equalsIgnoreCase(SAMSUNG) ||
+                Build.FINGERPRINT.toLowerCase().contains(SAMSUNG);
     }
 
     private static boolean isXiaomi() {
-        return Build.BRAND.equalsIgnoreCase("xiaomi") ||
-                Build.MANUFACTURER.equalsIgnoreCase("xiaomi") ||
-                Build.FINGERPRINT.toLowerCase().contains("xiaomi");
+        final String XIOMI = "xiaomi";
+        return Build.BRAND.equalsIgnoreCase(XIOMI) ||
+                Build.MANUFACTURER.equalsIgnoreCase(XIOMI) ||
+                Build.FINGERPRINT.toLowerCase().contains(XIOMI);
     }
 
     private static boolean isOnePlus() {
-        return Build.BRAND.equalsIgnoreCase("oneplus") ||
-                Build.MANUFACTURER.equalsIgnoreCase("oneplus") ||
-                Build.FINGERPRINT.toLowerCase().contains("oneplus");
+        final String ONEPLUS = "oneplus";
+        return Build.BRAND.equalsIgnoreCase(ONEPLUS) ||
+                Build.MANUFACTURER.equalsIgnoreCase(ONEPLUS) ||
+                Build.FINGERPRINT.toLowerCase().contains(ONEPLUS);
+    }
+
+    private static boolean isMIUIROM() {
+        boolean miuiRom1 = false;
+        boolean miuiRom2 = false;
+        boolean miuiRom3 = false;
+
+        String line;
+        BufferedReader input;
+        try {
+            java.lang.Process p = Runtime.getRuntime().exec("getprop ro.miui.ui.version.code");
+            input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
+            line = input.readLine();
+            miuiRom1 = line.length() != 0;
+            input.close();
+
+            if (!miuiRom1) {
+                p = Runtime.getRuntime().exec("getprop ro.miui.ui.version.name");
+                input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
+                line = input.readLine();
+                miuiRom2 = line.length() != 0;
+                input.close();
+            }
+
+            if (!miuiRom1 && !miuiRom2) {
+                p = Runtime.getRuntime().exec("getprop ro.miui.internal.storage");
+                input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
+                line = input.readLine();
+                miuiRom3 = line.length() != 0;
+                input.close();
+            }
+
+        } catch (Exception ex) {
+            //Log.e("PPPEApplication.isMIUIROM", Log.getStackTraceString(ex));
+            PPPEApplication.recordException(ex);
+        }
+
+        return miuiRom1 || miuiRom2 || miuiRom3;
     }
 
     static void createBasicExecutorPool() {
@@ -436,7 +489,7 @@ public class PPPEApplication extends Application {
         logFile.delete();
     }
 
-    @SuppressLint("SimpleDateFormat")
+    /** @noinspection SameParameterValue*/
     static private void logIntoFile(String type, String tag, String text)
     {
         if (!logIntoFile)
@@ -472,9 +525,10 @@ public class PPPEApplication extends Application {
             //BufferedWriter for performance, true to set append to file flag
             BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
             String log = "";
+            @SuppressLint("SimpleDateFormat")
             SimpleDateFormat sdf = new SimpleDateFormat("d.MM.yy HH:mm:ss:S");
             String time = sdf.format(Calendar.getInstance().getTimeInMillis());
-            log = log + time + " [ " + type + " ] [ " + tag + " ]: " + text;
+            log = log + time + " [ " + type + " ] [ " + tag + " ]"+StringConstants.STR_COLON_WITH_SPACE + text;
             buf.append(log);
             buf.newLine();
             buf.flush();
@@ -488,7 +542,7 @@ public class PPPEApplication extends Application {
     private static boolean logContainsFilterTag(String tag)
     {
         boolean contains = false;
-        String[] splits = logFilterTags.split("\\|");
+        String[] splits = logFilterTags.split(StringConstants.STR_SPLIT_REGEX);
         for (String split : splits) {
             if (tag.contains(split)) {
                 contains = true;
@@ -503,7 +557,7 @@ public class PPPEApplication extends Application {
         return (logIntoLogCat || logIntoFile);
     }
 
-    @SuppressWarnings("unused")
+    /*
     static public void logI(String tag, String text)
     {
         if (!logEnabled())
@@ -512,12 +566,13 @@ public class PPPEApplication extends Application {
         if (logContainsFilterTag(tag))
         {
             //if (logIntoLogCat) Log.i(tag, text);
-            if (logIntoLogCat) Log.i(tag, "[ "+tag+" ]" + ": " + text);
+            if (logIntoLogCat) Log.i(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
             logIntoFile("I", tag, text);
         }
     }
+    */
 
-    @SuppressWarnings("unused")
+    /*
     static public void logW(String tag, String text)
     {
         if (!logEnabled())
@@ -526,10 +581,11 @@ public class PPPEApplication extends Application {
         if (logContainsFilterTag(tag))
         {
             //if (logIntoLogCat) Log.w(tag, text);
-            if (logIntoLogCat) Log.w(tag, "[ "+tag+" ]" + ": " + text);
+            if (logIntoLogCat) Log.w(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
             logIntoFile("W", tag, text);
         }
     }
+    */
 
     @SuppressWarnings("unused")
     static public void logE(String tag, String text)
@@ -540,12 +596,12 @@ public class PPPEApplication extends Application {
         if (logContainsFilterTag(tag))
         {
             //if (logIntoLogCat) Log.e(tag, text);
-            if (logIntoLogCat) Log.e(tag, "[ "+tag+" ]" + ": " + text);
+            if (logIntoLogCat) Log.e(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
             logIntoFile("E", tag, text);
         }
     }
 
-    @SuppressWarnings("unused")
+    /*
     static public void logD(String tag, String text)
     {
         if (!logEnabled())
@@ -554,10 +610,11 @@ public class PPPEApplication extends Application {
         if (logContainsFilterTag(tag))
         {
             //if (logIntoLogCat) Log.d(tag, text);
-            if (logIntoLogCat) Log.d(tag, "[ "+tag+" ]" + ": " + text);
+            if (logIntoLogCat) Log.d(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
             logIntoFile("D", tag, text);
         }
     }
+    */
 
     // ACRA -------------------------------------------------------------------------
 
@@ -568,29 +625,32 @@ public class PPPEApplication extends Application {
         } catch (Exception ignored) {}
     }
 
-    @SuppressWarnings("unused")
+    /*
     static void logToACRA(String s) {
         try {
             //FirebaseCrashlytics.getInstance().log(s);
             ACRA.getErrorReporter().putCustomData("Log", s);
         } catch (Exception ignored) {}
     }
+    */
 
-    @SuppressWarnings("unused")
+    /*
     static void setCustomKey(String key, int value) {
         try {
             //FirebaseCrashlytics.getInstance().setCustomKey(key, value);
             ACRA.getErrorReporter().putCustomData(key, String.valueOf(value));
         } catch (Exception ignored) {}
     }
+    */
 
-    @SuppressWarnings("unused")
+    /*
     static void setCustomKey(String key, String value) {
         try {
             //FirebaseCrashlytics.getInstance().setCustomKey(key, value);
             ACRA.getErrorReporter().putCustomData(key, value);
         } catch (Exception ignored) {}
     }
+    */
 
     @SuppressWarnings("SameParameterValue")
     static void setCustomKey(String key, boolean value) {
@@ -644,11 +704,11 @@ public class PPPEApplication extends Application {
         return (int) PackageInfoCompat.getLongVersionCode(pInfo);
     }
 
-    static void createGrantPermissionNotificationChannel(Context context) {
+    static void createGrantPermissionNotificationChannel(Context context, boolean forceChange) {
         //if (Build.VERSION.SDK_INT >= 26) {
             try {
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context.getApplicationContext());
-                if (notificationManager.getNotificationChannel(PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL) != null)
+                if ((!forceChange) && (notificationManager.getNotificationChannel(PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL) != null))
                     return;
 
                 // The user-visible name of the channel.

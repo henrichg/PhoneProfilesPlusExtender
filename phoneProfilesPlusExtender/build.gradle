@@ -46,24 +46,32 @@ android {
         abortOnError false
         disable 'ManifestResource', 'LongLogTag', 'AppBundleLocaleChanges'
     }
+    bundle {
+        language {
+            // this keeps all language strings
+            enableSplit = false
+        }
+    }
 }
 
 dependencies {
     implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
 
-    implementation "com.google.guava:guava:31.1-android" //31.0.1-android"
+    implementation "com.google.guava:guava:32.1.2-android" //31.1-android"
     implementation "ch.acra:acra-mail:$ppVersions.acra"
     implementation "ch.acra:acra-notification:$ppVersions.acra"
 
     // for custom e-mail sender used in Pixel devices with Android 13
     // https://github.com/ACRA/acra/tree/master/examples/acra-basic-java-example
-    annotationProcessor("com.google.auto.service:auto-service:1.0.1")
-    compileOnly("com.google.auto.service:auto-service-annotations:1.0.1")
+    annotationProcessor("com.google.auto.service:auto-service:$ppVersions.autoservice")
+    compileOnly("com.google.auto.service:auto-service-annotations:$ppVersions.autoservice")
 
 //    //noinspection GradleDependency
 //    implementation 'ch.acra:acra-mail:5.8.4'
 //    //noinspection GradleDependency
 //    implementation 'ch.acra:acra-notification:5.8.4'
+
+//    implementation "androidx.core:core-splashscreen:1.0.1"
 
     implementation "androidx.appcompat:appcompat:$ppVersions.appcompatXLib"
     implementation "androidx.appcompat:appcompat-resources:$ppVersions.appcompatXLib"

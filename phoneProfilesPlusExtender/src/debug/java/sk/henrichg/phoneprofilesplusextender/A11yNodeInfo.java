@@ -299,16 +299,17 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
     public String toViewHierarchy() {
         final StringBuilder result = new StringBuilder();
 
-        result.append("--------------- Accessibility Node Hierarchy ---------------\n");
+        result.append("--------------- Accessibility Node Hierarchy ---------------").append(StringConstants.CHAR_NEW_LINE);
 
         visitNodes(nodeInfo -> {
 
-            for (int i = 0; i < nodeInfo.getDepthInTree(); i++) {
+            int size = nodeInfo.getDepthInTree();
+            for (int i = 0; i < size; i++) {
                 result.append('-');
             }
 
             result.append(nodeInfo/*.toString()*/);
-            result.append('\n');
+            result.append(StringConstants.CHAR_NEW_LINE);
 
             return false;
         });

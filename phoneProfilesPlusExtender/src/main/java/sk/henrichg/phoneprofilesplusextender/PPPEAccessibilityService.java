@@ -40,6 +40,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     private static final String EXTRA_PACKAGE_NAME = PPPEApplication.PACKAGE_NAME + ".package_name";
     private static final String EXTRA_CLASS_NAME = PPPEApplication.PACKAGE_NAME + ".class_name";
 
+    static final String ACTION_REFRESH_GUI_BROADCAST_RECEIVER = PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver";
+
     static final String ACTION_FORCE_STOP_APPLICATIONS_START = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_START";
     static final String ACTION_FORCE_STOP_APPLICATIONS_END = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_END";
     static final String ACTION_LOCK_DEVICE = PPPEApplication.PACKAGE_NAME + ".ACTION_LOCK_DEVICE";
@@ -56,6 +58,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 //        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
 
         instance = this;
+
+        PPPEApplication.latestApplicationPackageName = "";
+        PPPEApplication.getLatestApplicationClassName = "";
 
         /*
         //Configure these here for compatibility with API 13 and below.
@@ -89,8 +94,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             intentFilter.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
             intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
             intentFilter.addAction(ACTION_LOCK_DEVICE);
+            int receiverFlags = 0;
+            if (Build.VERSION.SDK_INT >= 34)
+                receiverFlags = RECEIVER_EXPORTED;
             registerReceiver(PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver, intentFilter,
-                    PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION, null);
+                    PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION, null, receiverFlags);
         }
 
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
@@ -132,7 +140,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         }
 
-        Intent refreshIntent = new Intent(PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver");
+        Intent refreshIntent = new Intent(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER);
         LocalBroadcastManager.getInstance(this).sendBroadcast(refreshIntent);
 
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
@@ -164,11 +172,18 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     boolean isActivity = activityInfo != null;
                     if (isActivity) {
                         if (PPPEApplication.registeredForegroundApplicationFunctionPPP) {
-//                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
-                            Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
-                            intent.putExtra(EXTRA_PACKAGE_NAME, event.getPackageName().toString());
-                            intent.putExtra(EXTRA_CLASS_NAME, event.getClassName().toString());
-                            sendBroadcast(intent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
+                            String packageName = event.getPackageName().toString();
+                            String className = event.getClassName().toString();
+                            if (!(PPPEApplication.latestApplicationPackageName.equals(packageName) ||
+                                 (PPPEApplication.getLatestApplicationClassName.equals(className)))) {
+                                //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
+                                PPPEApplication.latestApplicationPackageName = packageName;
+                                PPPEApplication.getLatestApplicationClassName = className;
+                                Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
+                                intent.putExtra(EXTRA_PACKAGE_NAME, packageName);
+                                intent.putExtra(EXTRA_CLASS_NAME, className);
+                                sendBroadcast(intent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
+                            }
                         }
                     }
                 }
@@ -237,7 +252,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     if (node.isEnabled()) {
                                         if ((Build.VERSION.SDK_INT >= 30) && PPPEApplication.deviceIsXiaomi) {
                                             AccessibilityNodeInfo _node = node.getParent();
-                                            if (_node.isEnabled()) {
+                                            if ((_node != null) && _node.isEnabled()) {
                                                 _node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                                                 PPPEApplication.forceStopPerformed = true;
 //                                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Force stop clicked");
@@ -522,7 +537,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                         }
                         if (subscriptionList != null) {
 //                            PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionList.size()=" + subscriptionList.size());
-                            for (int i = 0; i < subscriptionList.size(); i++) {
+                            int size = subscriptionList.size();
+                            for (int i = 0; i < size; i++) {
                                 // Get the active subscription ID for a given SIM card.
                                 SubscriptionInfo subscriptionInfo = subscriptionList.get(i);
 //                                PPPEApplication.logE("PhoneProfilesService.registerAllTheTimeRequiredSystemReceivers", "subscriptionInfo=" + subscriptionInfo);

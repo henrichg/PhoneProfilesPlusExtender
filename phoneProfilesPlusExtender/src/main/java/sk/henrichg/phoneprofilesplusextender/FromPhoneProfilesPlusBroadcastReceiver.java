@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.util.Log;
 
@@ -31,7 +32,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
             //PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationApplication="+registrationApplication);
             //PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationType="+registrationType);
 
-            if (registrationApplication.equals("PhoneProfiles")) {
+            if (registrationApplication.equals(StringConstants.PHONE_PROFILES)) {
                 switch (registrationType) {
                     case PPPEApplication.REGISTRATION_TYPE_FORCE_STOP_APPLICATIONS_REGISTER:
                         PPPEApplication.registeredForceStopApplicationsFunctionPP = true;
@@ -47,7 +48,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                         break;
                 }
             }
-            if (registrationApplication.equals("PhoneProfilesPlus")) {
+            if (registrationApplication.equals(StringConstants.PHONE_PROFILES_PLUS)) {
                 switch (registrationType) {
                     case PPPEApplication.REGISTRATION_TYPE_FORCE_STOP_APPLICATIONS_REGISTER:
                         PPPEApplication.registeredForceStopApplicationsFunctionPPP = true;
@@ -142,10 +143,11 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         String nTitle = title;
         //noinspection UnnecessaryLocalVariable
         String nText = text;
-        PPPEApplication.createGrantPermissionNotificationChannel(context);
+        PPPEApplication.createGrantPermissionNotificationChannel(context, false);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context.getApplicationContext(), PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL)
-                .setColor(ContextCompat.getColor(context.getApplicationContext(), R.color.notification_color))
-                .setSmallIcon(R.drawable.ic_exclamation_notify) // notification icon
+                .setColor(ContextCompat.getColor(context.getApplicationContext(), R.color.error_color))
+                .setSmallIcon(R.drawable.ic_pppe_notification/*icic_exclamation_notify*/) // notification icon
+                .setLargeIcon(BitmapFactory.decodeResource(context.getApplicationContext().getResources(), R.drawable.ic_exclamation_notification))
                 .setContentTitle(nTitle) // title for notification
                 .setContentText(nText)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(nText))

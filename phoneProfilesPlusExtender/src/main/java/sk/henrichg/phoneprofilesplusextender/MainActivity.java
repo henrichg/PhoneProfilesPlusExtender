@@ -67,14 +67,23 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        int miuiVersion = -1;
+        if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI) {
+            String[] splits = Build.VERSION.INCREMENTAL.split("\\.");
+            miuiVersion = Integer.parseInt(splits[0].substring(1));
+        }
 
         if (PPPEApplication.deviceIsOnePlus)
             setTheme(R.style.AppTheme_noRipple);
         else
+        if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI && miuiVersion >= 14)
+            setTheme(R.style.AppTheme_noRipple);
+        else
             setTheme(R.style.AppTheme);
+
+        super.onCreate(savedInstanceState);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
         setContentView(R.layout.activity_main);
 
@@ -101,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         text = findViewById(R.id.activity_main_application_releases);
         String str1 = getString(R.string.extender_application_releases);
-        String str2 = str1 + " https://github.com/henrichg/PhoneProfilesPlusExtender/releases" + "\u00A0»»";
+        String str2 = str1 + " https://github.com/henrichg/PhoneProfilesPlusExtender/releases" + StringConstants.STR_HARD_SPACE_DOUBLE_ARROW;
         Spannable sbt = new SpannableString(str2);
         sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         ClickableSpan clickableSpan = new ClickableSpan() {
@@ -130,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         displayPermmisionsGrantStatus();
 
         LocalBroadcastManager.getInstance(this).registerReceiver(refreshGUIBroadcastReceiver,
-                new IntentFilter(PPPEApplication.PACKAGE_NAME + ".RefreshGUIBroadcastReceiver"));
+                new IntentFilter(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER));
     }
 
     @Override
@@ -370,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
             if (!allGranted) {
                 //if (!onlyNotification) {
                 PPPEApplication.showToast(getApplicationContext(),
-                        getString(R.string.extender_app_name) + ": " +
+                        getString(R.string.extender_app_name) + StringConstants.STR_COLON_WITH_SPACE +
                                 getString(R.string.extender_toast_permissions_not_granted),
                         Toast.LENGTH_SHORT);
                 //}
@@ -385,27 +394,27 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void displayAccessibilityServiceStatus() {
         TextView text = findViewById(R.id.activity_main_accessibility_service_profile_force_stop_application);
-        String str1 = "<ul><li>" + getString(R.string.extender_accessibility_service_profile_force_stop_applications) + "</li></ul>";
+        String str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML + getString(R.string.extender_accessibility_service_profile_force_stop_applications) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_accessibility_service_profile_lock_device);
-        str1 = "<ul><li>" +getString(R.string.extender_accessibility_service_profile_lock_device) + "</li></ul>";
+        str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_profile_lock_device) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_applications_orientation);
-        str1 = "<ul><li>" +getString(R.string.extender_accessibility_service_event_sensor_applications_orientation) + "</li></ul>";
+        str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_event_sensor_applications_orientation) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_sms_mms);
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
-            str1 = "<ul><li>" +getString(R.string.extender_accessibility_service_event_sensor_sms_mms) + "</li></ul>";
+            str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_event_sensor_sms_mms) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
         } else
             text.setVisibility(View.GONE);
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_call);
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
-            str1 = "<ul><li>" +getString(R.string.extender_accessibility_service_event_sensor_call) + "</li></ul>";
+            str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_event_sensor_call) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
         } else
             text.setVisibility(View.GONE);
@@ -434,20 +443,51 @@ public class MainActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= 33) {
             text = findViewById(R.id.activity_main_accessibility_service_app_info);
+            TextView text2 = findViewById(R.id.activity_main_accessibility_service_app_info_2);
             Button appInfoButton = findViewById(R.id.activity_main_accessibility_service_app_info_button);
             if (!PPPEAccessibilityService.isEnabled(getApplicationContext())) {
-                str1 = "<ul><li>" + getString(R.string.extender_accessibility_service_disabled_app_info_1) + "<br><br>";
-                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_2) + "<br>";
-                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_3) + "<br>";
-                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_4);
-                str1 = str1 + "</li></ul>";
+                str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML + getString(R.string.extender_accessibility_service_disabled_app_info_1) + StringConstants.TAG_DOUBLE_BREAK_HTML;
+                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_2) + StringConstants.TAG_BREAK_HTML;
+                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_3) + StringConstants.TAG_BREAK_HTML;
+                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_4) + StringConstants.TAG_DOUBLE_BREAK_HTML;
+                str1 = str1 + StringConstants.TAG_BOLD_START_HTML + getString(R.string.extender_accessibility_service_disabled_app_info_5) + StringConstants.TAG_BREAK_HTML;
+                str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_6) + StringConstants.TAG_BOLD_END_HTML;
+                str1 = str1 + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
                 text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
                 text.setVisibility(View.VISIBLE);
+
+                str1 = getString(R.string.extender_accessibility_service_disabled_app_info_7);
+                String str2 = str1 + " https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify" + StringConstants.STR_HARD_SPACE_DOUBLE_ARROW;
+                Spannable sbt = new SpannableString(str2);
+                sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ClickableSpan clickableSpan = new ClickableSpan() {
+                    @Override
+                    public void updateDrawState(@NonNull TextPaint ds) {
+                        ds.setColor(ds.linkColor);    // you can use custom color
+                        ds.setUnderlineText(false);    // this remove the underline
+                    }
+
+                    @Override
+                    public void onClick(@NonNull View textView) {
+                        String url = "https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify";
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        try {
+                            startActivity(Intent.createChooser(i, getString(R.string.extender_web_browser_chooser)));
+                        } catch (Exception ignored) {}
+                    }
+                };
+                sbt.setSpan(clickableSpan, str1.length()+1, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                //sbt.setSpan(new UnderlineSpan(), str1.length()+1, str2.length(), 0);
+                text2.setText(sbt);
+                text2.setMovementMethod(LinkMovementMethod.getInstance());
+                text2.setVisibility(View.VISIBLE);
+
                 appInfoButton.setVisibility(View.VISIBLE);
                 appInfoButton.setOnClickListener(view -> {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                    intent.setData(Uri.parse("package:"+PPPEApplication.PACKAGE_NAME));
+                    intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE+PPPEApplication.PACKAGE_NAME));
                     if (MainActivity.activityIntentExists(intent, activity)) {
                         //noinspection deprecation
                         startActivity(intent);
@@ -462,6 +502,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 text.setVisibility(View.GONE);
+                text2.setVisibility(View.GONE);
                 appInfoButton.setVisibility(View.GONE);
             }
         }
@@ -490,7 +531,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
-            str1 = "<ul><li>" +getString(R.string.extender_permissions_event_sensor_sms_mms) + "</li></ul>";
+            str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_permissions_event_sensor_sms_mms) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
             text = findViewById(R.id.activity_main_sms_permissions_status);
@@ -516,9 +557,9 @@ public class MainActivity extends AppCompatActivity {
         if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
             text = findViewById(R.id.activity_main_permissions_event_sensor_call);
             if (Build.VERSION.SDK_INT < 28)
-                str1 = "<ul><li>" +getString(R.string.extender_permissions_event_sensor_call) + "</li></ul>";
+                str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_permissions_event_sensor_call) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             else
-                str1 = "<ul><li>" +getString(R.string.extender_permissions_event_sensor_call_28) + "</li></ul>";
+                str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_permissions_event_sensor_call_28) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
             text = findViewById(R.id.activity_main_call_permissions_status);
@@ -548,7 +589,7 @@ public class MainActivity extends AppCompatActivity {
             text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
 
         text = findViewById(R.id.activity_main_battery_optimization);
-        str1 = "<ul><li>" +getString(R.string.extender_battery_optimization_text) + "</li></ul>";
+        str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_battery_optimization_text) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_battery_optimization_status);
@@ -563,7 +604,7 @@ public class MainActivity extends AppCompatActivity {
                 if (Permissions.checkSMSMMSPermissions(activity)) {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                    intent.setData(Uri.parse("package:" + getPackageName()));
+                    intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE + getPackageName()));
                     if (MainActivity.activityIntentExists(intent, activity)) {
                         //noinspection deprecation
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
@@ -587,7 +628,7 @@ public class MainActivity extends AppCompatActivity {
                 if (Permissions.checkCallPermissions(activity)) {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                    intent.setData(Uri.parse("package:" + getPackageName()));
+                    intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE + getPackageName()));
                     if (MainActivity.activityIntentExists(intent, activity)) {
                         //noinspection deprecation
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
@@ -619,7 +660,7 @@ public class MainActivity extends AppCompatActivity {
                 //    DO NOT USE IT, CHANGE IS NOT DISPLAYED IN SYSTEM SETTINGS
                 //    But in ONEPLUS it IS ONLY SOLUTION !!!
                 intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-                intent.setData(Uri.parse("package:" + packageName));
+                intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE + packageName));
             }
             //intent.addCategory(Intent.CATEGORY_DEFAULT);
             if (MainActivity.activityIntentExists(intent, activity)) {
@@ -640,7 +681,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent("miui.intent.action.APP_PERM_EDITOR");
                 intent.setClassName("com.miui.securitycenter",
                         "com.miui.permcenter.permissions.PermissionsEditorActivity");
-                intent.putExtra("extra_pkgname", PPPEApplication.PACKAGE_NAME);
+                intent.putExtra(PPPEApplication.EXTRA_PKG_NAME, PPPEApplication.PACKAGE_NAME);
                 //intent.addCategory(Intent.CATEGORY_DEFAULT);
                 if (MainActivity.activityIntentExists(intent, activity)) {
                     //noinspection deprecation
@@ -690,6 +731,7 @@ public class MainActivity extends AppCompatActivity {
             final Activity _activity = activity;
             new Handler(activity.getMainLooper()).post(() -> {
                 try {
+                    @SuppressLint("UnsafeIntentLaunch")
                     Intent intent = _activity.getIntent();
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     _activity.finish();

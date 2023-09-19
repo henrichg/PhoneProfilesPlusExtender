@@ -1,9 +1,11 @@
 <img src="art/ic_launcher-web.png" width="100" height="100">  
 
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
+
 PhoneProfilesPlusExtender (aka PPPE)
 ====================================
 
-[![version](https://img.shields.io/badge/version-8.1.2-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.1.2)
+[![version](https://img.shields.io/badge/version-8.1.3-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.1.3)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![License](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/henrichg/PhoneProfilesPlus/blob/master/LICENSE)
 [![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)
@@ -11,24 +13,29 @@ PhoneProfilesPlusExtender (aka PPPE)
 
 ### Sources of PhoneProfilesPlusExtender:
 
-- __[GitHub PPPE release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)__
-
-Use keyword "PhoneProfilesPlus" for search this application in these stores:
+Use keyword "PhoneProfilesPlusExtender" for search this application in these stores:
 
 __Galaxy Store:__
 - [PPPE release (for Samsung devices only)](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)
+
+__Droid-ify (F-Droid alternative, preferred over GitHub):__
+- [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)
+- [Store applicaion (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)
+  &nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
 
 __F-Droid:__
 - [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)
 &nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_  
 - [Store application (download)](https://www.f-droid.org/)
 
-__Droid-ify (F-Droid alternative):__  
-- [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)  
-- [Store applicaion (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)
-&nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
+__GitHub (better is using Droid-ify instead):__
 
-__If it is not possible to install PhoneProfilesPlusExtender from GitHub or other sources directly on the device, then it can be installed from PC.__
+- NOTE: Installation from downloaded apk is not recommended for Android 13+ for security reason. Use instead Droid-ify, if in your device is not supported application store, and install PhoneProfilesPlusExtender from it.
+
+- [PPPE release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)
+  &nbsp;&nbsp;&nbsp;_[Number of downloads by version](https://hanadigital.github.io/grev/?user=henrichg&repo=phoneprofilesplusextender)_
+
+__If is not possible to install PhoneProfilesPlusExtender from the downloaded apk file directly on your device, you can install it from your computer.__
 - [Show how](docs/install_apk_from_pc.md)
 
 ---
@@ -65,7 +72,7 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 
 ##### Required external libs - open-source
 
-- AndroidX library: appcompat, localbroadcastmanager - https://developer.android.com/jetpack/androidx/versions
+- AndroidX library: appcompat, localbroadcastmanager, splashscreen - https://developer.android.com/jetpack/androidx/versions
 - ACRA - https://github.com/ACRA/acra
 - guava - https://github.com/google/guava
 - Multi-language_App (only modified class LocaleHelper.java) https://github.com/anurajr1/Multi-language_App

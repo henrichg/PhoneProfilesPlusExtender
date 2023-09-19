@@ -30,6 +30,10 @@ public class LogCrashActivity extends AppCompatActivity {
 
     private ArrayAdapter<String> logCrashAdapter;
 
+    private RefreshListViewAsyncTask refreshAsyncTask = null;
+
+    private static final String LOG_CRASH_TITLE = "Log/crash file";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (PPPEApplication.deviceIsOnePlus)
@@ -72,7 +76,7 @@ public class LogCrashActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Log/crash file");
+            getSupportActionBar().setTitle(LOG_CRASH_TITLE);
             getSupportActionBar().setElevation(0/*GlobalGUIRoutines.dpToPx(1)*/);
         }
 
@@ -155,6 +159,13 @@ public class LogCrashActivity extends AppCompatActivity {
     protected void onDestroy()
     {
         super.onDestroy();
+
+        if ((refreshAsyncTask != null) &&
+                refreshAsyncTask.getStatus().equals(AsyncTask.Status.RUNNING)) {
+            refreshAsyncTask.cancel(true);
+        }
+        refreshAsyncTask = null;
+
         //Cursor cursor = activityLogAdapter.getCursor();
         //if (cursor != null)
         //    cursor.close();
@@ -162,7 +173,7 @@ public class LogCrashActivity extends AppCompatActivity {
 
     void refreshListView(boolean showLog)
     {
-        RefreshListViewAsyncTask refreshAsyncTask = new RefreshListViewAsyncTask(this, showLog);
+        refreshAsyncTask = new RefreshListViewAsyncTask(this, showLog);
         refreshAsyncTask.execute();
     }
 
@@ -231,9 +242,9 @@ public class LogCrashActivity extends AppCompatActivity {
 
                 if (activity.getSupportActionBar() != null) {
                     if (_showLog)
-                        activity.getSupportActionBar().setTitle("Log/crash file - log.txt");
+                        activity.getSupportActionBar().setTitle(LOG_CRASH_TITLE+" - log.txt");
                     else
-                        activity.getSupportActionBar().setTitle("Log/crash file - crash.txt");
+                        activity.getSupportActionBar().setTitle(LOG_CRASH_TITLE+" - crash.txt");
                 }
 
                 activity.logCrashAdapter.clear();

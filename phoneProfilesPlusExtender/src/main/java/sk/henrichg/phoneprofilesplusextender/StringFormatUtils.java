@@ -22,19 +22,12 @@ public class StringFormatUtils {
     static Spanned fromHtml(String source, boolean forBullets, boolean boldBullet, boolean forNumbers, int numberFrom, int sp, boolean trimTrailingWhiteSpaces) {
         Spanned htmlSpanned;
 
-        //if (Build.VERSION.SDK_INT >= 24) {
         if (forNumbers)
             htmlSpanned = HtmlCompat.fromHtml(source, HtmlCompat.FROM_HTML_MODE_COMPACT, null, new LiTagHandler());
         else {
             htmlSpanned = HtmlCompat.fromHtml(source, HtmlCompat.FROM_HTML_MODE_COMPACT);
             //htmlSpanned = HtmlCompat.fromHtml(source, HtmlCompat.FROM_HTML_MODE_COMPACT, null, new GlobalGUIRoutines.LiTagHandler());
         }
-        //} else {
-        //    if (forBullets || forNumbers)
-        //        htmlSpanned = Html.fromHtml(source, null, new LiTagHandler());
-        //    else
-        //        htmlSpanned = Html.fromHtml(source);
-        //}
 
         htmlSpanned = removeUnderline(htmlSpanned);
 
@@ -88,7 +81,7 @@ public class StringFormatUtils {
                 int radius = dip(2);
                 if (boldBullet)
                     radius += 1;
-                spannableBuilder.setSpan(new ImprovedBulletSpan(radius, dip(8), 0), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                spannableBuilder.setSpan(new ImprovedBulletSpan(radius, dip(8)/*, 0*/), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
             }
         }
         return spannableBuilder;
@@ -134,7 +127,7 @@ public class StringFormatUtils {
         return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, Resources.getSystem().getDisplayMetrics()));
     }
 
-    static class LiTagHandler implements Html.TagHandler {
+    private static class LiTagHandler implements Html.TagHandler {
 
         @Override
         public void handleTag(boolean opening, String tag, Editable output, XMLReader xmlReader) {
@@ -147,7 +140,7 @@ public class StringFormatUtils {
             }
             if (tag.equals("li") && !opening) {
                 //output.append("\n\n");
-                output.append("\n");
+                output.append(StringConstants.CHAR_NEW_LINE);
                 Bullet[] spans = output.getSpans(0, output.length(), Bullet.class);
                 if (spans != null) {
                     Bullet lastMark = spans[spans.length - 1];
