@@ -3,6 +3,5 @@
 3    package="me.drakeet.support.toast" >
 4
 5    <uses-sdk android:minSdkVersion="26" />
-5-->/home/henrisko/Projekty/AndroidStudio/PhoneProfilesPlusExtender/ToastCompat/src/main/AndroidManifest.xml
 6
 7</manifest>
