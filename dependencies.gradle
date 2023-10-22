@@ -8,11 +8,11 @@ ext.ppVersions = [
     // 27 is required for:
     // - android.permission.PROCESS_OUTGOING_CALLS
 
-    compileSdk: 33,
+    compileSdk: 34,
     buildTools: '34.0.0',
 
     appcompatXLib: '1.6.1', //''1.5.1',
 
     autoservice       : '1.1.1',
-    acra              : '5.11.2'//'5.10.1'
+    acra              : '5.11.3'//'5.11.2'
 ]
