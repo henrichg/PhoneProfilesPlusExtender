@@ -1,4 +1,5 @@
-<img src="art/ic_launcher-web.png" width="100" height="100">  
+<!--suppress CheckImageSize -->
+<img src="art/ic_launcher-web.png"  alt="PPPE application icon" width="100" height="100">  
 
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
@@ -15,9 +16,6 @@ PhoneProfilesPlusExtender (aka PPPE)
 
 Use keyword "PhoneProfilesPlusExtender" for search this application in these stores:
 
-__Galaxy Store:__
-- [PPPE release (for Samsung devices only)](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)
-
 __Droid-ify (F-Droid alternative, preferred over GitHub):__
 - [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)
 - [Store applicaion (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)
@@ -25,8 +23,12 @@ __Droid-ify (F-Droid alternative, preferred over GitHub):__
 
 __F-Droid:__
 - [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)
-&nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_  
+  &nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_
 - [Store application (download)](https://www.f-droid.org/)
+
+__Galaxy Store:__
+- Sorry, is not more supported, because of in this store is required target SDK API 33 (Android 13) and PPP target SDK is 27 (Android 8.1).
+- [PPPE release (for Samsung devices only)](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)
 
 __GitHub (better is using Droid-ify instead):__
 
@@ -59,9 +61,9 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 
 ##### Screenshots
 - [[1]](art/phoneScreenshots/01.png),
-[[2]](art/phoneScreenshots/02.png),
-[[3]](art/phoneScreenshots/03.png),
-[[4]](art/phoneScreenshots/04.png)
+  [[2]](art/phoneScreenshots/02.png),
+  [[3]](art/phoneScreenshots/03.png),
+  [[4]](art/phoneScreenshots/04.png)
 
 ##### Supported Android versions
 
@@ -75,6 +77,7 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 - AndroidX library: appcompat, localbroadcastmanager, splashscreen - https://developer.android.com/jetpack/androidx/versions
 - ACRA - https://github.com/ACRA/acra
 - guava - https://github.com/google/guava
+- AutoService = https://github.com/google/auto/tree/main/service
 - Multi-language_App (only modified class LocaleHelper.java) https://github.com/anurajr1/Multi-language_App
 - AndroidHiddenApiBypass - https://github.com/LSPosed/AndroidHiddenApiBypass
 - ToastCompat (as module, code modified) - https://github.com/PureWriter/ToastCompat
