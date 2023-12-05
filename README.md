@@ -16,9 +16,6 @@ PhoneProfilesPlusExtender (aka PPPE)
 
 Use keyword "PhoneProfilesPlusExtender" for search this application in these stores:
 
-__Galaxy Store:__
-- [PPPE release (for Samsung devices only)](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)
-
 __Droid-ify (F-Droid alternative, preferred over GitHub):__
 - [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)
 - [Store applicaion (download)](https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify)
@@ -28,6 +25,10 @@ __F-Droid:__
 - [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)
 &nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_  
 - [Store application (download)](https://www.f-droid.org/)
+
+__Galaxy Store:__
+- Sorry, is not more supported, because of in this store is required target SDK API 33 (Android 13) and PPP target SDK is 27 (Android 8.1).
+- [PPPE release (for Samsung devices only)](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)
 
 __GitHub (better is using Droid-ify instead):__
 
