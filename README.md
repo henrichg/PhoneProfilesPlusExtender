@@ -27,7 +27,7 @@ __F-Droid:__
 - [Store application (download)](https://www.f-droid.org/)
 
 __Galaxy Store:__
-- Sorry, is not more supported, because of in this store is required target SDK API 33 (Android 13) and PPP target SDK is 27 (Android 8.1).
+- Sorry, is not more supported, because of in this store is required target SDK API 33 (Android 13) and PPPE target SDK is 27 (Android 8.1).
 - [PPPE release (for Samsung devices only)](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)
 
 __GitHub (better is using Droid-ify instead):__
