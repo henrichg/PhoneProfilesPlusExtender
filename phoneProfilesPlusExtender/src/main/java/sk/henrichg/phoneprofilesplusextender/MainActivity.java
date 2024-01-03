@@ -37,7 +37,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.PackageInfoCompat;
 import androidx.core.view.MenuCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.List;
 
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity
     int scrollTo = 0;
 
     @Override
-    public void refreshGUIFromListener(Intent intent) {
+    public void refreshGUIFromListener() {
         //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (2)");
         displayAccessibilityServiceStatus();
     }
@@ -75,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onReceive( Context context, Intent intent ) {
             //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (1)");
-            listener.refreshGUIFromListener(intent);
+            listener.refreshGUIFromListener();
         }
     }
     private RefreshGUIBroadcastReceiver refreshGUIBroadcastReceiver;

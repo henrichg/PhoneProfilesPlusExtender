@@ -19,8 +19,6 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import java.util.List;
 
 @SuppressWarnings("SpellCheckingInspection")
