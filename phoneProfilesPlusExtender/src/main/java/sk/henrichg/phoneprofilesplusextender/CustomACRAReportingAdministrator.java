@@ -51,10 +51,11 @@ public class CustomACRAReportingAdministrator implements ReportingAdministrator 
 
         try {
             if (PPPEApplication.crashIntoFile) {
+                final Context appContext = context.getApplicationContext();
                 Runnable runnable = () -> {
                     long actualVersionCode = 0;
                     try {
-                        PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+                        PackageInfo pInfo = appContext.getPackageManager().getPackageInfo(appContext.getPackageName(), 0);
                         //actualVersionCode = pInfo.versionCode;
                         actualVersionCode = PackageInfoCompat.getLongVersionCode(pInfo);
                     } catch (Exception ignored) {}
@@ -93,7 +94,7 @@ public class CustomACRAReportingAdministrator implements ReportingAdministrator 
                     }
                     report.append("-------------------------------").append(StringConstants.STR_DOUBLE_NEWLINE);
 
-                    logIntoFile(context, "E", "CustomACRAReportingAdministrator", report.toString());
+                    logIntoFile(appContext, "E", "CustomACRAReportingAdministrator", report.toString());
                 };
                 PPPEApplication.createBasicExecutorPool();
                 PPPEApplication.basicExecutorPool.submit(runnable);
