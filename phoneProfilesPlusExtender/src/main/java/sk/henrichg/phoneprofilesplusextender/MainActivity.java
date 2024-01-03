@@ -41,7 +41,9 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+                                implements RefreshGUIMainActivityListener
+{
 
     private static final int RESULT_ACCESSIBILITY_SETTINGS = 1900;
     private static final int RESULT_PERMISSIONS_SETTINGS = 1901;
@@ -56,13 +58,27 @@ public class MainActivity extends AppCompatActivity {
 
     int scrollTo = 0;
 
-    private final BroadcastReceiver refreshGUIBroadcastReceiver = new BroadcastReceiver() {
+    @Override
+    public void refreshGUIFromListener(Intent intent) {
+        //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (2)");
+        displayAccessibilityServiceStatus();
+    }
+
+    static private class RefreshGUIBroadcastReceiver extends BroadcastReceiver {
+
+        private final RefreshGUIMainActivityListener listener;
+
+        public RefreshGUIBroadcastReceiver(RefreshGUIMainActivityListener listener){
+            this.listener = listener;
+        }
+
         @Override
         public void onReceive( Context context, Intent intent ) {
-            MainActivity.this.displayAccessibilityServiceStatus();
-            //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx");
+            //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (1)");
+            listener.refreshGUIFromListener(intent);
         }
-    };
+    }
+    private RefreshGUIBroadcastReceiver refreshGUIBroadcastReceiver;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -138,8 +154,12 @@ public class MainActivity extends AppCompatActivity {
         displayAccessibilityServiceStatus();
         displayPermmisionsGrantStatus();
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(refreshGUIBroadcastReceiver,
-                new IntentFilter(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER));
+        refreshGUIBroadcastReceiver = new RefreshGUIBroadcastReceiver(this);
+        int receiverFlags = 0;
+        if (Build.VERSION.SDK_INT >= 34)
+            receiverFlags = RECEIVER_NOT_EXPORTED;
+        registerReceiver(refreshGUIBroadcastReceiver,
+                new IntentFilter(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER), receiverFlags);
     }
 
     @Override
@@ -348,6 +368,16 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        try {
+            unregisterReceiver(refreshGUIBroadcastReceiver);
+        } catch (Exception ignored) {}
+        refreshGUIBroadcastReceiver = null;
     }
 
     @Override
