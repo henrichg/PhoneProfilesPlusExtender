@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.PackageInfoCompat;
 
 import org.acra.ACRA;
+import org.acra.ReportField;
 import org.acra.config.CoreConfigurationBuilder;
 import org.acra.config.MailSenderConfigurationBuilder;
 import org.acra.config.NotificationConfigurationBuilder;
@@ -314,35 +315,58 @@ public class PPPEApplication extends Application {
 
         Log.e("##### PPPEApplication.attachBaseContext", "ACRA inittialization");
 
-/*
-        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
-                .withBuildConfigClass(BuildConfig.class)
-                .withReportFormat(StringFormat.KEY_VALUE_LIST);
-        //builder.getPluginConfigurationBuilder(ToastConfigurationBuilder.class)
-        //        .setResText(R.string.acra_toast_text)
-        //        .setEnabled(true);
-        builder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class)
-                .withResChannelName(R.string.extender_notification_channel_crash_report)
-                .withResChannelImportance(NotificationManager.IMPORTANCE_HIGH)
-                .withResIcon(R.drawable.ic_exclamation_notify)
-                .withResTitle(R.string.extender_acra_notification_title)
-                .withResText(R.string.extender_acra_notification_text)
-                .withResSendButtonIcon(0)
-                .withResDiscardButtonIcon(0)
-                .withSendOnClick(true)
-                .withEnabled(true);
-        builder.getPluginConfigurationBuilder(MailSenderConfigurationBuilder.class)
-                .withMailTo("henrich.gron@gmail.com")
-                .withSubject("PhoneProfilesPlusExtender" + packageVersion + " - " + getString(R.string.extender_acra_email_subject_text))
-                .withBody(body)
-                .withReportAsFile(true)
-                .withReportFileName("crash_report.txt")
-                .withEnabled(true);
-*/
+        ReportField[] reportContent = new ReportField[] {
+                ReportField.REPORT_ID,
+                ReportField.ANDROID_VERSION,
+                ReportField.APP_VERSION_CODE,
+                ReportField.APP_VERSION_NAME,
+                ReportField.PHONE_MODEL,
+                ReportField.PRODUCT,
+                //ReportField.APPLICATION_LOG,
+                ReportField.AVAILABLE_MEM_SIZE,
+                ReportField.BRAND,
+                ReportField.BUILD,
+                //BUILD_CONFIG !!! must be removed because in it is also encrypt_contacts_key, encrypt_contacts_salt
+                ReportField.CRASH_CONFIGURATION,
+                ReportField.TOTAL_MEM_SIZE,
+                ReportField.USER_APP_START_DATE,
+                ReportField.USER_CRASH_DATE,
+
+                ReportField.CUSTOM_DATA,
+                ReportField.STACK_TRACE,
+                ReportField.LOGCAT,
+
+                ReportField.SHARED_PREFERENCES,
+
+                ReportField.DEVICE_FEATURES,
+                //ReportField.DEVICE_ID
+                ReportField.DISPLAY,
+                //DROPBOX
+                //ReportField.DUMPSYS_MEMINFO,
+                ReportField.ENVIRONMENT,
+                //ReportField.FILE_PATH,
+                ReportField.INITIAL_CONFIGURATION,
+                //ReportField.INSTALLATION_ID,
+                //ReportField.IS_SILENT,
+                //ReportField.MEDIA_CODEC_LIST,
+                //ReportField.PACKAGE_NAME,
+                //ReportField.RADIOLOG,
+                ReportField.SETTINGS_GLOBAL,
+                ReportField.SETTINGS_SECURE,
+                ReportField.SETTINGS_SYSTEM,
+                //STACK_TRACE_HASH
+                //ReportField.THREAD_DETAILS,
+                //ReportField.USER_COMMENT,
+                //ReportField.USER_EMAIL,
+                //ReportField.USER_IP,
+                ReportField.EVENTSLOG
+        };
 
         CoreConfigurationBuilder builder = new CoreConfigurationBuilder()
                 .withBuildConfigClass(BuildConfig.class)
-                .withReportFormat(StringFormat.KEY_VALUE_LIST);
+                .withReportFormat(StringFormat.KEY_VALUE_LIST)
+                .withReportContent(reportContent)
+                ;
 
         builder.withPluginConfigurations(
                 new NotificationConfigurationBuilder()

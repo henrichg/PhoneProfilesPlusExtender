@@ -19,8 +19,6 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import java.util.List;
 
 @SuppressWarnings("SpellCheckingInspection")
@@ -141,7 +139,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         }
 
         Intent refreshIntent = new Intent(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(refreshIntent);
+        sendBroadcast(refreshIntent);
 
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
         sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);

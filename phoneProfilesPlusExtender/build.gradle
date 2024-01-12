@@ -17,8 +17,8 @@ android {
 
         versionCode ppVersions.publishVersionCode
         versionName ppVersions.publishVersion
+        resourceConfigurations += ['en', 'ar', 'bn-rIN', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fr', 'ga-rIN', 'hi', 'hr', 'hu', 'in', 'is', 'it', 'iw', 'ja', 'ko', 'ku', 'lb', 'lv', 'ms', 'nl', 'no', 'pl', 'pt-rBR', 'pt-rPT', 'ro', 'ru', 'sk', 'sl', 'sr', 'b+sr+Latn', 'sv', 'te', 'th', 'tr', 'uk', 'vi', 'zh-rCN', 'zh-rTW']
 
-        resConfigs 'en', 'ar', 'bn-rIN', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fr', 'ga-rIN', 'hi', 'hr', 'hu', 'in', 'is', 'it', 'iw', 'ja', 'ko', 'ku', 'lb', 'lv', 'ms', 'nl', 'no', 'pl', 'pt-rBR', 'pt-rPT', 'ro', 'ru', 'sk', 'sl', 'sr', 'b+sr+Latn', 'sv', 'te', 'th', 'tr', 'uk', 'vi', 'zh-rCN', 'zh-rTW'
     }
 
     compileOptions {
