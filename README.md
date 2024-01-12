@@ -6,7 +6,7 @@
 PhoneProfilesPlusExtender (aka PPPE)
 ====================================
 
-[![version](https://img.shields.io/badge/version-8.1.3-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.1.3)
+[![version](https://img.shields.io/badge/version-8.1.4-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.1.4)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![License](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/henrichg/PhoneProfilesPlus/blob/master/LICENSE)
 [![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)
@@ -70,7 +70,7 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 - From Android 8.0
 - minSdkVersion = 26
 - targetSdkVersion = 27
-- compiledSdkVersion = 33
+- compiledSdkVersion = 34
 
 ##### Required external libs - open-source
 
