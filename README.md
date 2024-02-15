@@ -59,6 +59,9 @@ _**** Please report me bugs, comments and suggestions to my e-mail: <henrich.gro
 
 _*** Please help me with translation, thank you: <https://crowdin.com/project/phoneprofilesplus> ***_
 
+##### Permissions
+- __[Show it](docs/permissions.md)__
+
 ##### Screenshots
 - [[1]](art/phoneScreenshots/01.png),
 [[2]](art/phoneScreenshots/02.png),
