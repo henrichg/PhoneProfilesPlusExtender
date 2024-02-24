@@ -22,7 +22,7 @@ If you do not have adb installed on your PC:
 
 - for Windows:
   `adb install [patch to apk in PC]\PhoneProfilesPlusExtender.apk`
-- for Linux, OSX:
+- for Linux, OSX, macOS:
   `adb install [patch to apk in PC]/PhoneProfilesPlusExtender.apk`
 
 5. After successful execution, PhoneProfilePlusExtender will be installed in device.
