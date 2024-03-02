@@ -21,9 +21,9 @@ If you do not have adb installed on your PC:
 4. On your PC, open a Command Prompt (Windows), or Terminal (Linux, OSX). Navigate to the folder where you extracted your adb files, and execute the following command:
 
 - for Windows:
-  `adb install [patch to apk in PC]\PhoneProfilesPlusExtender.apk`
+  `adb install [path to apk in PC]\PhoneProfilesPlusExtender.apk`
 - for Linux, OSX:
-  `adb install [patch to apk in PC]/PhoneProfilesPlusExtender.apk`
+  `adb install [path to apk in PC]/PhoneProfilesPlusExtender.apk`
 
 5. After successful execution, PhoneProfilePlusExtender will be installed in device.
 
