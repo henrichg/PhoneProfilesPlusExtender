@@ -177,7 +177,7 @@ public class ForceCloseIntentService extends IntentService {
     private boolean activityIntentExists(Intent intent, Context context) {
         try {
             List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
-            return activities.size() > 0;
+            return !activities.isEmpty();
         } catch (Exception e) {
             //Log.e("ForceCloseIntentService.activityIntentExists", Log.getStackTraceString(e));
             //PPPEApplication.recordException(e);

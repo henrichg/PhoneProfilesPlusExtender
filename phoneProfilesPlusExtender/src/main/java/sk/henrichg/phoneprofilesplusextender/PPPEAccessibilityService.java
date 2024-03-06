@@ -21,6 +21,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 import java.util.List;
 
+/** @noinspection ExtractMethodRecommender*/
 @SuppressWarnings("SpellCheckingInspection")
 public class PPPEAccessibilityService extends android.accessibilityservice.AccessibilityService {
 
@@ -237,7 +238,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     } else {
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
 //                                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/right_button="+list.size());
-                                        if (list.size() == 0) {
+                                        if (list.isEmpty()) {
                                             // Samsung Galaxy S10
                                             list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button2_negative");
 //                                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button2_negative="+list.size());
@@ -245,7 +246,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     }
                                 }
                             }
-                            if ((list != null) && (list.size() != 0)) {
+                            if ((list != null) && (!list.isEmpty())) {
                                 for (AccessibilityNodeInfo node : list) {
                                     if (node.isEnabled()) {
                                         if ((Build.VERSION.SDK_INT >= 30) && PPPEApplication.deviceIsXiaomi) {
@@ -290,7 +291,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             else
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
 //                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list="+list);
-                            if ((list != null) && (list.size() != 0)) {
+                            if ((list != null) && (!list.isEmpty())) {
 //                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list.size()="+list.size());
                                 for (final AccessibilityNodeInfo node : list) {
                                     node.performAction(AccessibilityNodeInfo.ACTION_CLICK);

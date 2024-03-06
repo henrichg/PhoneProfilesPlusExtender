@@ -50,6 +50,7 @@ import me.drakeet.support.toast.ToastCompat;
 //import com.github.anrwatchdog.ANRError;
 //import com.github.anrwatchdog.ANRWatchDog;
 
+/** @noinspection ExtractMethodRecommender*/
 public class PPPEApplication extends Application {
 
     private static PPPEApplication instance;
@@ -465,14 +466,14 @@ public class PPPEApplication extends Application {
             java.lang.Process p = Runtime.getRuntime().exec("getprop ro.miui.ui.version.code");
             input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
             line = input.readLine();
-            miuiRom1 = line.length() != 0;
+            miuiRom1 = !line.isEmpty();
             input.close();
 
             if (!miuiRom1) {
                 p = Runtime.getRuntime().exec("getprop ro.miui.ui.version.name");
                 input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
                 line = input.readLine();
-                miuiRom2 = line.length() != 0;
+                miuiRom2 = !line.isEmpty();
                 input.close();
             }
 
@@ -480,7 +481,7 @@ public class PPPEApplication extends Application {
                 p = Runtime.getRuntime().exec("getprop ro.miui.internal.storage");
                 input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
                 line = input.readLine();
-                miuiRom3 = line.length() != 0;
+                miuiRom3 = !line.isEmpty();
                 input.close();
             }
 
