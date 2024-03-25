@@ -26,10 +26,6 @@ __F-Droid:__
   &nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_
 - [Store application (download)](https://www.f-droid.org/)
 
-__Galaxy Store:__
-- Sorry, is not more supported, because this store requires target SDK API 33 (Android 13) and PPP target SDK is 27 (Android 8.1).
-- [PPPE release (for Samsung devices only)](https://galaxystore.samsung.com/detail/sk.henrichg.phoneprofilesplusextender)
-
 __GitHub (better is using Droid-ify instead):__
 
 - NOTE: Installation from downloaded apk is not recommended for Android 13+ for security reason. Use instead Droid-ify, if in your device is not supported application store, and install PhoneProfilesPlusExtender from it.
