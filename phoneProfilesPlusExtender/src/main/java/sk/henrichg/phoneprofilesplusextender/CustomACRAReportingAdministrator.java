@@ -4,7 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.RemoteServiceException;
 import android.content.Context;
 import android.content.pm.PackageInfo;
+import android.os.Build;
 import android.os.DeadSystemException;
+import android.os.DeadSystemRuntimeException;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.pm.PackageInfoCompat;
@@ -109,11 +112,6 @@ public class CustomACRAReportingAdministrator implements ReportingAdministrator 
                 return false;
         }
 
-        if (_exception instanceof DeadSystemException) {
-//            Log.e("CustomACRAReportingAdministrator.shouldStartCollecting", "DeadSystemException");
-            return false;
-        }
-
         if (_exception.getClass().getSimpleName().equals("CannotDeliverBroadcastException") &&
                 (_exception instanceof RemoteServiceException)) {
             // ignore but not exist exception
@@ -123,12 +121,44 @@ public class CustomACRAReportingAdministrator implements ReportingAdministrator 
             return false;
         }
 
+        if (_exception instanceof DeadSystemException) {
+//            Log.e("CustomACRAReportingAdministrator.shouldStartCollecting", "DeadSystemException");
+            // Exit app. This restarts PPP
+            System.exit(2);
+            return false;
+        }
+
+        if (Build.VERSION.SDK_INT >= 33) {
+            if (_exception instanceof DeadSystemRuntimeException) {
+//                Log.e("CustomACRAReportingAdministrator.shouldStartCollecting", "DeadSystemRuntimeException");
+                // Exit app. This restarts PPP
+                System.exit(2);
+                return false;
+            }
+        }
+
+        if (_exception instanceof RuntimeException) {
+            String stackTrace = Log.getStackTraceString(_exception);
+            if (stackTrace.contains("android.os.DeadSystemException")) {
+                // Exit app. This restarts PPP
+                System.exit(2);
+                return false;
+            }
+            if (stackTrace.contains("android.os.DeadSystemRuntimeException")) {
+                // Exit app. This restarts PPP
+                System.exit(2);
+                return false;
+            }
+        }
+
 /*
         // this is only for debuging, how is handled ignored exceptions
         if (_exception instanceof java.lang.RuntimeException) {
             if (_exception.getMessage() != null) {
                 if (_exception.getMessage().equals("Test Crash")) {
 //                    Log.e("CustomACRAReportingAdministrator.shouldStartCollecting", "RuntimeException: Test Crash");
+                    // Exit app. This restarts PPP
+                    System.exit(2);
                     return false;
                 }
                 if (_exception.getMessage().equals("Test non-fatal exception")) {
