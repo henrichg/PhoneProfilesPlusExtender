@@ -82,6 +82,8 @@ public class PPPEApplication extends Application {
 
                                                 //+ "|MainActivity"
                                                 //+ "|FromPhoneProfilesPlusBroadcastReceiver"
+
+                                                //+"|[BROADCAST_TO_PPP]"
             ;
 
     static final boolean deviceIsOppo = isOppo();
@@ -257,6 +259,7 @@ public class PPPEApplication extends Application {
             PPPEApplication.setCustomKey("DEBUG", BuildConfig.DEBUG);
         } catch (Exception ignored) {}
 
+//        PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEApplication.onCreate", "xxxx");
         Intent sendIntent = new Intent(ACTION_PPPEXTENDER_STARTED);
         sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
     }

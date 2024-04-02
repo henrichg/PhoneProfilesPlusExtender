@@ -202,6 +202,7 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
     {
         //PPPEApplication.logE("PPPEPhoneStateListener.doCallEvent", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
         if (PPPEApplication.registeredCallFunctionPPP) {
+//            PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEPhoneStateListener.doCallEvent", "xxxx");
             Intent sendIntent = new Intent(ACTION_CALL_RECEIVED);
             //sendIntent.putExtra(EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
             sendIntent.putExtra(EXTRA_CALL_EVENT_TYPE, eventType);

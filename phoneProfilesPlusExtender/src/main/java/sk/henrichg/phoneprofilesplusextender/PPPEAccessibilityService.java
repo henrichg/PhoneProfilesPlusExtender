@@ -142,6 +142,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         Intent refreshIntent = new Intent(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER);
         sendBroadcast(refreshIntent);
 
+//        PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEAccessibilityService.onServiceConnected", "xxxx");
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
         sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
 
@@ -178,6 +179,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
                                 PPPEApplication.latestApplicationPackageName = packageName;
                                 PPPEApplication.getLatestApplicationClassName = className;
+//                                PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEAccessibilityService.onAccessibilityEvent", "xxxx");
                                 Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
                                 intent.putExtra(EXTRA_PACKAGE_NAME, packageName);
                                 intent.putExtra(EXTRA_CLASS_NAME, className);
@@ -410,7 +412,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_PHONE_NUMBER, "");
             sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_EVENT_TIME, 0);
             sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_SIM_SLOT, 0);
-            sendBroadcast(sendIntent);//, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+            sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
         }
 
         if (PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver != null) {
