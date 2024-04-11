@@ -42,14 +42,6 @@ import java.util.concurrent.Executors;
 
 import me.drakeet.support.toast.ToastCompat;
 
-//import com.google.firebase.crashlytics.FirebaseCrashlytics;
-
-//import com.llew.huawei.verifier.LoadedApkHuaWei;
-
-//import com.google.firebase.analytics.FirebaseAnalytics;
-//import com.github.anrwatchdog.ANRError;
-//import com.github.anrwatchdog.ANRWatchDog;
-
 /** @noinspection ExtractMethodRecommender*/
 public class PPPEApplication extends Application {
 
