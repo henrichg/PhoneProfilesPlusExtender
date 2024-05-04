@@ -403,7 +403,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         if (forUnbound) {
             // for event sensors: Applications and Orientation
             Intent _intent = new Intent(ACTION_ACCESSIBILITY_SERVICE_UNBIND);
-            sendBroadcast(_intent);//, ACCESSIBILITY_SERVICE_PERMISSION);
+            sendBroadcast(_intent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
 
             // for event Call sensor
             Intent sendIntent = new Intent(PPPEPhoneStateListener.ACTION_CALL_RECEIVED);
