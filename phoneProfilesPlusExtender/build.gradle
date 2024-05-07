@@ -52,12 +52,24 @@ android {
             enableSplit = false
         }
     }
+
+    // Requested by IzzyOnDroid. PPPE is not in Google Play. For this reason may be both false.
+    // https://developer.android.com/reference/tools/gradle-api/8.2/com/android/build/api/dsl/DependenciesInfo
+    dependenciesInfo {
+        // Disables dependency metadata when building APKs.
+        includeInApk = false
+        // Disables dependency metadata when building Android App Bundles.
+        includeInBundle = false
+    }
+    buildFeatures {
+        buildConfig true
+    }
 }
 
 dependencies {
     implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
 
-    implementation "com.google.guava:guava:32.1.2-android" //31.1-android"
+    implementation "com.google.guava:guava:33.0.0-android" //32.1.3-android"
     implementation "ch.acra:acra-mail:$ppVersions.acra"
     implementation "ch.acra:acra-notification:$ppVersions.acra"
 

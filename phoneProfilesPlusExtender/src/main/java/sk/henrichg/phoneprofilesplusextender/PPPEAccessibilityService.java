@@ -21,6 +21,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 import java.util.List;
 
+/** @noinspection ExtractMethodRecommender*/
 @SuppressWarnings("SpellCheckingInspection")
 public class PPPEAccessibilityService extends android.accessibilityservice.AccessibilityService {
 
@@ -141,6 +142,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         Intent refreshIntent = new Intent(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER);
         sendBroadcast(refreshIntent);
 
+//        PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEAccessibilityService.onServiceConnected", "xxxx");
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
         sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
 
@@ -177,6 +179,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 //PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
                                 PPPEApplication.latestApplicationPackageName = packageName;
                                 PPPEApplication.getLatestApplicationClassName = className;
+//                                PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEAccessibilityService.onAccessibilityEvent", "xxxx");
                                 Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
                                 intent.putExtra(EXTRA_PACKAGE_NAME, packageName);
                                 intent.putExtra(EXTRA_CLASS_NAME, className);
@@ -237,7 +240,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     } else {
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
 //                                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/right_button="+list.size());
-                                        if (list.size() == 0) {
+                                        if (list.isEmpty()) {
                                             // Samsung Galaxy S10
                                             list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button2_negative");
 //                                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button2_negative="+list.size());
@@ -245,7 +248,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     }
                                 }
                             }
-                            if ((list != null) && (list.size() != 0)) {
+                            if ((list != null) && (!list.isEmpty())) {
                                 for (AccessibilityNodeInfo node : list) {
                                     if (node.isEnabled()) {
                                         if ((Build.VERSION.SDK_INT >= 30) && PPPEApplication.deviceIsXiaomi) {
@@ -290,7 +293,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             else
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
 //                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list="+list);
-                            if ((list != null) && (list.size() != 0)) {
+                            if ((list != null) && (!list.isEmpty())) {
 //                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list.size()="+list.size());
                                 for (final AccessibilityNodeInfo node : list) {
                                     node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -400,7 +403,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         if (forUnbound) {
             // for event sensors: Applications and Orientation
             Intent _intent = new Intent(ACTION_ACCESSIBILITY_SERVICE_UNBIND);
-            sendBroadcast(_intent);//, ACCESSIBILITY_SERVICE_PERMISSION);
+            sendBroadcast(_intent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
 
             // for event Call sensor
             Intent sendIntent = new Intent(PPPEPhoneStateListener.ACTION_CALL_RECEIVED);
@@ -409,7 +412,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_PHONE_NUMBER, "");
             sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_EVENT_TIME, 0);
             sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_SIM_SLOT, 0);
-            sendBroadcast(sendIntent);//, PPPEAccessibilityService.ACCESSIBILITY_SERVICE_PERMISSION);
+            sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
         }
 
         if (PPPEApplication.fromPhoneProfilesPlusBroadcastReceiver != null) {

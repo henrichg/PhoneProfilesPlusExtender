@@ -42,14 +42,7 @@ import java.util.concurrent.Executors;
 
 import me.drakeet.support.toast.ToastCompat;
 
-//import com.google.firebase.crashlytics.FirebaseCrashlytics;
-
-//import com.llew.huawei.verifier.LoadedApkHuaWei;
-
-//import com.google.firebase.analytics.FirebaseAnalytics;
-//import com.github.anrwatchdog.ANRError;
-//import com.github.anrwatchdog.ANRWatchDog;
-
+/** @noinspection ExtractMethodRecommender*/
 public class PPPEApplication extends Application {
 
     private static PPPEApplication instance;
@@ -81,6 +74,8 @@ public class PPPEApplication extends Application {
 
                                                 //+ "|MainActivity"
                                                 //+ "|FromPhoneProfilesPlusBroadcastReceiver"
+
+                                                //+"|[BROADCAST_TO_PPP]"
             ;
 
     static final boolean deviceIsOppo = isOppo();
@@ -256,6 +251,7 @@ public class PPPEApplication extends Application {
             PPPEApplication.setCustomKey("DEBUG", BuildConfig.DEBUG);
         } catch (Exception ignored) {}
 
+//        PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEApplication.onCreate", "xxxx");
         Intent sendIntent = new Intent(ACTION_PPPEXTENDER_STARTED);
         sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
     }
@@ -465,14 +461,14 @@ public class PPPEApplication extends Application {
             java.lang.Process p = Runtime.getRuntime().exec("getprop ro.miui.ui.version.code");
             input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
             line = input.readLine();
-            miuiRom1 = line.length() != 0;
+            miuiRom1 = !line.isEmpty();
             input.close();
 
             if (!miuiRom1) {
                 p = Runtime.getRuntime().exec("getprop ro.miui.ui.version.name");
                 input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
                 line = input.readLine();
-                miuiRom2 = line.length() != 0;
+                miuiRom2 = !line.isEmpty();
                 input.close();
             }
 
@@ -480,7 +476,7 @@ public class PPPEApplication extends Application {
                 p = Runtime.getRuntime().exec("getprop ro.miui.internal.storage");
                 input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
                 line = input.readLine();
-                miuiRom3 = line.length() != 0;
+                miuiRom3 = !line.isEmpty();
                 input.close();
             }
 

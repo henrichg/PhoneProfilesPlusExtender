@@ -116,6 +116,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                 int gmtOffset = 0; //TimeZone.getDefault().getRawOffset();
                 long time = now.getTimeInMillis() + gmtOffset;
 
+//                PPPEApplication.logE("[BROADCAST_TO_PPP] SMSBroadcastReceiver.onReceive", "xxxx");
                 Intent sendIntent = new Intent(ACTION_SMS_MMS_RECEIVED);
                 sendIntent.putExtra(EXTRA_ORIGIN, origin);  //TODO encrypt it!!!
                 sendIntent.putExtra(EXTRA_TIME, time);
