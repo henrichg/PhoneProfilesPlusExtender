@@ -30,6 +30,8 @@ public class ForceCloseIntentService extends IntentService {
     {
         super("ForceCloseIntentService");
 
+        PPPEApplication.logE("[MEMORY_LEAK] ForceCloseIntentService (constructor)", "xxxx");
+
         // if enabled is true, onStartCommand(Intent, int, int) will return START_REDELIVER_INTENT,
         // so if this process dies before onHandleIntent(Intent) returns, the process will be restarted
         // and the intent redelivered. If multiple Intents have been sent, only the most recent one
@@ -47,6 +49,8 @@ public class ForceCloseIntentService extends IntentService {
         if (intent == null) {
             return;
         }
+
+        PPPEApplication.logE("[MEMORY_LEAK] ForceCloseIntentService.onHandleIntent", "xxxx");
 
         long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
         //Log.e("ForceCloseIntentService.onHandleIntent", "profileId="+profileId);
@@ -71,13 +75,15 @@ public class ForceCloseIntentService extends IntentService {
                 if (screenOffReceived)
                     break;
 
+                Context appContext = getApplicationContext();
+
                 boolean keyguardLocked = true;
-                KeyguardManager kgMgr = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+                KeyguardManager kgMgr = (KeyguardManager) appContext.getSystemService(Context.KEYGUARD_SERVICE);
                 if (kgMgr != null)
                     keyguardLocked = kgMgr.isKeyguardLocked();
 
                 boolean isScreenOn = false;
-                PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+                PowerManager pm = (PowerManager) appContext.getSystemService(POWER_SERVICE);
                 if (pm != null)
                     isScreenOn = PPPEApplication.isScreenOn(pm);
 

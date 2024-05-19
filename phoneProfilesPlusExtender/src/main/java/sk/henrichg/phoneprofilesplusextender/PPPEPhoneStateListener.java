@@ -12,7 +12,7 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
     final SubscriptionInfo subscriptionInfo;
 
-    final Context savedContext;
+    final Context appContext;
 
     int lastState = TelephonyManager.CALL_STATE_IDLE;
     Date eventTime;
@@ -43,7 +43,9 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
     PPPEPhoneStateListener(SubscriptionInfo subscriptionInfo, Context context) {
         this.subscriptionInfo = subscriptionInfo;
-        this.savedContext = context.getApplicationContext();
+        this.appContext = context.getApplicationContext();
+
+        PPPEApplication.logE("[MEMORY_LEAK] PPPEPhoneStateListener (constructor)", "xxxx");
     }
 
     @SuppressWarnings("deprecation")
@@ -53,6 +55,9 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
             //No change, de-bounce extras
             return;
         }
+
+        PPPEApplication.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onCallStateChanged", "xxxx");
+
         switch (state) {
             case TelephonyManager.CALL_STATE_RINGING:
 //                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_RINGING");
@@ -138,41 +143,48 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
     protected void onIncomingCallStarted(String number, Date eventTime)
     {
-        doCall(savedContext, SERVICE_PHONE_EVENT_START, true, false, number, eventTime);
+        PPPEApplication.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onIncomingCallStarted", "xxxx");
+        doCall(appContext, SERVICE_PHONE_EVENT_START, true, false, number, eventTime);
     }
 
     protected void onIncomingCallAnswered(String number, Date eventTime)
     {
-        doCall(savedContext, SERVICE_PHONE_EVENT_ANSWER, true, false, number, eventTime);
+        PPPEApplication.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onIncomingCallAnswered", "xxxx");
+        doCall(appContext, SERVICE_PHONE_EVENT_ANSWER, true, false, number, eventTime);
     }
 
     protected void onIncomingCallEnded(String number, Date eventTime)
     {
-        doCall(savedContext, SERVICE_PHONE_EVENT_END, true, false, number, eventTime);
+        PPPEApplication.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onIncomingCallEnded", "xxxx");
+        doCall(appContext, SERVICE_PHONE_EVENT_END, true, false, number, eventTime);
     }
 
     protected void onMissedCall(String number, Date eventTime)
     {
-        doCall(savedContext, SERVICE_PHONE_EVENT_END, true, true, number, eventTime);
+        PPPEApplication.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onMissedCall", "xxxx");
+        doCall(appContext, SERVICE_PHONE_EVENT_END, true, true, number, eventTime);
     }
 
     protected void onOutgoingCallStarted(String number, Date _eventTime)
     {
+        PPPEApplication.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onOutgoingCallStarted", "xxxx");
 //        PPPEApplication.logE("PPPEPhoneStateListener.onOutgoingCallStarted", "number="+number);
         savedNumber=number;
         eventTime = _eventTime;
-        doCall(savedContext, SERVICE_PHONE_EVENT_START, false, false, number, eventTime);
+        doCall(appContext, SERVICE_PHONE_EVENT_START, false, false, number, eventTime);
     }
 
     protected void onOutgoingCallAnswered(String number, Date eventTime)
     {
+        PPPEApplication.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onOutgoingCallAnswered", "xxxx");
 //        PPPEApplication.logE("PPPEPhoneStateListener.onOutgoingCallAnswered", "number="+number);
-        doCall(savedContext, SERVICE_PHONE_EVENT_ANSWER, false, false, number, eventTime);
+        doCall(appContext, SERVICE_PHONE_EVENT_ANSWER, false, false, number, eventTime);
     }
 
     protected void onOutgoingCallEnded(String number, Date eventTime)
     {
-        doCall(savedContext, SERVICE_PHONE_EVENT_END, false, false, number, eventTime);
+        PPPEApplication.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onOutgoingCallEnded", "xxxx");
+        doCall(appContext, SERVICE_PHONE_EVENT_END, false, false, number, eventTime);
     }
 
     private void doCall(final Context context, final int phoneEvent,

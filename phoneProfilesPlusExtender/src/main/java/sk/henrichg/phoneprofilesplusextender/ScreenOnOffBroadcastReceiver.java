@@ -13,6 +13,8 @@ public class ScreenOnOffBroadcastReceiver extends BroadcastReceiver {
         if (intent == null)
             return;
 
+        PPPEApplication.logE("[MEMORY_LEAK] ScreenOnOffBroadcastReceiver.onReceive", "xxxx");
+
         final String action = intent.getAction();
 
         if ((action != null) && action.equals(Intent.ACTION_SCREEN_ON)) {
@@ -27,7 +29,7 @@ public class ScreenOnOffBroadcastReceiver extends BroadcastReceiver {
                 Intent startMain = new Intent(Intent.ACTION_MAIN);
                 startMain.addCategory(Intent.CATEGORY_HOME);
                 startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(startMain);
+                context.getApplicationContext().startActivity(startMain);
             }
 
         } else if ((action != null) && action.equals(Intent.ACTION_USER_PRESENT)) {

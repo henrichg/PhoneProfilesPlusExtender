@@ -62,7 +62,7 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
     // TODO: SET IT TO FALSE FOR RELEASE VERSION!!!
-    static final boolean logIntoFile = false;
+    static final boolean logIntoFile = true;
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     private static final String logFilterTags = ""
@@ -76,6 +76,7 @@ public class PPPEApplication extends Application {
                                                 //+ "|FromPhoneProfilesPlusBroadcastReceiver"
 
                                                 //+"|[BROADCAST_TO_PPP]"
+                                                +"[MEMORY_LEAK]"
             ;
 
     static final boolean deviceIsOppo = isOppo();
@@ -163,6 +164,9 @@ public class PPPEApplication extends Application {
             return;
         }
 
+        PPPEApplication.logE("[MEMORY_LEAK] PPPEApplication.onCreate", "xxxx");
+
+
 /*        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .setBuildConfigClass(BuildConfig.class)
                 .setReportFormat(StringFormat.KEY_VALUE_LIST);
@@ -199,6 +203,7 @@ public class PPPEApplication extends Application {
             return;
 
         //Log.e("##### PPPEApplication.onCreate", "Start  uid="+uid);
+        PPPEApplication.logE("[MEMORY_LEAK] PPPEApplication.onCreate", "xxxx (2)");
 
         PPPEApplication.createGrantPermissionNotificationChannel(this, true);
 

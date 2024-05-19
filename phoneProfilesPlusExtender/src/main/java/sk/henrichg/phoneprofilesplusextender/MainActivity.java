@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity
         int receiverFlags = 0;
         if (Build.VERSION.SDK_INT >= 34)
             receiverFlags = RECEIVER_NOT_EXPORTED;
-        registerReceiver(refreshGUIBroadcastReceiver,
+        getApplicationContext().registerReceiver(refreshGUIBroadcastReceiver,
                 new IntentFilter(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER), receiverFlags);
     }
 
@@ -374,7 +374,7 @@ public class MainActivity extends AppCompatActivity
         super.onDestroy();
 
         try {
-            unregisterReceiver(refreshGUIBroadcastReceiver);
+            getApplicationContext().unregisterReceiver(refreshGUIBroadcastReceiver);
         } catch (Exception ignored) {}
         refreshGUIBroadcastReceiver = null;
     }
