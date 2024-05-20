@@ -430,14 +430,14 @@ public class MainActivity extends AppCompatActivity
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_sms_mms);
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_event_sensor_sms_mms) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
         } else
             text.setVisibility(View.GONE);
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_call);
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_event_sensor_call) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
         } else
@@ -553,7 +553,7 @@ public class MainActivity extends AppCompatActivity
             text.setVisibility(View.GONE);
         }
 
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
             str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_permissions_event_sensor_sms_mms) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
@@ -578,7 +578,7 @@ public class MainActivity extends AppCompatActivity
             text.setVisibility(View.GONE);
         }
 
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             text = findViewById(R.id.activity_main_permissions_event_sensor_call);
             if (Build.VERSION.SDK_INT < 28)
                 str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_permissions_event_sensor_call) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
@@ -623,7 +623,7 @@ public class MainActivity extends AppCompatActivity
             text.setText("[ " + getString(R.string.extender_battery_optimization_optimized) + " ]");
 
         Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             permissionsButton.setOnClickListener(view -> {
                 if (Permissions.checkSMSMMSPermissions(activity)) {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -647,7 +647,7 @@ public class MainActivity extends AppCompatActivity
             permissionsButton.setVisibility(View.GONE);
 
         permissionsButton = findViewById(R.id.activity_main_call_permissions_button);
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             permissionsButton.setOnClickListener(view -> {
                 if (Permissions.checkCallPermissions(activity)) {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);

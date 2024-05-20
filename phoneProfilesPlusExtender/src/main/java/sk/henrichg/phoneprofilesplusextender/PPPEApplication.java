@@ -112,6 +112,8 @@ public class PPPEApplication extends Application {
     static final String EXTRA_EVENT_TIME = PPPEApplication.PACKAGE_NAME + ".event_time";
     static final String EXTRA_SIM_SLOT = PPPEApplication.PACKAGE_NAME + ".sim_slot";
 
+    static volatile boolean HAS_FEATURE_TELEPHONY = false;
+
     //@SuppressWarnings("SpellCheckingInspection")
     //static private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -248,6 +250,9 @@ public class PPPEApplication extends Application {
         */
 
         PPPEApplicationStatic.createBasicExecutorPool();
+
+        PackageManager packageManager = getPackageManager();
+        HAS_FEATURE_TELEPHONY = hasSystemFeature(packageManager, PackageManager.FEATURE_TELEPHONY);
 
         try {
             PPPEApplicationStatic.setCustomKey("DEBUG", BuildConfig.DEBUG);
@@ -512,9 +517,9 @@ public class PPPEApplication extends Application {
 
     //---------------------------------------------------------------------------------------------
 
-    static boolean hasSystemFeature(Context context, @SuppressWarnings("SameParameterValue") String feature) {
+    /** @noinspection SameParameterValue*/
+    private boolean hasSystemFeature(PackageManager packageManager, String feature) {
         try {
-            PackageManager packageManager = context.getPackageManager();
             return packageManager.hasSystemFeature(feature);
         } catch (Exception e) {
             return false;

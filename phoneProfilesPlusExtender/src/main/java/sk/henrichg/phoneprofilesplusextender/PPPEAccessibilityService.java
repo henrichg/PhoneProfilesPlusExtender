@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.provider.Telephony;
@@ -105,7 +104,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION, null, receiverFlags);
         }
 
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             if (PPPEApplication.smsBroadcastReceiver == null) {
                 //PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "sms receiver");
                 PPPEApplication.smsBroadcastReceiver = new SMSBroadcastReceiver();
