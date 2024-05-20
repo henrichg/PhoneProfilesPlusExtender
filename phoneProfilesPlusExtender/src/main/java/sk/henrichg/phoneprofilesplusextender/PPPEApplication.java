@@ -625,7 +625,7 @@ public class PPPEApplication extends Application {
     */
 
     @SuppressWarnings("unused")
-    static public void logE(String tag, String text)
+    static void logE(String tag, String text)
     {
         if (!logEnabled())
             return;
@@ -639,7 +639,7 @@ public class PPPEApplication extends Application {
     }
 
     /*
-    static public void logD(String tag, String text)
+    static void logD(String tag, String text)
     {
         if (!logEnabled())
             return;

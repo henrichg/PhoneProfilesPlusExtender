@@ -9,7 +9,7 @@ import android.os.Handler;
 
 import java.util.List;
 
-public class GlobalUtils {
+class GlobalUtils {
 
     static boolean activityActionExists(@SuppressWarnings("SameParameterValue") String action,
                                                 Context context) {

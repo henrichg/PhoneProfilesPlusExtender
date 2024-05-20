@@ -16,7 +16,7 @@ import androidx.core.text.HtmlCompat;
 
 import org.xml.sax.XMLReader;
 
-public class StringFormatUtils {
+class StringFormatUtils {
 
     @SuppressWarnings("SameParameterValue")
     static Spanned fromHtml(String source, boolean forBullets, boolean boldBullet, boolean forNumbers, int numberFrom, int sp, boolean trimTrailingWhiteSpaces) {

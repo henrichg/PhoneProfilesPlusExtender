@@ -668,7 +668,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         return false;*/
     }
 
-    static void sleep(@SuppressWarnings("SameParameterValue") long ms) {
+    private void sleep(@SuppressWarnings("SameParameterValue") long ms) {
         /*long start = SystemClock.uptimeMillis();
         do {
             SystemClock.sleep(100);
