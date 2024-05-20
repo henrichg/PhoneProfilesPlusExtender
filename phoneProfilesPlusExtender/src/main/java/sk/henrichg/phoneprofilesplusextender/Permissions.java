@@ -86,7 +86,7 @@ class Permissions {
                         intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
                         intent.putExtra(Settings.EXTRA_APP_PACKAGE, PPPEApplication.PACKAGE_NAME);
 
-                        if (MainActivity.activityIntentExists(intent, activity.getApplicationContext())) {
+                        if (GlobalUtils.activityIntentExists(intent, activity.getApplicationContext())) {
                             try {
                                 activity.startActivity(intent);
                                 ok = true;

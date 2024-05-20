@@ -53,9 +53,7 @@ public class MainActivity extends AppCompatActivity
     String defaultCountry = "";
     String defaultScript = "";
 
-    static final String EXTRA_SCROLL_TO = "extra_main_activity_scroll_to";
-
-    int scrollTo = 0;
+    private int scrollTo = 0;
 
     @Override
     public void refreshGUIFromListener() {
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         Intent intent = getIntent();
-        scrollTo = intent.getIntExtra(EXTRA_SCROLL_TO, 0);
+        scrollTo = intent.getIntExtra(PPPEApplication.EXTRA_SCROLL_TO, 0);
 
         TextView text = findViewById(R.id.activity_main_application_version);
         try {
@@ -384,11 +382,11 @@ public class MainActivity extends AppCompatActivity
     {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_ACCESSIBILITY_SETTINGS)
-            reloadActivity(this, false);
+            GlobalUtils.reloadActivity(this, false);
         if (requestCode == RESULT_PERMISSIONS_SETTINGS)
-            reloadActivity(this, false);
+            GlobalUtils.reloadActivity(this, false);
         if (requestCode == RESULT_BATTERY_OPTIMIZATION_SETTINGS)
-            reloadActivity(this, false);
+            GlobalUtils.reloadActivity(this, false);
     }
 
     @Override
@@ -413,7 +411,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.LENGTH_SHORT);
                 //}
             }
-            reloadActivity(this, false);
+            GlobalUtils.reloadActivity(this, false);
 
             // other 'case' lines to check for other
             // permissions this app might request
@@ -457,7 +455,7 @@ public class MainActivity extends AppCompatActivity
         final Activity activity = this;
         Button accessibilityButton = findViewById(R.id.activity_main_accessibility_service_button);
         accessibilityButton.setOnClickListener(view -> {
-            if (MainActivity.activityActionExists(Settings.ACTION_ACCESSIBILITY_SETTINGS, activity)) {
+            if (GlobalUtils.activityActionExists(Settings.ACTION_ACCESSIBILITY_SETTINGS, activity)) {
                 Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
                 //noinspection deprecation
                 startActivityForResult(intent, RESULT_ACCESSIBILITY_SETTINGS);
@@ -517,7 +515,7 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE+PPPEApplication.PACKAGE_NAME));
-                    if (MainActivity.activityIntentExists(intent, activity)) {
+                    if (GlobalUtils.activityIntentExists(intent, activity)) {
                         //noinspection deprecation
                         startActivity(intent);
                     } else {
@@ -634,7 +632,7 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE + getPackageName()));
-                    if (MainActivity.activityIntentExists(intent, activity)) {
+                    if (GlobalUtils.activityIntentExists(intent, activity)) {
                         //noinspection deprecation
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                     } else {
@@ -658,7 +656,7 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE + getPackageName()));
-                    if (MainActivity.activityIntentExists(intent, activity)) {
+                    if (GlobalUtils.activityIntentExists(intent, activity)) {
                         //noinspection deprecation
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                     } else {
@@ -692,7 +690,7 @@ public class MainActivity extends AppCompatActivity
                 intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE + packageName));
             }
             //intent.addCategory(Intent.CATEGORY_DEFAULT);
-            if (MainActivity.activityIntentExists(intent, activity)) {
+            if (GlobalUtils.activityIntentExists(intent, activity)) {
                 //noinspection deprecation
                 startActivityForResult(intent, RESULT_BATTERY_OPTIMIZATION_SETTINGS);
             } else {
@@ -712,7 +710,7 @@ public class MainActivity extends AppCompatActivity
                         "com.miui.permcenter.permissions.PermissionsEditorActivity");
                 intent.putExtra(PPPEApplication.EXTRA_PKG_NAME, PPPEApplication.PACKAGE_NAME);
                 //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                if (MainActivity.activityIntentExists(intent, activity)) {
+                if (GlobalUtils.activityIntentExists(intent, activity)) {
                     //noinspection deprecation
                     startActivity(intent);
                 } else {
@@ -726,53 +724,6 @@ public class MainActivity extends AppCompatActivity
         }
         else
             popupWindowsInBackgroundButton.setVisibility(View.GONE);
-    }
-
-    private static boolean activityActionExists(@SuppressWarnings("SameParameterValue") String action,
-                                                Context context) {
-        try {
-            final Intent intent = new Intent(action);
-            List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
-            return !activities.isEmpty();
-        } catch (Exception e) {
-            //Log.e("MainActivity.activityActionExists", Log.getStackTraceString(e));
-            //PPPEApplication.recordException(e);
-            return false;
-        }
-    }
-
-    static boolean activityIntentExists(Intent intent, Context context) {
-        try {
-            List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
-            return !activities.isEmpty();
-        } catch (Exception e) {
-            //Log.e("MainActivity.activityIntentExists", Log.getStackTraceString(e));
-            //PPPEApplication.recordException(e);
-            return false;
-        }
-    }
-
-    static void reloadActivity(Activity activity,
-                                       @SuppressWarnings("SameParameterValue") boolean newIntent)
-    {
-        if (newIntent)
-        {
-            final Activity _activity = activity;
-            new Handler(activity.getMainLooper()).post(() -> {
-                try {
-                    @SuppressLint("UnsafeIntentLaunch")
-                    Intent intent = _activity.getIntent();
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    _activity.finish();
-                    _activity.overridePendingTransition(0, 0);
-
-                    _activity.startActivity(intent);
-                    _activity.overridePendingTransition(0, 0);
-                } catch (Exception ignored) {}
-            });
-        }
-        else
-            activity.recreate();
     }
 
     /*

@@ -115,7 +115,17 @@ public class PPPEApplication extends Application {
     static final int REGISTRATION_TYPE_LOCK_DEVICE_REGISTER = 5;
     static final int REGISTRATION_TYPE_LOCK_DEVICE_UNREGISTER = -5;
 
+    static final String EXTRA_APPLICATIONS = "extra_applications";
+    static final String EXTRA_PROFILE_ID = "profile_id";
+    static final String EXTRA_SCROLL_TO = "extra_main_activity_scroll_to";
     static final String EXTRA_BLOCK_PROFILE_EVENT_ACTION = "extra_block_profile_event_actions";
+
+    static final String ACTION_CALL_RECEIVED = PPPEApplication.PACKAGE_NAME + ".ACTION_CALL_RECEIVED";
+    //private static final String EXTRA_SERVICE_PHONE_EVENT = PPPEApplication.PACKAGE_NAME + ".service_phone_event";
+    static final String EXTRA_CALL_EVENT_TYPE = PPPEApplication.PACKAGE_NAME + ".call_event_type";
+    static final String EXTRA_PHONE_NUMBER = PPPEApplication.PACKAGE_NAME + ".phone_number";
+    static final String EXTRA_EVENT_TIME = PPPEApplication.PACKAGE_NAME + ".event_time";
+    static final String EXTRA_SIM_SLOT = PPPEApplication.PACKAGE_NAME + ".sim_slot";
 
     //@SuppressWarnings("SpellCheckingInspection")
     //static private FirebaseAnalytics mFirebaseAnalytics;
@@ -151,6 +161,8 @@ public class PPPEApplication extends Application {
 
     static volatile String latestApplicationPackageName;
     static volatile String getLatestApplicationClassName;
+
+    static boolean screenOffReceived = false;
 
     static volatile Collator collator = null;
 

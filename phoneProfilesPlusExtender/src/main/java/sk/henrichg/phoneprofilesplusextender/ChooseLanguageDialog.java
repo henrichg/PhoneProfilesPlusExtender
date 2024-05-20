@@ -18,6 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Locale;
+import java.util.jar.JarEntry;
 
 /** @noinspection ExtractMethodRecommender*/
 class ChooseLanguageDialog
@@ -203,7 +204,7 @@ class ChooseLanguageDialog
         LocaleHelper.setLocale(activity.getApplicationContext(),
                 activity.defaultLanguage, activity.defaultCountry, activity.defaultScript, true);
 
-        MainActivity.reloadActivity(activity, false);
+        GlobalUtils.reloadActivity(activity, false);
         mDialog.dismiss();
 
         //PPApplication.updateGUI(true, false, activity);

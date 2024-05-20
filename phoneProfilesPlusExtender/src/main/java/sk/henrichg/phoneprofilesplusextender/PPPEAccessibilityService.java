@@ -31,7 +31,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     private static final String EXTENDER_ACCESSIBILITY_PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender";
 
-    static final String ACTION_ACCESSIBILITY_SERVICE_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_CONNECTED";
+    private static final String ACTION_ACCESSIBILITY_SERVICE_CONNECTED = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_CONNECTED";
     private static final String ACTION_ACCESSIBILITY_SERVICE_UNBIND = PPPEApplication.PACKAGE_NAME + ".ACTION_ACCESSIBILITY_SERVICE_UNBIND";
 
     private static final String ACTION_FOREGROUND_APPLICATION_CHANGED = PPPEApplication.PACKAGE_NAME + ".ACTION_FOREGROUND_APPLICATION_CHANGED";
@@ -44,6 +44,8 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     static final String ACTION_FORCE_STOP_APPLICATIONS_START = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_START";
     static final String ACTION_FORCE_STOP_APPLICATIONS_END = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_END";
     static final String ACTION_LOCK_DEVICE = PPPEApplication.PACKAGE_NAME + ".ACTION_LOCK_DEVICE";
+
+    private static final int CALL_EVENT_SERVICE_UNBIND = 8;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -410,12 +412,12 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             appContext.sendBroadcast(_intent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
 
             // for event Call sensor
-            Intent sendIntent = new Intent(PPPEPhoneStateListener.ACTION_CALL_RECEIVED);
+            Intent sendIntent = new Intent(PPPEApplication.ACTION_CALL_RECEIVED);
             //sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
-            sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_CALL_EVENT_TYPE, PPPEPhoneStateListener.CALL_EVENT_SERVICE_UNBIND);
-            sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_PHONE_NUMBER, "");
-            sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_EVENT_TIME, 0);
-            sendIntent.putExtra(PPPEPhoneStateListener.EXTRA_SIM_SLOT, 0);
+            sendIntent.putExtra(PPPEApplication.EXTRA_CALL_EVENT_TYPE, CALL_EVENT_SERVICE_UNBIND);
+            sendIntent.putExtra(PPPEApplication.EXTRA_PHONE_NUMBER, "");
+            sendIntent.putExtra(PPPEApplication.EXTRA_EVENT_TIME, 0);
+            sendIntent.putExtra(PPPEApplication.EXTRA_SIM_SLOT, 0);
             appContext.sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
         }
 

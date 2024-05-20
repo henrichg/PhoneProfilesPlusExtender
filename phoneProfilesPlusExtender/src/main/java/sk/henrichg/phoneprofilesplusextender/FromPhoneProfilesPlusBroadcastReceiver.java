@@ -113,14 +113,14 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         else
         if (action.equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {
             if (!intent.getBooleanExtra(PPPEApplication.EXTRA_BLOCK_PROFILE_EVENT_ACTION, false)) {
-                long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
+                long profileId = intent.getLongExtra(PPPEApplication.EXTRA_PROFILE_ID, 0);
 //                PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "profileId="+profileId);
 //                PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "applications="+intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
 
                 if (PPPEAccessibilityService.instance != null) {
                     Intent scanServiceIntent = new Intent(appContext, ForceCloseIntentService.class);
-                    scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_APPLICATIONS, intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
-                    scanServiceIntent.putExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, profileId);
+                    scanServiceIntent.putExtra(PPPEApplication.EXTRA_APPLICATIONS, intent.getStringExtra(PPPEApplication.EXTRA_APPLICATIONS));
+                    scanServiceIntent.putExtra(PPPEApplication.EXTRA_PROFILE_ID, profileId);
                     appContext.startService(scanServiceIntent);
                 }
             }
@@ -139,7 +139,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
-    static private void showPermissionNotification(Context appContext, String title, String text,
+    private void showPermissionNotification(Context appContext, String title, String text,
                                                     int notificationID, String notificationTag,
                                                     int scrollTo) {
         //noinspection UnnecessaryLocalVariable
@@ -159,7 +159,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         Intent intent = new Intent(appContext, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        intent.putExtra(MainActivity.EXTRA_SCROLL_TO, scrollTo);
+        intent.putExtra(PPPEApplication.EXTRA_SCROLL_TO, scrollTo);
 
         @SuppressLint("UnspecifiedImmutableFlag")
         PendingIntent pi = PendingIntent.getActivity(appContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
