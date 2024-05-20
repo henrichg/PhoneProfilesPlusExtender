@@ -24,7 +24,7 @@ public class ForceCloseIntentService extends IntentService {
     {
         super("ForceCloseIntentService");
 
-        PPPEApplication.logE("[MEMORY_LEAK] ForceCloseIntentService (constructor)", "xxxx");
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] ForceCloseIntentService (constructor)", "xxxx");
 
         // if enabled is true, onStartCommand(Intent, int, int) will return START_REDELIVER_INTENT,
         // so if this process dies before onHandleIntent(Intent) returns, the process will be restarted
@@ -44,7 +44,7 @@ public class ForceCloseIntentService extends IntentService {
             return;
         }
 
-        PPPEApplication.logE("[MEMORY_LEAK] ForceCloseIntentService.onHandleIntent", "xxxx");
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] ForceCloseIntentService.onHandleIntent", "xxxx");
 
         long profileId = intent.getLongExtra(PPPEApplication.EXTRA_PROFILE_ID, 0);
         //Log.e("ForceCloseIntentService.onHandleIntent", "profileId="+profileId);
@@ -79,7 +79,7 @@ public class ForceCloseIntentService extends IntentService {
                 boolean isScreenOn = false;
                 PowerManager pm = (PowerManager) appContext.getSystemService(POWER_SERVICE);
                 if (pm != null)
-                    isScreenOn = PPPEApplication.isScreenOn(pm);
+                    isScreenOn = PPPEApplicationStatic.isScreenOn(pm);
 
                 if (!keyguardLocked && isScreenOn) {
                     // start App info only if keyguard is not locked and screen is on
@@ -106,7 +106,7 @@ public class ForceCloseIntentService extends IntentService {
                                     //ForceStopActivity.instance.finishActivity(100);
                                 } catch (Exception e) {
                                     Log.e("ForceCloseIntentService.onHandleIntent", Log.getStackTraceString(e));
-                                    PPPEApplication.recordException(e);
+                                    PPPEApplicationStatic.recordException(e);
                                 }
                             }
                         }

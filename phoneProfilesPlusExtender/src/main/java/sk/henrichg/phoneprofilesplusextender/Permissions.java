@@ -91,7 +91,7 @@ class Permissions {
                                 activity.startActivity(intent);
                                 ok = true;
                             } catch (Exception e) {
-                                PPPEApplication.recordException(e);
+                                PPPEApplicationStatic.recordException(e);
                             }
                         }
                         if (!ok) {

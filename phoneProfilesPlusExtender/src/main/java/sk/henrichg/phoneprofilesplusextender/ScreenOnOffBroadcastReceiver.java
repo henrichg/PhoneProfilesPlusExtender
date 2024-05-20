@@ -13,7 +13,7 @@ public class ScreenOnOffBroadcastReceiver extends BroadcastReceiver {
         if (intent == null)
             return;
 
-        PPPEApplication.logE("[MEMORY_LEAK] ScreenOnOffBroadcastReceiver.onReceive", "xxxx");
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] ScreenOnOffBroadcastReceiver.onReceive", "xxxx");
 
         final String action = intent.getAction();
 

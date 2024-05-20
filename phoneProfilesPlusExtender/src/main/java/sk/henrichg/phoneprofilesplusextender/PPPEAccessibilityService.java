@@ -25,7 +25,7 @@ import java.util.List;
 @SuppressWarnings("SpellCheckingInspection")
 public class PPPEAccessibilityService extends android.accessibilityservice.AccessibilityService {
 
-    static PPPEAccessibilityService instance = null;
+    static volatile PPPEAccessibilityService instance = null;
 
     //private static final String SERVICE_ID = "sk.henrichg.phoneprofilesplusextender/.PPPEAccessibilityService";
 
@@ -57,7 +57,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         super.onServiceConnected();
 
 //        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
-        PPPEApplication.logE("[MEMORY_LEAK] PPPEAccessibilityService.onServiceConnected", "xxxx");
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onServiceConnected", "xxxx");
 
         instance = this;
 
@@ -168,7 +168,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             // for foreground application change
             try {
                 if (PPPEApplication.registeredForegroundApplicationFunctionPPP) {
-                    PPPEApplication.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "PPPEApplication.registeredForegroundApplicationFunctionPPP=true");
+                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "PPPEApplication.registeredForegroundApplicationFunctionPPP=true");
                     if (event.getPackageName() != null) {
                         ComponentName componentName = new ComponentName(
                                 event.getPackageName().toString(),
@@ -197,7 +197,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                 // do not log this exception, package name or class name may be null
                 // wor this is not possible to get component name
                 Log.e("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
-                PPPEApplication.recordException(e);
+                PPPEApplicationStatic.recordException(e);
             }
             //////////////////
 
@@ -206,7 +206,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 //                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
                 if (PPPEApplication.forceStopStarted) {
 //                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "in forceStopStarted");
-                    PPPEApplication.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "PPPEApplication.forceStopStarted=true");
+                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "PPPEApplication.forceStopStarted=true");
                     // force stop is started in PPP
                     AccessibilityNodeInfo nodeInfo;
                     try {
@@ -347,7 +347,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
             } catch (Exception e) {
                 Log.e("PPPEAccessibilityService.onAccessibilityEvent", Log.getStackTraceString(e));
-                PPPEApplication.recordException(e);
+                PPPEApplicationStatic.recordException(e);
             }
         }
 
@@ -477,7 +477,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     @Override
     public void onInterrupt() {
 //        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
-        PPPEApplication.logE("[MEMORY_LEAK] PPPEAccessibilityService.onInterrupt", "xxxxx");
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onInterrupt", "xxxxx");
 
         // !!! do not call this, because will not be working Call, SMS sensor
         //accessibilityDisabled(false);
@@ -487,7 +487,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     @Override
     public boolean onUnbind(Intent intent) {
 //        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
-        PPPEApplication.logE("[MEMORY_LEAK] PPPEAccessibilityService.onUnbind", "xxxxx");
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onUnbind", "xxxxx");
 
         accessibilityDisabled(true);
 

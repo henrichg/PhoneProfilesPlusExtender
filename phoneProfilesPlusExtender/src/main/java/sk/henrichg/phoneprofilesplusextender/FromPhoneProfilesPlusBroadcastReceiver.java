@@ -27,13 +27,13 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         final Context appContext = context.getApplicationContext();
 
         String action = intent.getAction();
-        PPPEApplication.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "action="+action);
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "action="+action);
         if (action.equals(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION)) {
             String registrationApplication = intent.getStringExtra(PPPEApplication.EXTRA_REGISTRATION_APP);
             int registrationType = intent.getIntExtra(PPPEApplication.EXTRA_REGISTRATION_TYPE, 0);
 
-            PPPEApplication.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationApplication="+registrationApplication);
-            PPPEApplication.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationType="+registrationType);
+            PPPEApplicationStatic.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationApplication="+registrationApplication);
+            PPPEApplicationStatic.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationType="+registrationType);
 
             if (registrationApplication.equals(StringConstants.PHONE_PROFILES)) {
                 switch (registrationType) {
@@ -146,7 +146,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         String nTitle = title;
         //noinspection UnnecessaryLocalVariable
         String nText = text;
-        PPPEApplication.createGrantPermissionNotificationChannel(appContext, false);
+        PPPEApplicationStatic.createGrantPermissionNotificationChannel(appContext, false);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(appContext, PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL)
                 .setColor(ContextCompat.getColor(appContext, R.color.error_color))
                 .setSmallIcon(R.drawable.ic_pppe_notification/*icic_exclamation_notify*/) // notification icon
@@ -176,7 +176,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
             Log.e("FromPhoneProfilesPlusBroadcastReceiver.showPermissionNotification", Log.getStackTraceString(en));
         } catch (Exception e) {
             //Log.e("FromPhoneProfilesPlusBroadcastReceiver.showPermissionNotification", Log.getStackTraceString(e));
-            PPPEApplication.recordException(e);
+            PPPEApplicationStatic.recordException(e);
         }
     }
 

@@ -18,7 +18,6 @@ import androidx.appcompat.app.AlertDialog;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Locale;
-import java.util.jar.JarEntry;
 
 /** @noinspection ExtractMethodRecommender*/
 class ChooseLanguageDialog
@@ -87,7 +86,7 @@ class ChooseLanguageDialog
                 try {
                     activity.startActivity(Intent.createChooser(i, activity.getString(R.string.extender_web_browser_chooser)));
                 } catch (Exception e) {
-                    PPPEApplication.recordException(e);
+                    PPPEApplicationStatic.recordException(e);
                 }
             }
         };

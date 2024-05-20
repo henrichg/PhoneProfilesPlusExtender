@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,8 +36,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.PackageInfoCompat;
 import androidx.core.view.MenuCompat;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
                                 implements RefreshGUIMainActivityListener
@@ -405,7 +402,7 @@ public class MainActivity extends AppCompatActivity
             }
             if (!allGranted) {
                 //if (!onlyNotification) {
-                PPPEApplication.showToast(getApplicationContext(),
+                PPPEApplicationStatic.showToast(getApplicationContext(),
                         getString(R.string.extender_app_name) + StringConstants.STR_COLON_WITH_SPACE +
                                 getString(R.string.extender_toast_permissions_not_granted),
                         Toast.LENGTH_SHORT);
@@ -620,7 +617,7 @@ public class MainActivity extends AppCompatActivity
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_battery_optimization_status);
-        if (PPPEApplication.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
+        if (PPPEApplicationStatic.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
             text.setText("[ " + getString(R.string.extender_battery_optimization_not_optimized) + " ]");
         else
             text.setText("[ " + getString(R.string.extender_battery_optimization_optimized) + " ]");
