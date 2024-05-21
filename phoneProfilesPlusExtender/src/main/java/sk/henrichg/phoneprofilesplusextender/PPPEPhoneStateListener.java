@@ -37,7 +37,7 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
         this.subscriptionInfo = subscriptionInfo;
         this.appContext = context.getApplicationContext();
 
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener (constructor)", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener (constructor)", "xxxx");
     }
 
     @SuppressWarnings("deprecation")
@@ -48,7 +48,7 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
             return;
         }
 
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onCallStateChanged", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onCallStateChanged", "xxxx");
 
         switch (state) {
             case TelephonyManager.CALL_STATE_RINGING:
@@ -135,31 +135,31 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
     protected void onIncomingCallStarted(String number, Date eventTime)
     {
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onIncomingCallStarted", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onIncomingCallStarted", "xxxx");
         doCall(appContext, SERVICE_PHONE_EVENT_START, true, false, number, eventTime);
     }
 
     protected void onIncomingCallAnswered(String number, Date eventTime)
     {
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onIncomingCallAnswered", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onIncomingCallAnswered", "xxxx");
         doCall(appContext, SERVICE_PHONE_EVENT_ANSWER, true, false, number, eventTime);
     }
 
     protected void onIncomingCallEnded(String number, Date eventTime)
     {
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onIncomingCallEnded", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onIncomingCallEnded", "xxxx");
         doCall(appContext, SERVICE_PHONE_EVENT_END, true, false, number, eventTime);
     }
 
     protected void onMissedCall(String number, Date eventTime)
     {
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onMissedCall", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onMissedCall", "xxxx");
         doCall(appContext, SERVICE_PHONE_EVENT_END, true, true, number, eventTime);
     }
 
     protected void onOutgoingCallStarted(String number, Date _eventTime)
     {
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onOutgoingCallStarted", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onOutgoingCallStarted", "xxxx");
 //        PPPEApplication.logE("PPPEPhoneStateListener.onOutgoingCallStarted", "number="+number);
         savedNumber=number;
         eventTime = _eventTime;
@@ -168,14 +168,14 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
     protected void onOutgoingCallAnswered(String number, Date eventTime)
     {
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onOutgoingCallAnswered", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onOutgoingCallAnswered", "xxxx");
 //        PPPEApplication.logE("PPPEPhoneStateListener.onOutgoingCallAnswered", "number="+number);
         doCall(appContext, SERVICE_PHONE_EVENT_ANSWER, false, false, number, eventTime);
     }
 
     protected void onOutgoingCallEnded(String number, Date eventTime)
     {
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onOutgoingCallEnded", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onOutgoingCallEnded", "xxxx");
         doCall(appContext, SERVICE_PHONE_EVENT_END, false, false, number, eventTime);
     }
 

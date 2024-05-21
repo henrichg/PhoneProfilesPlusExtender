@@ -36,7 +36,7 @@ public class SimStateChangedBroadcastReceiver extends BroadcastReceiver {
         if (intent == null)
             return;
 
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] SimStateChangedBroadcastReceiver.onReceive", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] SimStateChangedBroadcastReceiver.onReceive", "xxxx");
 
         final Context appContext = context.getApplicationContext();
         //final Intent _intent = intent;
