@@ -22,13 +22,12 @@ import java.util.Locale;
 /** @noinspection ExtractMethodRecommender*/
 class ChooseLanguageDialog
 {
-    final AlertDialog mDialog;
+    private final AlertDialog mDialog;
     final MainActivity activity;
 
-    final ListView listView;
-    final TextView help;
+    private final ListView listView;
 
-    final ArrayList<Language> languages;
+    private final ArrayList<Language> languages;
 
     ChooseLanguageDialog(MainActivity activity)
     {
@@ -57,7 +56,7 @@ class ChooseLanguageDialog
         });
 
         listView = layout.findViewById(R.id.choose_language_dlg_listview);
-        help = layout.findViewById(R.id.choose_language_dlg_help);
+        TextView help = layout.findViewById(R.id.choose_language_dlg_help);
 
         listView.setOnItemClickListener((parent, item, position, id) -> {
             ChooseLanguageViewHolder viewHolder = (ChooseLanguageViewHolder) item.getTag();
