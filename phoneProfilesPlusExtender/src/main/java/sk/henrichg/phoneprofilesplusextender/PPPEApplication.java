@@ -47,7 +47,7 @@ public class PPPEApplication extends Application {
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
     // TODO: SET IT TO FALSE FOR RELEASE VERSION!!!
-    static final boolean logIntoFile = false;
+    static final boolean logIntoFile = true;
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
     static final String logFilterTags = ""
@@ -61,7 +61,7 @@ public class PPPEApplication extends Application {
                                                 //+ "|FromPhoneProfilesPlusBroadcastReceiver"
 
                                                 //+"|[BROADCAST_TO_PPP]"
-                                                //+"[MEMORY_LEAK]"
+                                                +"[MEMORY_LEAK]"
             ;
 
     static final boolean deviceIsOppo = isOppo();
@@ -147,7 +147,7 @@ public class PPPEApplication extends Application {
     static boolean forceStopPerformed = false;
 
     static volatile String latestApplicationPackageName;
-    static volatile String getLatestApplicationClassName;
+    static volatile String latestApplicationClassName;
 
     static boolean screenOffReceived = false;
 
@@ -163,7 +163,7 @@ public class PPPEApplication extends Application {
             return;
         }
 
-//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEApplication.onCreate", "xxxx");
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEApplication.onCreate", "xxxx");
 
 
 /*        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
@@ -202,7 +202,7 @@ public class PPPEApplication extends Application {
             return;
 
         //Log.e("##### PPPEApplication.onCreate", "Start  uid="+uid);
-//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEApplication.onCreate", "xxxx (2)");
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEApplication.onCreate", "xxxx (2)");
 
         PPPEApplicationStatic.createGrantPermissionNotificationChannel(this, true);
 

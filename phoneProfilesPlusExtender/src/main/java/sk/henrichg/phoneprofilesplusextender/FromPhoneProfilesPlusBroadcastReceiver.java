@@ -19,6 +19,8 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
     @SuppressLint({"LongLogTag", "InlinedApi"})
     @Override
     public void onReceive(Context context, Intent intent) {
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "xxxxxxxxxxx");
+
         if ((intent == null) || (intent.getAction() == null))
             return;
 
@@ -27,13 +29,13 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         final Context appContext = context.getApplicationContext();
 
         String action = intent.getAction();
-//        PPPEApplicationStatic.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "action="+action);
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "action="+action);
         if (action.equals(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION)) {
             String registrationApplication = intent.getStringExtra(PPPEApplication.EXTRA_REGISTRATION_APP);
             int registrationType = intent.getIntExtra(PPPEApplication.EXTRA_REGISTRATION_TYPE, 0);
 
-//            PPPEApplicationStatic.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationApplication="+registrationApplication);
-//            PPPEApplicationStatic.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationType="+registrationType);
+            PPPEApplicationStatic.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationApplication="+registrationApplication);
+            PPPEApplicationStatic.logE("[MEMORY_LEAK] FromPhoneProfilesPlusBroadcastReceiver.onReceive", "registrationType="+registrationType);
 
             if (registrationApplication.equals(StringConstants.PHONE_PROFILES)) {
                 switch (registrationType) {

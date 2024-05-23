@@ -24,7 +24,7 @@ public class ForceCloseIntentService extends IntentService {
     {
         super("ForceCloseIntentService");
 
-//        PPPEApplicationStatic.logE("[MEMORY_LEAK] ForceCloseIntentService (constructor)", "xxxx");
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] ForceCloseIntentService (constructor)", "xxxx");
 
         // if enabled is true, onStartCommand(Intent, int, int) will return START_REDELIVER_INTENT,
         // so if this process dies before onHandleIntent(Intent) returns, the process will be restarted
@@ -40,11 +40,10 @@ public class ForceCloseIntentService extends IntentService {
     }
 
     protected void onHandleIntent(Intent intent) {
-        if (intent == null) {
-            return;
-        }
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] ForceCloseIntentService.onHandleIntent", "xxxx");
 
-//        PPPEApplicationStatic.logE("[MEMORY_LEAK] ForceCloseIntentService.onHandleIntent", "xxxx");
+        if (intent == null)
+            return;
 
         long profileId = intent.getLongExtra(PPPEApplication.EXTRA_PROFILE_ID, 0);
         //Log.e("ForceCloseIntentService.onHandleIntent", "profileId="+profileId);
