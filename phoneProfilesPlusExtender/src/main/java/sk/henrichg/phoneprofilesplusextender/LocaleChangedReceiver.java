@@ -8,10 +8,11 @@ public class LocaleChangedReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] LocaleChangedReceiver.onReceive", "xxxx");
 
         if ((intent != null) && (intent.getAction() != null) && intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {
-            PPPEApplication.collator = PPPEApplication.getCollator();
-            PPPEApplication.createGrantPermissionNotificationChannel(context.getApplicationContext(), true);
+            PPPEApplication.collator = PPPEApplicationStatic.getCollator();
+            PPPEApplicationStatic.createGrantPermissionNotificationChannel(context.getApplicationContext(), true);
         }
     }
 

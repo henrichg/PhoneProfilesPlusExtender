@@ -17,18 +17,14 @@ import java.util.List;
 
 public class ForceCloseIntentService extends IntentService {
 
-    static final String EXTRA_APPLICATIONS = "extra_applications";
-    static final String EXTRA_PROFILE_ID = "profile_id";
-
-    static boolean screenOffReceived = false;
-
     private static final List<Long> profileIdList = new java.util.ArrayList<>();
     private static int forceStopApplicationsStartCount = 0;
-
 
     public ForceCloseIntentService()
     {
         super("ForceCloseIntentService");
+
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] ForceCloseIntentService (constructor)", "xxxx");
 
         // if enabled is true, onStartCommand(Intent, int, int) will return START_REDELIVER_INTENT,
         // so if this process dies before onHandleIntent(Intent) returns, the process will be restarted
@@ -44,11 +40,12 @@ public class ForceCloseIntentService extends IntentService {
     }
 
     protected void onHandleIntent(Intent intent) {
-        if (intent == null) {
-            return;
-        }
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] ForceCloseIntentService.onHandleIntent", "xxxx");
 
-        long profileId = intent.getLongExtra(ForceCloseIntentService.EXTRA_PROFILE_ID, 0);
+        if (intent == null)
+            return;
+
+        long profileId = intent.getLongExtra(PPPEApplication.EXTRA_PROFILE_ID, 0);
         //Log.e("ForceCloseIntentService.onHandleIntent", "profileId="+profileId);
 
         if (profileId != 0) {
@@ -56,7 +53,7 @@ public class ForceCloseIntentService extends IntentService {
             ++ForceCloseIntentService.forceStopApplicationsStartCount;
         }
 
-        String applications = intent.getStringExtra(EXTRA_APPLICATIONS);
+        String applications = intent.getStringExtra(PPPEApplication.EXTRA_APPLICATIONS);
         //Log.e("ForceCloseIntentService.onHandleIntent", "applications="+applications);
 
         if (!(applications.isEmpty() || (applications.equals("-")))) {
@@ -68,18 +65,20 @@ public class ForceCloseIntentService extends IntentService {
 
             String[] splits = applications.split(StringConstants.STR_SPLIT_REGEX);
             for (String split : splits) {
-                if (screenOffReceived)
+                if (PPPEApplication.screenOffReceived)
                     break;
 
+                Context appContext = getApplicationContext();
+
                 boolean keyguardLocked = true;
-                KeyguardManager kgMgr = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+                KeyguardManager kgMgr = (KeyguardManager) appContext.getSystemService(Context.KEYGUARD_SERVICE);
                 if (kgMgr != null)
                     keyguardLocked = kgMgr.isKeyguardLocked();
 
                 boolean isScreenOn = false;
-                PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+                PowerManager pm = (PowerManager) appContext.getSystemService(POWER_SERVICE);
                 if (pm != null)
-                    isScreenOn = PPPEApplication.isScreenOn(pm);
+                    isScreenOn = PPPEApplicationStatic.isScreenOn(pm);
 
                 if (!keyguardLocked && isScreenOn) {
                     // start App info only if keyguard is not locked and screen is on
@@ -106,7 +105,7 @@ public class ForceCloseIntentService extends IntentService {
                                     //ForceStopActivity.instance.finishActivity(100);
                                 } catch (Exception e) {
                                     Log.e("ForceCloseIntentService.onHandleIntent", Log.getStackTraceString(e));
-                                    PPPEApplication.recordException(e);
+                                    PPPEApplicationStatic.recordException(e);
                                 }
                             }
                         }
@@ -142,7 +141,7 @@ public class ForceCloseIntentService extends IntentService {
                 for (long _profileId : profileIdList) {
 //                    PPPEApplication.logE("[BROADCAST_TO_PPP] ForceCloseIntentService.onHandleIntent", "xxxx");
                     Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_END);
-                    _intent.putExtra(EXTRA_PROFILE_ID, _profileId);
+                    _intent.putExtra(PPPEApplication.EXTRA_PROFILE_ID, _profileId);
                     sendBroadcast(_intent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
                 }
             }
@@ -199,7 +198,7 @@ public class ForceCloseIntentService extends IntentService {
         return false;
     }
 
-    private static boolean isSTOPPED(ApplicationInfo pkgInfo) {
+    private boolean isSTOPPED(ApplicationInfo pkgInfo) {
         return ((pkgInfo.flags & ApplicationInfo.FLAG_STOPPED) != 0);
     }
 

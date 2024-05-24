@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,8 +37,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.PackageInfoCompat;
 import androidx.core.view.MenuCompat;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity
                                 implements RefreshGUIMainActivityListener
 {
@@ -53,9 +50,7 @@ public class MainActivity extends AppCompatActivity
     String defaultCountry = "";
     String defaultScript = "";
 
-    static final String EXTRA_SCROLL_TO = "extra_main_activity_scroll_to";
-
-    int scrollTo = 0;
+    private int scrollTo = 0;
 
     @Override
     public void refreshGUIFromListener() {
@@ -74,6 +69,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onReceive( Context context, Intent intent ) {
             //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (1)");
+//            PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.refreshGUIBroadcastReceiver.onReceive", "xxxxxx");
             listener.refreshGUIFromListener();
         }
     }
@@ -98,6 +94,8 @@ public class MainActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
 
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onCreate", "xxxxxx");
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
         setContentView(R.layout.activity_main);
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         Intent intent = getIntent();
-        scrollTo = intent.getIntExtra(EXTRA_SCROLL_TO, 0);
+        scrollTo = intent.getIntExtra(PPPEApplication.EXTRA_SCROLL_TO, 0);
 
         TextView text = findViewById(R.id.activity_main_application_version);
         try {
@@ -157,7 +155,7 @@ public class MainActivity extends AppCompatActivity
         int receiverFlags = 0;
         if (Build.VERSION.SDK_INT >= 34)
             receiverFlags = RECEIVER_NOT_EXPORTED;
-        registerReceiver(refreshGUIBroadcastReceiver,
+        getApplicationContext().registerReceiver(refreshGUIBroadcastReceiver,
                 new IntentFilter(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER), receiverFlags);
     }
 
@@ -352,6 +350,8 @@ public class MainActivity extends AppCompatActivity
     {
         super.onStart();
 
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onStart", "xxxxxx");
+
         Permissions.grantNotificationsPermission(this);
 
         if (scrollTo != 0) {
@@ -372,9 +372,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onDestroy", "xxxxxxxxx");
 
         try {
-            unregisterReceiver(refreshGUIBroadcastReceiver);
+            getApplicationContext().unregisterReceiver(refreshGUIBroadcastReceiver);
+//            PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onDestroy", "unregister refreshGUIBroadcastReceiver");
         } catch (Exception ignored) {}
         refreshGUIBroadcastReceiver = null;
     }
@@ -383,12 +385,14 @@ public class MainActivity extends AppCompatActivity
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onActivityResult", "xxxxxxxxx");
+
         if (requestCode == RESULT_ACCESSIBILITY_SETTINGS)
-            reloadActivity(this, false);
+            GlobalUtils.reloadActivity(this, false);
         if (requestCode == RESULT_PERMISSIONS_SETTINGS)
-            reloadActivity(this, false);
+            GlobalUtils.reloadActivity(this, false);
         if (requestCode == RESULT_BATTERY_OPTIMIZATION_SETTINGS)
-            reloadActivity(this, false);
+            GlobalUtils.reloadActivity(this, false);
     }
 
     @Override
@@ -396,6 +400,8 @@ public class MainActivity extends AppCompatActivity
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onRequestPermissionsResult", "xxxxxxxxx");
+
         // If request is cancelled, the result arrays are empty.
         if (requestCode == Permissions.PERMISSIONS_REQUEST_CODE) {
             boolean allGranted = true;
@@ -407,13 +413,13 @@ public class MainActivity extends AppCompatActivity
             }
             if (!allGranted) {
                 //if (!onlyNotification) {
-                PPPEApplication.showToast(getApplicationContext(),
+                PPPEApplicationStatic.showToast(getApplicationContext(),
                         getString(R.string.extender_app_name) + StringConstants.STR_COLON_WITH_SPACE +
                                 getString(R.string.extender_toast_permissions_not_granted),
                         Toast.LENGTH_SHORT);
                 //}
             }
-            reloadActivity(this, false);
+            GlobalUtils.reloadActivity(this, false);
 
             // other 'case' lines to check for other
             // permissions this app might request
@@ -435,14 +441,14 @@ public class MainActivity extends AppCompatActivity
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_sms_mms);
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_event_sensor_sms_mms) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
         } else
             text.setVisibility(View.GONE);
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_call);
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_event_sensor_call) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
         } else
@@ -457,7 +463,7 @@ public class MainActivity extends AppCompatActivity
         final Activity activity = this;
         Button accessibilityButton = findViewById(R.id.activity_main_accessibility_service_button);
         accessibilityButton.setOnClickListener(view -> {
-            if (MainActivity.activityActionExists(Settings.ACTION_ACCESSIBILITY_SETTINGS, activity)) {
+            if (GlobalUtils.activityActionExists(Settings.ACTION_ACCESSIBILITY_SETTINGS, activity)) {
                 Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
                 //noinspection deprecation
                 startActivityForResult(intent, RESULT_ACCESSIBILITY_SETTINGS);
@@ -517,7 +523,7 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE+PPPEApplication.PACKAGE_NAME));
-                    if (MainActivity.activityIntentExists(intent, activity)) {
+                    if (GlobalUtils.activityIntentExists(intent, activity)) {
                         //noinspection deprecation
                         startActivity(intent);
                     } else {
@@ -558,7 +564,7 @@ public class MainActivity extends AppCompatActivity
             text.setVisibility(View.GONE);
         }
 
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
             str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_permissions_event_sensor_sms_mms) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
@@ -583,7 +589,7 @@ public class MainActivity extends AppCompatActivity
             text.setVisibility(View.GONE);
         }
 
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             text = findViewById(R.id.activity_main_permissions_event_sensor_call);
             if (Build.VERSION.SDK_INT < 28)
                 str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_permissions_event_sensor_call) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
@@ -622,19 +628,19 @@ public class MainActivity extends AppCompatActivity
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_battery_optimization_status);
-        if (PPPEApplication.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
+        if (PPPEApplicationStatic.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
             text.setText("[ " + getString(R.string.extender_battery_optimization_not_optimized) + " ]");
         else
             text.setText("[ " + getString(R.string.extender_battery_optimization_optimized) + " ]");
 
         Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             permissionsButton.setOnClickListener(view -> {
                 if (Permissions.checkSMSMMSPermissions(activity)) {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE + getPackageName()));
-                    if (MainActivity.activityIntentExists(intent, activity)) {
+                    if (GlobalUtils.activityIntentExists(intent, activity)) {
                         //noinspection deprecation
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                     } else {
@@ -652,13 +658,13 @@ public class MainActivity extends AppCompatActivity
             permissionsButton.setVisibility(View.GONE);
 
         permissionsButton = findViewById(R.id.activity_main_call_permissions_button);
-        if (PPPEApplication.hasSystemFeature(getApplicationContext(), PackageManager.FEATURE_TELEPHONY)) {
+        if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             permissionsButton.setOnClickListener(view -> {
                 if (Permissions.checkCallPermissions(activity)) {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     //intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE + getPackageName()));
-                    if (MainActivity.activityIntentExists(intent, activity)) {
+                    if (GlobalUtils.activityIntentExists(intent, activity)) {
                         //noinspection deprecation
                         startActivityForResult(intent, RESULT_PERMISSIONS_SETTINGS);
                     } else {
@@ -692,7 +698,7 @@ public class MainActivity extends AppCompatActivity
                 intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE + packageName));
             }
             //intent.addCategory(Intent.CATEGORY_DEFAULT);
-            if (MainActivity.activityIntentExists(intent, activity)) {
+            if (GlobalUtils.activityIntentExists(intent, activity)) {
                 //noinspection deprecation
                 startActivityForResult(intent, RESULT_BATTERY_OPTIMIZATION_SETTINGS);
             } else {
@@ -712,7 +718,7 @@ public class MainActivity extends AppCompatActivity
                         "com.miui.permcenter.permissions.PermissionsEditorActivity");
                 intent.putExtra(PPPEApplication.EXTRA_PKG_NAME, PPPEApplication.PACKAGE_NAME);
                 //intent.addCategory(Intent.CATEGORY_DEFAULT);
-                if (MainActivity.activityIntentExists(intent, activity)) {
+                if (GlobalUtils.activityIntentExists(intent, activity)) {
                     //noinspection deprecation
                     startActivity(intent);
                 } else {
@@ -726,53 +732,6 @@ public class MainActivity extends AppCompatActivity
         }
         else
             popupWindowsInBackgroundButton.setVisibility(View.GONE);
-    }
-
-    private static boolean activityActionExists(@SuppressWarnings("SameParameterValue") String action,
-                                                Context context) {
-        try {
-            final Intent intent = new Intent(action);
-            List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
-            return !activities.isEmpty();
-        } catch (Exception e) {
-            //Log.e("MainActivity.activityActionExists", Log.getStackTraceString(e));
-            //PPPEApplication.recordException(e);
-            return false;
-        }
-    }
-
-    static boolean activityIntentExists(Intent intent, Context context) {
-        try {
-            List<ResolveInfo> activities = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
-            return !activities.isEmpty();
-        } catch (Exception e) {
-            //Log.e("MainActivity.activityIntentExists", Log.getStackTraceString(e));
-            //PPPEApplication.recordException(e);
-            return false;
-        }
-    }
-
-    static void reloadActivity(Activity activity,
-                                       @SuppressWarnings("SameParameterValue") boolean newIntent)
-    {
-        if (newIntent)
-        {
-            final Activity _activity = activity;
-            new Handler(activity.getMainLooper()).post(() -> {
-                try {
-                    @SuppressLint("UnsafeIntentLaunch")
-                    Intent intent = _activity.getIntent();
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    _activity.finish();
-                    _activity.overridePendingTransition(0, 0);
-
-                    _activity.startActivity(intent);
-                    _activity.overridePendingTransition(0, 0);
-                } catch (Exception ignored) {}
-            });
-        }
-        else
-            activity.recreate();
     }
 
     /*

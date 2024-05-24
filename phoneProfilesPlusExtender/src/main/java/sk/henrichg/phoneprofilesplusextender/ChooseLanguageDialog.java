@@ -22,13 +22,12 @@ import java.util.Locale;
 /** @noinspection ExtractMethodRecommender*/
 class ChooseLanguageDialog
 {
-    final AlertDialog mDialog;
+    private final AlertDialog mDialog;
     final MainActivity activity;
 
-    final ListView listView;
-    final TextView help;
+    private final ListView listView;
 
-    final ArrayList<Language> languages;
+    private final ArrayList<Language> languages;
 
     ChooseLanguageDialog(MainActivity activity)
     {
@@ -57,7 +56,7 @@ class ChooseLanguageDialog
         });
 
         listView = layout.findViewById(R.id.choose_language_dlg_listview);
-        help = layout.findViewById(R.id.choose_language_dlg_help);
+        TextView help = layout.findViewById(R.id.choose_language_dlg_help);
 
         listView.setOnItemClickListener((parent, item, position, id) -> {
             ChooseLanguageViewHolder viewHolder = (ChooseLanguageViewHolder) item.getTag();
@@ -86,7 +85,7 @@ class ChooseLanguageDialog
                 try {
                     activity.startActivity(Intent.createChooser(i, activity.getString(R.string.extender_web_browser_chooser)));
                 } catch (Exception e) {
-                    PPPEApplication.recordException(e);
+                    PPPEApplicationStatic.recordException(e);
                 }
             }
         };
@@ -203,7 +202,7 @@ class ChooseLanguageDialog
         LocaleHelper.setLocale(activity.getApplicationContext(),
                 activity.defaultLanguage, activity.defaultCountry, activity.defaultScript, true);
 
-        MainActivity.reloadActivity(activity, false);
+        GlobalUtils.reloadActivity(activity, false);
         mDialog.dismiss();
 
         //PPApplication.updateGUI(true, false, activity);

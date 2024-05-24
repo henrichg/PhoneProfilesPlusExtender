@@ -172,7 +172,7 @@ public class LocaleHelper {
         //noinspection deprecation
         resources.updateConfiguration(config, resources.getDisplayMetrics());
 
-        PPPEApplication.collator = PPPEApplication.getCollator();
+        PPPEApplication.collator = PPPEApplicationStatic.getCollator();
     }
 
     private static String getPersistedData(Context context, String data, String defaultValue) {
@@ -212,7 +212,7 @@ public class LocaleHelper {
             configuration.setLocale(locale);
             configuration.setLayoutDirection(locale);
 
-            PPPEApplication.collator = PPPEApplication.getCollator();
+            PPPEApplication.collator = PPPEApplicationStatic.getCollator();
 
             if (forAttach) {
                 // !!! this must be, without this not working detection of night mode

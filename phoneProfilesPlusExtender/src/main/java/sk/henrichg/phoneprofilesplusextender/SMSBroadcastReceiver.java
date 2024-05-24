@@ -21,9 +21,11 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
     //private static ContentObserver mmsObserver;
     //private static int mmsCount;
 
+    /** @noinspection ExtractMethodRecommender*/
     @Override
     public void onReceive(Context context, Intent intent) {
 //        PPPEApplication.logE("##### SMSBroadcastReceiver.onReceive", "xxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] SMSBroadcastReceiver.onReceive", "xxxx");
 
         //if (intent != null)
         //    PPPEApplication.logE("SMSBroadcastReceiver.onReceive","intent.getAction()="+intent.getAction());
@@ -121,7 +123,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                 sendIntent.putExtra(EXTRA_ORIGIN, origin);  //TODO encrypt it!!!
                 sendIntent.putExtra(EXTRA_TIME, time);
                 sendIntent.putExtra(EXTRA_SUBSCRIPTION_ID, subscriptionId);
-                context.sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
+                context.getApplicationContext().sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
             }
         }
     }

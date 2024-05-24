@@ -8,11 +8,13 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ForceStopActivity extends AppCompatActivity {
-    static ForceStopActivity instance = null;
+    static volatile ForceStopActivity instance = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] ForceStopActivity.onCreate", "xxxx");
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         overridePendingTransition(0, 0);
     }
@@ -25,6 +27,8 @@ public class ForceStopActivity extends AppCompatActivity {
     @Override
     protected  void onStart() {
         super.onStart();
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] ForceStopActivity.onStart", "xxxx");
+
         instance = this;
         //lockScreenOrientation();
     }
@@ -40,6 +44,7 @@ public class ForceStopActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] ForceStopActivity.onDestroy", "xxxx");
 
         // do finish all App info activities started with startActivityForResult(intent, 100);
         boolean canFinish = true;

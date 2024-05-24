@@ -100,7 +100,7 @@ public class CustomACRAReportingAdministrator implements ReportingAdministrator 
 
                     logIntoFile(appContext, "E", "CustomACRAReportingAdministrator", report.toString());
                 };
-                PPPEApplication.createBasicExecutorPool();
+                PPPEApplicationStatic.createBasicExecutorPool();
                 PPPEApplication.basicExecutorPool.submit(runnable);
             }
         } catch (Exception ee) {

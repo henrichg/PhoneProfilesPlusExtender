@@ -17,8 +17,10 @@ public class PhoneCallReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PhoneCallReceiver.onReceive", "xxxx");
+
 //        savedContext = context.getApplicationContext();
-        
+
 //        if (telephony == null)
 //            telephony = (TelephonyManager)savedContext.getSystemService(Context.TELEPHONY_SERVICE);
 

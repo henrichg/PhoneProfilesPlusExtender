@@ -2,22 +2,17 @@ package sk.henrichg.phoneprofilesplusextender;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Handler;
-import android.os.PowerManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.pm.PackageInfoCompat;
 
 import org.acra.ACRA;
 import org.acra.ReportField;
@@ -28,24 +23,14 @@ import org.acra.data.StringFormat;
 import org.lsposed.hiddenapibypass.HiddenApiBypass;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.Collator;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import me.drakeet.support.toast.ToastCompat;
 
 /** @noinspection ExtractMethodRecommender*/
 public class PPPEApplication extends Application {
 
-    private static PPPEApplication instance;
+    private static volatile PPPEApplication instance;
 
     static final String PACKAGE_NAME = "sk.henrichg.phoneprofilesplusextender";
 
@@ -60,12 +45,12 @@ public class PPPEApplication extends Application {
     //static final int uid = Process.myUid();
 
     @SuppressWarnings("PointlessBooleanExpression")
-    private static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
+    static final boolean logIntoLogCat = true && BuildConfig.DEBUG;
     // TODO: SET IT TO FALSE FOR RELEASE VERSION!!!
     static final boolean logIntoFile = false;
     @SuppressWarnings("PointlessBooleanExpression")
     static final boolean crashIntoFile = true && BuildConfig.DEBUG;
-    private static final String logFilterTags = ""
+    static final String logFilterTags = ""
                                                 //+"|PPPEAccessibilityService"
                                                 //+"|SMSBroadcastReceiver"
 
@@ -76,6 +61,7 @@ public class PPPEApplication extends Application {
                                                 //+ "|FromPhoneProfilesPlusBroadcastReceiver"
 
                                                 //+"|[BROADCAST_TO_PPP]"
+                                                //+"[MEMORY_LEAK]"
             ;
 
     static final boolean deviceIsOppo = isOppo();
@@ -114,7 +100,19 @@ public class PPPEApplication extends Application {
     static final int REGISTRATION_TYPE_LOCK_DEVICE_REGISTER = 5;
     static final int REGISTRATION_TYPE_LOCK_DEVICE_UNREGISTER = -5;
 
+    static final String EXTRA_APPLICATIONS = "extra_applications";
+    static final String EXTRA_PROFILE_ID = "profile_id";
+    static final String EXTRA_SCROLL_TO = "extra_main_activity_scroll_to";
     static final String EXTRA_BLOCK_PROFILE_EVENT_ACTION = "extra_block_profile_event_actions";
+
+    static final String ACTION_CALL_RECEIVED = PPPEApplication.PACKAGE_NAME + ".ACTION_CALL_RECEIVED";
+    //private static final String EXTRA_SERVICE_PHONE_EVENT = PPPEApplication.PACKAGE_NAME + ".service_phone_event";
+    static final String EXTRA_CALL_EVENT_TYPE = PPPEApplication.PACKAGE_NAME + ".call_event_type";
+    static final String EXTRA_PHONE_NUMBER = PPPEApplication.PACKAGE_NAME + ".phone_number";
+    static final String EXTRA_EVENT_TIME = PPPEApplication.PACKAGE_NAME + ".event_time";
+    static final String EXTRA_SIM_SLOT = PPPEApplication.PACKAGE_NAME + ".sim_slot";
+
+    static volatile boolean HAS_FEATURE_TELEPHONY = false;
 
     //@SuppressWarnings("SpellCheckingInspection")
     //static private FirebaseAnalytics mFirebaseAnalytics;
@@ -149,7 +147,9 @@ public class PPPEApplication extends Application {
     static boolean forceStopPerformed = false;
 
     static volatile String latestApplicationPackageName;
-    static volatile String getLatestApplicationClassName;
+    static volatile String latestApplicationClassName;
+
+    static boolean screenOffReceived = false;
 
     static volatile Collator collator = null;
 
@@ -162,6 +162,9 @@ public class PPPEApplication extends Application {
             Log.e("################# PPPEApplication.onCreate", "ACRA.isACRASenderServiceProcess()");
             return;
         }
+
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEApplication.onCreate", "xxxx");
+
 
 /*        CoreConfigurationBuilder builder = new CoreConfigurationBuilder(this)
                 .setBuildConfigClass(BuildConfig.class)
@@ -199,8 +202,9 @@ public class PPPEApplication extends Application {
             return;
 
         //Log.e("##### PPPEApplication.onCreate", "Start  uid="+uid);
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEApplication.onCreate", "xxxx (2)");
 
-        PPPEApplication.createGrantPermissionNotificationChannel(this, true);
+        PPPEApplicationStatic.createGrantPermissionNotificationChannel(this, true);
 
         Log.e("##### PPPEApplication.onCreate", "after cerate notification channel");
 
@@ -245,10 +249,13 @@ public class PPPEApplication extends Application {
         anrWatchDog.start();
         */
 
-        PPPEApplication.createBasicExecutorPool();
+        PPPEApplicationStatic.createBasicExecutorPool();
+
+        PackageManager packageManager = getPackageManager();
+        HAS_FEATURE_TELEPHONY = hasSystemFeature(packageManager, PackageManager.FEATURE_TELEPHONY);
 
         try {
-            PPPEApplication.setCustomKey("DEBUG", BuildConfig.DEBUG);
+            PPPEApplicationStatic.setCustomKey("DEBUG", BuildConfig.DEBUG);
         } catch (Exception ignored) {}
 
 //        PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEApplication.onCreate", "xxxx");
@@ -269,6 +276,12 @@ public class PPPEApplication extends Application {
         return false;
     }
 
+    static PPPEApplication getInstance() {
+        //synchronized (PPApplication.phoneProfilesServiceMutex) {
+        return instance;
+        //}
+    }
+
     @Override
     protected void attachBaseContext(Context base) {
         //super.attachBaseContext(base);
@@ -278,7 +291,7 @@ public class PPPEApplication extends Application {
             HiddenApiBypass.addHiddenApiExemptions("L");
         }
 
-        collator = getCollator();
+        collator = PPPEApplicationStatic.getCollator();
 
         // This is required : https://www.acra.ch/docs/Troubleshooting-Guide#applicationoncreate
         if (ACRA.isACRASenderServiceProcess()) {
@@ -289,7 +302,7 @@ public class PPPEApplication extends Application {
         String packageVersion = "";
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(PPPEApplication.PACKAGE_NAME, 0);
-            packageVersion = " - v" + pInfo.versionName + " (" + PPPEApplication.getVersionCode(pInfo) + ")";
+            packageVersion = " - v" + pInfo.versionName + " (" + PPPEApplicationStatic.getVersionCode(pInfo) + ")";
         } catch (Exception ignored) {
         }
 
@@ -482,203 +495,13 @@ public class PPPEApplication extends Application {
 
         } catch (Exception ex) {
             //Log.e("PPPEApplication.isMIUIROM", Log.getStackTraceString(ex));
-            PPPEApplication.recordException(ex);
+            PPPEApplicationStatic.recordException(ex);
         }
 
         return miuiRom1 || miuiRom2 || miuiRom3;
     }
 
-    static void createBasicExecutorPool() {
-        if (PPPEApplication.basicExecutorPool == null)
-            PPPEApplication.basicExecutorPool = Executors.newCachedThreadPool();
-    }
-
     //--------------------------------------------------------------
-
-    static private void resetLog()
-    {
-        /*File sd = Environment.getExternalStorageDirectory();
-        File exportDir = new File(sd, EXPORT_PATH);
-        if (!(exportDir.exists() && exportDir.isDirectory()))
-            //noinspection ResultOfMethodCallIgnored
-            exportDir.mkdirs();*/
-
-        File path = instance.getApplicationContext().getExternalFilesDir(null);
-        File logFile = new File(path, LOG_FILENAME);
-        //noinspection ResultOfMethodCallIgnored
-        logFile.delete();
-    }
-
-    /** @noinspection SameParameterValue*/
-    static private void logIntoFile(String type, String tag, String text)
-    {
-        if (!logIntoFile)
-            return;
-
-        if (instance == null)
-            return;
-
-        try
-        {
-            File path = instance.getApplicationContext().getExternalFilesDir(null);
-
-            /*// warnings when logIntoFile == false
-            File sd = Environment.getExternalStorageDirectory();
-            File exportDir = new File(sd, EXPORT_PATH);
-            if (!(exportDir.exists() && exportDir.isDirectory()))
-                //noinspection ResultOfMethodCallIgnored
-                exportDir.mkdirs();
-
-            File logFile = new File(sd, EXPORT_PATH + "/" + LOG_FILENAME);*/
-
-            File logFile = new File(path, LOG_FILENAME);
-
-            if (logFile.length() > 1024 * 10000)
-                resetLog();
-
-            if (!logFile.exists())
-            {
-                //noinspection ResultOfMethodCallIgnored
-                logFile.createNewFile();
-            }
-
-            //BufferedWriter for performance, true to set append to file flag
-            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
-            String log = "";
-            @SuppressLint("SimpleDateFormat")
-            SimpleDateFormat sdf = new SimpleDateFormat("d.MM.yy HH:mm:ss:S");
-            String time = sdf.format(Calendar.getInstance().getTimeInMillis());
-            log = log + time + " [ " + type + " ] [ " + tag + " ]"+StringConstants.STR_COLON_WITH_SPACE + text;
-            buf.append(log);
-            buf.newLine();
-            buf.flush();
-            buf.close();
-        }
-        catch (IOException ignored) {
-            //Log.e("PPPEApplication.logIntoFile", Log.getStackTraceString(e));
-        }
-    }
-
-    private static boolean logContainsFilterTag(String tag)
-    {
-        boolean contains = false;
-        String[] splits = logFilterTags.split(StringConstants.STR_SPLIT_REGEX);
-        for (String split : splits) {
-            if (tag.contains(split)) {
-                contains = true;
-                break;
-            }
-        }
-        return contains;
-    }
-
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    static private boolean logEnabled() {
-        return (logIntoLogCat || logIntoFile);
-    }
-
-    /*
-    static public void logI(String tag, String text)
-    {
-        if (!logEnabled())
-            return;
-
-        if (logContainsFilterTag(tag))
-        {
-            //if (logIntoLogCat) Log.i(tag, text);
-            if (logIntoLogCat) Log.i(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
-            logIntoFile("I", tag, text);
-        }
-    }
-    */
-
-    /*
-    static public void logW(String tag, String text)
-    {
-        if (!logEnabled())
-            return;
-
-        if (logContainsFilterTag(tag))
-        {
-            //if (logIntoLogCat) Log.w(tag, text);
-            if (logIntoLogCat) Log.w(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
-            logIntoFile("W", tag, text);
-        }
-    }
-    */
-
-    @SuppressWarnings("unused")
-    static public void logE(String tag, String text)
-    {
-        if (!logEnabled())
-            return;
-
-        if (logContainsFilterTag(tag))
-        {
-            //if (logIntoLogCat) Log.e(tag, text);
-            if (logIntoLogCat) Log.e(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
-            logIntoFile("E", tag, text);
-        }
-    }
-
-    /*
-    static public void logD(String tag, String text)
-    {
-        if (!logEnabled())
-            return;
-
-        if (logContainsFilterTag(tag))
-        {
-            //if (logIntoLogCat) Log.d(tag, text);
-            if (logIntoLogCat) Log.d(tag, "[ "+tag+" ]" +StringConstants.STR_COLON_WITH_SPACE + text);
-            logIntoFile("D", tag, text);
-        }
-    }
-    */
-
-    // ACRA -------------------------------------------------------------------------
-
-    static void recordException(Throwable ex) {
-        try {
-            //FirebaseCrashlytics.getInstance().recordException(ex);
-            ACRA.getErrorReporter().handleException(ex);
-        } catch (Exception ignored) {}
-    }
-
-    /*
-    static void logToACRA(String s) {
-        try {
-            //FirebaseCrashlytics.getInstance().log(s);
-            ACRA.getErrorReporter().putCustomData("Log", s);
-        } catch (Exception ignored) {}
-    }
-    */
-
-    /*
-    static void setCustomKey(String key, int value) {
-        try {
-            //FirebaseCrashlytics.getInstance().setCustomKey(key, value);
-            ACRA.getErrorReporter().putCustomData(key, String.valueOf(value));
-        } catch (Exception ignored) {}
-    }
-    */
-
-    /*
-    static void setCustomKey(String key, String value) {
-        try {
-            //FirebaseCrashlytics.getInstance().setCustomKey(key, value);
-            ACRA.getErrorReporter().putCustomData(key, value);
-        } catch (Exception ignored) {}
-    }
-    */
-
-    @SuppressWarnings("SameParameterValue")
-    static void setCustomKey(String key, boolean value) {
-        try {
-            //FirebaseCrashlytics.getInstance().setCustomKey(key, value);
-            ACRA.getErrorReporter().putCustomData(key, String.valueOf(value));
-        } catch (Exception ignored) {}
-    }
 
     // Google Analytics ----------------------------------------------------------------------------
 
@@ -694,99 +517,13 @@ public class PPPEApplication extends Application {
 
     //---------------------------------------------------------------------------------------------
 
-    static boolean hasSystemFeature(Context context, @SuppressWarnings("SameParameterValue") String feature) {
+    /** @noinspection SameParameterValue*/
+    private boolean hasSystemFeature(PackageManager packageManager, String feature) {
         try {
-            PackageManager packageManager = context.getPackageManager();
             return packageManager.hasSystemFeature(feature);
         } catch (Exception e) {
             return false;
         }
-    }
-
-    static boolean isIgnoreBatteryOptimizationEnabled(Context appContext) {
-        PowerManager pm = (PowerManager) appContext.getSystemService(Context.POWER_SERVICE);
-        try {
-            if (pm != null) {
-                return pm.isIgnoringBatteryOptimizations(PACKAGE_NAME);
-            }
-        } catch (Exception ignore) {
-            return false;
-        }
-        return false;
-    }
-
-    static boolean isScreenOn(PowerManager powerManager) {
-        return powerManager.isInteractive();
-    }
-
-    static int getVersionCode(PackageInfo pInfo) {
-        //return pInfo.versionCode;
-        return (int) PackageInfoCompat.getLongVersionCode(pInfo);
-    }
-
-    static void createGrantPermissionNotificationChannel(Context context, boolean forceChange) {
-        //if (Build.VERSION.SDK_INT >= 26) {
-            try {
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context.getApplicationContext());
-                if ((!forceChange) && (notificationManager.getNotificationChannel(PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL) != null))
-                    return;
-
-                // The user-visible name of the channel.
-                CharSequence name = context.getString(R.string.extender_notification_channel_grant_permission);
-                // The user-visible description of the channel.
-                String description = context.getString(R.string.extender_notification_channel_grant_permission_description);
-
-                NotificationChannel channel = new NotificationChannel(PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL, name, NotificationManager.IMPORTANCE_HIGH);
-
-                // Configure the notification channel.
-                //channel.setImportance(importance);
-                channel.setDescription(description);
-                channel.enableLights(true);
-                // Sets the notification light color for notifications posted to this
-                // channel, if the device supports this feature.
-                //channel.setLightColor(Color.RED);
-                channel.enableVibration(true);
-                //channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-                channel.setBypassDnd(true);
-
-                notificationManager.createNotificationChannel(channel);
-            } catch (Exception e) {
-                PPPEApplication.recordException(e);
-            }
-        //}
-    }
-
-    static void showToast(final Context context, final String text,
-                          @SuppressWarnings("SameParameterValue") final int length) {
-        final Context appContext = context.getApplicationContext();
-        Handler handler = new Handler(context.getApplicationContext().getMainLooper());
-        handler.post(() -> {
-//                PPApplication.logE("[IN_THREAD_HANDLER] PPApplication.startHandlerThread", "START run - from=PPApplication.showToast");
-            try {
-                LocaleHelper.setApplicationLocale(appContext);
-
-                //ToastCompat msg = ToastCompat.makeText(appContext, text, length);
-                ToastCompat msg = ToastCompat.makeCustom(appContext,
-                        R.layout.toast_layout, R.drawable.toast_background,
-                        R.id.custom_toast_message, text,
-                        length);
-                //Toast msg = Toast.makeText(appContext, text, length);
-                msg.show();
-            } catch (Exception ignored) {
-                //PPApplication.recordException(e);
-            }
-        });
-    }
-
-    static Collator getCollator()
-    {
-        Locale appLocale;
-
-        // application locale
-        appLocale = Locale.getDefault();
-
-        // get collator for application locale
-        return Collator.getInstance(appLocale);
     }
 
 }

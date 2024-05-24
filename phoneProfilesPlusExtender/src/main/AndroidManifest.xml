@@ -82,6 +82,7 @@
 
         <activity android:name=".MainActivity"
             android:label="@string/extender_app_name"
+            android:taskAffinity="sk.henrichg.phoneprofilesplusextender.mainactivity"
             tools:ignore="IntentFilterExportedReceiver,RedundantLabel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

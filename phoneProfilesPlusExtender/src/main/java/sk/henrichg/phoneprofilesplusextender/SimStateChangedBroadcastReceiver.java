@@ -32,6 +32,7 @@ public class SimStateChangedBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 //        PPPEApplication.logE("[IN_BROADCAST] SimStateChangedBroadcastReceiver.onReceive", "xxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] SimStateChangedBroadcastReceiver.onReceive", "xxxx");
 
         if (intent == null)
             return;
@@ -39,6 +40,7 @@ public class SimStateChangedBroadcastReceiver extends BroadcastReceiver {
         final Context appContext = context.getApplicationContext();
         //final Intent _intent = intent;
 
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] SimStateChangedBroadcastReceiver.onReceive", "reregister PPPEPhoneStateLitener");
         PPPEAccessibilityService.registerPhoneStateListener(false, appContext);
         try{ Thread.sleep(1000); }catch(InterruptedException ignored){ }
         PPPEAccessibilityService.registerPhoneStateListener(true, appContext);
