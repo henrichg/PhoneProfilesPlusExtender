@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onReceive( Context context, Intent intent ) {
             //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (1)");
+            PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.refreshGUIBroadcastReceiver.onReceive", "xxxxxx");
             listener.refreshGUIFromListener();
         }
     }
@@ -92,6 +93,8 @@ public class MainActivity extends AppCompatActivity
             setTheme(R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
+
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onCreate", "xxxxxx");
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
@@ -347,6 +350,8 @@ public class MainActivity extends AppCompatActivity
     {
         super.onStart();
 
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onStart", "xxxxxx");
+
         Permissions.grantNotificationsPermission(this);
 
         if (scrollTo != 0) {
@@ -367,9 +372,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onDestroy", "xxxxxxxxx");
 
         try {
             getApplicationContext().unregisterReceiver(refreshGUIBroadcastReceiver);
+            PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onDestroy", "unregister refreshGUIBroadcastReceiver");
         } catch (Exception ignored) {}
         refreshGUIBroadcastReceiver = null;
     }
@@ -378,6 +385,8 @@ public class MainActivity extends AppCompatActivity
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onActivityResult", "xxxxxxxxx");
+
         if (requestCode == RESULT_ACCESSIBILITY_SETTINGS)
             GlobalUtils.reloadActivity(this, false);
         if (requestCode == RESULT_PERMISSIONS_SETTINGS)
@@ -391,6 +400,8 @@ public class MainActivity extends AppCompatActivity
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.onRequestPermissionsResult", "xxxxxxxxx");
+
         // If request is cancelled, the result arrays are empty.
         if (requestCode == Permissions.PERMISSIONS_REQUEST_CODE) {
             boolean allGranted = true;
