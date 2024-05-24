@@ -25,7 +25,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 //        PPPEApplication.logE("##### SMSBroadcastReceiver.onReceive", "xxx");
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] SMSBroadcastReceiver.onReceive", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] SMSBroadcastReceiver.onReceive", "xxxx");
 
         //if (intent != null)
         //    PPPEApplication.logE("SMSBroadcastReceiver.onReceive","intent.getAction()="+intent.getAction());

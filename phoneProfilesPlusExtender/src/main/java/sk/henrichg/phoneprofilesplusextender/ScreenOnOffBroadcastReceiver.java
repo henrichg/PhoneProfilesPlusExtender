@@ -10,7 +10,7 @@ public class ScreenOnOffBroadcastReceiver extends BroadcastReceiver {
     @SuppressLint("LongLogTag")
     @Override
     public void onReceive(Context context, Intent intent) {
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] ScreenOnOffBroadcastReceiver.onReceive", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] ScreenOnOffBroadcastReceiver.onReceive", "xxxx");
 
         if (intent == null)
             return;

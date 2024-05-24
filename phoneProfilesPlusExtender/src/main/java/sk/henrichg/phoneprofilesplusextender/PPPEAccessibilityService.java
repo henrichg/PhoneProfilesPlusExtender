@@ -59,7 +59,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         super.onServiceConnected();
 
 //        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onServiceConnected", "xxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onServiceConnected", "xxxx");
 
         instance = this;
 
@@ -172,7 +172,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             // for foreground application change
             try {
                 if (PPPEApplication.registeredForegroundApplicationFunctionPPP) {
-                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "PPPEApplication.registeredForegroundApplicationFunctionPPP=true");
+//                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "PPPEApplication.registeredForegroundApplicationFunctionPPP=true");
                     if (event.getPackageName() != null) {
                         ComponentName componentName = new ComponentName(
                                 event.getPackageName().toString(),
@@ -180,17 +180,17 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                         );
                         ActivityInfo activityInfo = tryGetActivity(componentName);
                         boolean isActivity = activityInfo != null;
-                        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "isActivity="+isActivity);
+//                        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "isActivity="+isActivity);
                         if (isActivity) {
                             String packageName = event.getPackageName().toString();
                             String className = event.getClassName().toString();
                             if (!(PPPEApplication.latestApplicationPackageName.equals(packageName) ||
                                  (PPPEApplication.latestApplicationClassName.equals(className)))) {
-                                PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
+//                                PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "currentActivity=" + componentName.flattenToShortString());
                                 PPPEApplication.latestApplicationPackageName = packageName;
                                 PPPEApplication.latestApplicationClassName = className;
 //                                PPPEApplicationStatic.logE("[BROADCAST_TO_PPP] PPPEAccessibilityService.onAccessibilityEvent", "xxxx");
-                                PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "send broadcast to PPP");
+//                                PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "send broadcast to PPP");
                                 Intent intent = new Intent(ACTION_FOREGROUND_APPLICATION_CHANGED);
                                 intent.putExtra(EXTRA_PACKAGE_NAME, packageName);
                                 intent.putExtra(EXTRA_CLASS_NAME, className);
@@ -212,7 +212,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 //                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
                 if (PPPEApplication.forceStopStarted) {
 //                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "in forceStopStarted");
-                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "PPPEApplication.forceStopStarted=true");
+//                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "PPPEApplication.forceStopStarted=true");
                     // force stop is started in PPP
                     AccessibilityNodeInfo nodeInfo;
                     try {
@@ -482,7 +482,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     @Override
     public void onInterrupt() {
 //        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onInterrupt", "xxxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onInterrupt", "xxxxx");
 
         // !!! do not call this, because will not be working Call, SMS sensor
         //accessibilityDisabled(false);
@@ -492,7 +492,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     @Override
     public boolean onUnbind(Intent intent) {
 //        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
-        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onUnbind", "xxxxx");
+//        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onUnbind", "xxxxx");
 
         accessibilityDisabled(true);
 
@@ -563,7 +563,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     int subscriptionId = subscriptionInfo.getSubscriptionId();
                                     if (i == 0) {
                                         if (PPPEApplication.telephonyManagerSIM1 == null) {
-                                            PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.registerPhoneStateListener", "subscriptionId (SIM1)=" + subscriptionId);
+//                                            PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.registerPhoneStateListener", "subscriptionId (SIM1)=" + subscriptionId);
                                             //noinspection ConstantConditions
                                             PPPEApplication.telephonyManagerSIM1 = PPPEApplication.telephonyManagerDefault.createForSubscriptionId(subscriptionId);
                                             //if (PPPEApplication.phoneStateListenerSIM1 == null)
@@ -574,7 +574,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     }
                                     if (i == 1) {
                                         if (PPPEApplication.telephonyManagerSIM2 == null) {
-                                            PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.registerPhoneStateListener", "subscriptionId (SIM 2)=" + subscriptionId);
+//                                            PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.registerPhoneStateListener", "subscriptionId (SIM 2)=" + subscriptionId);
                                             //noinspection ConstantConditions
                                             PPPEApplication.telephonyManagerSIM2 = PPPEApplication.telephonyManagerDefault.createForSubscriptionId(subscriptionId);
                                             //if (PPPEApplication.phoneStateListenerSIM2 == null)
@@ -595,7 +595,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 //                        PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "mSubscriptionManager == null");
                 }
                 else {
-                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.registerPhoneStateListener", "(default SIM)");
+//                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.registerPhoneStateListener", "(default SIM)");
                     //if (PPPEApplication.phoneStateListenerDefault == null)
                         PPPEApplication.phoneStateListenerDefault = new PPPEPhoneStateListener(null, context);
                     //noinspection deprecation
