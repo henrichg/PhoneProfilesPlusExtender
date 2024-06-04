@@ -3,7 +3,7 @@
 
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
-PhoneProfilesPlusExtender (aka PPPE)
+PhoneProfilesPlusExtender (PPPE)
 ====================================
 
 [![version](https://img.shields.io/badge/version-8.1.6-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.1.6)
