@@ -22,7 +22,7 @@ __Droid-ify (F-Droid alternative, preferred over GitHub):__
   &nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
 
 __Neo Store (F-Droid alternative, preferred over GitHub):__
-- [PPP release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplus)
+- [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)
 - [Store applicaion (download)](https://apt.izzysoft.de/fdroid/index/apk/com.machiav3lli.fdroid)
   &nbsp;&nbsp;&nbsp;_IzzyOnDroid repository is included_
 
