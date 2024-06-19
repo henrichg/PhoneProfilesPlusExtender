@@ -81,7 +81,7 @@
 <!--        </service>-->
 
         <activity android:name=".MainActivity"
-            android:label="@string/extender_app_name"
+            android:label="@string/extender_title_activity_pppe"
             android:taskAffinity="sk.henrichg.phoneprofilesplusextender.mainactivity"
             tools:ignore="IntentFilterExportedReceiver,RedundantLabel">
             <intent-filter>
