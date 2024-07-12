@@ -8,4 +8,65 @@
         app:showAsAction="never"
         tools:ignore="AlwaysShowAction"/>
 
+    <item android:id="@+id/menu_support"
+        android:title="@string/extender_menu_support"
+        android:orderInCategory="240"
+        app:showAsAction="never">
+        <menu>
+            <item android:id="@+id/menu_email_to_author"
+                android:title="@string/extender_menu_email_to_author"
+                android:orderInCategory="100"
+                app:showAsAction="never" />
+            <item android:id="@+id/menu_discord"
+                android:title="@string/extender_menu_discord"
+                android:orderInCategory="103"
+                app:showAsAction="never">
+                <menu>
+                    <item android:id="@+id/menu_discord_server"
+                        android:title="@string/extender_menu_discord_server"
+                        android:orderInCategory="100"
+                        app:showAsAction="never" />
+                    <item android:id="@+id/menu_discord_invitation"
+                        android:title="@string/extender_menu_discord_invitation"
+                        android:orderInCategory="101"
+                        app:showAsAction="never" />
+<!--
+                    <item android:id="@+id/menu_discord_help"
+                        android:title="@string/menu_discord_help"
+                        android:orderInCategory="102"
+                        app:showAsAction="never" />
+                    <item android:id="@+id/menu_discord_bugs"
+                        android:title="@string/menu_discord_bugs"
+                        android:orderInCategory="103"
+                        app:showAsAction="never" />
+                    <item android:id="@+id/menu_discord_suggestions"
+                        android:title="@string/menu_discord_suggestions"
+                        android:orderInCategory="104"
+                        app:showAsAction="never" />
+                    <item android:id="@+id/menu_discord_discussion"
+                        android:title="@string/menu_discord_discussion"
+                        android:orderInCategory="105"
+                        app:showAsAction="never" />
+-->
+                </menu>
+            </item>
+            <item android:id="@+id/menu_xda_developers"
+                android:title="@string/extender_menu_xda_developers"
+                android:orderInCategory="104"
+                app:showAsAction="never" />
+            <item android:id="@+id/menu_twitter"
+                android:title="@string/extender_menu_twitter"
+                android:orderInCategory="105"
+                app:showAsAction="never" />
+            <item android:id="@+id/menu_reddit"
+                android:title="@string/extender_menu_reddit"
+                android:orderInCategory="106"
+                app:showAsAction="never" />
+            <item android:id="@+id/menu_bluesky"
+                android:title="@string/extender_menu_bluesky"
+                android:orderInCategory="106"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
 </menu>
