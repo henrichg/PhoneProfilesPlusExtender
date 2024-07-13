@@ -119,7 +119,7 @@ public class PPPEApplication extends Application {
     static final String REDDIT_URL = "https://www.reddit.com/user/henrichg/";
     static final String BLUESKY_URL = "https://bsky.app/profile/henrichg.bsky.social";
     static final String DISCORD_SERVER_URL = "https://discord.com/channels/1258733423426670633/1258733424504737936";
-    static final String DISCORD_INVITATION_URL = "https://discord.com/invite/gbV7UCzt";
+    static final String DISCORD_INVITATION_URL = "https://discord.gg/AyRzzagp";
 
     //@SuppressWarnings("SpellCheckingInspection")
     //static private FirebaseAnalytics mFirebaseAnalytics;
