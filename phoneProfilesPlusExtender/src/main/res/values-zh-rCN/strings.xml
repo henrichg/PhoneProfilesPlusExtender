@@ -56,4 +56,9 @@
     <string name="extender_accessibility_service_disabled_app_info_6">然后你必须卸载它，并从支持的商店安装它，例如Droid-ify。</string>
     <string name="extender_accessibility_service_disabled_app_info_7">点击这里打开 Droid-ify 安装站点。</string>
     <string name="extender_accessibility_service_app_info_button">应用信息</string>
+    <string name="extender_menu_support">支持</string>
+    <string name="extender_support_subject">支持</string>
+    <string name="extender_menu_email_to_author">给作者发邮件</string>
+    <string name="extender_menu_discord_server">PhoneProfilesPlus 服务器</string>
+    <string name="extender_menu_discord_invitation">PhoneProfilesPlus 服务器邀请</string>
 </resources>

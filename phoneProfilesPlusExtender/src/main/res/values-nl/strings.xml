@@ -56,4 +56,9 @@
     <string name="extender_accessibility_service_disabled_app_info_6">Vervolgens moet je het deïnstalleren en installeren van de ondersteunde App-winkel, bijvoorbeeld Droid-ify.</string>
     <string name="extender_accessibility_service_disabled_app_info_7">Klik hier om de Droid-ify installatie site te openen:</string>
     <string name="extender_accessibility_service_app_info_button">App informatie</string>
+    <string name="extender_menu_support">Ondersteuning</string>
+    <string name="extender_support_subject">ondersteuning</string>
+    <string name="extender_menu_email_to_author">E-mail aan auteur</string>
+    <string name="extender_menu_discord_server">PhoneProfilesPlus server</string>
+    <string name="extender_menu_discord_invitation">PhoneProfilesPlus server uitnodiging</string>
 </resources>

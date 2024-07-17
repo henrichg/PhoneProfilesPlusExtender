@@ -56,4 +56,9 @@
     <string name="extender_accessibility_service_disabled_app_info_6">Potom jej musíte odinstalovat a nainstalovat z podporovaného obchodu, například Droid-ify.</string>
     <string name="extender_accessibility_service_disabled_app_info_7">Klepnutím sem otevřete instalační web Droid-ify:</string>
     <string name="extender_accessibility_service_app_info_button">Informace o aplikaci</string>
+    <string name="extender_menu_support">Podpora</string>
+    <string name="extender_support_subject">podpora</string>
+    <string name="extender_menu_email_to_author">Poslat e-mail autorovi</string>
+    <string name="extender_menu_discord_server">Server PhoneProfilesPlus</string>
+    <string name="extender_menu_discord_invitation">Pozvánka na server PhoneProfilesPlus</string>
 </resources>

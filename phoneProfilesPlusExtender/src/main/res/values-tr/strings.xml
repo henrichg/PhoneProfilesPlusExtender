@@ -56,4 +56,9 @@
     <string name="extender_accessibility_service_disabled_app_info_6">Daha sonra onu kaldırmalı ve desteklenen mağazadan, örneğin Droid-ify\'dan yüklemelisiniz.</string>
     <string name="extender_accessibility_service_disabled_app_info_7">Droid-ify yükleme sitesi için buraya dokunun:</string>
     <string name="extender_accessibility_service_app_info_button">Uygulama bilgisi</string>
+    <string name="extender_menu_support">Support</string>
+    <string name="extender_support_subject">support</string>
+    <string name="extender_menu_email_to_author">E-mail to author</string>
+    <string name="extender_menu_discord_server">PhoneProfilesPlus server</string>
+    <string name="extender_menu_discord_invitation">PhoneProfilesPlus server invitation</string>
 </resources>
