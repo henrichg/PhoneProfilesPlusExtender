@@ -5,7 +5,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.os.Handler;
+import android.util.TypedValue;
 
 import java.util.List;
 
@@ -56,6 +58,10 @@ class GlobalUtils {
         }
         else
             activity.recreate();
+    }
+
+    static int sip(float sp) {
+        return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, Resources.getSystem().getDisplayMetrics()));
     }
 
 }

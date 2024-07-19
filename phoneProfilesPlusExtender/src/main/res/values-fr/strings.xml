@@ -56,4 +56,9 @@
     <string name="extender_accessibility_service_disabled_app_info_6">Ensuite, vous devez le désinstaller et l\'installer depuis un magasin d\'applications pris en charge, par exemple Droid-ify.</string>
     <string name="extender_accessibility_service_disabled_app_info_7">Cliquez ici pour ouvrir le site d\'installation de Droid-ify :</string>
     <string name="extender_accessibility_service_app_info_button">Infos sur l\'app</string>
+    <string name="extender_menu_support">Support</string>
+    <string name="extender_support_subject">support</string>
+    <string name="extender_menu_email_to_author">Envoyer un courriel à l\'auteur</string>
+    <string name="extender_menu_discord_server">Serveur PhoneProfilesPlus</string>
+    <string name="extender_menu_discord_invitation">Invitation au serveur PhoneProfilesPlus</string>
 </resources>

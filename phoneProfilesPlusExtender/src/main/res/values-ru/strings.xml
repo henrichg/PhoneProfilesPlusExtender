@@ -56,4 +56,9 @@
     <string name="extender_accessibility_service_disabled_app_info_6">Тогда вы должны удалить его и установить заново из поддерживаемого магазина, например, Droid-ify.</string>
     <string name="extender_accessibility_service_disabled_app_info_7">Нажмите сюда, чтобы перейти на сайт для установки Droid-ify:</string>
     <string name="extender_accessibility_service_app_info_button">Сведения о приложении</string>
+    <string name="extender_menu_support">Поддержка</string>
+    <string name="extender_support_subject">поддержка</string>
+    <string name="extender_menu_email_to_author">Отправить письмо автору</string>
+    <string name="extender_menu_discord_server">Сервер PhoneProfilesPlus</string>
+    <string name="extender_menu_discord_invitation">Приглашение на сервер PhoneProfilesPlus</string>
 </resources>

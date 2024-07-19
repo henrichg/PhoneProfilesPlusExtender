@@ -6,7 +6,7 @@
 PhoneProfilesPlusExtender (PPPE)
 ====================================
 
-[![version](https://img.shields.io/badge/version-8.1.6-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.1.6)
+[![version](https://img.shields.io/badge/version-8.1.7-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.1.7)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![License](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/henrichg/PhoneProfilesPlus/blob/master/LICENSE)
 [![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)
@@ -20,7 +20,7 @@ PhoneProfilesPlusExtender (PPPE)
 Discord PPP server invitation: https://discord.gg/Yb5hgAstQ3
 
 __Install PhoneProfilesPlusExtender directly from PhoneProfilesPlus. But it is also possible to install it from an external source. If installing from PhoneProfilesPlus does not work, use external source. External sources are described below.__
-
+ 
 ### Sources of PhoneProfilesPlusExtender:
 
 Use keyword "PhoneProfilesPlusExtender" for search this application in these stores:
@@ -37,7 +37,7 @@ __Neo Store (F-Droid alternative, preferred over GitHub):__
 
 __F-Droid:__
 - [PPPE release](https://apt.izzysoft.de/fdroid/index/apk/sk.henrichg.phoneprofilesplusextender)
-  &nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_
+&nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_  
 - [Store application (download)](https://www.f-droid.org/)
 
 __GitHub (better is using Droid-ify instead):__
@@ -74,9 +74,9 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 
 ##### Screenshots
 - [[1]](art/phoneScreenshots/01.png),
-  [[2]](art/phoneScreenshots/02.png),
-  [[3]](art/phoneScreenshots/03.png),
-  [[4]](art/phoneScreenshots/04.png)
+[[2]](art/phoneScreenshots/02.png),
+[[3]](art/phoneScreenshots/03.png),
+[[4]](art/phoneScreenshots/04.png)
 
 ##### Supported Android versions
 

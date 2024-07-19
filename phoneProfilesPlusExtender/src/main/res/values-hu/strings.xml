@@ -56,4 +56,9 @@
     <string name="extender_accessibility_service_disabled_app_info_6">Then you must uninstall it, and install it from supported store, for example Droid-ify.</string>
     <string name="extender_accessibility_service_disabled_app_info_7">Click here to open Droid-ify installation site:</string>
     <string name="extender_accessibility_service_app_info_button">Alkalmazás infó</string>
+    <string name="extender_menu_support">Support</string>
+    <string name="extender_support_subject">support</string>
+    <string name="extender_menu_email_to_author">E-mail to author</string>
+    <string name="extender_menu_discord_server">PhoneProfilesPlus server</string>
+    <string name="extender_menu_discord_invitation">PhoneProfilesPlus server invitation</string>
 </resources>
