@@ -29,8 +29,6 @@
     <content url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/src/androidTestDebug" />
     <orderEntry type="jdk" jdkName="Android API 34, extension level 7 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="PhoneProfilesPlusExtender.phoneProfilesPlusExtender.main" scope="TEST" />
-    <orderEntry type="module" module-name="PhoneProfilesPlusExtender.ToastCompat.main" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.lsposed.hiddenapibypass:hiddenapibypass:4.3@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: ch.acra:acra-mail:5.11.3@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: ch.acra:acra-core:5.11.3@aar" level="project" />
