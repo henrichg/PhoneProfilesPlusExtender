@@ -69,7 +69,7 @@ android {
 dependencies {
     implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
 
-    implementation "com.google.guava:guava:33.2.1-android" //33.0.0-android"
+    implementation 'com.google.guava:guava:33.3.0-android' //33.0.0-android"
     implementation "ch.acra:acra-mail:$ppVersions.acra"
     implementation "ch.acra:acra-notification:$ppVersions.acra"
 
