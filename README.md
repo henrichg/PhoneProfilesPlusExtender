@@ -96,5 +96,3 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 - ToastCompat (as module, code modified) - https://github.com/PureWriter/ToastCompat
 - Android-Accessibility-Utilities(only modified class A11NodeInfo - for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities
 - Android-Accessibility-Utilities(only modified class A11NodeInfoMatcher - for debug only - code for log view hierarchy) - https://github.com/chriscm2006/Android-Accessibility-Utilities
-
-...
