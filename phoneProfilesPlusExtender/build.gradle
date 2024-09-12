@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply from: '../dependencies.gradle'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/home/henrichg/Projekty/AndroidStudio/AndroidReleases/henrichg.keystore')
+            storePassword 'H3nr1sk0Gr0n6220'
+            keyAlias 'henrichg'
+            keyPassword 'H3nr1sk0Gr0n6220'
+        }
+    }
     namespace 'sk.henrichg.phoneprofilesplusextender'
 
     compileSdkVersion ppVersions.compileSdk
