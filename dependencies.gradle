@@ -15,5 +15,5 @@ ext.ppVersions = [
     kotlinStdlibJdk8  : '1.8.22', // appcompat 1.7.0 - dependencies problem, this fixed it
 
     autoservice       : '1.1.1',
-    acra              : '5.11.3'//'5.11.2'
+    acra              : '5.11.4'//'5.11.3'
 ]
