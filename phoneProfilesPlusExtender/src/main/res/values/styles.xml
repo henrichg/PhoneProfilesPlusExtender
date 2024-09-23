@@ -88,7 +88,7 @@
         <item name="android:background">@android:color/transparent</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:colorForeground">#000</item>
+        <item name="android:colorForeground">@color/pppeColor000</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowIsFloating">true</item>
     </style>
