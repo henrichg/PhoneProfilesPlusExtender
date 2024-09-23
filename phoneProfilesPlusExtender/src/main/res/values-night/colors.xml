@@ -24,7 +24,7 @@
     <color name="noRippleRectangeleItemBackgroundColor">#45647f</color>
 
 <!--    <color name="activityPopupMenuBackgroundColor">#151515</color>-->
-    <color name="activityPopupMenuBackgroundColor">#091121</color>
+    <color name="activityPopupMenuBackgroundColor">#070f20</color>
 
 <!--    <color name="activityPopupMenuClickedItemBackgroundColor">#37ffffff</color>-->
 <!--    <color name="popupMenuBorderColor">#3f3f3f</color>-->
@@ -33,7 +33,7 @@
 <!--    <color name="buttonBorderColor">#656565</color>-->
     <color name="buttonBorderColor">#444b5f</color>
 <!--    <color name="buttonBackgroundColor">#151515</color>-->
-    <color name="buttonBackgroundColor">#091121</color>
+    <color name="buttonBackgroundColor">#070f20</color>
 <!--    <color name="buttonClickedBackgroundColor">#303030</color>-->
     <color name="buttonClickedBackgroundColor">#133248</color>
 
