@@ -18,7 +18,7 @@
         <item name="android:actionBarStyle">@style/PPPEActionbar</item>
 
         <item name="android:windowLightStatusBar">@bool/windowLightStatusBar</item>
-        <item name="android:navigationBarColor">@color/navigationBar</item>
+        <item name="android:navigationBarColor">@color/navigationBarColor</item>
 
         <item name="android:textViewStyle">@style/TextViewTheme</item>
         <item name="android:windowBackground">@color/activityBackgroundColor</item>
@@ -27,7 +27,7 @@
 
         <item name="activityDisabledTextColor">@color/activityDisabledTextColor</item>
 
-        <item name="dialogDivider">@color/dialog_divider</item>
+        <item name="dialogDivider">@color/dialogDividerColor</item>
         <item name="alertDialogTheme">@style/AlertDialogStyleDayNight</item>
         <item name="dialogTheme">@style/DialogStyleDayNight</item>
 
@@ -39,7 +39,7 @@
         <item name="listViewItemBackground">@drawable/listview_item_background_selector</item>
         <item name="popupMenuItemBackground">@drawable/popup_menu_item_background_selector</item>
 
-        <item name="android:scrollbarThumbVertical">@color/scrollbar_color</item>
+        <item name="android:scrollbarThumbVertical">@color/scrollbarColor</item>
 
         <item name="android:lineSpacingExtra">@dimen/line_spacing_extra</item>
     </style>
@@ -54,7 +54,7 @@
         <item name="colorAccent">@color/accent</item>
 
         <item name="android:windowLightStatusBar">@bool/windowLightStatusBar</item>
-        <item name="android:navigationBarColor">@color/navigationBar</item>
+        <item name="android:navigationBarColor">@color/navigationBarColor</item>
 
         <item name="android:textViewStyle">@style/TextViewTheme</item>
         <item name="android:windowBackground">@color/activityBackgroundColor</item>
@@ -63,7 +63,7 @@
 
         <item name="activityDisabledTextColor">@color/activityDisabledTextColor</item>
 
-        <item name="dialogDivider">@color/dialog_divider</item>
+        <item name="dialogDivider">@color/dialogDividerColor</item>
         <item name="alertDialogTheme">@style/AlertDialogStyleDayNight</item>
         <item name="dialogTheme">@style/DialogStyleDayNight</item>
 
@@ -75,7 +75,7 @@
         <item name="listViewItemBackground">@drawable/listview_item_background_selector_no_ripple</item>
         <item name="popupMenuItemBackground">@drawable/popup_menu_item_background_selector_no_ripple</item>
 
-        <item name="android:scrollbarThumbVertical">@color/scrollbar_color</item>
+        <item name="android:scrollbarThumbVertical">@color/scrollbarColor</item>
 
         <item name="android:lineSpacingExtra">@dimen/line_spacing_extra</item>
     </style>

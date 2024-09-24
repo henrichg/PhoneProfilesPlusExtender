@@ -624,7 +624,7 @@ public class MainActivity extends AppCompatActivity
             else {
                 if (scrollTo == R.id.activity_main_permissions_event_sensor_sms_mms)
                     //noinspection DataFlowIssue
-                    text.setTextColor(ContextCompat.getColor(this, R.color.error_color));
+                    text.setTextColor(ContextCompat.getColor(this, R.color.errorColor));
                 else
                     //noinspection DataFlowIssue
                     text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
@@ -658,7 +658,7 @@ public class MainActivity extends AppCompatActivity
             else {
                 if (scrollTo == R.id.activity_main_permissions_event_sensor_call)
                     //noinspection DataFlowIssue
-                    text.setTextColor(ContextCompat.getColor(this, R.color.error_color));
+                    text.setTextColor(ContextCompat.getColor(this, R.color.errorColor));
                 else
                     //noinspection DataFlowIssue
                     text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));

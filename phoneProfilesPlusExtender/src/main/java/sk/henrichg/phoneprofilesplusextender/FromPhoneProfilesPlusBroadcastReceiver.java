@@ -150,7 +150,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         String nText = text;
         PPPEApplicationStatic.createGrantPermissionNotificationChannel(appContext, false);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(appContext, PPPEApplication.GRANT_PERMISSION_NOTIFICATION_CHANNEL)
-                .setColor(ContextCompat.getColor(appContext, R.color.error_color))
+                .setColor(ContextCompat.getColor(appContext, R.color.errorColor))
                 .setSmallIcon(R.drawable.ic_pppe_notification/*icic_exclamation_notify*/) // notification icon
                 .setLargeIcon(BitmapFactory.decodeResource(appContext.getResources(), R.drawable.ic_exclamation_notification))
                 .setContentTitle(nTitle) // title for notification

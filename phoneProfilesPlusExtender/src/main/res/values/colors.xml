@@ -4,7 +4,7 @@
     <color name="primaryDark">#FFFFFF</color>
     <color name="accent">#2B7E97</color>
     <!--<color name="accent_disabled">#70DC8160</color>-->
-    <color name="navigationBar">#000000</color>
+    <color name="navigationBarColor">#000000</color>
 
     <color name="activityBackgroundColor">#FFFFFF</color>
     <color name="activityNormalTextColor">#000000</color>
@@ -22,17 +22,17 @@
     <color name="buttonBackgroundColor">#FAFAFA</color>
     <color name="buttonClickedBackgroundColor">#DADADA</color>
 
-    <color name="dialog_divider">#CCCCCC</color>
+    <color name="dialogDividerColor">#CCCCCC</color>
     <color name="dialogBorderColor">#CCCCCC</color>
 
     <color name="toastBackgroundColor">#3a3a3a</color>
     <color name="toastTextColor">#FFFFFF</color>
     <color name="toastBorderColor">#707070</color>
 
-    <color name="scrollbar_color">#C8C8C8</color>
+    <color name="scrollbarColor">#C8C8C8</color>
 
 <!--    <color name="notification_color">#2B7E97</color>-->
-    <color name="error_color">#EB0000</color>
+    <color name="errorColor">#EB0000</color>
 
     <color name="pppeColor000">#000</color>
     <color name="pppeColorBlack">#000000</color>

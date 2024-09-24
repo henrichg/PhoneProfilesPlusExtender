@@ -27,7 +27,7 @@
 
         <item name="activityDisabledTextColor">@color/activityDisabledTextColor</item>
 
-        <item name="dialogDivider">@color/dialog_divider</item>
+        <item name="dialogDivider">@color/dialogDividerColor</item>
         <item name="alertDialogTheme">@style/AlertDialogStyleDayNight</item>
         <item name="dialogTheme">@style/DialogStyleDayNight</item>
 
@@ -41,7 +41,7 @@
 
         <item name="android:windowLightNavigationBar">@bool/windowLightStatusBar</item>
 
-        <item name="android:scrollbarThumbVertical">@color/scrollbar_color</item>
+        <item name="android:scrollbarThumbVertical">@color/scrollbarColor</item>
 
         <item name="android:lineSpacingExtra">@dimen/line_spacing_extra</item>
     </style>
@@ -65,7 +65,7 @@
 
         <item name="activityDisabledTextColor">@color/activityDisabledTextColor</item>
 
-        <item name="dialogDivider">@color/dialog_divider</item>
+        <item name="dialogDivider">@color/dialogDividerColor</item>
         <item name="alertDialogTheme">@style/AlertDialogStyleDayNight</item>
         <item name="dialogTheme">@style/DialogStyleDayNight</item>
 
@@ -79,7 +79,7 @@
 
         <item name="android:windowLightNavigationBar">@bool/windowLightStatusBar</item>
 
-        <item name="android:scrollbarThumbVertical">@color/scrollbar_color</item>
+        <item name="android:scrollbarThumbVertical">@color/scrollbarColor</item>
 
         <item name="android:lineSpacingExtra">@dimen/line_spacing_extra</item>
     </style>

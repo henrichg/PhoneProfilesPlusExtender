@@ -8,7 +8,7 @@
 
     <color name="accent">#50B0CE</color>
     <!--<color name="accent_disabled">#70E99B7F</color>-->
-    <color name="navigationBar">#000000</color>
+    <color name="navigationBarColor">#000000</color>
 
 <!--    <color name="activityBackgroundColor">#FF1B1B1B</color>-->
     <color name="activityBackgroundColor">#FF12181e</color>
@@ -28,7 +28,7 @@
 
 <!--    <color name="activityPopupMenuClickedItemBackgroundColor">#37ffffff</color>-->
 <!--    <color name="popupMenuBorderColor">#3f3f3f</color>-->
-    <color name="popupMenuBorderColor">#3b4255</color>
+    <color name="popupMenuBorderColor">#223f56</color>
 
 <!--    <color name="buttonBorderColor">#656565</color>-->
     <color name="buttonBorderColor">#444b5f</color>
@@ -40,12 +40,12 @@
 <!--    <color name="notificationDecorationColor">#cc893e</color>-->
 
 <!--    <color name="dialog_divider">#3f3f3f</color>-->
-    <color name="dialog_divider">#343645</color>
+    <color name="dialogDividerColor">#223f56</color>
 <!--    <color name="dialogBorderColor">#3f3f3f</color>-->
     <color name="dialogBorderColor">#343645</color>
 
 <!--    <color name="scrollbar_color">#404040</color>-->
-    <color name="scrollbar_color">#343645</color>
+    <color name="scrollbarColor">#223f56</color>
 
 <!--    <color name="primary">#201a18</color>-->
 <!--    <color name="primaryDark">#201a18</color>-->
@@ -70,12 +70,12 @@
 <!--    <color name="dialogBorderColor">#FF403430</color>-->
 
 <!--    <color name="toastBackgroundColor">#3a3a3a</color>-->
-    <color name="toastBackgroundColor">#343645</color>
+    <color name="toastBackgroundColor">#223f56</color>
     <color name="toastTextColor">#FFFFFF</color>
 <!--    <color name="toastBorderColor">#707070</color>-->
     <color name="toastBorderColor">#506c85</color>
 
 <!--    <color name="notification_color">#50B0CE</color>-->
-    <color name="error_color">#FF2424</color>
+    <color name="errorColor">#FF2424</color>
 
 </resources>
