@@ -41,6 +41,7 @@
 
         <item name="android:selectableItemBackground">@drawable/listview_item_background_selector</item>
         <item name="selectableItemBackground">@drawable/listview_item_background_selector</item>
+        <item name="android:actionBarItemBackground">@drawable/actionbar_item_background_selector</item>
 
         <item name="android:scrollbarThumbVertical">@color/scrollbarColor</item>
 
@@ -80,6 +81,7 @@
 
         <item name="android:selectableItemBackground">@drawable/listview_item_background_selector_no_ripple</item>
         <item name="selectableItemBackground">@drawable/listview_item_background_selector_no_ripple</item>
+        <item name="android:actionBarItemBackground">@drawable/actionbar_item_background_selector_no_ripple</item>
 
         <item name="android:scrollbarThumbVertical">@color/scrollbarColor</item>
 
