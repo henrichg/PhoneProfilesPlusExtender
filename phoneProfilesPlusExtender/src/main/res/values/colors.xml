@@ -12,7 +12,7 @@
     <color name="activityDisabledTextColor">#C0C0C0</color>
 
     <color name="rippleRectangeleItemBackgroundColor">#BFBFBF</color>
-    <color name="noRippleRectangeleItemBackgroundColor">#DFDFDF</color>
+<!--    <color name="noRippleRectangeleItemBackgroundColor">#DFDFDF</color>-->
 
     <color name="activityPopupMenuBackgroundColor">#F7F7F7</color>
 <!--    <color name="activityPopupMenuClickedItemBackgroundColor">#17000000</color>-->

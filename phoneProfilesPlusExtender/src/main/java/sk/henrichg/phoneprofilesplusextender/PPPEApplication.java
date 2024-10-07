@@ -70,7 +70,7 @@ public class PPPEApplication extends Application {
     static final boolean deviceIsSamsung = isSamsung();
     static final boolean deviceIsXiaomi = isXiaomi();
     static final boolean deviceIsOnePlus = isOnePlus();
-    static final boolean romIsMIUI = isMIUIROM();
+//    static final boolean romIsMIUI = isMIUIROM();
 
     // for new log.txt and crash.txt is in /Android/data/sk.henrichg.phoneprofilesplusextender/files
     //public static final String EXPORT_PATH = "/PhoneProfilesPlusExtender";
@@ -470,6 +470,7 @@ public class PPPEApplication extends Application {
                 Build.FINGERPRINT.toLowerCase().contains(ONEPLUS);
     }
 
+    /*
     private static boolean isMIUIROM() {
         boolean miuiRom1 = false;
         boolean miuiRom2 = false;
@@ -507,6 +508,7 @@ public class PPPEApplication extends Application {
 
         return miuiRom1 || miuiRom2 || miuiRom3;
     }
+    */
 
     //--------------------------------------------------------------
 

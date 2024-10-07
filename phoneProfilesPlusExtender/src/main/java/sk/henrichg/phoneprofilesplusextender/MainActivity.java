@@ -81,18 +81,18 @@ public class MainActivity extends AppCompatActivity
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int miuiVersion = -1;
-        if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI) {
-            String[] splits = Build.VERSION.INCREMENTAL.split("\\.");
-            miuiVersion = Integer.parseInt(splits[0].substring(1));
-        }
+//        int miuiVersion = -1;
+//        if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI) {
+//            String[] splits = Build.VERSION.INCREMENTAL.split("\\.");
+//            miuiVersion = Integer.parseInt(splits[0].substring(1));
+//        }
 
-        if (PPPEApplication.deviceIsOnePlus)
-            setTheme(R.style.AppTheme_noRipple);
-        else
-        if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI && miuiVersion >= 14)
-            setTheme(R.style.AppTheme_noRipple);
-        else
+        //if (PPPEApplication.deviceIsOnePlus)
+        //    setTheme(R.style.AppTheme_noRipple);
+        //else
+        //if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI && miuiVersion >= 14)
+        //    setTheme(R.style.AppTheme_noRipple);
+        //else
             setTheme(R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
