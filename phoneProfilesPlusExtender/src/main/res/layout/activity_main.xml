@@ -132,13 +132,22 @@
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle" />
 
+        <View
+            android:id="@+id/activity_main_divider1"
+            android:layout_width="30dp"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/dialogDividerColor" />
+
         <TextView
             android:id="@+id/activity_main_permission_popup_windows_in_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
             android:textSize="14sp"/>
+<!--        android:layout_marginTop="15dp"-->
 
         <Button
             android:id="@+id/activity_main_popup_windows_in_background_button"
@@ -153,13 +162,22 @@
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle" />
 
+        <View
+            android:id="@+id/activity_main_divider_popup_window"
+            android:layout_width="30dp"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/dialogDividerColor" />
+
         <TextView
             android:id="@+id/activity_main_permissions_event_sensor_sms_mms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
             android:textSize="14sp"/>
+<!--        android:layout_marginTop="15dp"-->
 
         <TextView
             android:id="@+id/activity_main_sms_permissions_status"
@@ -184,13 +202,22 @@
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle" />
 
+        <View
+            android:id="@+id/activity_main_divider3"
+            android:layout_width="30dp"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/dialogDividerColor" />
+
         <TextView
             android:id="@+id/activity_main_permissions_event_sensor_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
             android:textSize="14sp"/>
+<!--        android:layout_marginTop="15dp"-->
 
         <TextView
             android:id="@+id/activity_main_call_permissions_status"
@@ -215,13 +242,22 @@
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle" />
 
+        <View
+            android:id="@+id/activity_main_divider4"
+            android:layout_width="30dp"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/dialogDividerColor" />
+
         <TextView
             android:id="@+id/activity_main_battery_optimization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="@string/extender_battery_optimization_optimized"
             android:textSize="14sp"/>
+<!--        android:layout_marginTop="15dp"-->
 
         <TextView
             android:id="@+id/activity_main_battery_optimization_status"

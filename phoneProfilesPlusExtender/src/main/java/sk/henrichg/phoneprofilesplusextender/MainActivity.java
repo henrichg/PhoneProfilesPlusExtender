@@ -517,6 +517,7 @@ public class MainActivity extends AppCompatActivity
             text = findViewById(R.id.activity_main_accessibility_service_app_info);
             TextView text2 = findViewById(R.id.activity_main_accessibility_service_app_info_2);
             Button appInfoButton = findViewById(R.id.activity_main_accessibility_service_app_info_button);
+            View divider = findViewById(R.id.activity_main_divider_app_info);
             if (!PPPEAccessibilityService.isEnabled(getApplicationContext())) {
                 str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML + getString(R.string.extender_accessibility_service_disabled_app_info_1) + StringConstants.TAG_DOUBLE_BREAK_HTML;
                 str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_2) + StringConstants.TAG_BREAK_HTML;
@@ -556,7 +557,8 @@ public class MainActivity extends AppCompatActivity
                 text2.setText(sbt);
                 text2.setMovementMethod(LinkMovementMethod.getInstance());
                 text2.setVisibility(View.VISIBLE);
-
+                //noinspection DataFlowIssue
+                divider.setVisibility(View.VISIBLE);
                 //noinspection DataFlowIssue
                 appInfoButton.setVisibility(View.VISIBLE);
                 appInfoButton.setOnClickListener(view -> {
@@ -581,6 +583,8 @@ public class MainActivity extends AppCompatActivity
                 //noinspection DataFlowIssue
                 text2.setVisibility(View.GONE);
                 //noinspection DataFlowIssue
+                divider.setVisibility(View.GONE);
+                //noinspection DataFlowIssue
                 appInfoButton.setVisibility(View.GONE);
             }
         }
@@ -600,13 +604,19 @@ public class MainActivity extends AppCompatActivity
             }
         }
         text = findViewById(R.id.activity_main_permission_popup_windows_in_background);
+        View divider = findViewById(R.id.activity_main_divider_popup_window);
         if (displayPopupWindowsInBackground) {
             str1 = getString(R.string.extender_permissions_popup_windows_in_background);
             //noinspection DataFlowIssue
             text.setText(str1);
+            text.setVisibility(View.VISIBLE);
+            //noinspection DataFlowIssue
+            divider.setVisibility(View.VISIBLE);
         } else {
             //noinspection DataFlowIssue
             text.setVisibility(View.GONE);
+            //noinspection DataFlowIssue
+            divider.setVisibility(View.GONE);
         }
 
         if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
