@@ -136,7 +136,7 @@
         <View
             android:id="@+id/activity_main_divider1"
             android:layout_width="30dp"
-            android:layout_height="@dimen/divider_height"
+            android:layout_height="@dimen/small_divider_height"
             android:layout_marginTop="17dp"
             android:layout_marginBottom="15dp"
             android:layout_gravity="center_horizontal"
@@ -180,7 +180,7 @@
         <View
             android:id="@+id/activity_main_divider_app_info"
             android:layout_width="30dp"
-            android:layout_height="@dimen/divider_height"
+            android:layout_height="@dimen/small_divider_height"
             android:layout_marginTop="17dp"
             android:layout_marginBottom="15dp"
             android:layout_gravity="center_horizontal"
@@ -211,7 +211,7 @@
         <View
             android:id="@+id/activity_main_divider_popup_window"
             android:layout_width="30dp"
-            android:layout_height="@dimen/divider_height"
+            android:layout_height="@dimen/small_divider_height"
             android:layout_marginTop="17dp"
             android:layout_marginBottom="15dp"
             android:layout_gravity="center_horizontal"
@@ -252,7 +252,7 @@
         <View
             android:id="@+id/activity_main_divider3"
             android:layout_width="30dp"
-            android:layout_height="@dimen/divider_height"
+            android:layout_height="@dimen/small_divider_height"
             android:layout_marginTop="17dp"
             android:layout_marginBottom="15dp"
             android:layout_gravity="center_horizontal"
@@ -293,7 +293,7 @@
         <View
             android:id="@+id/activity_main_divider4"
             android:layout_width="30dp"
-            android:layout_height="@dimen/divider_height"
+            android:layout_height="@dimen/small_divider_height"
             android:layout_marginTop="17dp"
             android:layout_marginBottom="15dp"
             android:layout_gravity="center_horizontal"
