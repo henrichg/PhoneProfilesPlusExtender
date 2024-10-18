@@ -184,7 +184,8 @@
             android:layout_marginTop="17dp"
             android:layout_marginBottom="15dp"
             android:layout_gravity="center_horizontal"
-            android:background="@color/dialogDividerColor" />
+            android:background="@color/dialogDividerColor"
+            tools:ignore="InconsistentLayout" />
 
         <TextView
             android:id="@+id/activity_main_permission_popup_windows_in_background"

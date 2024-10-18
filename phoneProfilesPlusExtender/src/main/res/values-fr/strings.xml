@@ -15,7 +15,7 @@
     <string name="extender_permissions_event_sensor_sms_mms">Autorisations pour le paramètre d\’événement \"Capteur SMS/MMS\" - permission SMS</string>
     <string name="extender_permissions_not_granted">Non accordée</string>
     <string name="extender_permissions_granted">Accordée</string>
-    <string name="extender_permissions_button">Accorder/refuser\nles autorisations</string>
+    <string name="extender_permissions_button">Accorder/refuser les autorisations</string>
     <string name="extender_accessibility_service_event_sensor_call">Accessibilité pour le paramètre \" Capteur d\'appel\". La fonction d\'accessibilité n\'est pas utilisée, le service est nécessaire pour recevoir des appels.</string>
     <string name="extender_permissions_event_sensor_call">Autorisations pour le paramètre \"Capteur d\'appel\" - Permission du téléphone</string>
     <string name="extender_permissions_event_sensor_call_28">Autorisations pour le paramètre \"Capteur d\'appel\" - Permission du téléphone, journaux d\'appels</string>
@@ -32,11 +32,11 @@
     <string name="extender_battery_optimization_text">Optimisation de la batterie pour PhoneProfilesPlusExtender - veuillez l\'ajouter au groupe \"Non optimisé\"</string>
     <string name="extender_battery_optimization_optimized">Optimisée</string>
     <string name="extender_battery_optimization_not_optimized">Non optimisée</string>
-    <string name="extender_battery_optimization_button">Ouvrir\nOptimisation de la batterie</string>
+    <string name="extender_battery_optimization_button">Ouvrir Optimisation de la batterie</string>
     <string name="extender_acra_email_body_device">Appareil:</string>
     <string name="extender_acra_email_body_android_version">Version Android :</string>
     <string name="extender_permissions_popup_windows_in_background">Veuillez activer « Afficher les fenêtres pop-up lors de l\'exécution en arrière-plan ». Sans cette option, « Forcer l\'arrêt des applications » ne fonctionnera pas.</string>
-    <string name="extender_popup_windows_in_background_button">Ouvrir\nAutres permissions\n(MIUI)</string>
+    <string name="extender_popup_windows_in_background_button">Ouvrir Autres permissions (MIUI)</string>
     <string name="extender_notification_channel_grant_permission">Accorder la permission</string>
     <string name="extender_notification_channel_grant_permission_description">Affiche la permission nécessaire pour l\'accorder.</string>
     <string name="extender_notification_permission_title">Autorisation non accordée</string>

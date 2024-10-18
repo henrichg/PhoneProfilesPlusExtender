@@ -26,6 +26,7 @@ public class ScreenOnOffBroadcastReceiver extends BroadcastReceiver {
 
             if (PPPEApplication.forceStopStarted) {
                 // simulate home button click
+                @SuppressLint("UnsafeImplicitIntentLaunch")
                 Intent startMain = new Intent(Intent.ACTION_MAIN);
                 startMain.addCategory(Intent.CATEGORY_HOME);
                 startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
