@@ -11,7 +11,7 @@
     <color name="activitySecondaryTextColor">#303030</color>
     <color name="activityDisabledTextColor">#C0C0C0</color>
 
-    <color name="rippleRectangeleItemBackgroundColor">#BFBFBF</color>
+    <color name="rippleRectangeleItemBackgroundColor">#a6d7e5</color>
 <!--    <color name="noRippleRectangeleItemBackgroundColor">#DFDFDF</color>-->
 
     <color name="activityPopupMenuBackgroundColor">#F7F7F7</color>
@@ -22,7 +22,7 @@
     <color name="buttonBackgroundColor">#dbf1f8</color>
     <color name="buttonClickedBackgroundColor">#bfe5ef</color>
 
-    <color name="dialogDividerColor">#CCCCCC</color>
+    <color name="dialogDividerColor">#a6d7e5</color>
     <color name="dialogBorderColor">#CCCCCC</color>
 
     <color name="toastBackgroundColor">#3a3a3a</color>
