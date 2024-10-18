@@ -33,7 +33,8 @@
 <!--    <color name="buttonBorderColor">#656565</color>-->
     <color name="buttonBorderColor">#1c4b6d</color>
 <!--    <color name="buttonBackgroundColor">#151515</color>-->
-    <color name="buttonBackgroundColor">#0f2331</color>
+<!--    <color name="buttonBackgroundColor">#0f2331</color>-->
+    <color name="buttonBackgroundColor">#12181e</color>
 <!--    <color name="buttonClickedBackgroundColor">#303030</color>-->
     <color name="buttonClickedBackgroundColor">#133248</color>
 
