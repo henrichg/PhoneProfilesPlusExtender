@@ -2,6 +2,7 @@
 <resources>
     <dimen name="button_corner_radius">30dp</dimen>
     <dimen name="button_border_thickness">2dp</dimen>
+    <dimen name="button_padding">20dp</dimen>
 
     <dimen name="activity_margin_start">0dp</dimen>
     <dimen name="activity_margin_end">0dp</dimen>
