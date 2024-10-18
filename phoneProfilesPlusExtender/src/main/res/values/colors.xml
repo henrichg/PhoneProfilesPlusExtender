@@ -29,7 +29,7 @@
     <color name="toastTextColor">#FFFFFF</color>
     <color name="toastBorderColor">#707070</color>
 
-    <color name="scrollbarColor">#C8C8C8</color>
+    <color name="scrollbarColor">#a6d7e5</color>
 
 <!--    <color name="notification_color">#2B7E97</color>-->
     <color name="errorColor">#EB0000</color>
