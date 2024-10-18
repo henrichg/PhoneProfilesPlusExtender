@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <dimen name="button_corner_radius">7dp</dimen>
+    <dimen name="button_border_thickness">2dp</dimen>
 
     <dimen name="activity_margin_start">0dp</dimen>
     <dimen name="activity_margin_end">0dp</dimen>
@@ -25,4 +26,6 @@
     <dimen name="chackBox_radioButton_spacing_for_list_items">10dp</dimen>
 
     <dimen name="line_spacing_extra">2dp</dimen>
+
+
 </resources>
