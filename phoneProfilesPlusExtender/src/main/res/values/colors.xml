@@ -19,7 +19,8 @@
     <color name="popupMenuBorderColor">#CCCCCC</color>
 
     <color name="buttonBorderColor">#a6d7e5</color>
-    <color name="buttonBackgroundColor">#dbf1f8</color>
+<!--    <color name="buttonBackgroundColor">#dbf1f8</color>-->
+    <color name="buttonBackgroundColor">#FFFFFF</color>
     <color name="buttonClickedBackgroundColor">#bfe5ef</color>
 
     <color name="dialogDividerColor">#a6d7e5</color>
