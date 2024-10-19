@@ -133,6 +133,9 @@
         <item name="android:textStyle">bold</item>
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:paddingStart">@dimen/button_padding</item>
+        <item name="android:paddingEnd">@dimen/button_padding</item>
+        <item name="android:minWidth">@dimen/button_min_width</item>
     </style>
 
     <style name="PPPEActionbar" parent="Widget.AppCompat.ActionBar">

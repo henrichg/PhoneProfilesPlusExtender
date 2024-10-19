@@ -9,7 +9,7 @@
     <color name="activityBackgroundColor">#FFFFFF</color>
     <color name="activityNormalTextColor">#000000</color>
     <color name="activitySecondaryTextColor">#303030</color>
-    <color name="activityDisabledTextColor">#C0C0C0</color>
+    <color name="activityDisabledTextColor">#B0B0B0</color>
 
     <color name="rippleRectangeleItemBackgroundColor">#a6d7e5</color>
 <!--    <color name="noRippleRectangeleItemBackgroundColor">#DFDFDF</color>-->
