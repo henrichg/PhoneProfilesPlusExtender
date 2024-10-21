@@ -24,6 +24,10 @@ __Install PhoneProfilesPlusExtender directly from PhoneProfilesPlus. But it is a
  
 ### Sources of PhoneProfilesPlusExtender:
 
+NOTE: Google Play Protect may display dialog box with title "Unsafe app blocked" and description "This app was build for an older version of Android and doesn`t include the latest privacy protection."
+Please click in this dialog "More details" and then "Install anyway".\
+Dialog is displayed, because PPPE has target SDK vesion 27 (Android 8.1). Must be, because of functionalities in PPPE.
+
 Use keyword "PhoneProfilesPlusExtender" for search this application in these stores:
 
 __Droid-ify (F-Droid alternative, preferred over GitHub):__
