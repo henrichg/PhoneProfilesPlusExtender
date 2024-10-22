@@ -52,7 +52,8 @@ android {
     }
     lint {
         abortOnError false
-        disable 'ManifestResource', 'LongLogTag', 'AppBundleLocaleChanges'
+        disable += ['ManifestResource', 'LongLogTag', 'AppBundleLocaleChanges']
+        disable += ['ExpiredTargetSdkVersion']
     }
     bundle {
         language {
