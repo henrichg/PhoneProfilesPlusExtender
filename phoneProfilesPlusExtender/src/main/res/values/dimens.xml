@@ -4,6 +4,7 @@
     <dimen name="button_border_thickness">2dp</dimen>
     <dimen name="button_padding">20dp</dimen>
     <dimen name="button_min_width">70dp</dimen>
+    <dimen name="dialog_button_min_height">56dp</dimen>
 
     <dimen name="activity_margin_start">0dp</dimen>
     <dimen name="activity_margin_end">0dp</dimen>
