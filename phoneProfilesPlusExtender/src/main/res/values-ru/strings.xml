@@ -60,5 +60,5 @@
     <string name="extender_support_subject">поддержка</string>
     <string name="extender_menu_email_to_author">Отправить письмо автору</string>
     <string name="extender_menu_discord_server">Сервер PhoneProfilesPlus</string>
-    <string name="extender_menu_discord_invitation">Приглашение на сервер PhoneProfilesPlus</string>
+    <string name="extender_menu_discord_invitation">Приглашение на сервер</string>
 </resources>

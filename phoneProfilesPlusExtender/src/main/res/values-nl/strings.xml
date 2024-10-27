@@ -60,5 +60,5 @@
     <string name="extender_support_subject">ondersteuning</string>
     <string name="extender_menu_email_to_author">E-mail aan auteur</string>
     <string name="extender_menu_discord_server">PhoneProfilesPlus server</string>
-    <string name="extender_menu_discord_invitation">PhoneProfilesPlus server uitnodiging</string>
+    <string name="extender_menu_discord_invitation">Server uitnodiging</string>
 </resources>

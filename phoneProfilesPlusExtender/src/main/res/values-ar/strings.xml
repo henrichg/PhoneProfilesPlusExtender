@@ -60,5 +60,5 @@
     <string name="extender_support_subject">support</string>
     <string name="extender_menu_email_to_author">E-mail to author</string>
     <string name="extender_menu_discord_server">PhoneProfilesPlus server</string>
-    <string name="extender_menu_discord_invitation">PhoneProfilesPlus server invitation</string>
+    <string name="extender_menu_discord_invitation">Server invitation</string>
 </resources>
