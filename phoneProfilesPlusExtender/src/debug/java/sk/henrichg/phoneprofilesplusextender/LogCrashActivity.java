@@ -36,9 +36,9 @@ public class LogCrashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (PPPEApplication.deviceIsOnePlus)
-            setTheme(R.style.AppTheme_noRipple);
-        else
+        //if (PPPEApplication.deviceIsOnePlus)
+        //    setTheme(R.style.AppTheme_noRipple);
+        //else
             setTheme(R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
@@ -87,8 +87,10 @@ public class LogCrashActivity extends AppCompatActivity {
         listView.setAdapter(logCrashAdapter);
 
         Button goToBtn = findViewById(R.id.log_crash_list_go_to_bottom);
+        //noinspection DataFlowIssue
         goToBtn.setOnClickListener(v -> listView.setSelection(logCrashAdapter.getCount() - 1));
         goToBtn = findViewById(R.id.log_crash_list_go_to_top);
+        //noinspection DataFlowIssue
         goToBtn.setOnClickListener(v -> listView.setSelection(0));
 
     }

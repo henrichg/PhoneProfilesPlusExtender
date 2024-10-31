@@ -12,6 +12,7 @@ import android.text.style.LeadingMarginSpan;
 import android.text.style.URLSpan;
 import android.util.TypedValue;
 
+import androidx.annotation.NonNull;
 import androidx.core.text.HtmlCompat;
 
 import org.xml.sax.XMLReader;
@@ -51,7 +52,7 @@ class StringFormatUtils {
             super(url);
         }
         @Override
-        public void updateDrawState(TextPaint ds) {
+        public void updateDrawState(@NonNull TextPaint ds) {
             super.updateDrawState(ds);
             ds.setUnderlineText(false);
         }

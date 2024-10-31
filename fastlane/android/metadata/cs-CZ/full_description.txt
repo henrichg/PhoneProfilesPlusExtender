@@ -1,5 +1,9 @@
 **Extender for PhoneProfilesPlus**
 
+*POZNÁMKA: Služba Google Play Protect může zobrazit dialogové okno s názvem „Nebezpečná aplikace je zablokována“ a popisem „Tato aplikace byla vytvořena pro starší verzi systému Android a neobsahuje nejnovější ochranu soukromí.“
+V tomto dialogovém okně klikněte na „Více podrobností“ a poté na „I tak nainstalovat“.
+Zobrazí se dialogové okno, protože PPPE má cílovou verzi SDK 27 (Android 8.1). Musí být kvůli funkcím v PPPE.*
+
 - Služba dostupnosti pro parametr profilu "Vynutit zastavení aplikací"
 - Služba dostupnosti pro parametr profilu "Zamknout zařízení"
 - Služba dostupnosti pro parametry události "Aplikační senzor"

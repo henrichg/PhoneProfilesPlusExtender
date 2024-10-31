@@ -56,7 +56,7 @@ public class ForceCloseIntentService extends IntentService {
         String applications = intent.getStringExtra(PPPEApplication.EXTRA_APPLICATIONS);
         //Log.e("ForceCloseIntentService.onHandleIntent", "applications="+applications);
 
-        if (!(applications.isEmpty() || (applications.equals("-")))) {
+        if (!((applications == null) || applications.isEmpty() || (applications.equals("-")))) {
 
             PPPEApplication.forceStopStarted = true;
             //Log.e("ForceCloseIntentService.onHandleIntent", "forceStopStarted=true");

@@ -270,7 +270,7 @@ public class A11yNodeInfo implements Iterable<A11yNodeInfo>, Comparator<A11yNode
      */
     @SuppressWarnings("NullableProblems")
     @Override public Iterator<A11yNodeInfo> iterator() {
-        return new Iterator<A11yNodeInfo>() {
+        return new Iterator<>() {
             private int mNextIndex = 0;
 
             @Override

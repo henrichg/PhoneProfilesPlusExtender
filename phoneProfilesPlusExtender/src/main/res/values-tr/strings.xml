@@ -8,14 +8,14 @@
     <string name="extender_accessibility_service_event_sensor_applications_orientation">\"Uygulama şartı\" ve \"Ekran döndürme şartı\" Durum şartı için Erişilebilirlik hizmeti</string>
     <string name="extender_accessibility_service_enabled">Faal</string>
     <string name="extender_accessibility_service_disabled">Kapalı</string>
-    <string name="extender_accessibility_service_button">Aç/Kapat\nErişebilirlik hizmeti</string>
+    <string name="extender_accessibility_service_button">Aç/Kapat Erişebilirlik hizmeti</string>
     <string name="extender_setting_screen_not_found_alert">Ayar ekranı bulunamadı.</string>
     <string name="extender_accessibility_service_permission">PhoneProfilesPlusExtender erişilebilirlik hizmeti</string>
     <string name="extender_accessibility_service_event_sensor_sms_mms">\"SMS/MMS şartı\" Durum şartı için Erişebilirlik hizmeti. Erişebilirlik özelliği kullanılmıyor. Bu hizmet, SMS ve MMS almak için lüzumlu.</string>
     <string name="extender_permissions_event_sensor_sms_mms">\"SMS/MMS şartı\" Durum şartı için izinler - SMS izni</string>
     <string name="extender_permissions_not_granted">İzin verilmedi</string>
     <string name="extender_permissions_granted">İzin verildi</string>
-    <string name="extender_permissions_button">Kabul et/reddet\nizinler</string>
+    <string name="extender_permissions_button">Kabul et/reddet izinler</string>
     <string name="extender_accessibility_service_event_sensor_call">\"Çağrı şartı\" Durum şartı için Erişebilirlik hizmeti. Erişebilirlik özelliği kullanılmıyor. Bu hizmet, çağrıları almak için lüzumlu.</string>
     <string name="extender_permissions_event_sensor_call">\"Çağrı şartı\" Durum şartı için izinler - Telefon izni</string>
     <string name="extender_permissions_event_sensor_call_28">\"Çağrı şartı\" Durum şartı için izinler - Telefon, Arama Kaydı izni</string>
@@ -32,11 +32,11 @@
     <string name="extender_battery_optimization_text">PhoneProfilesPlusExtender için pilin en iyi duruma getirilmesi - lütfen \"En iyi duruma getirilmedi\" grubuna ekleyin</string>
     <string name="extender_battery_optimization_optimized">En iyi duruma getirildi</string>
     <string name="extender_battery_optimization_not_optimized">En iyi duruma getirilmedi</string>
-    <string name="extender_battery_optimization_button">Aç\n\"Pilin en iyi duruma getirilmesi\"</string>
+    <string name="extender_battery_optimization_button">Aç Pilin en iyi duruma getirilmesi</string>
     <string name="extender_acra_email_body_device">Cihaz:</string>
     <string name="extender_acra_email_body_android_version">Android sürümü:</string>
     <string name="extender_permissions_popup_windows_in_background">Lütfen \"Arka planda çalışırken açılır pencereleri görüntüle\"yi faal hale getirin. Bu yapılmadan, \"Uygulamaları durdurmaya zorla\" çalışmayacaktır.</string>
-    <string name="extender_popup_windows_in_background_button">Aç\nDiğer izinler\n(MIUI)</string>
+    <string name="extender_popup_windows_in_background_button">Aç Diğer izinler (MIUI)</string>
     <string name="extender_notification_channel_grant_permission">İzin ver</string>
     <string name="extender_notification_channel_grant_permission_description">Hangi izinlere ihtiyaç olduğunu gösterir.</string>
     <string name="extender_notification_permission_title">İzin verilmedi</string>
@@ -60,5 +60,5 @@
     <string name="extender_support_subject">support</string>
     <string name="extender_menu_email_to_author">E-mail to author</string>
     <string name="extender_menu_discord_server">PhoneProfilesPlus server</string>
-    <string name="extender_menu_discord_invitation">PhoneProfilesPlus server invitation</string>
+    <string name="extender_menu_discord_invitation">Server invitation</string>
 </resources>

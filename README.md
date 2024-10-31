@@ -6,7 +6,7 @@
 PhoneProfilesPlusExtender (PPPE)
 ====================================
 
-[![version](https://img.shields.io/badge/version-8.1.7-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.1.7)
+[![version](https://img.shields.io/badge/version-8.1.7-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/9.0)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![License](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/henrichg/PhoneProfilesPlus/blob/master/LICENSE)
 [![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)\
@@ -23,6 +23,10 @@ Discord PPP server invitation: https://discord.gg/Yb5hgAstQ3
 __Install PhoneProfilesPlusExtender directly from PhoneProfilesPlus. But it is also possible to install it from an external source. If installing from PhoneProfilesPlus does not work, use external source. External sources are described below.__
  
 ### Sources of PhoneProfilesPlusExtender:
+
+NOTE: Google Play Protect may display dialog box with title "Unsafe app blocked" and description "This app was build for an older version of Android and doesn`t include the latest privacy protection."
+Please click in this dialog "More details" and then "Install anyway".\
+Dialog is displayed, because PPPE has target SDK vesion 27 (Android 8.1). Must be, because of functionalities in PPPE.
 
 Use keyword "PhoneProfilesPlusExtender" for search this application in these stores:
 
@@ -84,7 +88,7 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 - From Android 8.0
 - minSdkVersion = 26
 - targetSdkVersion = 27
-- compiledSdkVersion = 34
+- compiledSdkVersion = 35
 
 ##### Required external libs - open-source
 

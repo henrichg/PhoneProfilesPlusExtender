@@ -14,7 +14,7 @@
     android:layout_height="@dimen/divider_height"
     android:layout_marginStart="@dimen/divider_margin"
     android:layout_marginEnd="@dimen/divider_margin"
-    android:background="@color/dialog_divider" />
+    android:background="@color/dialogDividerColor" />
 
 <ScrollView
     android:id="@+id/activity_main_scroll_view"
@@ -123,6 +123,10 @@
             android:id="@+id/activity_main_accessibility_service_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:paddingStart="@dimen/button_padding"
+            android:paddingEnd="@dimen/button_padding"
+            android:minWidth="@dimen/button_min_width"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_accessibility_service_button"
@@ -132,22 +136,31 @@
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle" />
 
+        <View
+            android:id="@+id/activity_main_divider1"
+            android:layout_width="30dp"
+            android:layout_height="@dimen/small_divider_height"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/dialogDividerColor" />
+
         <TextView
             android:id="@+id/activity_main_accessibility_service_app_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_accessibility_service_disabled_app_info_1"
             android:textSize="14sp"
             tools:ignore="InconsistentLayout" />
+<!--        android:layout_marginTop="10dp"-->
 
         <TextView
             android:id="@+id/activity_main_accessibility_service_app_info_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
             android:text="@string/extender_accessibility_service_disabled_app_info_7"
             android:textSize="14sp"
             tools:ignore="InconsistentLayout"/>
@@ -156,6 +169,10 @@
             android:id="@+id/activity_main_accessibility_service_app_info_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:paddingStart="@dimen/button_padding"
+            android:paddingEnd="@dimen/button_padding"
+            android:minWidth="@dimen/button_min_width"
             android:layout_marginTop="15dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_accessibility_service_app_info_button"
@@ -166,18 +183,32 @@
             style="?android:attr/borderlessButtonStyle"
             tools:ignore="InconsistentLayout" />
 
+        <View
+            android:id="@+id/activity_main_divider_app_info"
+            android:layout_width="30dp"
+            android:layout_height="@dimen/small_divider_height"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/dialogDividerColor"
+            tools:ignore="InconsistentLayout" />
+
         <TextView
             android:id="@+id/activity_main_permission_popup_windows_in_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
             android:textSize="14sp"/>
+<!--        android:layout_marginTop="15dp"-->
 
         <Button
             android:id="@+id/activity_main_popup_windows_in_background_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:paddingStart="@dimen/button_padding"
+            android:paddingEnd="@dimen/button_padding"
+            android:minWidth="@dimen/button_min_width"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_popup_windows_in_background_button"
@@ -187,13 +218,22 @@
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle" />
 
+        <View
+            android:id="@+id/activity_main_divider_popup_window"
+            android:layout_width="30dp"
+            android:layout_height="@dimen/small_divider_height"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/dialogDividerColor" />
+
         <TextView
             android:id="@+id/activity_main_permissions_event_sensor_sms_mms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
             android:textSize="14sp"/>
+<!--        android:layout_marginTop="15dp"-->
 
         <TextView
             android:id="@+id/activity_main_sms_permissions_status"
@@ -209,6 +249,10 @@
             android:id="@+id/activity_main_sms_permissions_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:paddingStart="@dimen/button_padding"
+            android:paddingEnd="@dimen/button_padding"
+            android:minWidth="@dimen/button_min_width"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_permissions_button"
@@ -218,13 +262,22 @@
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle" />
 
+        <View
+            android:id="@+id/activity_main_divider3"
+            android:layout_width="30dp"
+            android:layout_height="@dimen/small_divider_height"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/dialogDividerColor" />
+
         <TextView
             android:id="@+id/activity_main_permissions_event_sensor_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="@string/extender_permissions_not_granted"
             android:textSize="14sp"/>
+<!--        android:layout_marginTop="15dp"-->
 
         <TextView
             android:id="@+id/activity_main_call_permissions_status"
@@ -240,6 +293,10 @@
             android:id="@+id/activity_main_call_permissions_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:paddingStart="@dimen/button_padding"
+            android:paddingEnd="@dimen/button_padding"
+            android:minWidth="@dimen/button_min_width"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_permissions_button"
@@ -249,13 +306,22 @@
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle" />
 
+        <View
+            android:id="@+id/activity_main_divider4"
+            android:layout_width="30dp"
+            android:layout_height="@dimen/small_divider_height"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/dialogDividerColor" />
+
         <TextView
             android:id="@+id/activity_main_battery_optimization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="@string/extender_battery_optimization_optimized"
             android:textSize="14sp"/>
+<!--        android:layout_marginTop="15dp"-->
 
         <TextView
             android:id="@+id/activity_main_battery_optimization_status"
@@ -271,6 +337,10 @@
             android:id="@+id/activity_main_battery_optimization_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:paddingStart="@dimen/button_padding"
+            android:paddingEnd="@dimen/button_padding"
+            android:minWidth="@dimen/button_min_width"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/extender_battery_optimization_button"

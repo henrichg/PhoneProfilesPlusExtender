@@ -8,14 +8,14 @@
     <string name="extender_accessibility_service_event_sensor_applications_orientation">Usługa Ułatwień Dostępu dla czujników: \"Czujnik Aplikacji\", \"Czujnik Orientacji\"</string>
     <string name="extender_accessibility_service_enabled">Włączona</string>
     <string name="extender_accessibility_service_disabled">Wyłączona</string>
-    <string name="extender_accessibility_service_button">Włącz/Wyłącz\nUsługę Ułatwień Dostępu</string>
+    <string name="extender_accessibility_service_button">Włącz/Wyłącz Usługę Ułatwień Dostępu</string>
     <string name="extender_setting_screen_not_found_alert">Nie znaleziono ekranu ustawień</string>
     <string name="extender_accessibility_service_permission">Usługa ułatwień dostępu PhoneProfilesPlusExtender</string>
     <string name="extender_accessibility_service_event_sensor_sms_mms">Usługa ułatwień dostępu dla parametru Zdarzeń \"Czujnik SMS/MMS\". Funkcja ułatwień dostępu nie jest używana, usługa jest potrzebna aby odbierać SMS oraz MMS.</string>
     <string name="extender_permissions_event_sensor_sms_mms">Uprawnienia dla parametru Zdarzeń \"Czujnik SMS/MMS\" - Dostęp do SMS</string>
     <string name="extender_permissions_not_granted">Nieprzyznane</string>
     <string name="extender_permissions_granted">Przyznane</string>
-    <string name="extender_permissions_button">Przyznaj/odbierz\nuprawnienia</string>
+    <string name="extender_permissions_button">Przyznaj/odbierz uprawnienia</string>
     <string name="extender_accessibility_service_event_sensor_call">Usługa ułatwień dostępu dla parametru Zdarzeń \"Czujnik Rozmowy\". Funkcja ułatwień dostępu nie jest używana, usługa jest potrzebna aby odbierać rozmowy.</string>
     <string name="extender_permissions_event_sensor_call">Uprawnienia dla parametru Zdarzeń \"Czujnik Rozmowy\" - dostęp do Telefonu</string>
     <string name="extender_permissions_event_sensor_call_28">Uprawnienia dla parametru Zdarzeń \"Czujnik Rozmowy\" - dostęp do Telefonu, Rejestru połączeń</string>
@@ -32,11 +32,11 @@
     <string name="extender_battery_optimization_text">Optymalizacja baterii dla PhoneProfilesPlusExtender - proszę dodać ją do grupy \"Nie zoptymalizowane\"</string>
     <string name="extender_battery_optimization_optimized">Zoptymalizowana</string>
     <string name="extender_battery_optimization_not_optimized">Bez optymalizacji</string>
-    <string name="extender_battery_optimization_button">Otwórz\noptymalizację baterii</string>
+    <string name="extender_battery_optimization_button">Otwórz optymalizację baterii </string>
     <string name="extender_acra_email_body_device">Urządzenie:</string>
     <string name="extender_acra_email_body_android_version">Wersja Androida:</string>
     <string name="extender_permissions_popup_windows_in_background">Proszę włączyć \"Wyświetlanie wyskakujących okienek podczas pracy w tle\". Bez tego nie będzie działać \"Wymuś zatrzymanie aplikacji\".</string>
-    <string name="extender_popup_windows_in_background_button">Otwórz\ninne uprawnienia\n(MIUI)</string>
+    <string name="extender_popup_windows_in_background_button">Otwórz inne uprawnienia (MIUI)</string>
     <string name="extender_notification_channel_grant_permission">Przyznaj uprawnienia</string>
     <string name="extender_notification_channel_grant_permission_description">Pokazuje, które uprawnienia musisz przyznać.</string>
     <string name="extender_notification_permission_title">Nie przyznano uprawnień</string>
@@ -60,5 +60,5 @@
     <string name="extender_support_subject">wsparcie</string>
     <string name="extender_menu_email_to_author">E-mail do autora</string>
     <string name="extender_menu_discord_server">Serwer PhoneProfilesPlus</string>
-    <string name="extender_menu_discord_invitation">Zaproszenie do serwera PhoneProfilesPlus</string>
+    <string name="extender_menu_discord_invitation">Zaproszenie do serwera</string>
 </resources>
