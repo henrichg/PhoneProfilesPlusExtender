@@ -57,7 +57,7 @@ class Permissions {
             intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE+PPPEApplication.PACKAGE_NAME));
             if (GlobalUtils.activityIntentExists(intent, activity)) {
                 //noinspection deprecation
-                activity.startActivity(intent);
+                activity.startActivityForResult(intent, MainActivity.RESULT_PERMISSIONS_SETTINGS);
             } else {
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
                 dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
@@ -86,7 +86,7 @@ class Permissions {
             intent.setData(Uri.parse(PPPEApplication.INTENT_DATA_PACKAGE+PPPEApplication.PACKAGE_NAME));
             if (GlobalUtils.activityIntentExists(intent, activity)) {
                 //noinspection deprecation
-                activity.startActivity(intent);
+                activity.startActivityForResult(intent, MainActivity.RESULT_PERMISSIONS_SETTINGS);
             } else {
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
                 dialogBuilder.setMessage(R.string.extender_setting_screen_not_found_alert);
