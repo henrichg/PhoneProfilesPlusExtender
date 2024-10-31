@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
 {
 
     private static final int RESULT_ACCESSIBILITY_SETTINGS = 1900;
-    private static final int RESULT_PERMISSIONS_SETTINGS = 1901;
+    static final int RESULT_PERMISSIONS_SETTINGS = 1901;
     private static final int RESULT_BATTERY_OPTIMIZATION_SETTINGS = 1902;
 
     int selectedLanguage = 0;
