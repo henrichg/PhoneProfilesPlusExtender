@@ -88,7 +88,7 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 - From Android 8.0
 - minSdkVersion = 26
 - targetSdkVersion = 27
-- compiledSdkVersion = 34
+- compiledSdkVersion = 35
 
 ##### Required external libs - open-source
 
