@@ -1,4 +1,4 @@
-8.1.7
+9.0
 Zoznam zmien:
 - Novinky v GUI a procesoch na pozadí.
 - Zmeny v GUI a procesoch na pozadí.
