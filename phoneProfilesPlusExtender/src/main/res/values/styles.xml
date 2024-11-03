@@ -114,6 +114,8 @@
         <item name="buttonBarNegativeButtonStyle">@style/AlertButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/AlertButtonStyle</item>
         <item name="buttonBarNeutralButtonStyle">@style/AlertButtonStyle</item>
+
+        <item name="android:windowAnimationStyle">@style/CustomDialogAnimation</item>
     </style>
 
     <style name="DialogStyleDayNight" parent="Theme.AppCompat.DayNight.Dialog">
@@ -125,6 +127,13 @@
         <item name="buttonBarNegativeButtonStyle">@style/AlertButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/AlertButtonStyle</item>
         <item name="buttonBarNeutralButtonStyle">@style/AlertButtonStyle</item>
+
+        <item name="android:windowAnimationStyle">@style/CustomDialogAnimation</item>
+    </style>
+
+    <style name="CustomDialogAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
     <style name="AlertButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
