@@ -71,5 +71,6 @@
     <string name="extender_menu_reddit" translatable="false">Reddit</string>
     <string name="extender_menu_bluesky" translatable="false">Bluesky</string>
     <string name="extender_notification_channel_exclamation">Exclamation</string>
+    <string name="extender_menu_mastodon" translatable="false">Mastodon</string>
 </resources>
 

@@ -365,6 +365,18 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         else
+        if (itemId == R.id.menu_mastodon) {
+            String url = PPPEApplication.MASTODON_URL;
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            try {
+                startActivity(Intent.createChooser(intent, getString(R.string.extender_web_browser_chooser)));
+            } catch (Exception e) {
+                PPPEApplicationStatic.recordException(e);
+            }
+            return true;
+        }
+        else
         if (DebugVersion.debugMenuItems(itemId, this))
             return true;
         else
