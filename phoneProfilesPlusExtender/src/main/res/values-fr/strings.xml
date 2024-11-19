@@ -40,8 +40,8 @@
     <string name="extender_notification_channel_grant_permission">Accorder la permission</string>
     <string name="extender_notification_channel_grant_permission_description">Affiche la permission nécessaire pour l\'accorder.</string>
     <string name="extender_notification_permission_title">Autorisation non accordée</string>
-    <string name="extender_notification_sms_mms_permission_text">L\'autorisation pour le paramètre d\'événement \"Capteur SMS/MMS\" n\'est pas accordée. Cliquez sur cette notification pour ouvrir Extender. Dans celle-ci, utiliser le bouton pour accorder cette autorisation.</string>
-    <string name="extender_notification_call_permission_text">L\'autorisation pour le paramètre \"Capteur d\'appel\" n\'est pas accordée. Cliquez sur cette notification pour ouvrir Extender. Dedans, utilisez le bouton pour accorder cette autorisation.</string>
+    <string name="extender_notification_sms_mms_permission_text">L\'autorisation pour le paramètre d\'événement \"Capteur SMS/MMS\" n\'est pas accordée. Cliquez sur cette notification pour ouvrir PPPE. Dans celle-ci, utiliser le bouton pour accorder cette autorisation.</string>
+    <string name="extender_notification_call_permission_text">L\'autorisation pour le paramètre \"Capteur d\'appel\" n\'est pas accordée. Cliquez sur cette notification pour ouvrir PPPE. Dedans, utilisez le bouton pour accorder cette autorisation.</string>
     <string name="extender_notifications_permission_text">La permission pour les notifications n\'est pas accordée.\n\nValidez cette permission pour PhoneProfilesPlus. Sans cela les notifications de PhoneProfilesPlus ne seront pas affichées.</string>
     <string name="extender_enable_notificaitons_button">Activé</string>
     <string name="extender_menu_choose_language">Choisissez la langue</string>
@@ -61,4 +61,5 @@
     <string name="extender_menu_email_to_author">Envoyer un courriel à l\'auteur</string>
     <string name="extender_menu_discord_server">Serveur PhoneProfilesPlus</string>
     <string name="extender_menu_discord_invitation">Invitation au serveur</string>
+    <string name="extender_notification_channel_exclamation">Exclamation</string>
 </resources>

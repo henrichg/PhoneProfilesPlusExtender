@@ -40,8 +40,8 @@
     <string name="extender_notification_channel_grant_permission">Toestemming verlenen</string>
     <string name="extender_notification_channel_grant_permission_description">Toont toestemming die nodig is.</string>
     <string name="extender_notification_permission_title">Geen toestemming verleend</string>
-    <string name="extender_notification_sms_mms_permission_text">Toestemming voor event parameter \"SMS/MMS sensor\" is niet gegeven. Klik op deze notificatie om de extensie te openen. Binnen deze optie kun je de knop gebruiken om deze machtiging te verlenen.</string>
-    <string name="extender_notification_call_permission_text">Er is geen toestemming gegeven voor de event parameter \"Oproep sensor\". Klik op deze melding om de Extender te openen. Daarbinnen gebruik je de knop om de toestemming te verlenen.</string>
+    <string name="extender_notification_sms_mms_permission_text">Machtiging voor event parameter \"SMS/MMS sensor\" is niet verleend. Klik op deze notificatie om PPPE te openen. Gebruik de knop om deze machtiging te verlenen.</string>
+    <string name="extender_notification_call_permission_text">Er is geen toestemming gegeven voor de event parameter \"Oproep sensor\". Klik op deze melding om de PPPE te openen. Daarbinnen gebruik je de knop om de toestemming te verlenen.</string>
     <string name="extender_notifications_permission_text">Toegang tot meldingen is niet verleend.\n\nSchakel meldingen voor PhoneProfilesPlus in. Zonder dit aan te zetten worden meldingen van PhoneProfilesPlus niet weergegeven.</string>
     <string name="extender_enable_notificaitons_button">Inschakelen</string>
     <string name="extender_menu_choose_language">Taal kiezen</string>
@@ -61,4 +61,5 @@
     <string name="extender_menu_email_to_author">E-mail aan auteur</string>
     <string name="extender_menu_discord_server">PhoneProfilesPlus server</string>
     <string name="extender_menu_discord_invitation">Server uitnodiging</string>
+    <string name="extender_notification_channel_exclamation">Uitroepteken</string>
 </resources>
