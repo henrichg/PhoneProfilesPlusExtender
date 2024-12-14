@@ -63,7 +63,7 @@ public class PPPEApplication extends Application {
                                                 //+ "|FromPhoneProfilesPlusBroadcastReceiver"
 
                                                 //+"|[BROADCAST_TO_PPP]"
-                                                //+"[MEMORY_LEAK]"
+                                                //+"|[MEMORY_LEAK]"
             ;
 
     static final boolean deviceIsOppo = isOppo();
