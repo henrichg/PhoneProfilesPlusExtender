@@ -2,6 +2,7 @@ package sk.henrichg.phoneprofilesplusextender;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import org.acra.ACRA;
@@ -61,7 +63,7 @@ public class PPPEApplication extends Application {
                                                 //+ "|FromPhoneProfilesPlusBroadcastReceiver"
 
                                                 //+"|[BROADCAST_TO_PPP]"
-                                                //+"[MEMORY_LEAK]"
+                                                //+"|[MEMORY_LEAK]"
             ;
 
     static final boolean deviceIsOppo = isOppo();
@@ -115,11 +117,14 @@ public class PPPEApplication extends Application {
     static volatile boolean HAS_FEATURE_TELEPHONY = false;
 
     static final String XDA_DEVELOPERS_PPP_URL = "https://forum.xda-developers.com/t/phoneprofilesplus.3799429/";
-    static final String TWITTER_URL = "https://x.com/henrichg";
+    //static final String TWITTER_URL = "https://x.com/henrichg";
     static final String REDDIT_URL = "https://www.reddit.com/user/henrichg/";
     static final String BLUESKY_URL = "https://bsky.app/profile/henrichg.bsky.social";
     static final String DISCORD_SERVER_URL = "https://discord.com/channels/1258733423426670633/1258733424504737936";
     static final String DISCORD_INVITATION_URL = "https://discord.gg/Yb5hgAstQ3";
+    static final String MASTODON_URL = "https://mastodon.social/@henrichg";
+
+    static final String EXCLAMATION_NOTIFICATION_CHANNEL = "phoneProfilesPlusExtender_exclamation";
 
     //@SuppressWarnings("SpellCheckingInspection")
     //static private FirebaseAnalytics mFirebaseAnalytics;
@@ -211,6 +216,8 @@ public class PPPEApplication extends Application {
         //Log.e("##### PPPEApplication.onCreate", "Start  uid="+uid);
 //        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEApplication.onCreate", "xxxx (2)");
 
+        createExclamationNotificationChannel(this);
+
         PPPEApplicationStatic.createGrantPermissionNotificationChannel(this, true);
 
         Log.e("##### PPPEApplication.onCreate", "after cerate notification channel");
@@ -235,7 +242,7 @@ public class PPPEApplication extends Application {
                 }
             } catch (Exception e) {
                 //Log.e("PPPEApplication.onCreate", Log.getStackTraceString(e));
-                PPPEApplication.recordException(e);
+                PPPEApplicationStatic.recordException(e);
             }
         }*/
         //////////////////////////////////////////
@@ -265,7 +272,7 @@ public class PPPEApplication extends Application {
             PPPEApplicationStatic.setCustomKey("DEBUG", BuildConfig.DEBUG);
         } catch (Exception ignored) {}
 
-//        PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEApplication.onCreate", "xxxx");
+//        PPPEApplicationStatic.logE("[BROADCAST_TO_PPP] PPPEApplication.onCreate", "xxxx");
         Intent sendIntent = new Intent(ACTION_PPPEXTENDER_STARTED);
         sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
     }
@@ -395,6 +402,7 @@ public class PPPEApplication extends Application {
                         .withResDiscardButtonIcon(0)
                         .withSendOnClick(true)
                         .withColor(ContextCompat.getColor(base, R.color.errorColor))
+                        .withChannelId(EXCLAMATION_NOTIFICATION_CHANNEL)
                         .withEnabled(true)
                         .build(),
                 new MailSenderConfigurationBuilder()
@@ -532,6 +540,31 @@ public class PPPEApplication extends Application {
             return packageManager.hasSystemFeature(feature);
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    static void createExclamationNotificationChannel(Context context) {
+        try {
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context.getApplicationContext());
+
+            // The user-visible name of the channel.
+            CharSequence name = context.getString(R.string.extender_notification_channel_exclamation);
+            // The user-visible description of the channel.
+            String description = "";
+
+            NotificationChannel channel = new NotificationChannel(EXCLAMATION_NOTIFICATION_CHANNEL, name, NotificationManager.IMPORTANCE_HIGH);
+
+            // Configure the notification channel.
+            channel.setDescription(description);
+            channel.enableLights(true);
+            channel.enableVibration(true);
+            //channel.setSound(null, null);
+            //channel.setShowBadge(false);
+            channel.setBypassDnd(true);
+
+            notificationManager.createNotificationChannel(channel);
+        } catch (Exception e) {
+            Log.e("PPPEApplication.createExclamationNotificationChannel", Log.getStackTraceString(e));
         }
     }
 

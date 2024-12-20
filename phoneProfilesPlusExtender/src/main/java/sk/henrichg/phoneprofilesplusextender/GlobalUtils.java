@@ -21,7 +21,7 @@ class GlobalUtils {
             return !activities.isEmpty();
         } catch (Exception e) {
             //Log.e("MainActivity.activityActionExists", Log.getStackTraceString(e));
-            //PPPEApplication.recordException(e);
+            //PPPEApplicationStatic.recordException(e);
             return false;
         }
     }
@@ -32,7 +32,7 @@ class GlobalUtils {
             return !activities.isEmpty();
         } catch (Exception e) {
             //Log.e("MainActivity.activityIntentExists", Log.getStackTraceString(e));
-            //PPPEApplication.recordException(e);
+            //PPPEApplicationStatic.recordException(e);
             return false;
         }
     }

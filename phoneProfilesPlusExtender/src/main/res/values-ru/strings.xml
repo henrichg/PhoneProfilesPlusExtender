@@ -40,8 +40,8 @@
     <string name="extender_notification_channel_grant_permission">Предоставление разрешения</string>
     <string name="extender_notification_channel_grant_permission_description">Показывает разрешение, которое нужно предоставить.</string>
     <string name="extender_notification_permission_title">Разрешение не предоставлено</string>
-    <string name="extender_notification_sms_mms_permission_text">Разрешение для параметра \"Датчик SMS/MMS\" не предоставлено. Нажмите на это уведомление, чтобы открыть Extender, и предоставьте разрешение, нажав на соответствующую кнопку.</string>
-    <string name="extender_notification_call_permission_text">Разрешение для параметра \"Датчик вызовов\" не предоставлено. Нажмите на это уведомление, чтобы открыть Extender, и предоставьте разрешение, нажав на соответствующую кнопку.</string>
+    <string name="extender_notification_sms_mms_permission_text">Разрешение для параметра \"Датчик SMS/MMS\" не предоставлено. Нажмите на это уведомление, чтобы открыть PPPE, и предоставьте разрешение, нажав на соответствующую кнопку.</string>
+    <string name="extender_notification_call_permission_text">Разрешение для параметра \"Датчик вызовов\" не предоставлено. Нажмите на это уведомление, чтобы открыть PPPE, и предоставьте разрешение, нажав на соответствующую кнопку.</string>
     <string name="extender_notifications_permission_text">Разрешение на показ уведомлений не предоставлено.\n\nРазрешите, пожалуйста, уведомления от PhoneProfilesPlusExtender, иначе они не будут отображаться.</string>
     <string name="extender_enable_notificaitons_button">Разрешить</string>
     <string name="extender_menu_choose_language">Выбрать язык</string>
@@ -61,4 +61,5 @@
     <string name="extender_menu_email_to_author">Отправить письмо автору</string>
     <string name="extender_menu_discord_server">Сервер PhoneProfilesPlus</string>
     <string name="extender_menu_discord_invitation">Приглашение на сервер</string>
+    <string name="extender_notification_channel_exclamation">Предупреждение</string>
 </resources>

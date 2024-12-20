@@ -40,8 +40,8 @@
     <string name="extender_notification_channel_grant_permission">授予权限</string>
     <string name="extender_notification_channel_grant_permission_description">显示需要授予的权限。</string>
     <string name="extender_notification_permission_title">未授予权限</string>
-    <string name="extender_notification_sms_mms_permission_text">未授予事件参数“SMS/MMS传感器”权限，点击此通知打开扩展。使用按钮授予此权限。</string>
-    <string name="extender_notification_call_permission_text">未授予事件参数“调用传感器”的权限，点击此通知打开扩展。使用按钮授予此权限。</string>
+    <string name="extender_notification_sms_mms_permission_text">未授予事件参数“SMS/MMS 传感器”权限。点击此通知打开 PPPE。点击使用按钮以授予此权限。</string>
+    <string name="extender_notification_call_permission_text">未授予事件参数“调用传感器”权限。单击此通知打开PPPE。点击使用按钮授予此权限。</string>
     <string name="extender_notifications_permission_text">未授予通知权限。\n\n请启用 PhoneProfilesPlusExtender 的通知。没有启用此功能，PhoneProfilesPlusExtender 的通知将不会被显示。</string>
     <string name="extender_enable_notificaitons_button">启用</string>
     <string name="extender_menu_choose_language">选择语言</string>
@@ -61,4 +61,5 @@
     <string name="extender_menu_email_to_author">给作者发邮件</string>
     <string name="extender_menu_discord_server">PhoneProfilesPlus 服务器</string>
     <string name="extender_menu_discord_invitation">服务器邀请</string>
+    <string name="extender_notification_channel_exclamation">警告</string>
 </resources>

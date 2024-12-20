@@ -40,8 +40,8 @@
     <string name="extender_notification_channel_grant_permission">Udelenie povolenia</string>
     <string name="extender_notification_channel_grant_permission_description">Zobrazuje povolenie, ktoré je potrebné, aby ste udelili.</string>
     <string name="extender_notification_permission_title">Povolenie nebolo udelené</string>
-    <string name="extender_notification_sms_mms_permission_text">Povolenie pre parameter udalosti \"Senzor SMS/MMS\" nie je udelené. Kliknutím na toto upozornenie otvoríte Extender. V ňom použite tlačidlo na udelenie tohto povolenia.</string>
-    <string name="extender_notification_call_permission_text">Povolenie pre parameter udalosti \"Senzor hovoru\" nie je udelené. Kliknutím na toto upozornenie otvoríte Extender. V ňom použite tlačidlo na udelenie tohto povolenia.</string>
+    <string name="extender_notification_sms_mms_permission_text">Povolenie pre parameter udalosti \"Senzor SMS/MMS\" nie je udelené. Kliknutím na toto upozornenie otvoríte PPPE. V ňom použite tlačidlo na udelenie tohto povolenia.</string>
+    <string name="extender_notification_call_permission_text">Povolenie pre parameter udalosti \"Senzor hovoru\" nie je udelené. Kliknutím na toto upozornenie otvoríte PPPE. V ňom použite tlačidlo na udelenie tohto povolenia.</string>
     <string name="extender_notifications_permission_text">Povolenie na notifikácie nie je udelené.\n\nPovoľte upozornenia pre PhoneProfilesPlusExtender. Bez tohto povolenia sa upozornenia z PhoneProfilesPlusExtender nebudú zobrazovať.</string>
     <string name="extender_enable_notificaitons_button">Povoliť</string>
     <string name="extender_menu_choose_language">Vybrať jazyk</string>
@@ -58,7 +58,8 @@
     <string name="extender_accessibility_service_app_info_button">Informácie o aplikácii</string>
     <string name="extender_menu_support">Podpora</string>
     <string name="extender_support_subject">podpora</string>
-    <string name="extender_menu_email_to_author">Poslať e-mail autorovi</string>
+    <string name="extender_menu_email_to_author">E-mail autorovi</string>
     <string name="extender_menu_discord_server">Server PhoneProfilesPlus</string>
     <string name="extender_menu_discord_invitation">Pozvánka na server</string>
+    <string name="extender_notification_channel_exclamation">Upozornenie</string>
 </resources>

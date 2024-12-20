@@ -139,7 +139,7 @@ public class ForceCloseIntentService extends IntentService {
                 //Log.e("ForceCloseIntentServiceo.nHandleIntent", "profileIdList.size()="+profileIdList.size());
 
                 for (long _profileId : profileIdList) {
-//                    PPPEApplication.logE("[BROADCAST_TO_PPP] ForceCloseIntentService.onHandleIntent", "xxxx");
+//                    PPPEApplicationStatic.logE("[BROADCAST_TO_PPP] ForceCloseIntentService.onHandleIntent", "xxxx");
                     Intent _intent = new Intent(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_END);
                     _intent.putExtra(PPPEApplication.EXTRA_PROFILE_ID, _profileId);
                     sendBroadcast(_intent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
@@ -180,7 +180,7 @@ public class ForceCloseIntentService extends IntentService {
             return !activities.isEmpty();
         } catch (Exception e) {
             //Log.e("ForceCloseIntentService.activityIntentExists", Log.getStackTraceString(e));
-            //PPPEApplication.recordException(e);
+            //PPPEApplicationStatic.recordException(e);
             return false;
         }
     }
