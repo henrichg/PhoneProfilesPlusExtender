@@ -17,8 +17,8 @@ PhoneProfilesPlusExtender (PPPE)
 [![Reddit](https://img.shields.io/badge/Reddit-FF4500?logo=reddit&logoColor=white&label=u/henrichg)](https://www.reddit.com/user/henrichg/)
 [![Bluesky](https://img.shields.io/badge/Bluesky-0285FF?logo=bluesky&logoColor=fff&label=@henrichg)](https://bsky.app/profile/henrichg.bsky.social)
 [![Mastodon](https://img.shields.io/badge/Mastodon-6364FF?logo=Mastodon&logoColor=white&label=@henrichg)](https://mastodon.social/@henrichg)\
-Discord PPP server invitation: https://discord.gg/Yb5hgAstQ3
-
+Discord PPP server invitation: https://discord.gg/Yb5hgAstQ3 \
+\
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AF5QK49DMAL2U&currency_code=EUR)
 
 __Install PhoneProfilesPlusExtender directly from PhoneProfilesPlus. But it is also possible to install it from an external source. If installing from PhoneProfilesPlus does not work, use external source. External sources are described below.__
