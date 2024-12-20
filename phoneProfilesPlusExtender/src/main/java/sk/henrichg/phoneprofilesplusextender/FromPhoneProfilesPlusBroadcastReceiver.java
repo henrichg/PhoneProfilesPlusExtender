@@ -24,7 +24,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         if ((intent == null) || (intent.getAction() == null))
             return;
 
-//        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
+//        PPPEApplicationStatic.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "received broadcast action="+intent.getAction());
 
         final Context appContext = context.getApplicationContext();
 
@@ -103,12 +103,12 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                         break;
                 }
             }
-            //PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
+            //PPPEApplicationStatic.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
         }
         //else
         //if (action.equals(PPPEApplication.ACTION_ACCESSIBILITY_SERVICE_IS_CONNECTED)) {
             // send answer to PPP
-//            PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "PPPEApplication.ACTION_PPPEXTENDER_IS_RUNNING");
+//            PPPEApplicationStatic.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "PPPEApplication.ACTION_PPPEXTENDER_IS_RUNNING");
         //    Intent sendIntent = new Intent(PPPEAccessibilityService.ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
         //    context.sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
         //}
@@ -116,8 +116,8 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
         if (action.equals(PPPEAccessibilityService.ACTION_FORCE_STOP_APPLICATIONS_START)) {
             if (!intent.getBooleanExtra(PPPEApplication.EXTRA_BLOCK_PROFILE_EVENT_ACTION, false)) {
                 long profileId = intent.getLongExtra(PPPEApplication.EXTRA_PROFILE_ID, 0);
-//                PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "profileId="+profileId);
-//                PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "applications="+intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
+//                PPPEApplicationStatic.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "profileId="+profileId);
+//                PPPEApplicationStatic.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "applications="+intent.getStringExtra(ForceCloseIntentService.EXTRA_APPLICATIONS));
 
                 if (PPPEAccessibilityService.instance != null) {
                     Intent scanServiceIntent = new Intent(appContext, ForceCloseIntentService.class);
@@ -133,7 +133,7 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
                 if (PPPEApplication.registeredLockDeviceFunctionPP ||
                         PPPEApplication.registeredLockDeviceFunctionPPP) {
                     if ((Build.VERSION.SDK_INT >= 28) && (PPPEAccessibilityService.instance != null)) {
-//                        PPPEApplication.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "lock device");
+//                        PPPEApplicationStatic.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "lock device");
                         PPPEAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
                     }
                 }

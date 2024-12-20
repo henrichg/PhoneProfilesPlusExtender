@@ -147,7 +147,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
         {
             public void onChange(boolean selfChange)
             {
-                PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","xxx");
+                PPPEApplicationStatic.logE("SMSBroadcastReceiver.smsObserver.onChange","xxx");
 
                 // read outgoing sms from db
                 Cursor cursor = _context.getContentResolver().query(Uri.parse(CONTENT_SMS), null, null, null, null);
@@ -159,7 +159,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                     // is sent successfully (available in SENT box).
                     if (protocol != null || type != MESSAGE_TYPE_SENT)
                     {
-                        PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","no SMS in SENT box");
+                        PPPEApplicationStatic.logE("SMSBroadcastReceiver.smsObserver.onChange","no SMS in SENT box");
                         return;
                     }
                     int dateColumn = cursor.getColumnIndex("date");
@@ -170,10 +170,10 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                     Date date = new Date(cursor.getLong(dateColumn));
                     //String message = cursor.getString(bodyColumn);
 
-                    PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","sms sent");
-                    PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","to="+to);
-                    PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","date="+date);
-                    //PPPEApplication.logE("SMSBroadcastReceiver.smsObserver.onChange","message="+message);
+                    PPPEApplicationStatic.logE("SMSBroadcastReceiver.smsObserver.onChange","sms sent");
+                    PPPEApplicationStatic.logE("SMSBroadcastReceiver.smsObserver.onChange","to="+to);
+                    PPPEApplicationStatic.logE("SMSBroadcastReceiver.smsObserver.onChange","date="+date);
+                    //PPPEApplicationStatic.logE("SMSBroadcastReceiver.smsObserver.onChange","message="+message);
 
                     SharedPreferences preferences = _context.getSharedPreferences(PPApplication.APPLICATION_PREFS_NAME, Context.MODE_PRIVATE);
                     Editor editor = preferences.edit();
@@ -217,7 +217,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
         {
             public void onChange(boolean selfChange)
             {
-                PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","xxx");
+                PPPEApplicationStatic.logE("SMSBroadcastReceiver.mmsObserver.onChange","xxx");
 
                 // read outgoing mms from db
                 Uri uriMMS = Uri.parse("content://mms/");
@@ -228,8 +228,8 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                    currMMSCount = mmsCur.getCount();
                 }
 
-                PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","mmsCount="+mmsCount);
-                PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","currMMSCount="+currMMSCount);
+                PPPEApplicationStatic.logE("SMSBroadcastReceiver.mmsObserver.onChange","mmsCount="+mmsCount);
+                PPPEApplicationStatic.logE("SMSBroadcastReceiver.mmsObserver.onChange","currMMSCount="+currMMSCount);
                 
                 if (currMMSCount > mmsCount)
                 {
@@ -238,12 +238,12 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                         // 132 (RETRIEVE CONF) 130 (NOTIF IND) 128 (SEND REQ)
                         int type = Integer.parseInt(mmsCur.getString(mmsCur.getColumnIndex("m_type")));
 
-                        PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","type="+type);
+                        PPPEApplicationStatic.logE("SMSBroadcastReceiver.mmsObserver.onChange","type="+type);
 
                         if (type == 128) {
                            // Outgoing MMS
 
-                            PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","mms sent");
+                            PPPEApplicationStatic.logE("SMSBroadcastReceiver.mmsObserver.onChange","mms sent");
 
                             int id = Integer.parseInt(mmsCur.getString(mmsCur.getColumnIndex("_id")));
 
@@ -259,7 +259,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                                         int addColIndex = addrCur.getColumnIndex("address");
                                          String to = addrCur.getString(addColIndex);
 
-                                        PPPEApplication.logE("SMSBroadcastReceiver.mmsObserver.onChange","to="+to);
+                                        PPPEApplicationStatic.logE("SMSBroadcastReceiver.mmsObserver.onChange","to="+to);
 
                                         SharedPreferences preferences = _context.getSharedPreferences(PPApplication.APPLICATION_PREFS_NAME, Context.MODE_PRIVATE);
                                         Editor editor = preferences.edit();

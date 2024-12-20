@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void refreshGUIFromListener() {
-        //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (2)");
+        //PPPEApplicationStatic.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (2)");
         displayAccessibilityServiceStatus();
     }
 
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public void onReceive( Context context, Intent intent ) {
-            //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (1)");
+            //PPPEApplicationStatic.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (1)");
 //            PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.refreshGUIBroadcastReceiver.onReceive", "xxxxxx");
             listener.refreshGUIFromListener();
         }
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_main);
 
-        //PPPEApplication.logE("MainActivity.onCreated", "xxx");
+        //PPPEApplicationStatic.logE("MainActivity.onCreated", "xxx");
 
         if (getSupportActionBar() != null) {
             //getSupportActionBar().setHomeButtonEnabled(false);

@@ -58,7 +58,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     protected void onServiceConnected() {
         super.onServiceConnected();
 
-//        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
+//        PPPEApplicationStatic.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
 //        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onServiceConnected", "xxxx");
 
         instance = this;
@@ -111,7 +111,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             if (PPPEApplication.smsBroadcastReceiver == null) {
-                //PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "sms receiver");
+                //PPPEApplicationStatic.logE("PPPEAccessibilityService.onServiceConnected", "sms receiver");
                 PPPEApplication.smsBroadcastReceiver = new SMSBroadcastReceiver();
                 IntentFilter intentFilter21 = new IntentFilter();
                 intentFilter21.addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
@@ -120,7 +120,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
 
             if (PPPEApplication.mmsBroadcastReceiver == null) {
-                //PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "mms receiver");
+                //PPPEApplicationStatic.logE("PPPEAccessibilityService.onServiceConnected", "mms receiver");
                 PPPEApplication.mmsBroadcastReceiver = new SMSBroadcastReceiver();
                 IntentFilter intentFilter22;
                 intentFilter22 = IntentFilter.create(Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION, "application/vnd.wap.mms-message");
@@ -151,11 +151,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         Intent refreshIntent = new Intent(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER);
         appContext.sendBroadcast(refreshIntent);
 
-//        PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEAccessibilityService.onServiceConnected", "xxxx");
+//        PPPEApplicationStatic.logE("[BROADCAST_TO_PPP] PPPEAccessibilityService.onServiceConnected", "xxxx");
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
         appContext.sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
 
-//        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[END]");
+//        PPPEApplicationStatic.logE("PPPEAccessibilityService.onServiceConnected", "[END]");
 
     }
 
@@ -211,7 +211,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 //                PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "forceStopStarted="+PPPEApplication.forceStopStarted);
 //                PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
                 if (PPPEApplication.forceStopStarted) {
-//                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "in forceStopStarted");
+//                    PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "in forceStopStarted");
 //                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "PPPEApplication.forceStopStarted=true");
                     // force stop is started in PPP
                     AccessibilityNodeInfo nodeInfo;
@@ -485,7 +485,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     @Override
     public void onInterrupt() {
-//        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
+//        PPPEApplicationStatic.logE("PPPEAccessibilityService.onInterrupt", "xxx");
 //        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onInterrupt", "xxxxx");
 
         // !!! do not call this, because will not be working Call, SMS sensor
@@ -495,14 +495,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     @Override
     public boolean onUnbind(Intent intent) {
-//        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
+//        PPPEApplicationStatic.logE("PPPEAccessibilityService.onUnbind", "[START]");
 //        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onUnbind", "xxxxx");
 
         accessibilityDisabled(true);
 
         packageManager = null;
 
-        //PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[END]");
+        //PPPEApplicationStatic.logE("PPPEAccessibilityService.onUnbind", "[END]");
 
         return super.onUnbind(intent);
     }
@@ -547,22 +547,22 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     SubscriptionManager mSubscriptionManager = (SubscriptionManager) appContext.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
                     //SubscriptionManager.from(appContext);
                     if (mSubscriptionManager != null) {
-//                        PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "mSubscriptionManager != null");
+//                        PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "mSubscriptionManager != null");
                         List<SubscriptionInfo> subscriptionList = null;
                         try {
                             // Loop through the subscription list i.e. SIM list.
                             subscriptionList = mSubscriptionManager.getActiveSubscriptionInfoList();
-//                            PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList=" + subscriptionList);
+//                            PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList=" + subscriptionList);
                         } catch (SecurityException e) {
-                            //PPApplication.recordException(e);
+                            //PPPEApplicationStatic.recordException(e);
                         }
                         if (subscriptionList != null) {
-//                            PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList.size()=" + subscriptionList.size());
+//                            PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList.size()=" + subscriptionList.size());
                             int size = subscriptionList.size();
                             for (int i = 0; i < size; i++) {
                                 // Get the active subscription ID for a given SIM card.
                                 SubscriptionInfo subscriptionInfo = subscriptionList.get(i);
-//                                PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionInfo=" + subscriptionInfo);
+//                                PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionInfo=" + subscriptionInfo);
                                 if (subscriptionInfo != null) {
                                     int subscriptionId = subscriptionInfo.getSubscriptionId();
                                     if (i == 0) {
@@ -589,14 +589,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     }
                                 }
 //                                else
-//                                    PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionInfo == null");
+//                                    PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionInfo == null");
                             }
                         }
 //                        else
-//                            PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList == null");
+//                            PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList == null");
                     }
 //                    else
-//                        PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "mSubscriptionManager == null");
+//                        PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "mSubscriptionManager == null");
                 }
                 else {
 //                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.registerPhoneStateListener", "(default SIM)");
@@ -613,22 +613,22 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     static boolean isEnabled(Context context) {
         //int accessibilityEnabled = 0;
         final String service = EXTENDER_ACCESSIBILITY_PACKAGE_NAME + "/" + EXTENDER_ACCESSIBILITY_PACKAGE_NAME + ".PPPEAccessibilityService";
-//        PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "service = " + service);
+//        PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "service = " + service);
 
         // Do not use: it returns always 0 :-(
         /*try {
             accessibilityEnabled = Settings.Secure.getInt(
                     context.getApplicationContext().getContentResolver(),
                     android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
-            PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "accessibilityEnabled = " + accessibilityEnabled);
+            PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "accessibilityEnabled = " + accessibilityEnabled);
         } catch (Settings.SettingNotFoundException e) {
-            PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "Error finding setting, default accessibility to not found: "
+            PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "Error finding setting, default accessibility to not found: "
                     + e.getMessage());
         }*/
 
         TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(':');
         //if (accessibilityEnabled == 1) {
-        //    PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "***ACCESSIBILITY IS ENABLED*** -----------------");
+        //    PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "***ACCESSIBILITY IS ENABLED*** -----------------");
         String settingValue = Settings.Secure.getString(
                 context.getApplicationContext().getContentResolver(),
                 Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
@@ -636,10 +636,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             mStringColonSplitter.setString(settingValue);
             while (mStringColonSplitter.hasNext()) {
                 String accessibilityService = mStringColonSplitter.next();
-//                    PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "-------------- > accessibilityService :: " + accessibilityService/* + " " + service*/);
+//                    PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "-------------- > accessibilityService :: " + accessibilityService/* + " " + service*/);
                 if (accessibilityService.equalsIgnoreCase(service)) {
-                    //PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "We've found the correct setting - accessibility is switched on!");
-//                        PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "***ACCESSIBILITY IS ENABLED*** -----------------");
+                    //PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "We've found the correct setting - accessibility is switched on!");
+//                        PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "***ACCESSIBILITY IS ENABLED*** -----------------");
                     return true;
                 }
             }
@@ -657,14 +657,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     //Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "serviceId=" + service.getId());
                     try {
                         if (service.getId().contains(PPPEApplication.PACKAGE_NAME)) {
-                            //PPPEApplication.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
+                            //PPPEApplicationStatic.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
                             return true;
                         }
 
 //                        if (service.packageNames != null) {
 //                            for (String packageName : service.packageNames) {
 //                                if (PPApplication.EXTENDER_ACCESSIBILITY_PACKAGE_NAME.equals(packageName)) {
-//                                    //PPPEApplication.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
+//                                    //PPPEApplicationStatic.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
 //                                    return true;
 //                                }
 //                            }
