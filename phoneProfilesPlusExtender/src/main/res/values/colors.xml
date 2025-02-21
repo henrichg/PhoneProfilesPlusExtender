@@ -39,4 +39,6 @@
     <color name="pppeColorBlack">#000000</color>
     <color name="pppeColorTransparent">#00000000</color>
 
+    <color name="dialogTitleTextColor">#212121</color>
+
 </resources>
