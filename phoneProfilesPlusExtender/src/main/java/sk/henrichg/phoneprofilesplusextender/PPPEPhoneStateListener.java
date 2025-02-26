@@ -52,20 +52,20 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
         switch (state) {
             case TelephonyManager.CALL_STATE_RINGING:
-//                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_RINGING");
+//                PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_RINGING");
 //                if (subscriptionInfo != null)
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
 //                else
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
 
 //                if (phoneNumber == null)
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "phoneNumber=null");
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "phoneNumber=null");
 //                else
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "phoneNumber="+phoneNumber);
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "phoneNumber="+phoneNumber);
 //                if (savedNumber == null)
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "savedNumber=null");
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "savedNumber=null");
 //                else
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "savedNumber="+savedNumber);
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "savedNumber="+savedNumber);
                 if ((savedNumber == null) && (phoneNumber == null)) {
                     // CALL_STATE_RINGING is called twice.
                     // When savedNumber and incomingNumber are not filled,
@@ -81,24 +81,24 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
                 }
                 break;
             case TelephonyManager.CALL_STATE_OFFHOOK:
-//                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_OFFHOOK");
+//                PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_OFFHOOK");
 //                if (subscriptionInfo != null)
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
 //                else
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
                 //Transition of ringing->off hook are pickups of incoming calls.  Nothing down on them
 
-//                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "incomingNumber="+phoneNumber);
+//                PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "incomingNumber="+phoneNumber);
                 if(lastState != TelephonyManager.CALL_STATE_RINGING){
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "isIncoming=false");
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "savedNumber="+savedNumber);
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "isIncoming=false");
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "savedNumber="+savedNumber);
                     inCall = true;
                     isIncoming = false;
                     eventTime = new Date();
                     onOutgoingCallAnswered(savedNumber, eventTime);
                 }
                 else {
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "isIncoming=true");
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "isIncoming=true");
                     inCall = true;
                     isIncoming = true;
                     eventTime = new Date();
@@ -106,11 +106,11 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
                 }
                 break;
             case TelephonyManager.CALL_STATE_IDLE:
-//                PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_IDLE");
+//                PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "state=CALL_STATE_IDLE");
 //                if (subscriptionInfo != null)
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot="+subscriptionInfo.getSimSlotIndex());
 //                else
-//                    PPPEApplication.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
+//                    PPPEApplicationStatic.logE("PPPEPhoneStateListener.onCallStateChanged", "simSlot=0");
                 //Went to idle-  this is the end of a call.  What type depends on previous state(s)
                 if(!inCall){
                     //Ring but no pickup-  a miss
@@ -160,7 +160,7 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
     protected void onOutgoingCallStarted(String number, Date _eventTime)
     {
 //        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onOutgoingCallStarted", "xxxx");
-//        PPPEApplication.logE("PPPEPhoneStateListener.onOutgoingCallStarted", "number="+number);
+//        PPPEApplicationStatic.logE("PPPEPhoneStateListener.onOutgoingCallStarted", "number="+number);
         savedNumber=number;
         eventTime = _eventTime;
         doCall(appContext, SERVICE_PHONE_EVENT_START, false, false, number, eventTime);
@@ -169,7 +169,7 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
     protected void onOutgoingCallAnswered(String number, Date eventTime)
     {
 //        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEPhoneStateListener.onOutgoingCallAnswered", "xxxx");
-//        PPPEApplication.logE("PPPEPhoneStateListener.onOutgoingCallAnswered", "number="+number);
+//        PPPEApplicationStatic.logE("PPPEPhoneStateListener.onOutgoingCallAnswered", "number="+number);
         doCall(appContext, SERVICE_PHONE_EVENT_ANSWER, false, false, number, eventTime);
     }
 
@@ -204,9 +204,9 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
     private static void doCallEvent(/*int servicePhoneEvent, */int eventType, String phoneNumber, Date eventTime, Context context, int simSlot)
     {
-        //PPPEApplication.logE("PPPEPhoneStateListener.doCallEvent", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
+        //PPPEApplicationStatic.logE("PPPEPhoneStateListener.doCallEvent", "PPPEApplication.registeredCallFunctionPPP="+PPPEApplication.registeredCallFunctionPPP);
         if (PPPEApplication.registeredCallFunctionPPP) {
-//            PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEPhoneStateListener.doCallEvent", "xxxx");
+//            PPPEApplicationStatic.logE("[BROADCAST_TO_PPP] PPPEPhoneStateListener.doCallEvent", "xxxx");
             Intent sendIntent = new Intent(PPPEApplication.ACTION_CALL_RECEIVED);
             //sendIntent.putExtra(EXTRA_SERVICE_PHONE_EVENT, servicePhoneEvent);
             sendIntent.putExtra(PPPEApplication.EXTRA_CALL_EVENT_TYPE, eventType);
@@ -219,8 +219,8 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
     private static void callStarted(boolean incoming, String phoneNumber, Date eventTime, Context context, int simSlot)
     {
-//        PPPEApplication.logE("PPPEPhoneStateListener.callStarted", "incoming="+incoming);
-//        PPPEApplication.logE("PPPEPhoneStateListener.callStarted", "phoneNumber="+phoneNumber);
+//        PPPEApplicationStatic.logE("PPPEPhoneStateListener.callStarted", "incoming="+incoming);
+//        PPPEApplicationStatic.logE("PPPEPhoneStateListener.callStarted", "phoneNumber="+phoneNumber);
 
 //        AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
 //        audioManager.setSpeakerphoneOn(true);
@@ -232,8 +232,8 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
     private static void callAnswered(boolean incoming, String phoneNumber, Date eventTime, Context context, int simSlot)
     {
-//        PPPEApplication.logE("PPPEPhoneStateListener.callAnswered", "incoming="+incoming);
-//        PPPEApplication.logE("PPPEPhoneStateListener.callAnswered", "phoneNumber="+phoneNumber);
+//        PPPEApplicationStatic.logE("PPPEPhoneStateListener.callAnswered", "incoming="+incoming);
+//        PPPEApplicationStatic.logE("PPPEPhoneStateListener.callAnswered", "phoneNumber="+phoneNumber);
 
 //        AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
 //        audioManager.setSpeakerphoneOn(true);
@@ -246,9 +246,9 @@ public class PPPEPhoneStateListener extends PhoneStateListener {
 
     private static void callEnded(boolean incoming, boolean missed, String phoneNumber, Date eventTime, Context context, int simSlot)
     {
-//        PPPEApplication.logE("PPPEPhoneStateListener.callEnded", "incoming="+incoming);
-//        PPPEApplication.logE("PPPEPhoneStateListener.callEnded", "missed="+missed);
-//        PPPEApplication.logE("PPPEPhoneStateListener.callEnded", "phoneNumber="+phoneNumber);
+//        PPPEApplicationStatic.logE("PPPEPhoneStateListener.callEnded", "incoming="+incoming);
+//        PPPEApplicationStatic.logE("PPPEPhoneStateListener.callEnded", "missed="+missed);
+//        PPPEApplicationStatic.logE("PPPEPhoneStateListener.callEnded", "phoneNumber="+phoneNumber);
 
         if (incoming) {
             if (missed)

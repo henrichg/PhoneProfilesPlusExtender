@@ -8,6 +8,11 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.List;
 
@@ -21,7 +26,7 @@ class GlobalUtils {
             return !activities.isEmpty();
         } catch (Exception e) {
             //Log.e("MainActivity.activityActionExists", Log.getStackTraceString(e));
-            //PPPEApplication.recordException(e);
+            //PPPEApplicationStatic.recordException(e);
             return false;
         }
     }
@@ -32,7 +37,7 @@ class GlobalUtils {
             return !activities.isEmpty();
         } catch (Exception e) {
             //Log.e("MainActivity.activityIntentExists", Log.getStackTraceString(e));
-            //PPPEApplication.recordException(e);
+            //PPPEApplicationStatic.recordException(e);
             return false;
         }
     }
@@ -62,6 +67,35 @@ class GlobalUtils {
 
     static int sip(float sp) {
         return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, Resources.getSystem().getDisplayMetrics()));
+    }
+
+    /** @noinspection SameParameterValue*/
+    static void setCustomDialogTitle(Context context, AlertDialog.Builder dialogBuilder,
+                                     boolean showSubtitle, CharSequence _title, CharSequence _subtitle) {
+        //String s = _title.toString();
+        //if (s.startsWith(StringConstants.CHAR_BULLET +" "))
+        //    _title = TextUtils.replace(_title, new String[]{StringConstants.CHAR_BULLET +" "}, new CharSequence[]{""});
+
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        //noinspection IfStatementWithIdenticalBranches
+        if (showSubtitle) {
+            @SuppressLint("InflateParams")
+            View titleView = layoutInflater.inflate(R.layout.custom_dialog_title_wtih_subtitle, null);
+            TextView titleText = titleView.findViewById(R.id.custom_dialog_title);
+            //noinspection DataFlowIssue
+            titleText.setText(_title);
+            TextView subtitleText = titleView.findViewById(R.id.custom_dialog_subtitle);
+            //noinspection DataFlowIssue
+            subtitleText.setText(_subtitle);
+            dialogBuilder.setCustomTitle(titleView);
+        } else {
+            @SuppressLint("InflateParams")
+            View titleView = layoutInflater.inflate(R.layout.custom_dialog_title_wtihout_subtitle, null);
+            TextView titleText = titleView.findViewById(R.id.custom_dialog_title);
+            //noinspection DataFlowIssue
+            titleText.setText(_title);
+            dialogBuilder.setCustomTitle(titleView);
+        }
     }
 
 }

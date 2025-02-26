@@ -12,7 +12,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
     <output url="file://$MODULE_DIR$/../../../ToastCompat/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../ToastCompat/build/generated/ap_generated_sources/debug/out">
@@ -29,7 +29,7 @@
     <content url="file://$MODULE_DIR$/../../../ToastCompat/src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../../ToastCompat/src/main/java" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 34, extension level 7 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 35, extension level 13 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.7.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.activity:activity:1.7.0@aar" level="project" />

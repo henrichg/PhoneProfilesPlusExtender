@@ -11,10 +11,11 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
     <output url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/generated/ap_generated_sources/debug/out">
+      <sourceFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
@@ -38,13 +39,13 @@
       <sourceFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../../phoneProfilesPlusExtender/src/main/res" type="java-resource" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 34, extension level 7 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 35, extension level 13 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="PhoneProfilesPlusExtender.ToastCompat.main" />
     <orderEntry type="library" name="Gradle: org.lsposed.hiddenapibypass:hiddenapibypass:4.3@aar" level="project" />
-    <orderEntry type="library" name="Gradle: ch.acra:acra-mail:5.11.3@aar" level="project" />
-    <orderEntry type="library" name="Gradle: ch.acra:acra-core:5.11.3@aar" level="project" />
-    <orderEntry type="library" name="Gradle: ch.acra:acra-notification:5.11.3@aar" level="project" />
+    <orderEntry type="library" name="Gradle: ch.acra:acra-mail:5.12.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: ch.acra:acra-core:5.12.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: ch.acra:acra-notification:5.12.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.7.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.activity:activity:1.7.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.core:core:1.13.0@aar" level="project" />
@@ -70,23 +71,22 @@
     <orderEntry type="library" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.localbroadcastmanager:localbroadcastmanager:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.auto.service:auto-service-annotations:1.1.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.guava:guava:33.2.1-android" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:guava:33.4.0-android" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:failureaccess:1.0.2" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
-    <orderEntry type="library" name="Gradle: org.checkerframework:checker-qual:3.42.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.errorprone:error_prone_annotations:2.26.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.checkerframework:checker-qual:3.43.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.errorprone:error_prone_annotations:2.36.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.j2objc:j2objc-annotations:3.0.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.annotation:annotation-jvm:1.7.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.9.10" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.9.10" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation-jvm:1.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:2.0.21" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.2.0" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.6.2" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22" level="project" />
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
   </component>
 </module>

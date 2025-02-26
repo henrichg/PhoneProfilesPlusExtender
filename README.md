@@ -6,22 +6,28 @@
 PhoneProfilesPlusExtender (PPPE)
 ====================================
 
-[![version](https://img.shields.io/badge/version-8.1.7-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/8.1.7)
+[![version](https://img.shields.io/badge/version-9.0.1-blue)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/tag/9.0.1)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![License](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/henrichg/PhoneProfilesPlus/blob/master/LICENSE)
-[![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AF5QK49DMAL2U&currency_code=EUR)\
+[![Crowdin](https://badges.crowdin.net/phoneprofilesplus/localized.svg)](https://crowdin.com/project/phoneprofilesplus)\
+\
 [![GMail](https://img.shields.io/badge/Gmail-D14836?logo=gmail&logoColor=white&label=henrich.gron@gmail.com)](mailto:henrich.gron@gmail.com)
 [![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=white&label=PPP%20server)](https://discord.com/channels/1258733423426670633/1259190095320449084)
 [![XDA-developers](https://img.shields.io/badge/xda%20developers-2DAAE9?logo=xda-developers&logoColor=white&label=PhoneProfilesPlus)](https://xdaforums.com/t/app-phoneprofilesplus.3799429/)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white&label=@henrichg)](https://x.com/henrichg)
 [![Reddit](https://img.shields.io/badge/Reddit-FF4500?logo=reddit&logoColor=white&label=u/henrichg)](https://www.reddit.com/user/henrichg/)
-[![Bluesky](https://img.shields.io/badge/Bluesky-0285FF?logo=bluesky&logoColor=fff&label=@henrichg)](https://bsky.app/profile/henrichg.bsky.social)\
-Discord PPP server invitation: https://discord.gg/Yb5hgAstQ3
+[![Bluesky](https://img.shields.io/badge/Bluesky-0285FF?logo=bluesky&logoColor=fff&label=@henrichg)](https://bsky.app/profile/henrichg.bsky.social)
+[![Mastodon](https://img.shields.io/badge/Mastodon-6364FF?logo=Mastodon&logoColor=white&label=@henrichg)](https://mastodon.social/@henrichg)\
+Discord PPP server invitation: https://discord.gg/Yb5hgAstQ3 \
+\
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AF5QK49DMAL2U&currency_code=EUR)
 
 __Install PhoneProfilesPlusExtender directly from PhoneProfilesPlus. But it is also possible to install it from an external source. If installing from PhoneProfilesPlus does not work, use external source. External sources are described below.__
  
 ### Sources of PhoneProfilesPlusExtender:
+
+NOTE: Google Play Protect may display dialog box with title "Unsafe app blocked" and description "This app was build for an older version of Android and doesn`t include the latest privacy protection."
+Please click in this dialog "More details" and then "Install anyway".\
+Dialog is displayed, because PPPE has target SDK vesion 27 (Android 8.1). Must be, because of functionalities in PPPE.
 
 Use keyword "PhoneProfilesPlusExtender" for search this application in these stores:
 
@@ -47,7 +53,7 @@ __GitHub (better is using Droid-ify instead):__
 - [PPPE release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)
   &nbsp;&nbsp;&nbsp;_[Number of downloads by version](https://hanadigital.github.io/grev/?user=henrichg&repo=phoneprofilesplusextender)_
 
-__If is not possible to install PhoneProfilesPlusExtender from the downloaded apk file directly on your device, you can install it from your computer.__
+If is not possible to install PhoneProfilesPlusExtender from the downloaded apk file directly on your device, you can install it from your computer.
 - [Show how](docs/install_apk_from_pc.md)
 
 ---
@@ -83,7 +89,7 @@ _*** Please help me with translation, thank you: <https://crowdin.com/project/ph
 - From Android 8.0
 - minSdkVersion = 26
 - targetSdkVersion = 27
-- compiledSdkVersion = 34
+- compiledSdkVersion = 35
 
 ##### Required external libs - open-source
 

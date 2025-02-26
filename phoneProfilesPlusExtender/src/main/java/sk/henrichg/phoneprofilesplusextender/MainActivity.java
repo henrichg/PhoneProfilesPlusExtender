@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
 {
 
     private static final int RESULT_ACCESSIBILITY_SETTINGS = 1900;
-    private static final int RESULT_PERMISSIONS_SETTINGS = 1901;
+    static final int RESULT_PERMISSIONS_SETTINGS = 1901;
     private static final int RESULT_BATTERY_OPTIMIZATION_SETTINGS = 1902;
 
     int selectedLanguage = 0;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void refreshGUIFromListener() {
-        //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (2)");
+        //PPPEApplicationStatic.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (2)");
         displayAccessibilityServiceStatus();
     }
 
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public void onReceive( Context context, Intent intent ) {
-            //PPPEApplication.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (1)");
+            //PPPEApplicationStatic.logE("MainActivity.refreshGUIBroadcastReceiver", "xxx (1)");
 //            PPPEApplicationStatic.logE("[MEMORY_LEAK] MainActivity.refreshGUIBroadcastReceiver.onReceive", "xxxxxx");
             listener.refreshGUIFromListener();
         }
@@ -81,18 +81,18 @@ public class MainActivity extends AppCompatActivity
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int miuiVersion = -1;
-        if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI) {
-            String[] splits = Build.VERSION.INCREMENTAL.split("\\.");
-            miuiVersion = Integer.parseInt(splits[0].substring(1));
-        }
+//        int miuiVersion = -1;
+//        if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI) {
+//            String[] splits = Build.VERSION.INCREMENTAL.split("\\.");
+//            miuiVersion = Integer.parseInt(splits[0].substring(1));
+//        }
 
-        if (PPPEApplication.deviceIsOnePlus)
-            setTheme(R.style.AppTheme_noRipple);
-        else
-        if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI && miuiVersion >= 14)
-            setTheme(R.style.AppTheme_noRipple);
-        else
+        //if (PPPEApplication.deviceIsOnePlus)
+        //    setTheme(R.style.AppTheme_noRipple);
+        //else
+        //if (PPPEApplication.deviceIsXiaomi && PPPEApplication.romIsMIUI && miuiVersion >= 14)
+        //    setTheme(R.style.AppTheme_noRipple);
+        //else
             setTheme(R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_main);
 
-        //PPPEApplication.logE("MainActivity.onCreated", "xxx");
+        //PPPEApplicationStatic.logE("MainActivity.onCreated", "xxx");
 
         if (getSupportActionBar() != null) {
             //getSupportActionBar().setHomeButtonEnabled(false);
@@ -118,9 +118,11 @@ public class MainActivity extends AppCompatActivity
         TextView text = findViewById(R.id.activity_main_application_version);
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            //noinspection DataFlowIssue
             text.setText(getString(R.string.extender_about_application_version) + " " + pInfo.versionName +
                                         " (" + PackageInfoCompat.getLongVersionCode(pInfo) + ")");
         } catch (Exception e) {
+            //noinspection DataFlowIssue
             text.setText("");
         }
 
@@ -148,6 +150,7 @@ public class MainActivity extends AppCompatActivity
         };
         sbt.setSpan(clickableSpan, str1.length()+1, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         //sbt.setSpan(new UnderlineSpan(), str1.length()+1, str2.length(), 0);
+        //noinspection DataFlowIssue
         text.setText(sbt);
         text.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -263,7 +266,7 @@ public class MainActivity extends AppCompatActivity
         else*/
         if (itemId == R.id.menu_choose_language) {
             ChooseLanguageDialog chooseLanguageDialog = new ChooseLanguageDialog(this);
-            chooseLanguageDialog.show();
+            chooseLanguageDialog.showDialog();
             return true;
         }
         else
@@ -325,18 +328,18 @@ public class MainActivity extends AppCompatActivity
             }
             return true;
         }
-        else
-        if (itemId == R.id.menu_twitter) {
-            String url = PPPEApplication.TWITTER_URL;
-            intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(url));
-            try {
-                startActivity(Intent.createChooser(intent, getString(R.string.extender_web_browser_chooser)));
-            } catch (Exception e) {
-                PPPEApplicationStatic.recordException(e);
-            }
-            return true;
-        }
+//        else
+//        if (itemId == R.id.menu_twitter) {
+//            String url = PPPEApplication.TWITTER_URL;
+//            intent = new Intent(Intent.ACTION_VIEW);
+//            intent.setData(Uri.parse(url));
+//            try {
+//                startActivity(Intent.createChooser(intent, getString(R.string.extender_web_browser_chooser)));
+//            } catch (Exception e) {
+//                PPPEApplicationStatic.recordException(e);
+//            }
+//            return true;
+//        }
         else
         if (itemId == R.id.menu_reddit) {
             String url = PPPEApplication.REDDIT_URL;
@@ -352,6 +355,18 @@ public class MainActivity extends AppCompatActivity
         else
         if (itemId == R.id.menu_bluesky) {
             String url = PPPEApplication.BLUESKY_URL;
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            try {
+                startActivity(Intent.createChooser(intent, getString(R.string.extender_web_browser_chooser)));
+            } catch (Exception e) {
+                PPPEApplicationStatic.recordException(e);
+            }
+            return true;
+        }
+        else
+        if (itemId == R.id.menu_mastodon) {
+            String url = PPPEApplication.MASTODON_URL;
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
             try {
@@ -383,6 +398,7 @@ public class MainActivity extends AppCompatActivity
             if (viewToScroll != null) {
                 new Handler(Looper.getMainLooper()).postDelayed(() -> {
 //                        PPApplication.logE("[IN_THREAD_HANDLER] PPApplication.startHandlerThread", "START run - from=ImportantInfoHelpFragment.onViewCreated (2)");
+                    //noinspection DataFlowIssue
                     scrollView.scrollTo(0, viewToScroll.getTop());
                 }, 200);
 
@@ -453,38 +469,48 @@ public class MainActivity extends AppCompatActivity
     private void displayAccessibilityServiceStatus() {
         TextView text = findViewById(R.id.activity_main_accessibility_service_profile_force_stop_application);
         String str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML + getString(R.string.extender_accessibility_service_profile_force_stop_applications) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
+        //noinspection DataFlowIssue
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_accessibility_service_profile_lock_device);
         str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_profile_lock_device) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
+        //noinspection DataFlowIssue
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_applications_orientation);
         str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_event_sensor_applications_orientation) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
+        //noinspection DataFlowIssue
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_sms_mms);
         if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_event_sensor_sms_mms) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
+            //noinspection DataFlowIssue
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
         } else
+            //noinspection DataFlowIssue
             text.setVisibility(View.GONE);
 
         text = findViewById(R.id.activity_main_accessibility_service_event_sensor_call);
         if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_accessibility_service_event_sensor_call) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
+            //noinspection DataFlowIssue
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
         } else
+            //noinspection DataFlowIssue
             text.setVisibility(View.GONE);
 
         text = findViewById(R.id.activity_main_accessibility_service_status);
         if (PPPEAccessibilityService.isEnabled(getApplicationContext()))
+            //noinspection DataFlowIssue
             text.setText("[ " + getString(R.string.extender_accessibility_service_enabled) + " ]");
         else
+            //noinspection DataFlowIssue
             text.setText("[ " + getString(R.string.extender_accessibility_service_disabled) + " ]");
 
         final Activity activity = this;
         Button accessibilityButton = findViewById(R.id.activity_main_accessibility_service_button);
+        //noinspection DataFlowIssue
         accessibilityButton.setOnClickListener(view -> {
             if (GlobalUtils.activityActionExists(Settings.ACTION_ACCESSIBILITY_SETTINGS, activity)) {
                 Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
@@ -503,6 +529,7 @@ public class MainActivity extends AppCompatActivity
             text = findViewById(R.id.activity_main_accessibility_service_app_info);
             TextView text2 = findViewById(R.id.activity_main_accessibility_service_app_info_2);
             Button appInfoButton = findViewById(R.id.activity_main_accessibility_service_app_info_button);
+            View divider = findViewById(R.id.activity_main_divider_app_info);
             if (!PPPEAccessibilityService.isEnabled(getApplicationContext())) {
                 str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML + getString(R.string.extender_accessibility_service_disabled_app_info_1) + StringConstants.TAG_DOUBLE_BREAK_HTML;
                 str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_2) + StringConstants.TAG_BREAK_HTML;
@@ -511,6 +538,7 @@ public class MainActivity extends AppCompatActivity
                 str1 = str1 + StringConstants.TAG_BOLD_START_HTML + getString(R.string.extender_accessibility_service_disabled_app_info_5) + StringConstants.TAG_BREAK_HTML;
                 str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_6) + StringConstants.TAG_BOLD_END_HTML;
                 str1 = str1 + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
+                //noinspection DataFlowIssue
                 text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
                 text.setVisibility(View.VISIBLE);
 
@@ -537,10 +565,13 @@ public class MainActivity extends AppCompatActivity
                 };
                 sbt.setSpan(clickableSpan, str1.length()+1, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 //sbt.setSpan(new UnderlineSpan(), str1.length()+1, str2.length(), 0);
+                //noinspection DataFlowIssue
                 text2.setText(sbt);
                 text2.setMovementMethod(LinkMovementMethod.getInstance());
                 text2.setVisibility(View.VISIBLE);
-
+                //noinspection DataFlowIssue
+                divider.setVisibility(View.VISIBLE);
+                //noinspection DataFlowIssue
                 appInfoButton.setVisibility(View.VISIBLE);
                 appInfoButton.setOnClickListener(view -> {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -559,8 +590,13 @@ public class MainActivity extends AppCompatActivity
                 });
             }
             else {
+                //noinspection DataFlowIssue
                 text.setVisibility(View.GONE);
+                //noinspection DataFlowIssue
                 text2.setVisibility(View.GONE);
+                //noinspection DataFlowIssue
+                divider.setVisibility(View.GONE);
+                //noinspection DataFlowIssue
                 appInfoButton.setVisibility(View.GONE);
             }
         }
@@ -580,35 +616,49 @@ public class MainActivity extends AppCompatActivity
             }
         }
         text = findViewById(R.id.activity_main_permission_popup_windows_in_background);
+        View divider = findViewById(R.id.activity_main_divider_popup_window);
         if (displayPopupWindowsInBackground) {
             str1 = getString(R.string.extender_permissions_popup_windows_in_background);
+            //noinspection DataFlowIssue
             text.setText(str1);
+            text.setVisibility(View.VISIBLE);
+            //noinspection DataFlowIssue
+            divider.setVisibility(View.VISIBLE);
         } else {
+            //noinspection DataFlowIssue
             text.setVisibility(View.GONE);
+            //noinspection DataFlowIssue
+            divider.setVisibility(View.GONE);
         }
 
         if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
             str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_permissions_event_sensor_sms_mms) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
+            //noinspection DataFlowIssue
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
             text = findViewById(R.id.activity_main_sms_permissions_status);
             if (Permissions.checkSMSMMSPermissions(activity)) {
+                //noinspection DataFlowIssue
                 text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
             }
             else {
                 if (scrollTo == R.id.activity_main_permissions_event_sensor_sms_mms)
-                    text.setTextColor(ContextCompat.getColor(this, R.color.error_color));
+                    //noinspection DataFlowIssue
+                    text.setTextColor(ContextCompat.getColor(this, R.color.errorColor));
                 else
+                    //noinspection DataFlowIssue
                     text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
             }
         }
         else {
             text = findViewById(R.id.activity_main_permissions_event_sensor_sms_mms);
+            //noinspection DataFlowIssue
             text.setVisibility(View.GONE);
             text = findViewById(R.id.activity_main_sms_permissions_status);
+            //noinspection DataFlowIssue
             text.setVisibility(View.GONE);
         }
 
@@ -618,46 +668,58 @@ public class MainActivity extends AppCompatActivity
                 str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_permissions_event_sensor_call) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
             else
                 str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_permissions_event_sensor_call_28) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
+            //noinspection DataFlowIssue
             text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
             text = findViewById(R.id.activity_main_call_permissions_status);
             if (Permissions.checkCallPermissions(activity)) {
+                //noinspection DataFlowIssue
                 text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
             }
             else {
                 if (scrollTo == R.id.activity_main_permissions_event_sensor_call)
-                    text.setTextColor(ContextCompat.getColor(this, R.color.error_color));
+                    //noinspection DataFlowIssue
+                    text.setTextColor(ContextCompat.getColor(this, R.color.errorColor));
                 else
+                    //noinspection DataFlowIssue
                     text.setTextColor(ContextCompat.getColor(this, R.color.activityNormalTextColor));
                 text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
             }
         }
         else {
             text = findViewById(R.id.activity_main_permissions_event_sensor_call);
+            //noinspection DataFlowIssue
             text.setVisibility(View.GONE);
             text = findViewById(R.id.activity_main_call_permissions_status);
+            //noinspection DataFlowIssue
             text.setVisibility(View.GONE);
         }
 
         text = findViewById(R.id.activity_main_call_permissions_status);
         if (Permissions.checkCallPermissions(activity))
+            //noinspection DataFlowIssue
             text.setText("[ " + getString(R.string.extender_permissions_granted) + " ]");
         else
+            //noinspection DataFlowIssue
             text.setText("[ " + getString(R.string.extender_permissions_not_granted) + " ]");
 
         text = findViewById(R.id.activity_main_battery_optimization);
         str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML +getString(R.string.extender_battery_optimization_text) + StringConstants.TAG_LIST_END_LAST_ITEM_HTML;
+        //noinspection DataFlowIssue
         text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
 
         text = findViewById(R.id.activity_main_battery_optimization_status);
         if (PPPEApplicationStatic.isIgnoreBatteryOptimizationEnabled(activity.getApplicationContext()))
+            //noinspection DataFlowIssue
             text.setText("[ " + getString(R.string.extender_battery_optimization_not_optimized) + " ]");
         else
+            //noinspection DataFlowIssue
             text.setText("[ " + getString(R.string.extender_battery_optimization_optimized) + " ]");
 
         Button permissionsButton = findViewById(R.id.activity_main_sms_permissions_button);
         if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
+            //noinspection DataFlowIssue
             permissionsButton.setOnClickListener(view -> {
                 if (Permissions.checkSMSMMSPermissions(activity)) {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -678,10 +740,12 @@ public class MainActivity extends AppCompatActivity
             });
         }
         else
+            //noinspection DataFlowIssue
             permissionsButton.setVisibility(View.GONE);
 
         permissionsButton = findViewById(R.id.activity_main_call_permissions_button);
         if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
+            //noinspection DataFlowIssue
             permissionsButton.setOnClickListener(view -> {
                 if (Permissions.checkCallPermissions(activity)) {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -702,16 +766,18 @@ public class MainActivity extends AppCompatActivity
             });
         }
         else
+            //noinspection DataFlowIssue
             permissionsButton.setVisibility(View.GONE);
 
         Button batteryOptimizationButton = findViewById(R.id.activity_main_battery_optimization_button);
+        //noinspection DataFlowIssue
         batteryOptimizationButton.setOnClickListener(view -> {
 
             String packageName = PPPEApplication.PACKAGE_NAME;
             Intent intent;
 
             PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
-            if (pm.isIgnoringBatteryOptimizations(packageName)) {
+            if ((pm != null) && pm.isIgnoringBatteryOptimizations(packageName)) {
                 intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
             }
             else {
@@ -735,6 +801,7 @@ public class MainActivity extends AppCompatActivity
 
         Button popupWindowsInBackgroundButton = findViewById(R.id.activity_main_popup_windows_in_background_button);
         if (displayPopupWindowsInBackground) {
+            //noinspection DataFlowIssue
             popupWindowsInBackgroundButton.setOnClickListener(view -> {
                 Intent intent = new Intent("miui.intent.action.APP_PERM_EDITOR");
                 intent.setClassName("com.miui.securitycenter",
@@ -754,6 +821,7 @@ public class MainActivity extends AppCompatActivity
             });
         }
         else
+            //noinspection DataFlowIssue
             popupWindowsInBackgroundButton.setVisibility(View.GONE);
     }
 

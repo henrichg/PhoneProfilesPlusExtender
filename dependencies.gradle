@@ -1,6 +1,6 @@
 ext.ppVersions = [
-    publishVersion: '8.1.7',  // this must be >= as in PPP in PPApplication. VERSION_NAME_EXTENDER_LATEST
-    publishVersionCode: 905, // this must be >= as in PPP in PPApplication. VERSION_CODE_EXTENDER_LATEST
+    publishVersion: '9.0.1',  // this must be >= as in PPP in PPApplication. VERSION_NAME_EXTENDER_LATEST
+    publishVersionCode: 915, // this must be >= as in PPP in PPApplication. VERSION_CODE_EXTENDER_LATEST
 
     minSdk: 26,
 
@@ -8,12 +8,12 @@ ext.ppVersions = [
     // 27 is required for:
     // - android.permission.PROCESS_OUTGOING_CALLS
 
-    compileSdk: 34,
-    buildTools: '34.0.0',
+    compileSdk: 35,
+    buildTools: '35.0.0',
 
     appcompatXLib     : '1.7.0', //'1.6.1', //'1.5.1',
     kotlinStdlibJdk8  : '1.8.22', // appcompat 1.7.0 - dependencies problem, this fixed it
 
     autoservice       : '1.1.1',
-    acra              : '5.11.3'//'5.11.2'
+    acra              : '5.12.0' //''5.11.4'//'5.11.3'
 ]

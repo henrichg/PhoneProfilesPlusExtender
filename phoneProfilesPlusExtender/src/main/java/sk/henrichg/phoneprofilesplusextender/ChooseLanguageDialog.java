@@ -1,7 +1,9 @@
 package sk.henrichg.phoneprofilesplusextender;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextPaint;
@@ -14,92 +16,113 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Locale;
 
 /** @noinspection ExtractMethodRecommender*/
-class ChooseLanguageDialog
+public class ChooseLanguageDialog extends DialogFragment
 {
-    private final AlertDialog mDialog;
-    final MainActivity activity;
+    private AlertDialog mDialog;
+    MainActivity activity;
 
-    private final ListView listView;
+    private ListView listView;
 
-    private final ArrayList<Language> languages;
+    private ArrayList<Language> languages;
 
-    ChooseLanguageDialog(MainActivity activity)
+    public ChooseLanguageDialog()
+    {
+    }
+
+    public ChooseLanguageDialog(MainActivity activity)
     {
         this.activity = activity;
+    }
 
-        languages = new ArrayList<>();
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        this.activity = (MainActivity) getActivity();
+        this.languages = new ArrayList<>();
+        if (this.activity != null) {
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+            GlobalUtils.setCustomDialogTitle(activity, dialogBuilder, false,
+                    activity.getString(R.string.extender_menu_choose_language), null);
+            dialogBuilder.setCancelable(true);
+            dialogBuilder.setNegativeButton(android.R.string.cancel, null);
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
-        dialogBuilder.setTitle(R.string.extender_menu_choose_language);
-        dialogBuilder.setCancelable(true);
-        dialogBuilder.setNegativeButton(android.R.string.cancel, null);
+            LayoutInflater inflater = activity.getLayoutInflater();
+            View layout = inflater.inflate(R.layout.dialog_choose_language, null);
+            dialogBuilder.setView(layout);
 
-        LayoutInflater inflater = activity.getLayoutInflater();
-        View layout = inflater.inflate(R.layout.dialog_choose_language, null);
-        dialogBuilder.setView(layout);
+            mDialog = dialogBuilder.create();
 
-        mDialog = dialogBuilder.create();
+            listView = layout.findViewById(R.id.choose_language_dlg_listview);
+            /*
+            mDialog.setOnShowListener(dialog -> {
+    //                Button positive = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+    //                if (positive != null) positive.setAllCaps(false);
+    //                Button negative = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+    //                if (negative != null) negative.setAllCaps(false);
 
-        mDialog.setOnShowListener(dialog -> {
-//                Button positive = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
-//                if (positive != null) positive.setAllCaps(false);
-//                Button negative = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
-//                if (negative != null) negative.setAllCaps(false);
-
+                doShow();
+            });
+            */
             doShow();
-        });
 
-        listView = layout.findViewById(R.id.choose_language_dlg_listview);
-        TextView help = layout.findViewById(R.id.choose_language_dlg_help);
+            //noinspection DataFlowIssue
+            listView.setOnItemClickListener((parent, item, position, id) -> {
+                ChooseLanguageViewHolder viewHolder = (ChooseLanguageViewHolder) item.getTag();
+                if (viewHolder != null)
+                    viewHolder.radioButton.setChecked(true);
+                doOnItemSelected(position);
+            });
 
-        listView.setOnItemClickListener((parent, item, position, id) -> {
-            ChooseLanguageViewHolder viewHolder = (ChooseLanguageViewHolder) item.getTag();
-            if (viewHolder != null)
-                viewHolder.radioButton.setChecked(true);
-            doOnItemSelected(position);
-        });
-
-        String str1 = activity.getString(R.string.extender_application_translations);
-        String str2 = str1 + " " + PPPEApplication.CROWDIN_URL + StringConstants.STR_HARD_SPACE_DOUBLE_ARROW;
-        Spannable sbt = new SpannableString(str2);
-        //sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ClickableSpan clickableSpan = new ClickableSpan() {
-            @Override
-            public void updateDrawState(TextPaint ds) {
-                ds.setColor(ds.linkColor);    // you can use custom color
-                //ds.bgColor = Color.GRAY;
-                ds.setUnderlineText(false);    // this remove the underline
-            }
-
-            @Override
-            public void onClick(@NonNull View textView) {
-                String url = PPPEApplication.CROWDIN_URL;
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                try {
-                    activity.startActivity(Intent.createChooser(i, activity.getString(R.string.extender_web_browser_chooser)));
-                } catch (Exception e) {
-                    PPPEApplicationStatic.recordException(e);
+            String str1 = activity.getString(R.string.extender_application_translations);
+            String str2 = str1 + " " + PPPEApplication.CROWDIN_URL + StringConstants.STR_HARD_SPACE_DOUBLE_ARROW;
+            Spannable sbt = new SpannableString(str2);
+            //sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void updateDrawState(TextPaint ds) {
+                    ds.setColor(ds.linkColor);    // you can use custom color
+                    //ds.bgColor = Color.GRAY;
+                    ds.setUnderlineText(false);    // this remove the underline
                 }
-            }
-        };
-        sbt.setSpan(clickableSpan, str1.length()+1, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        //sbt.setSpan(new UnderlineSpan(), str1.length()+1, str2.length(), 0);
-        help.setText(sbt);
-        help.setMovementMethod(LinkMovementMethod.getInstance());
 
+                @Override
+                public void onClick(@NonNull View textView) {
+                    String url = PPPEApplication.CROWDIN_URL;
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    try {
+                        activity.startActivity(Intent.createChooser(i, activity.getString(R.string.extender_web_browser_chooser)));
+                    } catch (Exception e) {
+                        PPPEApplicationStatic.recordException(e);
+                    }
+                }
+            };
+            sbt.setSpan(clickableSpan, str1.length()+1, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            //sbt.setSpan(new UnderlineSpan(), str1.length()+1, str2.length(), 0);
+
+            TextView help = layout.findViewById(R.id.choose_language_dlg_help);
+            //noinspection DataFlowIssue
+            help.setText(sbt);
+            help.setMovementMethod(LinkMovementMethod.getInstance());
+        }
+        return mDialog;
     }
 
     private void doShow() {
         String storedLanguage = LocaleHelper.getLanguage(activity.getApplicationContext());
         String storedCountry = LocaleHelper.getCountry(activity.getApplicationContext());
         String storedScript = LocaleHelper.getScript(activity.getApplicationContext());
+
+//        Log.e("ChooseLanguageDialog.doShow", "storedLanguage="+storedLanguage);
+//        Log.e("ChooseLanguageDialog.doShow", "storedCountry="+storedCountry);
+//        Log.e("ChooseLanguageDialog.doShow", "storedScript="+storedScript);
 
         final String[] languageValues = activity.getResources().getStringArray(R.array.chooseLanguageValues);
 
@@ -149,6 +172,7 @@ class ChooseLanguageDialog
             activity.selectedLanguage = 0;
 //            Log.e("ChooseLanguageDialog.doShow", "is set system languauge");
         } else {
+//            Log.e("ChooseLanguageDialog.doShow", "is NOT set system languauge");
             size = languages.size();
             for (int i = 0; i < size; i++) {
                 Language language = languages.get(i);
@@ -160,32 +184,39 @@ class ChooseLanguageDialog
                         storedCountry.isEmpty() &&
                         storedScript.isEmpty()) {
                     activity.selectedLanguage = i;
+//                Log.e("ChooseLanguageDialog.doShow", "(1)");
                     break;
                 }
                 if (sLanguage.equals(storedLanguage) &&
                         country.equals(storedCountry) &&
                         storedScript.isEmpty()) {
                     activity.selectedLanguage = i;
+//                Log.e("ChooseLanguageDialog.doShow", "(2)");
                     break;
                 }
                 if (sLanguage.equals(storedLanguage) &&
                         storedCountry.isEmpty() &&
                         script.equals(storedScript)) {
                     activity.selectedLanguage = i;
+//                Log.e("ChooseLanguageDialog.doShow", "(3)");
                     break;
                 }
                 if (sLanguage.equals(storedLanguage) &&
                         country.equals(storedCountry) &&
                         script.equals(storedScript)) {
                     activity.selectedLanguage = i;
+//                Log.e("ChooseLanguageDialog.doShow", "(4)");
                     break;
                 }
             }
         }
 
-        ChooseLanguageAdapter chooseLanguageAdapter = new ChooseLanguageAdapter(this, activity, languageNameChoices);
-        listView.setAdapter(chooseLanguageAdapter);
-        listView.setSelection(activity.selectedLanguage);
+        if (listView != null) {
+//            Log.e("ChooseLanguageDialog.doShow", "activity.selectedLanguage="+activity.selectedLanguage);
+            ChooseLanguageAdapter chooseLanguageAdapter = new ChooseLanguageAdapter(this, activity, languageNameChoices);
+            listView.setAdapter(chooseLanguageAdapter);
+            listView.setSelection(activity.selectedLanguage);
+        }
 
     }
 
@@ -198,19 +229,24 @@ class ChooseLanguageDialog
         activity.defaultLanguage = language.language;
         activity.defaultCountry = language.country;
         activity.defaultScript = language.script;
+//        Log.e("ChooseLanguageDialog.doOnItemSelected", "activity.defaultLanguage="+activity.defaultLanguage);
+//        Log.e("ChooseLanguageDialog.doOnItemSelected", "activity.defaultCountry="+activity.defaultCountry);
+//        Log.e("ChooseLanguageDialog.doOnItemSelected", "activity.defaultScript="+activity.defaultScript);
+
 
         LocaleHelper.setLocale(activity.getApplicationContext(),
                 activity.defaultLanguage, activity.defaultCountry, activity.defaultScript, true);
 
         GlobalUtils.reloadActivity(activity, false);
-        mDialog.dismiss();
+        dismiss();
 
-        //PPApplication.updateGUI(true, false, activity);
+        //PPPEApplication.updateGUI(true, false, activity);
     }
 
-    void show() {
-        if (!activity.isFinishing())
-            mDialog.show();
+    void showDialog() {
+        if ((activity != null) && (!activity.isFinishing()))
+            //mDialog.show();
+            show(activity.getSupportFragmentManager(), "CHOOSE_LANGUAGE_DIALOG");
     }
 
     private static class Language {

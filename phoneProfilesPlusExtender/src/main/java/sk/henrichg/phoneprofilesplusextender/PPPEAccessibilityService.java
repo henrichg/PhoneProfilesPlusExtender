@@ -58,7 +58,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     protected void onServiceConnected() {
         super.onServiceConnected();
 
-//        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
+//        PPPEApplicationStatic.logE("PPPEAccessibilityService.onServiceConnected", "[START]");
 //        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onServiceConnected", "xxxx");
 
         instance = this;
@@ -111,7 +111,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         if (PPPEApplication.HAS_FEATURE_TELEPHONY) {
             if (PPPEApplication.smsBroadcastReceiver == null) {
-                //PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "sms receiver");
+                //PPPEApplicationStatic.logE("PPPEAccessibilityService.onServiceConnected", "sms receiver");
                 PPPEApplication.smsBroadcastReceiver = new SMSBroadcastReceiver();
                 IntentFilter intentFilter21 = new IntentFilter();
                 intentFilter21.addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
@@ -120,7 +120,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             }
 
             if (PPPEApplication.mmsBroadcastReceiver == null) {
-                //PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "mms receiver");
+                //PPPEApplicationStatic.logE("PPPEAccessibilityService.onServiceConnected", "mms receiver");
                 PPPEApplication.mmsBroadcastReceiver = new SMSBroadcastReceiver();
                 IntentFilter intentFilter22;
                 intentFilter22 = IntentFilter.create(Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION, "application/vnd.wap.mms-message");
@@ -151,11 +151,11 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
         Intent refreshIntent = new Intent(PPPEAccessibilityService.ACTION_REFRESH_GUI_BROADCAST_RECEIVER);
         appContext.sendBroadcast(refreshIntent);
 
-//        PPPEApplication.logE("[BROADCAST_TO_PPP] PPPEAccessibilityService.onServiceConnected", "xxxx");
+//        PPPEApplicationStatic.logE("[BROADCAST_TO_PPP] PPPEAccessibilityService.onServiceConnected", "xxxx");
         Intent sendIntent = new Intent(ACTION_ACCESSIBILITY_SERVICE_CONNECTED);
         appContext.sendBroadcast(sendIntent, PPPEApplication.ACCESSIBILITY_SERVICE_PERMISSION);
 
-//        PPPEApplication.logE("PPPEAccessibilityService.onServiceConnected", "[END]");
+//        PPPEApplicationStatic.logE("PPPEAccessibilityService.onServiceConnected", "[END]");
 
     }
 
@@ -164,7 +164,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     public void onAccessibilityEvent(AccessibilityEvent event) {
         final Context appContext  = getApplicationContext();
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-//            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED");
+//            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED");
 
             if (event.getClassName() == null)
                 return;
@@ -208,10 +208,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             //////////////////
 
             try {
-//                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "forceStopStarted="+PPPEApplication.forceStopStarted);
-//                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
+//                PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "forceStopStarted="+PPPEApplication.forceStopStarted);
+//                PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
                 if (PPPEApplication.forceStopStarted) {
-//                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "in forceStopStarted");
+//                    PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "in forceStopStarted");
 //                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onAccessibilityEvent", "PPPEApplication.forceStopStarted=true");
                     // force stop is started in PPP
                     AccessibilityNodeInfo nodeInfo;
@@ -221,22 +221,27 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                         nodeInfo = null;
                     }
                     if (nodeInfo != null) {
-//                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
+//                        PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
                         List<AccessibilityNodeInfo> list = null;
                         if (event.getClassName().equals("com.android.settings.applications.InstalledAppDetailsTop") ||
-                            event.getClassName().equals("com.miui.appmanager.ApplicationsDetailsActivity")) {
-//                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "App info opened");
+                            event.getClassName().equals("com.miui.appmanager.ApplicationsDetailsActivity") //||
+                            //event.getClassName().equals("com.android.settings.spa.SpaActivity") // Pixel (Android 15)
+                        )
+                            // For Pixel since Android 13 not working, because "Foce stop" has not view id :-(
+                            // Is possible to find list by findAccessibilityNodeInfosByText("Force stop"), but problem is localization.
+                        {
+//                            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "App info opened");
 
                             boolean doNext = true;
 
                             if (Build.VERSION.SDK_INT >= 30) {
                                 if (PPPEApplication.deviceIsXiaomi) {
                                     list = nodeInfo.findAccessibilityNodeInfosByViewId("com.miui.securitycenter:id/action_menu_item_child_text");
-//                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Xiaomi list="+list);
+//                                    PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Xiaomi list="+list);
                                     doNext = false;
                                 }
                             }
-//                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "doNext="+doNext);
+//                            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "doNext="+doNext);
                             if (doNext) {
                                 if (Build.VERSION.SDK_INT >= 29) {
                                     if (PPPEApplication.deviceIsOppo || PPPEApplication.deviceIsRealme || PPPEApplication.deviceIsOnePlus)
@@ -245,17 +250,17 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
                                     else
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button3");
-//                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button3="+list.size());
+//                                    PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button3="+list.size());
                                 } else {
                                     if (PPPEApplication.deviceIsOppo || PPPEApplication.deviceIsRealme) {
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/left_button");
                                     } else {
                                         list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/right_button");
-//                                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/right_button="+list.size());
+//                                        PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/right_button="+list.size());
                                         if (list.isEmpty()) {
                                             // Samsung Galaxy S10
                                             list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button2_negative");
-//                                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button2_negative="+list.size());
+//                                            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "com.android.settings:id/button2_negative="+list.size());
                                         }
                                     }
                                 }
@@ -268,7 +273,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                             if ((_node != null) && _node.isEnabled()) {
                                                 _node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                                                 PPPEApplication.forceStopPerformed = true;
-//                                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Force stop clicked");
+//                                                PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Force stop clicked");
                                             }
                                         } else {
                                             node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -281,12 +286,12 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 }
                                 if (!PPPEApplication.forceStopPerformed) {
                                     // app is already force closed or clickable node not exists
-//                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Force stop NOT clicked");
+//                                    PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Force stop NOT clicked");
                                     endForceClosed();
                                 }
                             } else {
                                 // viewId not found
-//                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "viewId not found");
+//                                PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "viewId not found");
                                 endForceClosed();
                             }
                         } else
@@ -294,7 +299,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                             //event.getClassName().equals("android.app.AlertDialog") ||
                             //event.getClassName().equals("androidx.appcompat.app.AlertDialog")
                             ) {
-//                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Alert opened");
+//                            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Alert opened");
                             //forceCloseButtonClicked = false;
                             if ((PPPEApplication.deviceIsSamsung) && (Build.VERSION.SDK_INT >= 30))
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
@@ -304,9 +309,9 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("com.android.settings:id/button1");
                             else
                                 list = nodeInfo.findAccessibilityNodeInfosByViewId("android:id/button1");
-//                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list="+list);
+//                            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list="+list);
                             if ((list != null) && (!list.isEmpty())) {
-//                                PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list.size()="+list.size());
+//                                PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "android:id/button1 list.size()="+list.size());
                                 for (final AccessibilityNodeInfo node : list) {
                                     node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                                 }
@@ -318,30 +323,29 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     /*
                     //if (PPPEApplication.logIntoFile) {
                         // TODO  this is only for testing, for increase support of devices !!! Comment for production version !!!
-                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
-                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
-                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.MANUFACTURER="+Build.MANUFACTURER);
-                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.FINGERPRINT="+Build.FINGERPRINT);
+                        PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
+                        PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
+                        PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.MANUFACTURER="+Build.MANUFACTURER);
+                        PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.FINGERPRINT="+Build.FINGERPRINT);
 
-                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
+                        PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
 
                         try {
                             switch (event.getEventType()) {
                                 //On Gesture events print out the entire view hierarchy!
 
                                 case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
-                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent-TYPE_GESTURE_DETECTION_START", A11yNodeInfo.wrap(getRootInActiveWindow()).toViewHierarchy());
+                                    PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent-TYPE_GESTURE_DETECTION_START", A11yNodeInfo.wrap(getRootInActiveWindow()).toViewHierarchy());
 
                                 case AccessibilityEvent.TYPE_VIEW_CLICKED:
-                                    PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent-TYPE_VIEW_CLICKED", event.getSource().toString());
+                                    PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent-TYPE_VIEW_CLICKED", event.getSource().toString());
 
                                 default: {
                                     //The event has different types, for you, you want to look for "action clicked"
-                                    if (event.getSource() != null) {
-                                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent-OTHERS", A11yNodeInfo.wrap(event.getSource()).toViewHierarchy());
-                                    }
+                                    if (event.getSource() != null)
+                                        PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent-OTHERS", A11yNodeInfo.wrap(event.getSource()).toViewHierarchy());
                                     else
-                                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent-OTHERS", "event.getSource() == null");
+                                        PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent-OTHERS", "event.getSource() == null");
                                 }
                             }
                         } catch (Exception ignored) {}
@@ -359,29 +363,29 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
         /*if (PPPEApplication.logIntoFile) {
             // TODO  this is only for testing, for increase support of devices !!! Comment for production version !!!
-            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
-            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
-            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.MANUFACTURER="+Build.MANUFACTURER);
-            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.FINGERPRINT="+Build.FINGERPRINT);
+            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.VERSION.SDK_INT="+Build.VERSION.SDK_INT);
+            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.BRAND="+Build.BRAND);
+            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.MANUFACTURER="+Build.MANUFACTURER);
+            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "Build.FINGERPRINT="+Build.FINGERPRINT);
 
-            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
+            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent", "event.getClassName()="+event.getClassName());
 
             try {
                 switch (event.getEventType()) {
                     //On Gesture events print out the entire view hierarchy!
 
                     case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
-                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent-TYPE_GESTURE_DETECTION_START", A11yNodeInfo.wrap(getRootInActiveWindow()).toViewHierarchy());
+                        PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent-TYPE_GESTURE_DETECTION_START", A11yNodeInfo.wrap(getRootInActiveWindow()).toViewHierarchy());
 
                     case AccessibilityEvent.TYPE_VIEW_CLICKED:
-                        PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent-TYPE_VIEW_CLICKED", event.getSource().toString());
+                        PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent-TYPE_VIEW_CLICKED", event.getSource().toString());
 
                     default: {
                         //The event has different types, for you, you want to look for "action clicked"
-                        if (event.getSource() != null) {
-                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent-OTHERS", A11yNodeInfo.wrap(event.getSource()).toViewHierarchy());
-                        } else
-                            PPPEApplication.logE("PPPEAccessibilityService.onAccessibilityEvent-OTHERS", "event.getSource() == null");
+                        if (event.getSource() != null)
+                            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent-OTHERS", A11yNodeInfo.wrap(event.getSource()).toViewHierarchy());
+                        else
+                            PPPEApplicationStatic.logE("PPPEAccessibilityService.onAccessibilityEvent-OTHERS", "event.getSource() == null");
                     }
                 }
             } catch (Exception ignored) {}
@@ -481,7 +485,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     @Override
     public void onInterrupt() {
-//        PPPEApplication.logE("PPPEAccessibilityService.onInterrupt", "xxx");
+//        PPPEApplicationStatic.logE("PPPEAccessibilityService.onInterrupt", "xxx");
 //        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onInterrupt", "xxxxx");
 
         // !!! do not call this, because will not be working Call, SMS sensor
@@ -491,14 +495,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
 
     @Override
     public boolean onUnbind(Intent intent) {
-//        PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[START]");
+//        PPPEApplicationStatic.logE("PPPEAccessibilityService.onUnbind", "[START]");
 //        PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.onUnbind", "xxxxx");
 
         accessibilityDisabled(true);
 
         packageManager = null;
 
-        //PPPEApplication.logE("PPPEAccessibilityService.onUnbind", "[END]");
+        //PPPEApplicationStatic.logE("PPPEAccessibilityService.onUnbind", "[END]");
 
         return super.onUnbind(intent);
     }
@@ -543,22 +547,22 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     SubscriptionManager mSubscriptionManager = (SubscriptionManager) appContext.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
                     //SubscriptionManager.from(appContext);
                     if (mSubscriptionManager != null) {
-//                        PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "mSubscriptionManager != null");
+//                        PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "mSubscriptionManager != null");
                         List<SubscriptionInfo> subscriptionList = null;
                         try {
                             // Loop through the subscription list i.e. SIM list.
                             subscriptionList = mSubscriptionManager.getActiveSubscriptionInfoList();
-//                            PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList=" + subscriptionList);
+//                            PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList=" + subscriptionList);
                         } catch (SecurityException e) {
-                            //PPApplication.recordException(e);
+                            //PPPEApplicationStatic.recordException(e);
                         }
                         if (subscriptionList != null) {
-//                            PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList.size()=" + subscriptionList.size());
+//                            PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList.size()=" + subscriptionList.size());
                             int size = subscriptionList.size();
                             for (int i = 0; i < size; i++) {
                                 // Get the active subscription ID for a given SIM card.
                                 SubscriptionInfo subscriptionInfo = subscriptionList.get(i);
-//                                PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionInfo=" + subscriptionInfo);
+//                                PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionInfo=" + subscriptionInfo);
                                 if (subscriptionInfo != null) {
                                     int subscriptionId = subscriptionInfo.getSubscriptionId();
                                     if (i == 0) {
@@ -585,14 +589,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                                     }
                                 }
 //                                else
-//                                    PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionInfo == null");
+//                                    PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionInfo == null");
                             }
                         }
 //                        else
-//                            PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList == null");
+//                            PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "subscriptionList == null");
                     }
 //                    else
-//                        PPPEApplication.logE("PPPEAccessibilityService.registerPhoneStateListener", "mSubscriptionManager == null");
+//                        PPPEApplicationStatic.logE("PPPEAccessibilityService.registerPhoneStateListener", "mSubscriptionManager == null");
                 }
                 else {
 //                    PPPEApplicationStatic.logE("[MEMORY_LEAK] PPPEAccessibilityService.registerPhoneStateListener", "(default SIM)");
@@ -609,22 +613,22 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     static boolean isEnabled(Context context) {
         //int accessibilityEnabled = 0;
         final String service = EXTENDER_ACCESSIBILITY_PACKAGE_NAME + "/" + EXTENDER_ACCESSIBILITY_PACKAGE_NAME + ".PPPEAccessibilityService";
-//        PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "service = " + service);
+//        PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "service = " + service);
 
         // Do not use: it returns always 0 :-(
         /*try {
             accessibilityEnabled = Settings.Secure.getInt(
                     context.getApplicationContext().getContentResolver(),
                     android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
-            PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "accessibilityEnabled = " + accessibilityEnabled);
+            PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "accessibilityEnabled = " + accessibilityEnabled);
         } catch (Settings.SettingNotFoundException e) {
-            PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "Error finding setting, default accessibility to not found: "
+            PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "Error finding setting, default accessibility to not found: "
                     + e.getMessage());
         }*/
 
         TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(':');
         //if (accessibilityEnabled == 1) {
-        //    PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "***ACCESSIBILITY IS ENABLED*** -----------------");
+        //    PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "***ACCESSIBILITY IS ENABLED*** -----------------");
         String settingValue = Settings.Secure.getString(
                 context.getApplicationContext().getContentResolver(),
                 Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
@@ -632,10 +636,10 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             mStringColonSplitter.setString(settingValue);
             while (mStringColonSplitter.hasNext()) {
                 String accessibilityService = mStringColonSplitter.next();
-//                    PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "-------------- > accessibilityService :: " + accessibilityService/* + " " + service*/);
+//                    PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "-------------- > accessibilityService :: " + accessibilityService/* + " " + service*/);
                 if (accessibilityService.equalsIgnoreCase(service)) {
-                    //PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "We've found the correct setting - accessibility is switched on!");
-//                        PPPEApplication.logE("PPPEAccessibilityService.isEnabled", "***ACCESSIBILITY IS ENABLED*** -----------------");
+                    //PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "We've found the correct setting - accessibility is switched on!");
+//                        PPPEApplicationStatic.logE("PPPEAccessibilityService.isEnabled", "***ACCESSIBILITY IS ENABLED*** -----------------");
                     return true;
                 }
             }
@@ -653,14 +657,14 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
                     //Log.d("PPPEAccessibilityService.isAccessibilityServiceEnabled", "serviceId=" + service.getId());
                     try {
                         if (service.getId().contains(PPPEApplication.PACKAGE_NAME)) {
-                            //PPPEApplication.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
+                            //PPPEApplicationStatic.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
                             return true;
                         }
 
 //                        if (service.packageNames != null) {
 //                            for (String packageName : service.packageNames) {
 //                                if (PPApplication.EXTENDER_ACCESSIBILITY_PACKAGE_NAME.equals(packageName)) {
-//                                    //PPPEApplication.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
+//                                    //PPPEApplicationStatic.logE("PPPExtenderBroadcastReceiver.isAccessibilityServiceEnabled", "true");
 //                                    return true;
 //                                }
 //                            }

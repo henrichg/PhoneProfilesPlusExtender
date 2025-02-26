@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <dimen name="button_corner_radius">7dp</dimen>
+    <dimen name="button_corner_radius">30dp</dimen>
+    <dimen name="button_border_thickness">2dp</dimen>
+    <dimen name="button_padding">20dp</dimen>
+    <dimen name="button_min_width">70dp</dimen>
+    <dimen name="dialog_button_min_height">56dp</dimen>
 
     <dimen name="activity_margin_start">0dp</dimen>
     <dimen name="activity_margin_end">0dp</dimen>
 
     <dimen name="divider_height">1dp</dimen>
     <dimen name="divider_margin">15dp</dimen>
+    <dimen name="small_divider_height">2dp</dimen>
 
     <dimen name="dialog_corner_radius">10dp</dimen>
     <dimen name="dialog_transparent_padding">15dp</dimen>
@@ -15,6 +20,7 @@
     <dimen name="popup_menu_transparent_padding_width">0dp</dimen>
     <dimen name="popup_menu_transparent_padding_height">0dp</dimen>
     <dimen name="popup_menu_corner_radius">10dp</dimen>
+    <dimen name="rectangel_ripple_corner_radius">0dp</dimen>
 
     <dimen name="popup_window_corner_radius">10dp</dimen>
 
@@ -23,4 +29,9 @@
     <dimen name="chackBox_radioButton_spacing_for_list_items">10dp</dimen>
 
     <dimen name="line_spacing_extra">2dp</dimen>
+
+    <dimen name="single_selection_title_text_size">17sp</dimen>
+    <dimen name="single_selection_subtitle_text_size">16dp</dimen>
+    <dimen name="single_selection_title_paddingTop">15dp</dimen>
+
 </resources>

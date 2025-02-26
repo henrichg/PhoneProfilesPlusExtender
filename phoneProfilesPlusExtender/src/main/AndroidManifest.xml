@@ -9,6 +9,10 @@
         android:smallScreens="true"
         android:xlargeScreens="true"/>
 
+    <!-- android:protectionLevel="signature" = used is henrichg.keystore-->
+    <!-- Both PPP and PPPPS must be bulded with this keystore-->
+    <!-- Also debug build to comibe debug and release of both apps-->
+    <!-- (read phoneProfilesPlus, phoneProfilesPlusExtender build.gradle signingConfigs)-->
     <permission
         android:name="sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION"
         android:label="@string/extender_accessibility_service_permission"

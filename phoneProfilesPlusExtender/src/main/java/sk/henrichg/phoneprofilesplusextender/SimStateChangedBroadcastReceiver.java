@@ -31,7 +31,7 @@ public class SimStateChangedBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-//        PPPEApplication.logE("[IN_BROADCAST] SimStateChangedBroadcastReceiver.onReceive", "xxx");
+//        PPPEApplicationStatic.logE("[IN_BROADCAST] SimStateChangedBroadcastReceiver.onReceive", "xxx");
 //        PPPEApplicationStatic.logE("[MEMORY_LEAK] SimStateChangedBroadcastReceiver.onReceive", "xxxx");
 
         if (intent == null)
