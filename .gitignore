@@ -6,4 +6,6 @@
 /.idea/misc.xml
 /build/
 
+/passwords_keys.gradle
+
 /phoneProfilesPlusExtender/build/
