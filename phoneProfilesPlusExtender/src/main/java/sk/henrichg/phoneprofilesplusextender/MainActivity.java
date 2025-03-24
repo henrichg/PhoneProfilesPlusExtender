@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity
         else*/
         if (itemId == R.id.menu_choose_language) {
             ChooseLanguageDialog chooseLanguageDialog = new ChooseLanguageDialog(this);
-            chooseLanguageDialog.show();
+            chooseLanguageDialog.showDialog();
             return true;
         }
         else

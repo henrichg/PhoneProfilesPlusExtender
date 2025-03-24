@@ -79,4 +79,6 @@
 <!--    <color name="notification_color">#50B0CE</color>-->
     <color name="errorColor">#FF2424</color>
 
+    <color name="dialogTitleTextColor">#ffffff</color>
+
 </resources>
