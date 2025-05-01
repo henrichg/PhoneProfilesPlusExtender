@@ -1,0 +1,11 @@
+9.0.1.1
+Seznam změn:
+- Fix: "Force stop" for Galaxy One UI 7.
+
+- Novinky v GUI a procesech na pozadí.
+- Změny GUI a procesech na pozadí.
+- Opravy v GUI a procesů na pozadí.
+- Opravy pádů aplikace.
+- Aktualizované překlady.
+
+Úplný seznam změn je ve GitHub vydáních. (https://henrichg.github.io/PhoneProfilesPlusExtender/FDroid_ChangeLog_CS)
