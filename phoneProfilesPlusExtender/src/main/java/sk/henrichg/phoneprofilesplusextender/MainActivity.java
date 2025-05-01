@@ -116,15 +116,17 @@ public class MainActivity extends AppCompatActivity
         scrollTo = intent.getIntExtra(PPPEApplication.EXTRA_SCROLL_TO, 0);
 
         TextView text = findViewById(R.id.activity_main_application_version);
+        String message;
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            //noinspection DataFlowIssue
-            text.setText(getString(R.string.extender_about_application_version) + " " + pInfo.versionName +
-                                        " (" + PackageInfoCompat.getLongVersionCode(pInfo) + ")");
+            message = getString(R.string.extender_about_application_version) + " " + pInfo.versionName + " (" + PackageInfoCompat.getLongVersionCode(pInfo) + ")";
+            if (DebugVersion.enabled)
+                message = message + " - debug";
         } catch (Exception e) {
-            //noinspection DataFlowIssue
-            text.setText("");
+            message = "";
         }
+        //noinspection DataFlowIssue
+        text.setText(message);
 
         text = findViewById(R.id.activity_main_application_releases);
         String str1 = getString(R.string.extender_application_releases);
