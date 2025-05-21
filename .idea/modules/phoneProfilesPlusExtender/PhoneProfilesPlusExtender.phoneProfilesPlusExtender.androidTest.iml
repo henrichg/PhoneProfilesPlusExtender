@@ -36,7 +36,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="PhoneProfilesPlusExtender.phoneProfilesPlusExtender.main" scope="TEST" />
     <orderEntry type="module" module-name="PhoneProfilesPlusExtender.ToastCompat.main" scope="TEST" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.lsposed.hiddenapibypass:hiddenapibypass:6.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.lsposed.hiddenapibypass:hiddenapibypass:6.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: ch.acra:acra-mail:5.12.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: ch.acra:acra-core:5.12.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: ch.acra:acra-notification:5.12.0@aar" level="project" />
