@@ -84,7 +84,9 @@
 <!--                android:value="true" />-->
 <!--        </service>-->
 
+        <!-- android:label is required, will be used for launcher icon (because of category LAUCHER)  -->
         <activity android:name=".MainActivity"
+            android:label="@string/extender_title_activity_pppe"
             android:taskAffinity="sk.henrichg.phoneprofilesplusextender.mainactivity"
             tools:ignore="IntentFilterExportedReceiver,RedundantLabel">
             <intent-filter>
@@ -93,7 +95,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-<!--        android:label="@string/extender_title_activity_pppe"-->
         <activity android:name=".ForceStopActivity"
                   android:excludeFromRecents="true"
                   android:label=""
