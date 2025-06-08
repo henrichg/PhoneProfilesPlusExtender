@@ -107,6 +107,7 @@ public class PPPEApplication extends Application {
     static final String EXTRA_PROFILE_ID = "profile_id";
     static final String EXTRA_SCROLL_TO = "extra_main_activity_scroll_to";
     static final String EXTRA_BLOCK_PROFILE_EVENT_ACTION = "extra_block_profile_event_actions";
+    static final String EXTRA_ACCESSIBILITY_VOLUME_VALUE = "extra_accessibility_volume_value";
 
     static final String ACTION_CALL_RECEIVED = PPPEApplication.PACKAGE_NAME + ".ACTION_CALL_RECEIVED";
     //private static final String EXTRA_SERVICE_PHONE_EVENT = PPPEApplication.PACKAGE_NAME + ".service_phone_event";
