@@ -46,6 +46,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
     static final String ACTION_FORCE_STOP_APPLICATIONS_START = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_START";
     static final String ACTION_FORCE_STOP_APPLICATIONS_END = PPPEApplication.PACKAGE_NAME + ".ACTION_FORCE_STOP_APPLICATIONS_END";
     static final String ACTION_LOCK_DEVICE = PPPEApplication.PACKAGE_NAME + ".ACTION_LOCK_DEVICE";
+    static final String ACTION_SET_ACCESSIBILITY_VOLUME = PPPEApplication.PACKAGE_NAME + ".ACTION_SET_ACCESSIBILITY_VOLUME";
 
     private static final int CALL_EVENT_SERVICE_UNBIND = 8;
 
@@ -102,6 +103,7 @@ public class PPPEAccessibilityService extends android.accessibilityservice.Acces
             intentFilter.addAction(PPPEApplication.ACTION_REGISTER_PPPE_FUNCTION);
             intentFilter.addAction(ACTION_FORCE_STOP_APPLICATIONS_START);
             intentFilter.addAction(ACTION_LOCK_DEVICE);
+            intentFilter.addAction(ACTION_SET_ACCESSIBILITY_VOLUME);
             int receiverFlags = 0;
             if (Build.VERSION.SDK_INT >= 34)
                 receiverFlags = RECEIVER_EXPORTED;
