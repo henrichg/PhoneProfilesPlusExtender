@@ -2,7 +2,6 @@
 
 buildscript {
     apply from: './dependencies.gradle'
-    apply from: './passwords_keys.gradle'
 
     repositories {
         google()
