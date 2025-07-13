@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.media.AudioManager;
 import android.os.Build;
 import android.util.Log;
 
@@ -136,6 +137,17 @@ class FromPhoneProfilesPlusBroadcastReceiver extends BroadcastReceiver {
 //                        PPPEApplicationStatic.logE("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "lock device");
                         PPPEAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
                     }
+                }
+            }
+        }
+        else
+        if (action.equals(PPPEAccessibilityService.ACTION_SET_ACCESSIBILITY_VOLUME)) {
+            int volume = intent.getIntExtra(PPPEApplication.EXTRA_ACCESSIBILITY_VOLUME_VALUE, -1);
+            if (volume != -1) {
+                final AudioManager audioManager = (AudioManager) appContext.getSystemService(Context.AUDIO_SERVICE);
+                if (audioManager != null) {
+                    Log.e("FromPhoneProfilesPlusBroadcastReceiver.onReceive", "volume="+volume);
+                    audioManager.setStreamVolume(AudioManager.STREAM_ACCESSIBILITY /* 10 */, volume, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
                 }
             }
         }

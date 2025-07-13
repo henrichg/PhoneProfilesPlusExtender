@@ -4,10 +4,10 @@ apply from: '../dependencies.gradle'
 android {
     signingConfigs {
         debug {
-            storeFile file(System.env.HOME + '/Projekty/AndroidStudio/AndroidReleases/henrichg.keystore')
-            storePassword 'H3nr1sk0Gr0n6220'
-            keyAlias 'henrichg'
-            keyPassword 'H3nr1sk0Gr0n6220'
+            storeFile file(passwordsKeys.appplication_storeFile)
+            storePassword passwordsKeys.storePassword
+            keyAlias passwordsKeys.keyAlias
+            keyPassword passwordsKeys.keyPassword
         }
     }
     namespace 'sk.henrichg.phoneprofilesplusextender'
@@ -76,9 +76,9 @@ android {
 }
 
 dependencies {
-    implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
+    implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:6.1'//6.0'
 
-    implementation 'com.google.guava:guava:33.4.0-android' //33.3.1-android"
+    implementation 'com.google.guava:guava:33.4.8-android' //33.4.0-android'
     implementation "ch.acra:acra-mail:$ppVersions.acra"
     implementation "ch.acra:acra-notification:$ppVersions.acra"
 

@@ -72,6 +72,7 @@ public class PPPEApplication extends Application {
     static final boolean deviceIsSamsung = isSamsung();
     static final boolean deviceIsXiaomi = isXiaomi();
     static final boolean deviceIsOnePlus = isOnePlus();
+    //static final boolean deviceIsPixel = isPixel();
 //    static final boolean romIsMIUI = isMIUIROM();
 
     // for new log.txt and crash.txt is in /Android/data/sk.henrichg.phoneprofilesplusextender/files
@@ -106,6 +107,7 @@ public class PPPEApplication extends Application {
     static final String EXTRA_PROFILE_ID = "profile_id";
     static final String EXTRA_SCROLL_TO = "extra_main_activity_scroll_to";
     static final String EXTRA_BLOCK_PROFILE_EVENT_ACTION = "extra_block_profile_event_actions";
+    static final String EXTRA_ACCESSIBILITY_VOLUME_VALUE = "extra_accessibility_volume_value";
 
     static final String ACTION_CALL_RECEIVED = PPPEApplication.PACKAGE_NAME + ".ACTION_CALL_RECEIVED";
     //private static final String EXTRA_SERVICE_PHONE_EVENT = PPPEApplication.PACKAGE_NAME + ".service_phone_event";
@@ -477,6 +479,15 @@ public class PPPEApplication extends Application {
                 Build.MANUFACTURER.equalsIgnoreCase(ONEPLUS) ||
                 Build.FINGERPRINT.toLowerCase().contains(ONEPLUS);
     }
+
+    /*
+    private static boolean isPixel() {
+        final String GOOGLE = "google";
+        return Build.BRAND.equalsIgnoreCase(GOOGLE) ||
+                Build.MANUFACTURER.equalsIgnoreCase(GOOGLE) ||
+                Build.FINGERPRINT.toLowerCase().contains(GOOGLE);
+    }
+    */
 
     /*
     private static boolean isMIUIROM() {

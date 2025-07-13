@@ -1,0 +1,11 @@
+9.0.1.1
+Change log:
+- Fix: "Force stop" for Galaxy One UI 7.
+
+- GUI and background additions.
+- GUI and background changes.
+- GUI and background fixes.
+- Fixed application crashes.
+- Updated translations.
+
+Full change log is in GitHub releases. (https://henrichg.github.io/PhoneProfilesPlusExtender/FDroid_ChangeLog)
