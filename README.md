@@ -22,7 +22,10 @@ Discord PPP server invitation: https://discord.gg/Yb5hgAstQ3 \
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AF5QK49DMAL2U&currency_code=EUR)
 
 __Install PhoneProfilesPlusExtender directly from PhoneProfilesPlus. But it is also possible to install it from an external source. If installing from PhoneProfilesPlus does not work, use external source. External sources are described below.__
- 
+
+### How to build PPPE
+- [Show it](docs/build.md)
+
 ### Sources of PhoneProfilesPlusExtender:
 
 NOTE: Google Play Protect may display dialog box with title "Unsafe app blocked" and description "This app was build for an older version of Android and doesn`t include the latest privacy protection."
