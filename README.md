@@ -49,9 +49,9 @@ __F-Droid:__
 &nbsp;&nbsp;&nbsp;_[How to add IzzyOnDroid repository to F-Droid application](https://apt.izzysoft.de/fdroid/index/info)_  
 - [Store application (download)](https://www.f-droid.org/)
 
-__GitHub (better is using Droid-ify instead):__
+__GitHub (better is using Droid-ify, F-Droid, NeoStore, or similar app store instead):__
 
-- NOTE: Installation from downloaded apk is not recommended for Android 13+ for security reason. Use instead Droid-ify, if in your device is not supported application store, and install PhoneProfilesPlusExtender from it.
+- NOTE: Installation from downloaded apk is not recommended for Android 13+ for security reason. Use instead Droid-ify, F-Droid, NeoStore, or similar app store, if in your device is not supported application store, and install PhoneProfilesPlusExtender from it.
 
 - [PPPE release (direct download)](https://github.com/henrichg/PhoneProfilesPlusExtender/releases/latest/download/PhoneProfilesPlusExtender.apk)
   &nbsp;&nbsp;&nbsp;_[Number of downloads by version](https://hanadigital.github.io/grev/?user=henrichg&repo=phoneprofilesplusextender)_
