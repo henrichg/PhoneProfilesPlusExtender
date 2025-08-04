@@ -128,6 +128,10 @@ public class PPPEApplication extends Application {
 
     static final String EXCLAMATION_NOTIFICATION_CHANNEL = "phoneProfilesPlusExtender_exclamation";
 
+    static final String FDROID_PACKAGE_NAME = "org.fdroid.fdroid";
+    static final String DROIDIFY_PACKAGE_NAME = "com.looker.droidify";
+    static final String NEOSTORE_PACKAGE_NAME = "com.machiav3lli.fdroid";
+
     //@SuppressWarnings("SpellCheckingInspection")
     //static private FirebaseAnalytics mFirebaseAnalytics;
 

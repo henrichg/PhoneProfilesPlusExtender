@@ -533,6 +533,15 @@ public class MainActivity extends AppCompatActivity
             Button appInfoButton = findViewById(R.id.activity_main_accessibility_service_app_info_button);
             View divider = findViewById(R.id.activity_main_divider_app_info);
             if (!PPPEAccessibilityService.isEnabled(getApplicationContext())) {
+
+                PackageManager packageManager = activity.getPackageManager();
+                Intent _intent = packageManager.getLaunchIntentForPackage(PPPEApplication.FDROID_PACKAGE_NAME);
+                boolean fdroidInstalled = (_intent != null);
+                _intent = packageManager.getLaunchIntentForPackage(PPPEApplication.DROIDIFY_PACKAGE_NAME);
+                boolean droidifyInstalled = (_intent != null);
+                _intent = packageManager.getLaunchIntentForPackage(PPPEApplication.NEOSTORE_PACKAGE_NAME);
+                boolean neostoreInstalled = (_intent != null);
+
                 str1 = StringConstants.TAG_LIST_START_FIRST_ITEM_HTML + getString(R.string.extender_accessibility_service_disabled_app_info_1) + StringConstants.TAG_DOUBLE_BREAK_HTML;
                 str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_2) + StringConstants.TAG_BREAK_HTML;
                 str1 = str1 + getString(R.string.extender_accessibility_service_disabled_app_info_3) + StringConstants.TAG_BREAK_HTML;
@@ -544,33 +553,36 @@ public class MainActivity extends AppCompatActivity
                 text.setText(StringFormatUtils.fromHtml(str1, true, false, false, 0, 0, true));
                 text.setVisibility(View.VISIBLE);
 
-                str1 = getString(R.string.extender_accessibility_service_disabled_app_info_7);
-                String str2 = str1 + " https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify" + StringConstants.STR_HARD_SPACE_DOUBLE_ARROW;
-                Spannable sbt = new SpannableString(str2);
-                sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                ClickableSpan clickableSpan = new ClickableSpan() {
-                    @Override
-                    public void updateDrawState(@NonNull TextPaint ds) {
-                        ds.setColor(ds.linkColor);    // you can use custom color
-                        ds.setUnderlineText(false);    // this remove the underline
-                    }
+                if (!(droidifyInstalled || neostoreInstalled || fdroidInstalled /*|| galaxyStoreInstalled*/)) {
+                    str1 = getString(R.string.extender_accessibility_service_disabled_app_info_7);
+                    String str2 = str1 + " https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify" + StringConstants.STR_HARD_SPACE_DOUBLE_ARROW;
+                    Spannable sbt = new SpannableString(str2);
+                    sbt.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    ClickableSpan clickableSpan = new ClickableSpan() {
+                        @Override
+                        public void updateDrawState(@NonNull TextPaint ds) {
+                            ds.setColor(ds.linkColor);    // you can use custom color
+                            ds.setUnderlineText(false);    // this remove the underline
+                        }
 
-                    @Override
-                    public void onClick(@NonNull View textView) {
-                        String url = "https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify";
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(url));
-                        try {
-                            startActivity(Intent.createChooser(i, getString(R.string.extender_web_browser_chooser)));
-                        } catch (Exception ignored) {}
-                    }
-                };
-                sbt.setSpan(clickableSpan, str1.length()+1, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                //sbt.setSpan(new UnderlineSpan(), str1.length()+1, str2.length(), 0);
-                //noinspection DataFlowIssue
-                text2.setText(sbt);
-                text2.setMovementMethod(LinkMovementMethod.getInstance());
-                text2.setVisibility(View.VISIBLE);
+                        @Override
+                        public void onClick(@NonNull View textView) {
+                            String url = "https://apt.izzysoft.de/fdroid/index/apk/com.looker.droidify";
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(url));
+                            try {
+                                startActivity(Intent.createChooser(i, getString(R.string.extender_web_browser_chooser)));
+                            } catch (Exception ignored) {
+                            }
+                        }
+                    };
+                    sbt.setSpan(clickableSpan, str1.length() + 1, str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    //sbt.setSpan(new UnderlineSpan(), str1.length()+1, str2.length(), 0);
+                    //noinspection DataFlowIssue
+                    text2.setText(sbt);
+                    text2.setMovementMethod(LinkMovementMethod.getInstance());
+                    text2.setVisibility(View.VISIBLE);
+                }
                 //noinspection DataFlowIssue
                 divider.setVisibility(View.VISIBLE);
                 //noinspection DataFlowIssue
