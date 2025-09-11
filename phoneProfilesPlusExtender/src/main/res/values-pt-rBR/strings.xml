@@ -44,8 +44,8 @@
     <string name="extender_notification_call_permission_text">Permission for event parameter \"Call sensor\" is not granted. Click this notification to open PPPE. In it use button for grant this permission.</string>
     <string name="extender_notifications_permission_text">Notifications permission is not granted.\n\nPlease enable notifications for PhoneProfilesPlusExtender. Without this enabled, notifications from PhoneProfilesPlusExtender will not be displayed.</string>
     <string name="extender_enable_notificaitons_button">Enable</string>
-    <string name="extender_menu_choose_language">Choose language</string>
-    <string name="extender_menu_choose_language_system_language">[ System ]</string>
+    <string name="extender_menu_choose_language">Escolher idioma</string>
+    <string name="extender_menu_choose_language_system_language">[ Sistema ]</string>
     <string name="extender_application_translations">Translations:</string>
     <string name="extender_email_chooser">Send e-mail using</string>
     <string name="extender_accessibility_service_disabled_app_info_1">If is not possible to enable Accessibility service, maybe are not allowed restricted settings for PhoneProfilesPlusExtender.</string>
@@ -56,10 +56,10 @@
     <string name="extender_accessibility_service_disabled_app_info_6">Then you must uninstall it, and install it from supported store, for example Droid-ify.</string>
     <string name="extender_accessibility_service_disabled_app_info_7">Click here to open Droid-ify installation site:</string>
     <string name="extender_accessibility_service_app_info_button">App info</string>
-    <string name="extender_menu_support">Support</string>
+    <string name="extender_menu_support">Suporte</string>
     <string name="extender_support_subject">support</string>
     <string name="extender_menu_email_to_author">E-mail to author</string>
-    <string name="extender_menu_discord_server">PhoneProfilesPlus server</string>
+    <string name="extender_menu_discord_server">Servidor PhoneProfilesPlus</string>
     <string name="extender_menu_discord_invitation">Server invitation</string>
     <string name="extender_notification_channel_exclamation">Exclamation</string>
 </resources>

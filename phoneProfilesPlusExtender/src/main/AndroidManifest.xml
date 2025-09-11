@@ -23,18 +23,22 @@
     <uses-permission android:name="sk.henrichg.phoneprofilesplusextender.ACCESSIBILITY_SERVICE_PERMISSION"/>
 
     <!--    hard restricted-->
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"
+        tools:ignore="SmsAndCallLogPolicy" />
     <!--    hard restricted-->
-    <uses-permission android:name="android.permission.RECEIVE_MMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_MMS"
+        tools:ignore="SmsAndCallLogPolicy" />
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!-- required for answer call to get phone number -->
     <!--    hard restricted-->
     <!--    not allowed for compile sdk > 28  :-( -->
     <!--suppress DeprecatedClassUsageInspection -->
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"
+        tools:ignore="SmsAndCallLogPolicy" />
     <!--    hard restricted-->
-    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"
+        tools:ignore="SmsAndCallLogPolicy" />
 
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
@@ -121,7 +125,8 @@
             android:label="@string/extender_accessibility_service_name"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="AccessibilityPolicy">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService"/>
             </intent-filter>

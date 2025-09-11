@@ -22,6 +22,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.List;
 
 /** @noinspection ExtractMethodRecommender*/
+@SuppressLint("AccessibilityPolicy")
 @SuppressWarnings("SpellCheckingInspection")
 public class PPPEAccessibilityService extends android.accessibilityservice.AccessibilityService {
 
