@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ToastCompat/PhoneProfilesPlusExtender.ToastCompat.main.iml" />
     </modules>
   </component>
 </project>
